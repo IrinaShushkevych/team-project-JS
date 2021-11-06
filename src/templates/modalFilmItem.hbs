@@ -1,0 +1,21 @@
+{{#each this}}
+    <li class='js-film-item'>
+      <a href='{{homepage}}'>
+        <div class=''>
+          <img src='{{poster_path}}' alt='{{original_title}}' />
+          <h3 class='js-film-name'>{{original_title}}</h3>
+
+          <div class=''>
+            <p class=''>
+                <ul class='genre-list'>
+                    {{#each genres}}
+                        <li class='genre-item'>{{this}}</li>
+                    {{/each}}
+                </ul>
+                |{{}}
+            </p>       
+          </div>
+        </div>
+      </a>
+    </li>
+  {{/each}}

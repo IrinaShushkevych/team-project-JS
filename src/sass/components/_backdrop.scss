@@ -1,0 +1,28 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
+
+  padding: 93px 15px 94px 15px;
+  overflow-y: scroll; // прокрутка модального окна
+
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transition: opacity $duration $timing-function, visibility $duration $timing-function;
+}
+
+.backdrop.is-hidden {
+  /* скрываем модальное окно */
+  opacity: 0; /* делаем прозрачный фон */
+  pointer-events: none; /* на элемент не влияет клик мышки  */
+  visibility: hidden; /* скрывает модальное окно */
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.1);
+}
