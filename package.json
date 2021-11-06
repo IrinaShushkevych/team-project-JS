@@ -1,5 +1,5 @@
 {
-  "name": "team-project-JS",
+  "name": "team-project-js",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -18,19 +18,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /team-project-JS/",
+    "build": "parcel build src/*.html --public-url /team-project-js/",
     "deploy": "gh-pages -d dist",
     "predeploy": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IrinaShushkevych/team-project-JS.git"
+    "url": "git+https://github.com/IrinaShushkevych/team-project-js.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/IrinaShushkevych/team-project-JS/issues"
+    "url": "https://github.com/IrinaShushkevych/team-project-js/issues"
   },
-  "homepage": "https://github.com/IrinaShushkevych/team-project-JS#readme"
+  "homepage": "https://github.com/IrinaShushkevych/team-project-js#readme"
 }
