@@ -7,4 +7,4 @@ module.exports="/team-project-js/film.3805b694.svg";
 },{}],"A2T1":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./images/film.svg");var s=e(require("./js/DataServise.js"));function e(s){return s&&s.__esModule?s:{default:s}}const t=new s.default;async function n(){const s=(await t.getPopularFilms()).results;console.log(s)}async function a(){const s=(await t.getFilmsByQuery()).results;console.log(s)}n(),a();
 },{"./sass/main.scss":"clu1","./images/film.svg":"O322","./js/DataServise.js":"trOe"}]},{},["A2T1"], null)
-//# sourceMappingURL=/team-project-js/app.1156cb23.js.map
+//# sourceMappingURL=/team-project-js/app.56aad7ae.js.map
