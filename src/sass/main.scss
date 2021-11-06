@@ -1,10 +1,12 @@
 // UTILS
 
-@import './utilities/variables';
-@import './utilities/container';
-@import './utilities/visually-hidden';
+@import './utilits/variables';
+@import './utilits/container';
+@import './utilits/visually-hidden';
+@import './utilits/film-list';
 
 // COMPONENTS
+
 @import './components/backdrop';
 @import './components/modal-window';
 @import './partial/header';

@@ -1,11 +1,11 @@
-{{#each response }}
+{{#each this }}
   <li class='card'>
     <div class='card__tumb'>
       <img
         data-id='{{id}}'
 
         {{#if poster_path}}
-        src='{{poster_path}}'
+        src='https://image.tmdb.org/t/p/w500{{poster_path}}'
 
         {{#if backdrop_path}}
         src='{{backdrop_path}}'
