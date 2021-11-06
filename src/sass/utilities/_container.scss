@@ -4,7 +4,7 @@
   margin-right: auto;
   margin-left: auto;
 
-  @media screen and (max-width: calc($bp-tablet - 1)) {
+  @media screen and (max-width: $bp-mobile-max) {
     max-width: $bp-mobile;
     padding: 0 75px;
   }

@@ -1,4 +1,7 @@
-import APIService from "./js/DataServise.js";
+import './sass/main.scss';
+import './images/film.svg';
+
+import APIService from './js/DataServise.js';
 
 const dataAPI = new APIService();
 
@@ -8,8 +11,7 @@ async function renderPopularFilms() {
   // console.log(dataPopular);
 }
 
-renderPopularFilms()
-
+renderPopularFilms();
 
 async function renderFilmsByQuery(query) {
   const queryFilmsResult = await dataAPI.getFilmsByQuery(query);
@@ -17,7 +19,7 @@ async function renderFilmsByQuery(query) {
   // console.log(dataQuery);
 }
 
-renderFilmsByQuery('sun')
+renderFilmsByQuery('sun') //замість sun буде приходити значення з інпута
 
 async function decodeGenres() {
   const genresResult = await dataAPI.getFilmsGenres();
