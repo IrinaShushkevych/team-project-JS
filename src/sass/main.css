@@ -8,13 +8,7 @@
 @media screen and (max-width: calc($bp-tablet - 1)) {
   .container {
     max-width: 320px;
-    padding: 0 75 px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .container {
-    grid-gap: 30px;
+    padding: 0 75px;
   }
 }
 
@@ -29,5 +23,9 @@
     max-width: 1024px;
     padding: 0 70px;
   }
+}
+
+@media screen and (min-width: 768px) {
+  grid-gap: 30px;
 }
 /*# sourceMappingURL=main.css.map */
