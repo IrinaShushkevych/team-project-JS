@@ -1,4 +1,6 @@
 import './sass/main.scss';
+import './images/film.svg';
+
 import APIService from './js/DataServise.js';
 
 const dataAPI = new APIService();
