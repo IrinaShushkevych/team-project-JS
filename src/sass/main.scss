@@ -10,3 +10,14 @@
 @import './components/backdrop';
 @import './components/modal-window';
 @import './partial/header';
+<<<<<<< Updated upstream
+=======
+@import './partial/footer';
+
+body {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  color: $primary-color;
+}
+>>>>>>> Stashed changes

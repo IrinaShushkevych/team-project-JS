@@ -11,14 +11,36 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
+      integrity="sha512-ISS7cAi1PEhQ8jnbJpJZMd29NlhNj4AWYyLOSp2CE/CsHxTCu+r+t0D2yoJudVrd0/8fTVPUVDzY5Tvli75u/g=="
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <header class="header">
       <div class="container">
+<<<<<<< Updated upstream
         <div class="header-section">
           <a href="" class="header_link">
             <svg class="header_icon" width="24" height="24">
               <use href="./images/film.svg"></use>
+=======
+        <a href="" class="header_link">
+          <img src="./images/film.svg" alt="" />
+          <span class="logo__header">Filmoteka</span>
+        </a>
+        <div class="side-nav__header">
+          <button class="home-btn__header">Home</button>
+          <button class="library-btn__header">MY LIBRARY</button>
+        </div>
+        <form class="search-form" id="search-form">
+          <input type="text" class="input_header" name="query" placeholder="film" />
+          <button type="submit" class="search-btn">
+            <svg class="search-icon">
+              <use href="./images/search.svg"></use>
+>>>>>>> Stashed changes
             </svg>
             <span class="logo__header">Filmoteka</span> </a
           >n
@@ -51,7 +73,13 @@
     <footer class="footer">
       <div class="container">
         <p class="footer__text">
-          © 2020 | All Rights Reserved | Developed with by
+          <span class="footer__block-text">&copy 2020 </span>
+          <span class="footer__block-text">All Rights Reserved </span>
+        </p>
+        <p class="footer__text">
+          <span> Developed with</span>
+          <img src="./images/heart.svg" alt="" class="footer__image" width="14" height="12" />
+          <span>by</span>
           <button class="footer__link">GoIT Students</button>
         </p>
       </div>
