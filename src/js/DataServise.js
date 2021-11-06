@@ -5,14 +5,30 @@ class APIService {
     this.baseUrl = 'https://api.themoviedb.org/3/';
     this.popularFilms = 'trending/movie/week?';
     this.page = 1;
-    this._query = '';
+    this._query = 'bad boys';
+    this.queryEndpoint = `search/movie?query=${this._query}&`;
+    this.url = '';
+  }
+
+  get query() {
+    return this._query
+  }
+
+  set query(value) {
+    return this._query = value;
   }
 
   async getPopularFilms() {
-    let url = this.baseUrl + this.popularFilms + this.keyAPI;
-    console.log(url);
-    const response = await fetch(url);
+    this.url = this.baseUrl + this.popularFilms + this.keyAPI;
+    const response = await fetch(this.url);
     return response.json()
+  }
+
+  
+  async getFilmsByQuery() {
+    this.url = this.baseUrl + this.queryEndpoint + this.keyAPI;
+    const response = await fetch(this.url);
+    return response.json();
   }
 
 }
