@@ -5,18 +5,26 @@ const dataAPI = new APIService();
 async function renderPopularFilms() {
   const popularFilmsResult = await dataAPI.getPopularFilms();
   const dataPopular = popularFilmsResult.results;
-  console.log(dataPopular);
+  // console.log(dataPopular);
 }
 
 renderPopularFilms()
 
 
-async function renderFilmsByQuery() {
-  const queryFilmsResult = await dataAPI.getFilmsByQuery();
+async function renderFilmsByQuery(query) {
+  const queryFilmsResult = await dataAPI.getFilmsByQuery(query);
   const dataQuery = queryFilmsResult.results;
-  console.log(dataQuery);
+  // console.log(dataQuery);
 }
 
-renderFilmsByQuery()
+renderFilmsByQuery('sun')
+
+async function decodeGenres() {
+  const genresResult = await dataAPI.getFilmsGenres();
+  const dataGenres = genresResult.genres;
+  // console.log(dataGenres);
+}
+
+decodeGenres()
 
 
