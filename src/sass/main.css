@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .container {
   width: 100%;
   padding: 0 20px;
@@ -5,7 +6,7 @@
   margin-left: auto;
 }
 
-@media screen and (max-width: calc($bp-tablet - 1)) {
+@media screen and (max-width: 767px) {
   .container {
     max-width: 320px;
     padding: 0 75px;
@@ -18,14 +19,194 @@
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   .container {
-    max-width: 1024px;
+    max-width: 768px;
     padding: 0 70px;
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+.container-grid {
   grid-gap: 30px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  -webkit-clip-path: inset(100%);
+          clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.film-list {
+  list-style: none;
+}
+
+@media screen and (min-width: 768px) {
+  .film-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-right: -30px;
+    margin-bottom: -30px;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+.card {
+  width: 100%;
+  height: 440px;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    width: 294px;
+    margin: 0 30px 30px 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .card {
+    width: 274px;
+  }
+}
+
+.card__tumb {
+  height: 398px;
+  overflow: hidden;
+}
+
+.card__title {
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 1.17;
+  padding-top: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .card__title {
+    line-height: 1.33;
+  }
+}
+
+.card__image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 93px 15px 94px 15px;
+  overflow-y: scroll;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  -webkit-transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden {
+  /* скрываем модальное окно */
+  opacity: 0;
+  /* делаем прозрачный фон */
+  pointer-events: none;
+  /* на элемент не влияет клик мышки  */
+  visibility: hidden;
+  /* скрывает модальное окно */
+}
+
+.backdrop.is-hidden .modal {
+  -webkit-transform: translate(-50%, -50%) scale(0.1);
+          transform: translate(-50%, -50%) scale(0.1);
+}
+
+.modal {
+  margin: 0 auto;
+  max-width: 450px;
+  width: 100%;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  -webkit-transition: -webkit-transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: -webkit-transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+    max-width: 450px;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .modal {
+    max-width: 528px;
+  }
+}
+
+.modal .modal__thumb {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding-right: 8px;
+  padding-top: 8px;
+}
+
+.modal .modal__button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  cursor: pointer;
+  fill: tomato;
+  background-color: orange;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  -webkit-transition-property: fill;
+  transition-property: fill;
+  -webkit-transition-duration: 250ms;
+          transition-duration: 250ms;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal .modal__button:hover, .modal .modal__button:focus {
+  fill: #ff6b08;
 }
 /*# sourceMappingURL=main.css.map */
