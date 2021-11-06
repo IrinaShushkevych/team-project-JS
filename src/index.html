@@ -13,26 +13,32 @@
     />
   </head>
   <body>
-    <header class="header header__overlay">
+    <header class="header">
       <div class="container">
-        <a href="" class="header_link">
-          <svg class="header_icon" width="24" height="24">
-            <use href="./images/film.svg"></use>
-          </svg>
-          <span class="logo__header">Filmoteka</span> </a
-        >n
-        <div class="side-nav__header">
-          <button class="home-btn__header">Home</button>
-          <button class="library-btn__header">MY LIBRARY</button>
-        </div>
-        <form class="search-form" id="search-form">
-          <input type="text" class="input_header" name="query" placeholder="film" />
-          <button type="submit" class="search-btn">
-            <svg class="search-icon">
-              <use href="./images/search.svg"></use>
+        <div class="header-section">
+          <a href="" class="header_link">
+            <svg class="header_icon" width="24" height="24">
+              <use href="./images/film.svg"></use>
             </svg>
-          </button>
-        </form>
+            <span class="logo__header">Filmoteka</span> </a
+          >n
+          <div class="side-nav__header">
+            <button class="home-btn__header btn__header btn__header--current-page">
+              Home
+            </button>
+            <button class="library-btn__header btn__header btn__header--current-page">
+              MY LIBRARY
+            </button>
+          </div>
+          <form class="search-form" id="search-form">
+            <input type="text" class="input_header" name="query" placeholder="film" />
+            <button type="submit" class="search-btn">
+              <svg class="search-icon" width="12" height="12">
+                <use href="./images/search.svg"></use>
+              </svg>
+            </button>
+          </form>
+        </div>
       </div>
     </header>
     <main>
