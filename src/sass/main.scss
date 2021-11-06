@@ -1,9 +1,10 @@
 // UTILS
 
-@import './utilits/variables';
-@import './utilits/container';
-@import './utilits/visually-hidden';
+@import './utilities/variables';
+@import './utilities/container';
+@import './utilities/visually-hidden';
 
 // COMPONENTS
 @import './components/backdrop';
 @import './components/modal-window';
+@import './partial/header';
