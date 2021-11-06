@@ -6,20 +6,15 @@
 
   @media screen and (max-width: $bp-mobile-max) {
     max-width: $bp-mobile;
-    padding: 0 75px;
-  }
-
-  @media screen and (min-width: $bp-mobile) {
-    max-width: $bp-mobile;
   }
 
   @media screen and (min-width: $bp-tablet) {
-    max-width: $bp-tablet;
+    width: $bp-tablet;
     padding: 0 70px;
   }
 
   @media screen and (min-width: $bp-desktop) {
-    max-width: $bp-desktop;
+    width: $bp-desktop;
   }
 }
 
