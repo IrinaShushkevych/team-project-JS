@@ -1,5 +1,6 @@
 import './sass/main.scss';
 import './images/film.svg';
+import template from './templates/list-card.hbs';
 
 import APIService from './js/DataServise.js';
 
@@ -9,14 +10,13 @@ async function renderPopularFilms() {
   const popularFilmsResult = await dataAPI.getPopularFilms();
   const dataPopular = popularFilmsResult.results;
   console.log(dataPopular);
+  renderMarkup(dataPopular);
 }
 
 renderPopularFilms();
 
-async function renderFilmsByQuery() {
-  const queryFilmsResult = await dataAPI.getFilmsByQuery();
-  const dataQuery = queryFilmsResult.results;
-  console.log(dataQuery);
-}
+function renderMarkup(data) {
+  const listUlFilms = document.querySelector('.js-film-list');
 
-renderFilmsByQuery();
+  listUlFilms.innerHTML = template(data);
+}
