@@ -1,4 +1,5 @@
-import APIService from "./js/DataServise.js";
+import './sass/main.scss';
+import APIService from './js/DataServise.js';
 
 const dataAPI = new APIService();
 
@@ -8,8 +9,7 @@ async function renderPopularFilms() {
   console.log(dataPopular);
 }
 
-renderPopularFilms()
-
+renderPopularFilms();
 
 async function renderFilmsByQuery() {
   const queryFilmsResult = await dataAPI.getFilmsByQuery();
@@ -17,6 +17,4 @@ async function renderFilmsByQuery() {
   console.log(dataQuery);
 }
 
-renderFilmsByQuery()
-
-
+renderFilmsByQuery();
