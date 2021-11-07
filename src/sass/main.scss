@@ -1,18 +1,17 @@
 // UTILS
 
-@import './utilits/variables';
-@import './utilits/container';
-@import './utilits/visually-hidden';
-@import './utilits/film-list';
+@import './utilities/variables';
+@import './utilities/container';
+@import './utilities/visually-hidden';
+@import './utilities/film-list';
 
 // COMPONENTS
 
 @import './components/backdrop';
 @import './components/modal-window';
 @import './partial/header';
-<<<<<<< Updated upstream
-=======
 @import './partial/footer';
+@import './partial/modal-card';
 
 body {
   font-family: Roboto, sans-serif;
@@ -20,4 +19,21 @@ body {
   font-weight: normal;
   color: $primary-color;
 }
->>>>>>> Stashed changes
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}

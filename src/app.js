@@ -4,6 +4,9 @@ import template from './templates/list-card.hbs';
 
 import APIService from './js/DataServise.js';
 
+import Modal from './js/modal.js';
+// console.log(Modal);
+
 const dataAPI = new APIService();
 
 async function renderPopularFilms() {
@@ -27,7 +30,7 @@ async function renderFilmsByQuery(query) {
   // console.log(dataQuery);
 }
 
-renderFilmsByQuery('sun') //замість sun буде приходити значення з інпута
+renderFilmsByQuery('sun'); //замість sun буде приходити значення з інпута
 
 async function decodeGenres() {
   const genresResult = await dataAPI.getFilmsGenres();
@@ -35,4 +38,4 @@ async function decodeGenres() {
   // console.log(dataGenres);
 }
 
-decodeGenres()
+decodeGenres();

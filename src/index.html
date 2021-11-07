@@ -21,12 +21,10 @@
   <body>
     <header class="header">
       <div class="container">
-<<<<<<< Updated upstream
         <div class="header-section">
           <a href="" class="header_link">
             <svg class="header_icon" width="24" height="24">
               <use href="./images/film.svg"></use>
-=======
         <a href="" class="header_link">
           <img src="./images/film.svg" alt="" />
           <span class="logo__header">Filmoteka</span>
@@ -40,7 +38,6 @@
           <button type="submit" class="search-btn">
             <svg class="search-icon">
               <use href="./images/search.svg"></use>
->>>>>>> Stashed changes
             </svg>
             <span class="logo__header">Filmoteka</span> </a
           >n
@@ -88,7 +85,6 @@
     <!-- Модальное окно -->
     <!-- <div class="backdrop is-hidden" data-modal> -->
     <div class="backdrop visually-hidden" data-modal>
-      <p>Модальное окно</p>
       <div class="modal">
         <div class="modal__thumb">
           <button class="modal__button" data-modal-close>
@@ -98,41 +94,51 @@
           </button>
         </div>
         <div class="card__container--modal">
-          <img id="" src="" alt="картика фильма" />
-          <h3 class="card__title--modal">A FISTFUL OF LEAD</h3>
-          <table class="card__specifications--modal">
-            <tr class="">
-              <td class="card__specification-name">Vote / Votes</td>
-              <td class="card__specification-meaning">
-                <span class="class=&quot;card__specification-meaning--accent">7.3</span> / 1260
-              </td>
-            </tr>
-            <tr class="">
-              <td class="card__specification-name">Popularity</td>
-              <td class="card__specification-meaning">100.2</td>
-            </tr>
-            <tr class="">
-              <td class="card__specification-name">Original Title</td>
-              <td class="card__specification-meaning">A FISTFUL OF LEAD</td>
-            </tr>
-            <tr class="">
-              <td class="card__specification-name">Genre</td>
-              <td class="card__specification-meaning">Western</td>
-            </tr>
-          </table>
-          <h4 class="card__title-abaut">About</h4>
-          <p class="card__text-abaut">
-            Four of the West’s most infamous outlaws assemble to steal a huge stash of gold from the
-            most corrupt settlement of the gold rush towns. But not all goes to plan one is killed
-            and the other three escapes with bags of gold hide out in the abandoned gold mine where
-            they happen across another gang of three – who themselves were planning to hit the very
-            same bank! As tensions rise, things go from bad to worse as they realise the bags of
-            gold are filled with lead... they’ve been double crossed – but by who and how?
-          </p>
-        </div>
-        <div class="button__container-modal">
-          <button class="button__modal">add to Watched</button>
-          <button class="button__modal">add to queue</button>
+          <div class="card__image-thumb"><img id="" src="" alt="картика фильма 11111111111111111111" /></div>
+          <div class="card__description">  
+              <h3 class="card__title--modal">A FISTFUL OF LEAD</h3>
+              <table class="card__specifications--modal">
+                <tr class="card__specification-row">
+                  <td class="card__specification-name">Vote / Votes</td>
+                  <td class="card__specification-meaning">
+                    <button class="button__modal--primary card__specification-meaning-button">7.3</button> / 1260
+                  </td>
+                </tr>
+                <tr class="card__specification-row">
+                  <td class="card__specification-name">Popularity</td>
+                  <td class="card__specification-meaning">100.2</td>
+                </tr>
+                <tr class="card__specification-row">
+                  <td class="card__specification-name">Original Title</td>
+                  <td class="card__specification-meaning">A FISTFUL OF LEAD</td>
+                </tr>
+                <tr class="card__specification-row">
+                  <td class="card__specification-name">Genre</td>
+                  <td class="card__specification-meaning">Western</td>
+                </tr>
+              </table>
+              <h4 class="card__title-abaut">About</h4>
+              <p class="card__text-abaut">
+                Four of the West’s most infamous outlaws assemble to steal a huge stash of gold from the
+                most corrupt settlement of the gold rush towns. But not all goes to plan one is killed
+                and the other three escapes with bags of gold hide out in the abandoned gold mine where
+                they happen across another gang of three – who themselves were planning to hit the very
+                same bank! As tensions rise, things go from bad to worse as they realise the bags of
+                gold are filled with lead... they’ve been double crossed – but by who and how?
+              </p>        
+              <div class="button__container-modal">
+                <ul class='button__list-modal'>
+                  <li class="button__item-modal"><button class="button__modal--primary button__modal--add">add to Watched</button></li>
+                  <li class="button__item-modal"><button class="button__modal--primary button__modal--add">add to queue</button></li>
+                </ul> 
+              </div>
+               <div class="button__container-modal--remove">
+                <ul class='button__list-modal'>
+                  <li class="button__item-modal"><button class="button__modal--primary button__modal--add">remove to Watched</button></li>
+                  <li class="button__item-modal"><button class="button__modal--primary button__modal--add">remove to queue</button></li>
+                </ul> 
+              </div>
+          </div>
         </div>
       </div>
     </div>
