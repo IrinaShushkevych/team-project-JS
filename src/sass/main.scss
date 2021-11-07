@@ -1,23 +1,12 @@
 // UTILS
 
-@import './utilits/variables';
-@import './utilits/container';
-@import './utilits/visually-hidden';
-@import './utilits/film-list';
+@import './utilities/variables';
+@import './utilities/container';
+@import './utilities/visually-hidden';
+@import './partial/film-list';
 
 // COMPONENTS
 
 @import './components/backdrop';
 @import './components/modal-window';
 @import './partial/header';
-<<<<<<< Updated upstream
-=======
-@import './partial/footer';
-
-body {
-  font-family: Roboto, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  color: $primary-color;
-}
->>>>>>> Stashed changes
