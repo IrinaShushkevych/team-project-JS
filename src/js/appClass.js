@@ -3,5 +3,5 @@ export default class App {
   // Клик логотип и home
   // Клик lybrary
   // Клик footer - запуск модалки
-  // input
+  // input  название = () => {}
 }
