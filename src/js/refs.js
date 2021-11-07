@@ -1,3 +1,3 @@
 export default {
-    linkModalTeam = document.querySelector('.js-modal-team');
+    linkModalTeam = document.querySelector('.js-modal-team'),
 };
