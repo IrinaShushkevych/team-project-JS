@@ -6,12 +6,11 @@
 //   // listener(запуск перерисовки карточек, переключение страницы, перерисовка пагинации)
 // }
 import Pagination from 'tui-pagination';
+import refs from './refs.js'
 
-export default function () {
+export default function setPagination(options) {
 
-  const paginationCase = document.getElementById('tui-pagination-container')
-
-  const options = {
+    const paginationOptions = {
     totalItems: 20000,
     itemsPerPage: 20,
     visiblePages: 5,
@@ -37,5 +36,8 @@ export default function () {
     },
   };
 
-  const pagination = new Pagination(paginationCase, options);
+  const pagination = new Pagination(refs.paginationCase, paginationOptions);
 }
+  
+
+

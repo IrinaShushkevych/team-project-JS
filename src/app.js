@@ -1,14 +1,16 @@
 import './sass/main.scss';
-import './js/pagination.js'
 
 import App from './js/appClass';
-
+import setPagination from './js/pagination.js'
 import template from './templates/list-card.hbs';
 
 import APIService from './js/DataServise.js';
 
 import Modal from './js/modal.js';
 
+
+
+setPagination()
 const app = new App();
 app.init();
 
