@@ -14,14 +14,14 @@ export default class DataSaver {
   // Проверка наличия фильма в очереди
   constructor() {}
 
-  saveFilmsGenres = async data => {
+  setFilmsGenres = async data => {
     const genresResult = await data;
     const dataGenres = genresResult.genres;
     dataGenres.map(obj => (obj.name === 'Science Fiction' ? (obj.name = 'Sci-Fi') : obj.name));
     localStorage.setItem('genres', JSON.stringify(dataGenres));    
   };
 
-  getSavedGenres = () => {
+  getFilmsGenres = () => {
     const savedGenres = localStorage.getItem('genres');
     const genres = JSON.parse(savedGenres);
     return genres;

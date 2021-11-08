@@ -5,6 +5,7 @@ export default class APIService {
     this.baseUrl = 'https://api.themoviedb.org/3/';
     this.page = 1;
     this.url = '';
+    this.query = '';
     this.dataSaver = new DataSaver();
   }
 
@@ -26,14 +27,13 @@ export default class APIService {
   };
 
   decodeGenres = genreIds => {
-    const genres = this.getFilmsGenres();
+    const genres = this.dataSaver.getFilmsGenres();
     const genreNames = genreIds.map(array => {
       for (let i = 0; i < array.length; i += 1) {
         genres.map(obj => (array[i] === obj.id ? (array[i] = obj.name) : array[i]));
       }
       if (array.length > 3) {
-        array.splice(2, 0, 'other');
-        return array;
+        array.splice(2, 0, 'other');        
       }
       return array;
     });
@@ -52,7 +52,7 @@ export default class APIService {
     let genresEndpoint = 'genre/movie/list?';
     this.url = this.baseUrl + genresEndpoint + this.keyAPI;
     const result = this.fetchData(this.url);
-    this.dataSaver.saveFilmsGenres(result);
-    return this.dataSaver.getSavedGenres();
+    this.dataSaver.setFilmsGenres(result);
+    return this.dataSaver.getFilmsGenres();
   };
 }
