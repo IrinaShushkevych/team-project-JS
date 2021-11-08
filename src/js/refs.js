@@ -4,4 +4,5 @@ export default {
   btnLybraryRef: document.querySelector('.js-lybrary'),
   logoRef: document.querySelector('.js-logo'),
   paginationCase: document.getElementById('tui-pagination-container'),
+  inputFormRef: document.querySelector('.js-search-form'),
 };
