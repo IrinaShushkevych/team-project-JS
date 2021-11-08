@@ -3,12 +3,41 @@
 @import './utilities/variables';
 @import './utilities/container';
 @import './utilities/visually-hidden';
+// @import './utilities/film-list';
 @import './partial/film-list';
 
 // COMPONENTS
 
 @import './components/backdrop';
 @import './components/modal-window';
+@import './components/button';
 @import './partial/header';
 @import './partial/footer';
 @import './partial/pagination';
+@import './partial/button-library';
+@import './partial/modal-card';
+
+body {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  color: $primary-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
