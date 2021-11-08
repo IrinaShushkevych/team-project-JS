@@ -1,4 +1,5 @@
 import './sass/main.scss';
+import Save from './js/auth.js';
 
 import App from './js/appClass';
 
@@ -25,3 +26,8 @@ function renderMarkup(data) {
 
   listUlFilms.innerHTML = template(data);
 }
+
+console.log('AUTH');
+const saveObj = new Save();
+// saveObj.save(124);
+saveObj.print();
