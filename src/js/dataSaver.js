@@ -26,4 +26,13 @@ export default class DataSaver {
     const genres = JSON.parse(savedGenres);
     return genres;
   };
+
+  setTotalPages=(pages) => {
+    localStorage.setItem('totalPages', JSON.stringify(pages));    
+  }
+
+  getTotalPages = () => {
+    const totalPages = localStorage.getItem('totalPages');
+    return JSON.parse(totalPages)
+  }
 }
