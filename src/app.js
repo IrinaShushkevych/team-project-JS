@@ -1,19 +1,21 @@
 import './sass/main.scss';
 
+import App from './js/appClass';
+
 import template from './templates/list-card.hbs';
 
 import APIService from './js/DataServise.js';
 
 import Modal from './js/modal.js';
-// console.log(Modal);
+
+const app = new App();
+app.init();
 
 const dataAPI = new APIService();
 
-
-
 async function renderPopularFilms() {
-  const dataPopular = await dataAPI.getPopularFilms()
-  
+  const dataPopular = await dataAPI.getPopularFilms();
+
   renderMarkup(dataPopular);
 }
 
@@ -24,6 +26,3 @@ function renderMarkup(data) {
 
   listUlFilms.innerHTML = template(data);
 }
-
-
-
