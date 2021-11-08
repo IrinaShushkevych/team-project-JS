@@ -10,6 +10,8 @@ ul {
   }
   @media screen and (min-width: $bp-desktop) {
     padding-top: 60px;
+    padding-left: 51px;
+    padding-right: 51px;
   }
   @media screen and (min-width: $bp-tablet) and (max-width: $bp-desktop-min-one) {
     padding-top: 60px;

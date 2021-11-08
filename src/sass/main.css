@@ -39,6 +39,10 @@
   overflow: hidden;
 }
 
+.hidden {
+  display: none;
+}
+
 ul {
   list-style: none;
 }
@@ -61,6 +65,8 @@ ul {
 @media screen and (min-width: 1024px) {
   .film-list {
     padding-top: 60px;
+    padding-left: 51px;
+    padding-right: 51px;
   }
 }
 
@@ -337,55 +343,99 @@ img {
           box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
 }
 
-.header {
-  margin-left: auto;
-  margin-right: auto;
-  min-height: 230px;
+.header .container {
+  padding-top: 58px;
+  padding-bottom: 96px;
+}
+
+@media screen and (min-width: 768px) {
+  .header .container {
+    width: 768px;
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header .container {
+    width: 1024px;
+  }
+}
+
+.header-home {
   background-image: url(../images/bg-header-mobile.jpg);
   background-color: #000000;
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: contain;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 @media screen and (min-device-pixel-ratio: 2), screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
-  .header {
+  .header-home {
     background-image: url(../images/bg-header-mobile@2x.jpg);
   }
 }
 
 @media screen and (min-width: 768px) {
-  .header {
-    padding-left: 75px;
-    padding-right: 75px;
+  .header-home {
     background-image: url(../images/bg-header-tablet.jpg);
   }
 }
 
 @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2), screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 768px) and (min-resolution: 192dpi), screen and (min-width: 768px) and (min-resolution: 2dppx) {
-  .header {
+  .header-home {
     background-image: url(../images/bg-header-tablet@2x.jpg);
   }
 }
 
 @media screen and (min-width: 1366px) {
-  .header {
-    padding-left: 71px;
-    padding-right: 71px;
+  .header-home {
     background-image: url(../images/bg-header-desktop.jpg);
   }
 }
 
 @media screen and (min-width: 1366px) and (min-device-pixel-ratio: 2), screen and (min-width: 1366px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 1366px) and (min-resolution: 192dpi), screen and (min-width: 1366px) and (min-resolution: 2dppx) {
-  .header {
+  .header-home {
     background-image: url(../images/bg-header-desktop@2x.jpg);
   }
 }
 
-.header-section {
-  padding-top: 58px;
+.header-library {
+  background-image: url(../images/bg-header-mobile2.jpg);
+  background-color: #000000;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media screen and (min-device-pixel-ratio: 2), screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
+  .header-library {
+    background-image: url(../images/bg-header-mobile2@2x.jpg);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header-library {
+    background-image: url(../images/bg-header-tablet2.jpg);
+  }
+}
+
+@media screen and (min-width: 768px) and (min-device-pixel-ratio: 2), screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 768px) and (min-resolution: 192dpi), screen and (min-width: 768px) and (min-resolution: 2dppx) {
+  .header-library {
+    background-image: url(../images/bg-header-tablet2@2x.jpg);
+  }
+}
+
+@media screen and (min-width: 1366px) {
+  .header-library {
+    background-image: url(../images/bg-header-desktop2.jpg);
+  }
+}
+
+@media screen and (min-width: 1366px) and (min-device-pixel-ratio: 2), screen and (min-width: 1366px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 1366px) and (min-resolution: 192dpi), screen and (min-width: 1366px) and (min-resolution: 2dppx) {
+  .header-library {
+    background-image: url(../images/bg-header-desktop2@2x.jpg);
+  }
 }
 
 .side-nav__header {
@@ -472,8 +522,17 @@ img {
 }
 
 .search-form {
+  margin-right: auto;
+  width: 280px;
+  margin-left: auto;
   position: relative;
   text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .search-form {
+    width: 336px;
+  }
 }
 
 .input_header {
@@ -489,12 +548,6 @@ img {
   transition: border-bottom 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media screen and (min-width: 768px) {
-  .input_header {
-    width: 336px;
-  }
-}
-
 .search-btn {
   position: absolute;
   top: 0;
@@ -505,18 +558,6 @@ img {
   color: #ffffff;
   -webkit-transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@media screen and (min-width: 768px) {
-  .search-btn {
-    right: 195px;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .search-btn {
-    right: 323px;
-  }
 }
 
 .footer {
@@ -601,6 +642,76 @@ img {
     font-size: 16px;
     line-height: 1.18;
   }
+}
+
+.tui-pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 40px;
+}
+
+.tui-page-btn {
+  height: 40px;
+  width: 40px;
+  padding: 12px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #545454;
+  -webkit-transition: cubic-bezier(0.4, 0, 0.2, 1) 250ms;
+  transition: cubic-bezier(0.4, 0, 0.2, 1) 250ms;
+}
+
+.tui-page-btn:hover,
+.tui-page-btn :focus {
+  background-color: #ff6b01;
+}
+
+.tui-next-is-ellip,
+.tui-prev-is-ellip {
+  padding: 9px 15px;
+}
+
+.tui-next,
+.tui-prev {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tui-prev {
+  background-image: url(../images/arrow-left.svg);
+  background-color: #f7f7f7;
+}
+
+.tui-next {
+  background-image: url(../images/arrow-right.svg);
+  background-color: #f7f7f7;
+}
+
+.tui-is-selected {
+  background-color: #ff6b01;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 767px) {
+  .tui-prev-is-ellip,
+  .tui-next-is-ellip {
+    display: none;
+  }
+}
+
+.tui-last,
+.tui-first {
+  display: none;
 }
 
 .button-container {
