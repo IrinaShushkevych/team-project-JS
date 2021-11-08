@@ -6,11 +6,13 @@
   min-height: 230px;
 
   background-image: url(../images/bg-header-mobile.jpg);
-  background-color: #000000;
+  background-color: $bg-color;
 
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: contain;
+  padding-left: 20px;
+  padding-right: 20px;
 
   @media screen and (min-device-pixel-ratio: 2),
     screen and (-webkit-min-device-pixel-ratio: 2),
@@ -19,8 +21,10 @@
     background-image: url(../images/bg-header-mobile@2x.jpg);
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $bp-tablet) {
     // max-width: 768px;
+    padding-left: 75px;
+    padding-right: 75px;
     background-image: url(../images/bg-header-tablet.jpg);
 
     @media screen and (min-device-pixel-ratio: 2),
@@ -31,8 +35,10 @@
     }
   }
 
-  @media screen and (min-width: 1366px) {
+  @media screen and (min-width: $bp-desktop-m-w) {
     // max-width: 1024px;
+    padding-left: 71px;
+    padding-right: 71px;
     background-image: url(../images/bg-header-desktop.jpg);
 
     @media screen and (min-device-pixel-ratio: 2),
@@ -69,15 +75,15 @@
   text-decoration: none;
   cursor: pointer;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $bp-tablet) {
     display: flex;
     align-items: baseline;
   }
 }
 
 .logo-img {
-  @media screen and (min-width: 768px) {
-    margin-right: 10 px;
+  @media screen and (min-width: $bp-tablet) {
+    margin-right: 10px;
   }
 }
 
@@ -88,7 +94,7 @@
   line-height: 1.16;
   color: $primary-white-color;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: $bp-mobile-max) {
     display: none;
   }
 }
@@ -148,13 +154,13 @@
   line-height: 1.14;
   background-color: initial;
   border: transparent;
-  border-bottom: 1 px solid $primary-white-color;
+  border-bottom: 1px solid $primary-white-color;
   font-family: Roboto, sans-serif;
   color: $primary-white-color;
-  transition: border-bottom 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-bottom 0.25s $timing-function;
 
-  @media screen and (min-width: 768px) {
-    width: 336 px;
+  @media screen and (min-width: $bp-tablet) {
+    width: 336px;
   }
 }
 
@@ -166,13 +172,13 @@
   background-color: initial;
   border: transparent;
   color: $primary-white-color;
-  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 0.25s $timing-function;
 
-  @media screen and (min-width: 768px) {
-    right: 142 px;
+  @media screen and (min-width: $bp-tablet) {
+    right: 195px;
   }
 
-  @media screen and (min-width: 1024px) {
-    right: 273 px;
+  @media screen and (min-width: $bp-desktop) {
+    right: 323px;
   }
 }
