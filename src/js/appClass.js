@@ -26,6 +26,7 @@ export default class App {
   };
 
   // Клик логотип и home
+
   // Клик lybrary
   onClickLibrary = () => {
     console.log('hide input, show button, markup queue');
