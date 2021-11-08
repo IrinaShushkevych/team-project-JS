@@ -7,7 +7,6 @@ import APIService from './js/DataServise.js';
 const dataAPI = new APIService();
 
 
-
 async function renderPopularFilms() {
   const dataPopular = await dataAPI.getPopularFilms()
   

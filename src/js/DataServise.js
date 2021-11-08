@@ -44,8 +44,7 @@ export default class APIService {
   getFilmsByQuery =async query => {
     let queryEndpoint = `search/movie?query=${query}&`;
     this.url = this.baseUrl + queryEndpoint + this.keyAPI + `&page=${this.page}`;
-    const response = this.fetchData(this.url);
-    const queryFilmsResult = await response;
+    const queryFilmsResult = await this.fetchData(this.url);
     return queryFilmsResult.results;
   };
 
