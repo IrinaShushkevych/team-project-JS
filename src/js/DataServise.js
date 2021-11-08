@@ -26,7 +26,9 @@ export default class APIService {
   };
 
   decodeGenres = genreIds => {
+    console.log(genreIds);
     const genres = this.getFilmsGenres();
+    console.log(genres);
     const genreNames = genreIds.map(array => {
       for (let i = 0; i < array.length; i += 1) {
         genres.map(obj => (array[i] === obj.id ? (array[i] = obj.name) : array[i]));
@@ -40,7 +42,7 @@ export default class APIService {
     return genreNames;
   };
 
-  getFilmsByQuery =async query => {
+  getFilmsByQuery = async query => {
     let queryEndpoint = `search/movie?query=${query}&`;
     this.url = this.baseUrl + queryEndpoint + this.keyAPI + `&page=${this.page}`;
     const response = this.fetchData(this.url);
