@@ -44,6 +44,10 @@ export default class Modal {
     }
   };
 
+  onOpenModalTeam = () => {
+    console.log('Open modal team');
+  };
+
   onEscKeyPress = event => {
     const ESC_KEY_CODE = 'Escape';
 
