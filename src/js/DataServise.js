@@ -5,6 +5,7 @@ export default class APIService {
     this.baseUrl = 'https://api.themoviedb.org/3/';
     this.page = 1;
     this.url = '';
+    this.query = '';
     this.dataSaver = new DataSaver();
   }
 
@@ -16,9 +17,10 @@ export default class APIService {
   getPopularFilms = async () => {
     let popularFilms = 'trending/movie/week?';
     this.url = this.baseUrl + popularFilms + this.keyAPI;
-    const response = this.fetchData(this.url);
-    const dataObj = await response;
+    const dataObj = await this.fetchData(this.url);
     const dataPopular = dataObj.results;
+    let totalPages = dataObj.total_pages;
+    this.dataSaver.setTotalPages(totalPages);
     const genreIds = dataPopular.map(film => film.genre_ids);
     this.decodeGenres(genreIds);
     dataPopular.map(film => (film.genre_ids = film.genre_ids.slice(0, 3)));
@@ -26,14 +28,13 @@ export default class APIService {
   };
 
   decodeGenres = genreIds => {
-    const genres = this.getFilmsGenres();
+    const genres = this.dataSaver.getFilmsGenres();
     const genreNames = genreIds.map(array => {
       for (let i = 0; i < array.length; i += 1) {
         genres.map(obj => (array[i] === obj.id ? (array[i] = obj.name) : array[i]));
       }
       if (array.length > 3) {
-        array.splice(2, 0, 'other');
-        return array;
+        array.splice(2, 0, 'other');        
       }
       return array;
     });
@@ -43,8 +44,7 @@ export default class APIService {
   getFilmsByQuery = async query => {
     let queryEndpoint = `search/movie?query=${query}&`;
     this.url = this.baseUrl + queryEndpoint + this.keyAPI + `&page=${this.page}`;
-    const response = this.fetchData(this.url);
-    const queryFilmsResult = await response;
+    const queryFilmsResult = await this.fetchData(this.url);
     return queryFilmsResult.results;
   };
 
@@ -52,7 +52,9 @@ export default class APIService {
     let genresEndpoint = 'genre/movie/list?';
     this.url = this.baseUrl + genresEndpoint + this.keyAPI;
     const result = this.fetchData(this.url);
-    this.dataSaver.saveFilmsGenres(result);
-    return this.dataSaver.getSavedGenres();
+    this.dataSaver.setFilmsGenres(result);
+    return this.dataSaver.getFilmsGenres();
   };
+
+  
 }
