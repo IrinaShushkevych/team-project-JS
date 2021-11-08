@@ -13,4 +13,4 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{"./dataSaver.js":"sXMk"}],"A2T1":[function(require,module,exports) {
 "use strict";require("./sass/main.scss");var e=t(require("./templates/list-card.hbs")),s=t(require("./js/DataServise.js"));function t(e){return e&&e.__esModule?e:{default:e}}const r=new s.default;async function i(){u(await r.getPopularFilms())}function u(s){document.querySelector(".js-film-list").innerHTML=(0,e.default)(s)}i();
 },{"./sass/main.scss":"clu1","./templates/list-card.hbs":"vMGY","./js/DataServise.js":"trOe"}]},{},["A2T1"], null)
-//# sourceMappingURL=/team-project-js/app.fc914a76.js.map
+//# sourceMappingURL=/team-project-js/app.68920a03.js.map
