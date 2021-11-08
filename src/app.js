@@ -4,6 +4,9 @@ import template from './templates/list-card.hbs';
 
 import APIService from './js/DataServise.js';
 
+import Modal from './js/modal.js';
+// console.log(Modal);
+
 const dataAPI = new APIService();
 
 
