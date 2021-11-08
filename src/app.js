@@ -1,4 +1,5 @@
 import './sass/main.scss';
+import './js/pagination.js'
 
 import template from './templates/list-card.hbs';
 
