@@ -41,7 +41,7 @@ export default class APIService {
     return genreNames;
   };
 
-  getFilmsByQuery =async query => {
+  getFilmsByQuery = async query => {
     let queryEndpoint = `search/movie?query=${query}&`;
     this.url = this.baseUrl + queryEndpoint + this.keyAPI + `&page=${this.page}`;
     const queryFilmsResult = await this.fetchData(this.url);
