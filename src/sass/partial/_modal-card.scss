@@ -25,9 +25,9 @@
   margin-bottom: 30px;
   border-radius: 5px;
 
-  // @media screen and (min-width: $bp-tablet) {
-  //   margin-right: 32px;
-  // }
+  @media screen and (min-width: $bp-tablet) {
+    margin-bottom: 0px;
+  }
 }
 
 .card__description {
@@ -48,20 +48,25 @@
 }
 
 .card__specifications--modal {
-  // margin-bottom: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  // margin-bottom: 20px;
 
   font-size: 12px;
   line-height: 1.33;
 }
 
-.card__specification-row {
-  margin-bottom: 10px;
+.card__specification-name {
+  padding-bottom: 10px;
+  padding-right: 40px;
+  color: $specification-color;
+
+  @media screen and (min-width: $bp-desktop) {
+    padding-right: 80px;
+  }
 }
 
-.card__specification-name {
-  margin-bottom: 10px;
-  color: $specification-color;
+.card__specification-meaning {
+  padding-bottom: 10px;
 }
 
 .card__title-abaut {
@@ -78,14 +83,6 @@
   line-height: 1.67;
 }
 
-.button__container-modal {
-  display: block;
-}
-
-.button__container-modal--remove {
-  display: none;
-}
-
 .button__list-modal {
   display: flex;
   justify-content: space-between;
@@ -97,9 +94,19 @@
 }
 
 .button__item-modal {
+  display: block;
   flex-basis: calc(100% / 2 - 15px);
   // margin-right: 15px;
   list-style: none;
+
+  @media screen and (min-width: $bp-desktop) {
+    flex-basis: auto;
+    margin-right: 15px;
+  }
+}
+
+.hidden {
+  display: none;
 }
 
 .button__modal--primary {
@@ -113,6 +120,10 @@
   border: 1px solid $primary-black-color;
   border-radius: 5px;
 
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+
   transition-property: color, background-color, border;
   transition-duration: $duration;
   transition-timing-function: $timing-function;
@@ -125,7 +136,8 @@
   }
 }
 
-.button__modal--primary.button__modal--add {
+.button__modal--primary.button__modal--add,
+.button__modal--primary.button__modal--remove {
   padding: 14px 14px 12px 14px;
   text-transform: uppercase;
 
@@ -134,7 +146,7 @@
   }
 
   @media screen and (min-width: $bp-desktop) {
-    padding: 14px 14px 12px 14px;
+    padding: 14px 18px 12px 18px;
   }
 }
 
