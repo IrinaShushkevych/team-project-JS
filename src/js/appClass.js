@@ -1,12 +1,14 @@
 import DataMarkup from './dataMarkup.js';
 import refs from './refs.js';
 import Modal from './modal.js';
+import DataSaver from './dataSaver.js';
 
 export default class App {
   constructor() {
     this.dataMarkup = new DataMarkup();
     this.modal = new Modal();
     this.refs = refs;
+    this.dataSaver = new DataSaver();
   }
 
   //     listener(логотип, кнопки хедера(home, lybrary), инпут, ссылка футера)
@@ -20,6 +22,7 @@ export default class App {
       console.log('Markup popular films, hide button, show input');
     });
     this.refs.btnLybraryRef.addEventListener('click', this.onClickLibrary);
+    this.dataSaver.setActivePage('home');
   };
 
   // Клик логотип и home

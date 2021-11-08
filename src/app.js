@@ -15,7 +15,6 @@ const dataAPI = new APIService();
 
 async function renderPopularFilms() {
   const dataPopular = await dataAPI.getPopularFilms();
-
   renderMarkup(dataPopular);
 }
 
