@@ -2,6 +2,7 @@ import DataMarkup from './dataMarkup.js';
 import refs from './refs.js';
 import Modal from './modal.js';
 import DataSaver from './dataSaver.js';
+import { render } from 'sass';
 
 export default class App {
   constructor() {
@@ -26,6 +27,11 @@ export default class App {
   };
 
   // Клик логотип и home
+  // onClickLogo = e => {
+  //   e.preventDefault();
+  //   render();
+  // };
+
   // Клик lybrary
   onClickLibrary = () => {
     console.log('hide input, show button, markup queue');
