@@ -10,8 +10,10 @@
 
 @import './components/backdrop';
 @import './components/modal-window';
+@import './components/button';
 @import './partial/header';
 @import './partial/footer';
+@import './partial/button-library';
 @import './partial/modal-card';
 
 body {
@@ -38,3 +40,4 @@ ol {
   margin-bottom: 0;
   padding-left: 0;
 }
+
