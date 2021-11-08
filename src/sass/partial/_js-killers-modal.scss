@@ -1,0 +1,25 @@
+.killers__container {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: $bp-mobile-max;
+}
+
+.js-killers-theme__icon {
+  width: 34px;
+  height: 34px;
+  fill: $accent-color;
+}
+
+.button__container-js-killers-modal {
+  border-radius: 50%;
+}
+
+.killers__header {
+  color: $accent-color;
+}
+
+.killers__list {
+  list-style: none;
+}
