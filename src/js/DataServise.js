@@ -9,7 +9,6 @@ export default class APIService {
     this.dataSaver = new DataSaver();
   }
 
-  
   fetchData = async url => {
     const response = await fetch(url);
     return response.json();
@@ -38,7 +37,7 @@ export default class APIService {
         genres.map(obj => (array[i] === obj.id ? (array[i] = obj.name) : array[i]));
       }
       if (array.length > 3) {
-        array.splice(2, 0, 'other');        
+        array.splice(2, 0, 'other');
       }
       return array;
     });
@@ -52,16 +51,15 @@ export default class APIService {
     return queryFilmsResult.results;
   };
 
-  getFilmsGenres = () => {
+  getFilmsGenres = async () => {
     let genresEndpoint = 'genre/movie/list?';
     this.url = this.baseUrl + genresEndpoint + this.keyAPI;
-    const result = this.fetchData(this.url);
+    const result = await this.fetchData(this.url);
     this.dataSaver.setFilmsGenres(result);
     return this.dataSaver.getFilmsGenres();
   };
 
-  fixImagePath = (obj) => {
-    obj.map(film => film.poster_path = 'https://image.tmdb.org/t/p/w500' + film.poster_path);    
-  }
+  fixImagePath = obj => {
+    obj.map(film => (film.poster_path = 'https://image.tmdb.org/t/p/w500' + film.poster_path));
+  };
 }
-
