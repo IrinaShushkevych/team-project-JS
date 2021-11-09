@@ -68,10 +68,5 @@ export default class App {
     e.preventDefault();
     const inputValue = e.currentTarget.elements.query.value;
     console.log(inputValue);
-    const filmsByQuery = await this.dataService.fetchFilmsByQuery(inputValue);
-    await this.dataService.fixFetchObject(filmsByQuery);
-    this.dataSaver.setFilmsByQuery(filmsByQuery);
-    
-    return filmsByQuery;    
   };
 }

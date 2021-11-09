@@ -7,9 +7,14 @@ import filmTpl from '../templates/modalFilmCard.hbs';
 import refs from '../js/refs';
 
 import listCardTpl from '../templates/list-card.hbs';
+import DataSaver from './dataSaver.js';
+import App from './appClass.js';
+import Message from './message.js';
 
 export default class DataMarkup {
   constructor() {
+    this.messsage = new Message();
+    this.dataSaver = new DataSaver();
     this.dataAPI = new APIService();
     this.listRef = refs.listUlFilms;
 
@@ -29,8 +34,23 @@ export default class DataMarkup {
   };
 
   // Отрисовка по запросу
+  getSearchingFilms = async query => {
+    const currentQuerySeach = await this.dataAPI.getFilmsByQuery();
+    this.renderMarkup(currentQuerySeach);
+  };
+
   // Отрисовка очереди
+  getCurrentFilmsWatched = async id => {
+    const currentFilmsWatched = await this.dataSaver.getFilmWatched();
+    this.renderMarkup(currentFilmsWatched);
+  };
+  //
   // Отрисовка просмотренных
+  getCurrentFilmsQueue = async id => {
+    const currentFilmsQueue = await this.dataSaver.getFilmQueue();
+    this.renderMarkup(currentFilmsQueue);
+  };
+
   // Отрисовка карточки фильма для модалки
   modalFilmMurcup = film => {
     // this.refs.modalRef.insertAdjacentHTML('beforeend', filmTpl(film));
