@@ -69,11 +69,14 @@ export default class App {
   };
 
   // input  название = () => {}
-  onKeyWordSearch = e => {
+  onKeyWordSearch = async e => {
     e.preventDefault();
-    // const ApiService = this.dataService;
     const inputValue = e.currentTarget.elements.query.value;
     console.log(inputValue);
-    // console.log(ApiService.getFilmsByQuery(inputValue));
+    const filmsByQuery = await this.dataService.fetchFilmsByQuery(inputValue);
+    await this.dataService.fixFetchObject(filmsByQuery);
+    this.dataSaver.setFilmsByQuery(filmsByQuery);
+    
+    return filmsByQuery;    
   };
 }
