@@ -3,7 +3,7 @@ export default class APIService {
   constructor() {
     this.keyAPI = 'api_key=a907caf8c46067564d1786718be1cb84';
     this.baseUrl = 'https://api.themoviedb.org/3/';
-    this.page = 1;
+    this.page = 10;
     this.url = '';
     this.query = '';
     this.dataSaver = new DataSaver();
@@ -22,11 +22,12 @@ export default class APIService {
     let totalPages = dataObj.total_pages;
     this.dataSaver.setTotalPages(totalPages);
     const genreIds = dataPopular.map(film => film.genre_ids);
-    this.decodeGenres(genreIds);
+    await this.decodeGenres(genreIds);
     this.fixImagePath(dataPopular);
+    dataPopular.map(film => (film.genre_ids = film.genre_ids.slice(0, 3)));
     this.dataSaver.setPopularFilms(dataPopular);
     this.dataSaver.setCurrentPage(this.page);
-    dataPopular.map(film => (film.genre_ids = film.genre_ids.slice(0, 3)));
+    console.log(dataPopular);
     return dataPopular;
   };
 
@@ -34,9 +35,8 @@ export default class APIService {
     let genres = this.dataSaver.getFilmsGenres();
     console.log(genres);
     if (genres === null) {
-      genres = await this.getFilmsGenres();
+      genres = await this.fetchFilmsGenres();      
     }
-    console.log(genres);
     const genreNames = genreIds.map(array => {
       for (let i = 0; i < array.length; i += 1) {
         genres.map(obj => (array[i] === obj.id ? (array[i] = obj.name) : array[i]));
@@ -56,12 +56,10 @@ export default class APIService {
     return queryFilmsResult.results;
   };
 
-  getFilmsGenres = async () => {
+  fetchFilmsGenres = async () => {
     let genresEndpoint = 'genre/movie/list?';
     this.url = this.baseUrl + genresEndpoint + this.keyAPI;
-    console.log(this);
     const result = await this.fetchData(this.url);
-    console.log(result);
     this.dataSaver.setFilmsGenres(result);
     return result.genres;
   };

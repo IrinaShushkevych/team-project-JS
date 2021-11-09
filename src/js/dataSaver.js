@@ -36,8 +36,7 @@ export default class DataSaver {
 
   getFilmsGenres = () => {
     const savedGenres = localStorage.getItem('genres');
-    const genres = JSON.parse(savedGenres);
-    return genres;
+    return JSON.parse(savedGenres);
   };
 
   setTotalPages = pages => {
