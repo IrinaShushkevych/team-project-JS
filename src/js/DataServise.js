@@ -33,7 +33,6 @@ export default class APIService {
 
   decodeGenres = async genreIds => {
     let genres = this.dataSaver.getFilmsGenres();
-    console.log(genres);
     if (genres === null) {
       genres = await this.fetchFilmsGenres();      
     }
