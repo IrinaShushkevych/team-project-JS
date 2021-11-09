@@ -5,7 +5,7 @@ import setPagination from './js/pagination.js';
 
 import Modal from './js/modal.js';
 //team-modal
-import './js/jsKillersModal';
+// import './js/jsKillersModal';
 
 setPagination();
 const app = new App();

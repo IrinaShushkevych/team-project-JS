@@ -17,8 +17,9 @@ export default class App {
     this.dataSaver.clearLocalstoredge();
     this.dataSaver.setActivePage('home');
     this.dataMarkup.renderPopularFilms();
-    this.refs.linkModalTeamRef.addEventListener('click', this.modal.onOpenModalTeam);
+    this.refs.linkModalTeamRef.addEventListener('click', this.onOpenMdalTeam);
     this.refs.btnHomeRef.addEventListener('click', () => {
+      o;
       console.log('Markup popular films, hide button, show input');
     });
     this.refs.logoRef.addEventListener('click', e => {
@@ -27,6 +28,10 @@ export default class App {
     });
     this.refs.btnLybraryRef.addEventListener('click', this.onClickLibrary);
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
+  };
+  onOpenMdalTeam = () => {
+    this.dataMarkup.renderModalTeam();
+    this.modal.onOpenModal();
   };
 
   // Клик логотип и home

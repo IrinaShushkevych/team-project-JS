@@ -3,11 +3,9 @@
 @import './utilities/variables';
 @import './utilities/container';
 @import './utilities/visually-hidden';
-// @import './utilities/film-list';
-@import './partial/film-list';
 
 // COMPONENTS
-
+@import './partial/film-list';
 @import './components/backdrop';
 @import './components/modal-window';
 @import './components/button';
@@ -43,4 +41,3 @@ ol {
   margin-bottom: 0;
   padding-left: 0;
 }
-
