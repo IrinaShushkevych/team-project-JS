@@ -69,6 +69,19 @@
   padding-bottom: 10px;
 }
 
+.card__specification-meaning.card__specification-meaning-name {
+  text-transform: uppercase;
+}
+
+.genre__list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.genre__item {
+  padding-right: 4px;
+}
+
 .card__title-abaut {
   margin-bottom: 10px;
 
@@ -94,7 +107,7 @@
 }
 
 .button__item-modal {
-  display: block;
+  // display: block;
   flex-basis: calc(100% / 2 - 15px);
   // margin-right: 15px;
   list-style: none;
@@ -105,9 +118,9 @@
   }
 }
 
-.hidden {
-  display: none;
-}
+// .hidden {
+//   display: none;
+// }
 
 .button__modal--primary {
   // padding: 0;

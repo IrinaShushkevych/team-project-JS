@@ -32,6 +32,33 @@ export default class App {
   onOpenMdalTeam = () => {
     this.dataMarkup.renderModalTeam();
     this.modal.onOpenModal();
+    this.dataSaver.setActivePage('home');
+
+    refs.list.addEventListener('click', event => {
+      event.preventDefault();
+      const card = event.target.closest('li');
+      if (!card) {
+        return;
+      }
+      console.log('card', card);
+      const id = Number(card.dataset.id);
+      console.log(id);
+      const film = this.dataSaver.getFilm(id);
+      console.log(film);
+      this.dataMarkup.modalFilmMurcup(film);
+      this.modal.onOpenModal();
+
+      //   const isModalCard = event.target.classList.contains('card__image');
+
+      //   if (!isModalCard) {
+      //     return;
+      //   }
+      // if (!card) {
+      //   return;
+      // }
+
+      // this.onOpenModal();
+    });
   };
 
   // Клик логотип и home
