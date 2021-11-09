@@ -34,11 +34,8 @@ export default class App {
       if (!card) {
         return;
       }
-      // console.log('card', card);
       const id = Number(card.dataset.id);
-      // console.log(id);
       const film = this.dataSaver.getFilm(id);
-      // console.log(film);
       this.dataMarkup.modalFilmMurcup(film);
       this.modal.onOpenModal();
 
@@ -50,8 +47,6 @@ export default class App {
       // if (!card) {
       //   return;
       // }
-
-      // this.onOpenModal();
     });
   };
   onOpenMdalTeam = () => {
