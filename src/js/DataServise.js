@@ -9,6 +9,7 @@ export default class APIService {
     this.dataSaver = new DataSaver();
   }
 
+  
   fetchData = async url => {
     const response = await fetch(url);
     return response.json();
@@ -16,13 +17,16 @@ export default class APIService {
 
   getPopularFilms = async () => {
     let popularFilms = 'trending/movie/week?';
-    this.url = this.baseUrl + popularFilms + this.keyAPI;
+    this.url = this.baseUrl + popularFilms + this.keyAPI + `&page=${this.page}`;
     const dataObj = await this.fetchData(this.url);
     const dataPopular = dataObj.results;
     let totalPages = dataObj.total_pages;
     this.dataSaver.setTotalPages(totalPages);
     const genreIds = dataPopular.map(film => film.genre_ids);
     this.decodeGenres(genreIds);
+    this.fixImagePath(dataPopular);
+    this.dataSaver.setPopularFilms(dataPopular);
+    this.dataSaver.setCurrentPage(this.page);
     dataPopular.map(film => (film.genre_ids = film.genre_ids.slice(0, 3)));
     return dataPopular;
   };
@@ -56,5 +60,8 @@ export default class APIService {
     return this.dataSaver.getFilmsGenres();
   };
 
-  
+  fixImagePath = (obj) => {
+    obj.map(film => film.poster_path = 'https://image.tmdb.org/t/p/w500' + film.poster_path);    
+  }
 }
+
