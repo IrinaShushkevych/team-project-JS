@@ -1,4 +1,5 @@
-import refs from './modal-refs.js';
+// import refs from './modal-refs.js';
+import refs from './refs.js';
 
 export default class Modal {
   constructor() {
@@ -7,23 +8,35 @@ export default class Modal {
 
   init = () => {
     console.log('Modal');
-    this.createModal();
+    // this.createModal();
   };
 
-  createModal = () => {
-    refs.list.addEventListener('click', event => {
-      event.preventDefault();
-      const isModalCard = event.target.classList.contains('card__image');
+  //   createModal = () => {
+  //     refs.list.addEventListener('click', event => {
+  //       event.preventDefault();
+  //       const object = event.target.closest('li');
+  //       console.log('object', object);
+  //       //   const isModalCard = event.target.classList.contains('card__image');
 
-      if (!isModalCard) {
-        return;
-      }
+  //       //   if (!isModalCard) {
+  //       //     return;
+  //       //   }
+  //       if (!object) {
+  //         return;
+  //       }
 
-      this.onOpenModal();
-    });
-  };
+  //       this.onOpenModal();
+  //     });
+  //   };
 
-  onOpenModal = () => {
+  onOpenModal = typeModal => {
+    // if (typeModal = film) {
+    //добавляем класс на модальное окно дла фильмов
+    //   } esle if (typeModal = auth) {
+    // добавляем класс для стилей аунтефикации
+    //   } esle if (typeModal = team) {
+    //  добавляем класс для стилей команды
+    //   }
     refs.btnClose.addEventListener('click', this.onBtnClosePress);
     refs.backdrop.addEventListener('click', this.onBackdropClick);
     refs.backdrop.classList.remove('visually-hidden');
@@ -37,6 +50,7 @@ export default class Modal {
     refs.backdrop.classList.add('visually-hidden');
     window.removeEventListener('keydown', this.onEscKeyPress);
     this.removeBtnListeners();
+    refs.modalCardRef.innerHTML = '';
   };
 
   onBtnClosePress = () => {
