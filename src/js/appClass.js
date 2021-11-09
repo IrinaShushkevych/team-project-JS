@@ -50,6 +50,7 @@ export default class App {
     });
   };
   onOpenMdalTeam = () => {
+    refs.modalCardRef.innerHTML = '';
     this.dataMarkup.renderModalTeam();
     this.modal.onOpenModal();
     this.dataSaver.setActivePage('home');
