@@ -32,6 +32,10 @@ export default class DataMarkup {
   // Отрисовка очереди
   // Отрисовка просмотренных
   // Отрисовка карточки фильма для модалки
+  modalFilmMurcup = film => {
+    // this.refs.modalRef.insertAdjacentHTML('beforeend', filmTpl(film));
+    this.refs.modalCardRef.innerHTML = filmTpl(film);
+  };
   // listener на список
 
   renderModalTeam = () => {
@@ -45,6 +49,7 @@ export default class DataMarkup {
   // Отрисовка карточки фильма для модалки
 
   modalFilmMurcup = film => {
+    refs.modalContainer.innerHTML = '';
     // this.refs.modalRef.insertAdjacentHTML('beforeend', filmTpl(film));
     this.refs.modalCardRef.innerHTML = filmTpl(film);
   };

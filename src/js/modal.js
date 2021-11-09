@@ -8,26 +8,7 @@ export default class Modal {
 
   init = () => {
     console.log('Modal');
-    // this.createModal();
   };
-
-  //   createModal = () => {
-  //     refs.list.addEventListener('click', event => {
-  //       event.preventDefault();
-  //       const object = event.target.closest('li');
-  //       console.log('object', object);
-  //       //   const isModalCard = event.target.classList.contains('card__image');
-
-  //       //   if (!isModalCard) {
-  //       //     return;
-  //       //   }
-  //       if (!object) {
-  //         return;
-  //       }
-
-  //       this.onOpenModal();
-  //     });
-  //   };
 
   onOpenModal = typeModal => {
     // if (typeModal = film) {
@@ -51,6 +32,8 @@ export default class Modal {
     window.removeEventListener('keydown', this.onEscKeyPress);
     this.removeBtnListeners();
     refs.modalCardRef.innerHTML = '';
+    // team
+    refs.modalContainer.innerHTML = '';
   };
 
   onBtnClosePress = () => {
@@ -76,47 +59,75 @@ export default class Modal {
   };
 
   addBtnListeners = () => {
-    refs.itemAddWatched.addEventListener('click', this.onBtnAddWatchedPress());
-    refs.itemRemoveWatched.addEventListener('click', this.onBtnRemoveWatchedPress());
-    refs.itemAddQueue.addEventListener('click', this.onBtnAddQueuePress());
-    refs.itemRemoveQueue.addEventListener('click', this.onBtnRemoveQueuePress());
+    refs.itemAddWatched = document.querySelector('.js-add-watched');
+    refs.itemRemoveWatched = document.querySelector('.js-remove-watched');
+    refs.itemAddQueue = document.querySelector('.js-add-queue');
+    refs.itemRemoveQueue = document.querySelector('.js-remove-queue');
+
+    refs.itemAddWatched.addEventListener('click', () => {
+      this.onBtnAddWatchedPress();
+    });
+
+    refs.itemRemoveWatched.addEventListener('click', () => {
+      this.onBtnRemoveWatchedPress();
+    });
+
+    refs.itemAddQueue.addEventListener('click', () => {
+      this.onBtnAddQueuePress();
+    });
+
+    refs.itemRemoveQueue.addEventListener('click', () => {
+      this.onBtnRemoveQueuePress();
+    });
   };
 
   removeBtnListeners = () => {
-    refs.itemAddWatched.removeEventListener('click', this.onBtnAddWatchedPress());
-    refs.itemRemoveWatched.removeEventListener('click', this.onBtnRemoveWatchedPress());
-    refs.itemAddQueue.removeEventListener('click', this.onBtnAddQueuePress());
-    refs.itemRemoveQueue.removeEventListener('click', this.onBtnRemoveQueuePress());
+    // refs.itemAddWatched = document.querySelector('.js-add-watched');
+    // refs.itemRemoveWatched = document.querySelector('.js-remove-watched');
+    // refs.itemAddQueue = document.querySelector('.js-add-queue');
+    // refs.itemRemoveQueue = document.querySelector('.js-remove-queue');
+
+    refs.itemAddWatched.removeEventListener('click', () => {
+      this.onBtnAddWatchedPress();
+    });
+
+    refs.itemRemoveWatched.removeEventListener('click', () => {
+      this.onBtnRemoveWatchedPress();
+    });
+
+    refs.itemAddQueue.removeEventListener('click', () => {
+      this.onBtnAddQueuePress();
+    });
+
+    refs.itemRemoveQueue.removeEventListener('click', () => {
+      this.onBtnRemoveQueuePress();
+    });
   };
 
-  onBtnAddWatchedPress = event => {
-    // refs.itemAddWatched.classList.toggle('hidden');
-
-    // refs.itemAddWatched.classList.add('hidden');
-    // refs.itemRemoveWatched.classList.remove('hidden');
-    console.log(refs.itemAddWatched);
-    console.log('event', event);
+  onBtnAddWatchedPress = () => {
+    console.log('itemAddWatched');
+    refs.itemAddWatched.classList.add('hidden');
+    refs.itemRemoveWatched.classList.remove('hidden');
   };
 
   onBtnRemoveWatchedPress = () => {
-    console.log('onBtnRemoveWatchedPress');
+    console.log('itemRemoveWatched');
     refs.itemAddWatched.classList.remove('hidden');
-    // refs.itemRemoveWatched.classList.add('hidden');
+    refs.itemRemoveWatched.classList.add('hidden');
   };
 
   onBtnAddQueuePress = () => {
-    console.log('onBtnAddQueuePress');
-    refs.itemAddQueue.classList.remove('hidden');
-    // refs.itemRemoveQueue.classList.add('hidden');
+    console.log('itemAddQueue');
+    refs.itemAddQueue.classList.add('hidden');
+    refs.itemRemoveQueue.classList.remove('hidden');
   };
 
   onBtnRemoveQueuePress = () => {
-    console.log('onBtnRemoveQueuePress');
-    // refs.itemAddQueue.classList.add('hidden');
-    // refs.itemRemoveQueue.classList.remove('hidden');
+    console.log('itemRemoveQueue');
+    refs.itemAddQueue.classList.remove('hidden');
+    refs.itemRemoveQueue.classList.add('hidden');
   };
 }
 
-// js-film-list
 const modalWindow = new Modal();
 modalWindow.init();
