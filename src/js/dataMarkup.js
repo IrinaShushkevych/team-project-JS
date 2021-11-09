@@ -1,5 +1,6 @@
 import APIService from './DataServise.js';
 import template from '../templates/list-card.hbs';
+import authTpl from '../templates/modalAuth.hbs';
 import jsKillerTemplate from '../templates/jsKillerCard.hbs';
 import jsKillerTeam from '../json/jsKillers.json';
 import refs from './refs';
@@ -34,5 +35,10 @@ export default class DataMarkup {
     } catch (error) {
       console.error('Yes, babe, the error has been appeared here. Check your code. 🤷‍♂️');
     }
+  };
+
+  renderModalAuth = () => {
+    const markup = authTpl();
+    refs.modalContainer.innerHTML = markup;
   };
 }

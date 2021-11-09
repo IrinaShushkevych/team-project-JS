@@ -27,8 +27,16 @@ export default class App {
       console.log('Markup popular films, hide button, show input');
     });
     this.refs.btnLybraryRef.addEventListener('click', this.onClickLibrary);
+    this.refs.btnAuthRef.addEventListener('click', this.onClickAuth);
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
   };
+
+  onClickAuth = () => {
+    this.dataMarkup.renderModalAuth();
+    this.modal.onOpenModal();
+    this.modal.addListenersAuth();
+  };
+
   onOpenMdalTeam = () => {
     this.dataMarkup.renderModalTeam();
     this.modal.onOpenModal();

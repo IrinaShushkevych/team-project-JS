@@ -1,4 +1,7 @@
 import refs from './modal-refs.js';
+import refsMain from './refs.js';
+import Save from './auth';
+import Message from './message.js';
 
 export default class Modal {
   constructor() {
@@ -100,6 +103,38 @@ export default class Modal {
     console.log('onBtnRemoveQueuePress');
     // refs.itemAddQueue.classList.add('hidden');
     // refs.itemRemoveQueue.classList.remove('hidden');
+  };
+
+  addListenersAuth = () => {
+    console.log(refsMain.blockLoginRef);
+    console.log(refsMain);
+
+    document.querySelector('.js-auth-button').addEventListener('click', this.onClickAuth);
+  };
+
+  onClickAuth = async e => {
+    if (e.target.classList.contains('js-btn-register')) {
+      const auth = new Save();
+      const result = await auth.register(
+        document.querySelector('.js-auth-register').value,
+        document.querySelector('.js-auth-login').value,
+      );
+      if (result.type === 0) {
+        Message.error(result.text);
+      } else {
+        Message.success('You are registry!!!');
+      }
+    } else if (e.target.classList.contains('js-btn-login')) {
+      const auth = new Save();
+      const result = await auth.login(
+        document.querySelector('.js-auth-register').value,
+        document.querySelector('.js-auth-login').value,
+      );
+
+      if (result.type === 0) {
+        Message.error(result.text);
+      }
+    }
   };
 }
 
