@@ -2,6 +2,7 @@ import DataMarkup from './dataMarkup.js';
 import refs from './refs.js';
 import Modal from './modal.js';
 import DataSaver from './dataSaver.js';
+import DataService from './DataServise';
 
 export default class App {
   constructor() {
@@ -9,6 +10,7 @@ export default class App {
     this.modal = new Modal();
     this.refs = refs;
     this.dataSaver = new DataSaver();
+    this.dataService = new DataService();
   }
 
   //     listener(логотип, кнопки хедера(home, lybrary), инпут, ссылка футера)
@@ -23,6 +25,7 @@ export default class App {
     });
     this.refs.btnLybraryRef.addEventListener('click', this.onClickLibrary);
     this.dataSaver.setActivePage('home');
+    this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
   };
 
   // Клик логотип и home
@@ -33,4 +36,11 @@ export default class App {
   };
 
   // input  название = () => {}
+  onKeyWordSearch = e => {
+    e.preventDefault();
+    // const ApiService = this.dataService;
+    const inputValue = e.currentTarget.elements.query.value;
+    console.log(inputValue);
+    // console.log(ApiService.getFilmsByQuery(inputValue));
+  };
 }
