@@ -28,4 +28,4 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{"./dataSaver.js":"sXMk"}],"A2T1":[function(require,module,exports) {
 "use strict";require("./sass/main.scss");var e=a(require("./js/appClass")),s=a(require("./js/pagination.js")),t=a(require("./templates/list-card.hbs")),i=a(require("./js/DataServise.js")),r=a(require("./js/modal.js"));function a(e){return e&&e.__esModule?e:{default:e}}(0,s.default)();const u=new e.default;u.init();const n=new i.default;async function l(){c(await n.getPopularFilms())}function c(e){document.querySelector(".js-film-list").innerHTML=(0,t.default)(e)}l();
 },{"./sass/main.scss":"clu1","./js/appClass":"O3cG","./js/pagination.js":"o8lo","./templates/list-card.hbs":"vMGY","./js/DataServise.js":"trOe","./js/modal.js":"RSqK"}]},{},["A2T1"], null)
-//# sourceMappingURL=/team-project-js/app.7c76f288.js.map
+//# sourceMappingURL=/team-project-js/app.de262810.js.map
