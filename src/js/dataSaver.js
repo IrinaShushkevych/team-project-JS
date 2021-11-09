@@ -9,16 +9,23 @@ export default class DataSaver {
   // get очередь фильмов
   // Записать фильм в очередь
   // Удалить фильм из очереди
-  constructor() { }
-  
-  setCurrentPage=(page) =>{
-    localStorage.setItem('numberListPage', JSON.stringify(page))
-  }
+  constructor() {}
 
-  getCurrentPage=() =>{
+  clearLocalstoredge = () => {
+    localStorage.removeItem('genres');
+    localStorage.setItem('numberListPage', 0);
+    localStorage.setItem('totalPages', 0);
+    localStorage.setItem('currentList', '');
+  };
+
+  setCurrentPage = page => {
+    localStorage.setItem('numberListPage', JSON.stringify(page));
+  };
+
+  getCurrentPage = () => {
     const savedPage = localStorage.getItem('numberListPage');
     return JSON.parse(savedPage);
-  }
+  };
 
   setFilmsGenres = async data => {
     const genresResult = await data;
@@ -33,16 +40,16 @@ export default class DataSaver {
     return genres;
   };
 
-  setTotalPages=(pages) => {
-    localStorage.setItem('totalPages', JSON.stringify(pages));    
-  }
+  setTotalPages = pages => {
+    localStorage.setItem('totalPages', JSON.stringify(pages));
+  };
 
   getTotalPages = () => {
     const totalPages = localStorage.getItem('totalPages');
-    return JSON.parse(totalPages)
-  }
+    return JSON.parse(totalPages);
+  };
 
-  setPopularFilms = dataObj => {    
+  setPopularFilms = dataObj => {
     localStorage.setItem('home', JSON.stringify(dataObj));
   };
 

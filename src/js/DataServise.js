@@ -30,11 +30,13 @@ export default class APIService {
     return dataPopular;
   };
 
-  decodeGenres = genreIds => {
+  decodeGenres = async genreIds => {
     let genres = this.dataSaver.getFilmsGenres();
-    if (!genres) {
-      genres = this.getFilmsGenres();
+    console.log(genres);
+    if (genres === null) {
+      genres = await this.getFilmsGenres();
     }
+    console.log(genres);
     const genreNames = genreIds.map(array => {
       for (let i = 0; i < array.length; i += 1) {
         genres.map(obj => (array[i] === obj.id ? (array[i] = obj.name) : array[i]));
@@ -61,7 +63,7 @@ export default class APIService {
     const result = await this.fetchData(this.url);
     console.log(result);
     this.dataSaver.setFilmsGenres(result);
-    return result;
+    return result.genres;
   };
 
   fixImagePath = obj => {

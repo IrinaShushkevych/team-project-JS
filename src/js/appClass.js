@@ -15,6 +15,7 @@ export default class App {
 
   //     listener(логотип, кнопки хедера(home, lybrary), инпут, ссылка футера)
   init = () => {
+    this.dataSaver.clearLocalstoredge();
     this.refs.linkModalTeamRef.addEventListener('click', this.modal.onOpenModalTeam);
     this.refs.btnHomeRef.addEventListener('click', () => {
       console.log('Markup popular films, hide button, show input');
