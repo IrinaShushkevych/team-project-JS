@@ -55,6 +55,18 @@ export default class DataSaver {
     return popularFilms;
   };
 
+  // set фильмы по ключевому слову с инпута
+  setFilmsByQuery = dataObj => {
+    localStorage.setItem('query', JSON.stringify(dataObj));
+  };
+
+  // get фильмы по ключевому слову с инпута
+  getsetFilmsByQuery = () => {
+    const savedFilms = localStorage.getItem('query');
+    const filmsByQuery = JSON.parse(savedFilms);
+    return filmsByQuery;
+  };
+
   getActivePage = () => {
     return localStorage.getItem('activePage');
   };
