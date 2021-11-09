@@ -5,4 +5,5 @@ export default {
   logoRef: document.querySelector('.js-logo'),
   paginationCase: document.getElementById('tui-pagination-container'),
   inputFormRef: document.querySelector('.js-search-form'),
+  listUlFilms: document.querySelector('.js-film-list'),
 };

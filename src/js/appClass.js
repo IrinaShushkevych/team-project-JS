@@ -13,9 +13,10 @@ export default class App {
     this.dataService = new DataService();
   }
 
-  //     listener(логотип, кнопки хедера(home, lybrary), инпут, ссылка футера)
   init = () => {
     this.dataSaver.clearLocalstoredge();
+    this.dataSaver.setActivePage('home');
+    this.dataMarkup.renderPopularFilms();
     this.refs.linkModalTeamRef.addEventListener('click', this.modal.onOpenModalTeam);
     this.refs.btnHomeRef.addEventListener('click', () => {
       console.log('Markup popular films, hide button, show input');
@@ -25,7 +26,6 @@ export default class App {
       console.log('Markup popular films, hide button, show input');
     });
     this.refs.btnLybraryRef.addEventListener('click', this.onClickLibrary);
-    this.dataSaver.setActivePage('home');
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
   };
 
