@@ -3,16 +3,17 @@
 @import './utilities/variables';
 @import './utilities/container';
 @import './utilities/visually-hidden';
-// @import './utilities/film-list';
-@import './partial/film-list';
 
 // COMPONENTS
-
+@import './partial/film-list';
 @import './components/backdrop';
 @import './components/modal-window';
 @import './components/button';
 @import './partial/header';
 @import './partial/footer';
+@import './partial/js-killers-modal';
+
+@import './partial/pagination';
 @import './partial/button-library';
 @import './partial/modal-card';
 

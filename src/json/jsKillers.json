@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Ira Shushkevych",
+    "position": "Teamlead",
+
+    "whatKeepsMeUpHere": "",
+    "socialLink": "",
+    "photo": "",
+    "funnyPhoto": ""
+  },
+  {
+    "name": "Oleg Chaikovskyi",
+    "position": "Scrum master",
+
+    "whatKeepsMeUpHere": "",
+    "socialLink": "",
+    "photo": "../images/oleg.jpg",
+    "funnyPhoto": "../images/oleg-funny.jpg"
+  },
+  {
+    "name": "Vira Kolesnikova",
+    "position": "Developer",
+
+    "whatKeepsMeUpHere": "",
+    "socialLink": "",
+    "photo": "",
+    "funnyPhoto": ""
+  },
+  {
+    "name": "Hanna Dzhyzhevska",
+    "position": "Develope",
+
+    "whatKeepsMeUpHere": "",
+    "socialLink": "",
+    "photo": "",
+    "funnyPhoto": ""
+  },
+  {
+    "name": "Pavlenko Volodymyr",
+    "position": "Developer",
+
+    "whatKeepsMeUpHere": "",
+    "socialLink": "",
+    "photo": "",
+    "funnyPhoto": ""
+  },
+  {
+    "name": "Vadim Bashovyi",
+    "position": "Developer",
+
+    "whatKeepsMeUpHere": "",
+    "socialLink": "",
+    "photo": "",
+    "funnyPhoto": ""
+  },
+  {
+    "name": "Oleksii Biletskyi",
+    "position": "Developer",
+
+    "whatKeepsMeUpHere": "",
+    "socialLink": "",
+    "photo": "",
+    "funnyPhoto": ""
+  },
+  {
+    "name": "Iryna Maksimova",
+    "position": "Developer",
+
+    "whatKeepsMeUpHere": "",
+    "socialLink": "",
+    "photo": "",
+    "funnyPhoto": ""
+  }
+]

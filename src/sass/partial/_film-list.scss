@@ -1,27 +1,56 @@
-.film-list {
+ul {
   list-style: none;
-  @media screen and (min-width: 768px) {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -30px;
-    margin-bottom: -30px;
+}
+.film-list {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 280px;
+  @media screen and (max-width: $bp-mobile-max) {
+    padding-top: 20px;
+  }
+  @media screen and (min-width: $bp-desktop) {
+    padding-top: 60px;
+    padding-left: 51px;
+    padding-right: 51px;
+  }
+  @media screen and (min-width: $bp-tablet) and (max-width: $bp-desktop-min-one) {
+    padding-top: 60px;
+    padding-left: 55px;
+    padding-right: 55px;
   }
 }
+
 img {
   max-width: 100%;
 }
 .card {
-  width: 100%;
-  height: 440px;
-  margin-bottom: 20px;
-  @media screen and (min-width: 768px) {
-    width: 294px;
-    margin: 0 30px 30px 0;
+  display: block;
+  @media screen and (max-width: $bp-mobile-max) {
+    width: 100%;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
   }
-  @media screen and (min-width: 1024px) {
-    width: 274px;
+  @media screen and (min-width: $bp-tablet) and (max-width: $bp-desktop-min-one) {
+    width: calc((100% - 30px) / 2);
+    &:nth-child(odd) {
+      margin-right: 30px;
+    }
+    &:not(:nth-last-child(-n + 2)) {
+      margin-bottom: 30px;
+    }
+  }
+  @media screen and (min-width: $bp-desktop) {
+    width: calc((100% - 60px) / 3);
+    &:not(:nth-last-child(-n + 3)) {
+      margin-bottom: 30px;
+    }
+    &:not(:nth-child(3n)) {
+      margin-right: 30px;
+    }
   }
 }
+
 .card__tumb {
   height: 398px;
   overflow: hidden;
@@ -53,7 +82,7 @@ img {
 .card__items {
   display: flex;
   justify-content: start;
-  margin: right 3px;
+  margin-right: 3px;
 }
 .card__item:not(:last-child) {
   margin-right: 3px;
@@ -71,7 +100,8 @@ img {
 .card__year:before {
   content: '';
   display: inline-block;
-  width: 1px;
+  max-width: 1px;
+  width: 100%;
   height: 11px;
   margin-right: 5px;
   background-color: #ff6b08;
