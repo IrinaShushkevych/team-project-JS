@@ -74,6 +74,7 @@ export default class App {
     // const ApiService = this.dataService;
     const inputValue = e.currentTarget.elements.query.value;
     console.log(inputValue);
+
     // console.log(ApiService.getFilmsByQuery(inputValue));
   };
 }

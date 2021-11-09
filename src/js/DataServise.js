@@ -27,14 +27,14 @@ export default class APIService {
     dataPopular.map(film => (film.genre_ids = film.genre_ids.slice(0, 3)));
     this.dataSaver.setPopularFilms(dataPopular);
     this.dataSaver.setCurrentPage(this.page);
-    console.log(dataPopular);
+    // console.log(dataPopular);
     return dataPopular;
   };
 
   decodeGenres = async genreIds => {
     let genres = this.dataSaver.getFilmsGenres();
     if (genres === null) {
-      genres = await this.fetchFilmsGenres();      
+      genres = await this.fetchFilmsGenres();
     }
     const genreNames = genreIds.map(array => {
       for (let i = 0; i < array.length; i += 1) {
