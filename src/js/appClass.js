@@ -28,23 +28,17 @@ export default class App {
     });
     this.refs.btnLybraryRef.addEventListener('click', this.onClickLibrary);
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
-  };
-  onOpenMdalTeam = () => {
-    this.dataMarkup.renderModalTeam();
-    this.modal.onOpenModal();
-    this.dataSaver.setActivePage('home');
-
     refs.list.addEventListener('click', event => {
       event.preventDefault();
       const card = event.target.closest('li');
       if (!card) {
         return;
       }
-      console.log('card', card);
+      // console.log('card', card);
       const id = Number(card.dataset.id);
-      console.log(id);
+      // console.log(id);
       const film = this.dataSaver.getFilm(id);
-      console.log(film);
+      // console.log(film);
       this.dataMarkup.modalFilmMurcup(film);
       this.modal.onOpenModal();
 
@@ -59,6 +53,11 @@ export default class App {
 
       // this.onOpenModal();
     });
+  };
+  onOpenMdalTeam = () => {
+    this.dataMarkup.renderModalTeam();
+    this.modal.onOpenModal();
+    this.dataSaver.setActivePage('home');
   };
 
   // Клик логотип и home
