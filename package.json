@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "j": "^1.0.0"
     "tui-pagination": "^3.4.1"
+
   },
   "devDependencies": {
     "@pnotify/core": "^5.2.0",

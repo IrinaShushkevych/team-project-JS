@@ -8,13 +8,12 @@ import APIService from './js/DataServise.js';
 
 import Modal from './js/modal.js';
 
-
-
 setPagination()
 const app = new App();
 app.init();
 
 const dataAPI = new APIService();
+
 
 async function renderPopularFilms() {
   const dataPopular = await dataAPI.getPopularFilms();
@@ -28,3 +27,6 @@ function renderMarkup(data) {
 
   listUlFilms.innerHTML = template(data);
 }
+
+//team-modal
+import './js/jsKillersModal';
