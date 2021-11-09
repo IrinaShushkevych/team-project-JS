@@ -1,0 +1,160 @@
+.card__container--modal {
+  padding-top: 8px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 40px;
+
+  font-weight: 500;
+  color: $primary-black-color;
+
+  @media screen and (min-width: $bp-tablet) {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2px;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
+  @media screen and (min-width: $bp-desktop) {
+    padding-top: 10px;
+  }
+}
+
+.card__image-thumb {
+  flex-basis: calc(100% / 2 - 20px);
+  margin-bottom: 30px;
+  border-radius: 5px;
+
+  @media screen and (min-width: $bp-tablet) {
+    margin-bottom: 0px;
+  }
+}
+
+.card__description {
+  flex-basis: calc(100% / 2 - 20px);
+}
+
+.card__title--modal {
+  text-transform: uppercase;
+  margin-bottom: 20px;
+
+  font-size: 20px;
+  line-height: 1.15;
+
+  @media screen and (min-width: $bp-desktop) {
+    font-size: 30px;
+    line-height: 1.17;
+  }
+}
+
+.card__specifications--modal {
+  margin-bottom: 10px;
+  // margin-bottom: 20px;
+
+  font-size: 12px;
+  line-height: 1.33;
+}
+
+.card__specification-name {
+  padding-bottom: 10px;
+  padding-right: 40px;
+  color: $specification-color;
+
+  @media screen and (min-width: $bp-desktop) {
+    padding-right: 80px;
+  }
+}
+
+.card__specification-meaning {
+  padding-bottom: 10px;
+}
+
+.card__title-abaut {
+  margin-bottom: 10px;
+
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 1.33;
+}
+
+.card__text-abaut {
+  margin-bottom: 20px;
+  font-size: 12px;
+  line-height: 1.67;
+}
+
+.button__list-modal {
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (min-width: $bp-desktop) {
+    justify-content: flex-start;
+  }
+  // margin-right: -15px;
+}
+
+.button__item-modal {
+  display: block;
+  flex-basis: calc(100% / 2 - 15px);
+  // margin-right: 15px;
+  list-style: none;
+
+  @media screen and (min-width: $bp-desktop) {
+    flex-basis: auto;
+    margin-right: 15px;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.button__modal--primary {
+  // padding: 0;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+
+  color: $primary-black-color;
+  background-color: $primary-white-color;
+  border: 1px solid $primary-black-color;
+  border-radius: 5px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+
+  transition-property: color, background-color, border;
+  transition-duration: $duration;
+  transition-timing-function: $timing-function;
+
+  &:hover,
+  &:focus {
+    color: $primary-white-color;
+    background-color: $accent-color;
+    border: 1px solid $accent-color;
+  }
+}
+
+.button__modal--primary.button__modal--add,
+.button__modal--primary.button__modal--remove {
+  padding: 14px 14px 12px 14px;
+  text-transform: uppercase;
+
+  @media screen and (min-width: $bp-tablet) {
+    padding: 14px 9px 12px 9px;
+  }
+
+  @media screen and (min-width: $bp-desktop) {
+    padding: 14px 18px 12px 18px;
+  }
+}
+
+.button__modal--primary.card__specification-meaning-button {
+  margin: 0;
+  border: 1px solid $primary-white-color;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+}
