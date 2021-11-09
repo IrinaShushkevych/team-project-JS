@@ -9,7 +9,16 @@ export default class DataSaver {
   // get очередь фильмов
   // Записать фильм в очередь
   // Удалить фильм из очереди
-  constructor() {}
+  constructor() { }
+  
+  setCurrentPage=(page) =>{
+    localStorage.setItem('numberListPage', JSON.stringify(page))
+  }
+
+  getCurrentPage=() =>{
+    const savedPage = localStorage.getItem('numberListPage');
+    return JSON.parse(savedPage);
+  }
 
   setFilmsGenres = async data => {
     const genresResult = await data;
@@ -32,6 +41,17 @@ export default class DataSaver {
     const totalPages = localStorage.getItem('totalPages');
     return JSON.parse(totalPages)
   }
+
+  setPopularFilms = dataObj => {    
+    localStorage.setItem('home', JSON.stringify(dataObj));
+  };
+
+  getPopularFilms = () => {
+    const savedFilms = localStorage.getItem('home');
+    const popularFilms = JSON.parse(savedFilms);
+    return popularFilms;
+  };
+
   getActivePage = () => {
     return localStorage.getItem('activePage');
   };
