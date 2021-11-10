@@ -69,4 +69,18 @@ export default class App {
     const inputValue = e.currentTarget.elements.query.value;
     console.log(inputValue);
   };
+
+  onClickWatched = () => {
+    this.dataSaver.setCurrentPage(1);
+    this.dataSaver.setActivePage('watched');
+    this.dataMarkup.getCurrentFilmsWatched();
+    //pagination
+  };
+
+  onClickQueue = () => {
+    this.dataSaver.setCurrentPage(1);
+    this.dataSaver.setActivePage('queue');
+    this.dataMarkup.getCurrentFilmsQueue();
+    //pagination
+  };
 }
