@@ -101,14 +101,13 @@ export default class AuthForm {
   };
 
   onClickAuth = async e => {
-    console.dir(this);
     if (e.target.classList.contains('js-btn-register')) {
       const auth = new Save();
       const result = await auth.register(this.inputEmail.value, this.inputPassword.value);
       if (result.type === 0) {
         Message.error(result.text);
       } else {
-        Message.success('You are registry!!!');
+        Message.success('You are registried !!!');
         this.callback();
         this.callbackModal();
       }
@@ -118,7 +117,6 @@ export default class AuthForm {
 
       if (result.type === 0) {
         Message.error(result.text);
-        console.log(result);
       } else {
         Message.success('You are log in!!!');
         this.callback();
