@@ -31,14 +31,14 @@ export default class Modal {
     refs.backdrop.removeEventListener('click', this.onBackdropClick);
     refs.backdrop.classList.add('visually-hidden');
     window.removeEventListener('keydown', this.onEscKeyPress);
-    this.removeBtnListeners();
-    refs.modalCardRef.innerHTML = '';
-    // team
-    refs.modalContainer.innerHTML = '';
+    // this.removeBtnListeners();
     if (this.modalAuth) {
       this.modalAuth.removeListeners();
       this.modalAuth = null;
     }
+    refs.modalCardRef.innerHTML = '';
+    // team
+    refs.modalContainer.innerHTML = '';
   };
 
   onBtnClosePress = () => {
