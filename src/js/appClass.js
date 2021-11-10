@@ -3,6 +3,7 @@ import refs from './refs.js';
 import Modal from './modal.js';
 import DataSaver from './dataSaver.js';
 import DataService from './DataServise';
+import LoadSpinner from './loadSpinner';
 
 export default class App {
   constructor() {
@@ -11,9 +12,11 @@ export default class App {
     this.refs = refs;
     this.dataSaver = new DataSaver();
     this.dataService = new DataService();
+    this.spinner = new LoadSpinner();
   }
 
   init = () => {
+    this.spinner.showSpinner();
     this.dataSaver.clearLocalstoredge();
     this.dataSaver.setActivePage('home');
     this.dataMarkup.renderPopularFilms();
@@ -65,12 +68,14 @@ export default class App {
 
   // input  название = () => {}
   onKeyWordSearch = async e => {
+    this.spinner.showSpinner();
     e.preventDefault();
     const inputValue = e.currentTarget.elements.query.value;
-    console.log(inputValue);
+    this.dataMarkup.renderSearchingFilms(inputValue);    
   };
 
   onClickWatched = () => {
+    this.spinner.showSpinner();
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('watched');
     this.dataMarkup.getCurrentFilmsWatched();
@@ -78,6 +83,7 @@ export default class App {
   };
 
   onClickQueue = () => {
+    this.spinner.showSpinner();
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('queue');
     this.dataMarkup.getCurrentFilmsQueue();
