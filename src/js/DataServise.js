@@ -3,7 +3,7 @@ export default class APIService {
   constructor() {
     this.keyAPI = 'api_key=a907caf8c46067564d1786718be1cb84';
     this.baseUrl = 'https://api.themoviedb.org/3/';
-    this.page = 10;
+    this.page = 1;
     this.url = '';
     this.query = '';
     this.dataSaver = new DataSaver();
@@ -14,27 +14,24 @@ export default class APIService {
     return response.json();
   };
 
-  getPopularFilms = async () => {
+  fetchPopularFilms = async () => {
     let popularFilms = 'trending/movie/week?';
-    this.url = this.baseUrl + popularFilms + this.keyAPI + `&page=${this.page}`;
+    this.url = this.baseUrl + popularFilms + this.keyAPI + `&page=${this.dataSaver.getCurrentPage()}`;
     const dataObj = await this.fetchData(this.url);
     const dataPopular = dataObj.results;
+    await this.fixFetchObject(dataPopular);
     let totalPages = dataObj.total_pages;
     this.dataSaver.setTotalPages(totalPages);
-    const genreIds = dataPopular.map(film => film.genre_ids);
-    await this.decodeGenres(genreIds);
-    this.fixImagePath(dataPopular);
-    dataPopular.map(film => (film.genre_ids = film.genre_ids.slice(0, 3)));
-    this.dataSaver.setPopularFilms(dataPopular);
+    this.dataSaver.setHomeFilms(dataPopular);
     this.dataSaver.setCurrentPage(this.page);
-    console.log(dataPopular);
+    // console.log(dataPopular);
     return dataPopular;
   };
 
   decodeGenres = async genreIds => {
     let genres = this.dataSaver.getFilmsGenres();
     if (genres === null) {
-      genres = await this.fetchFilmsGenres();      
+      genres = await this.fetchFilmsGenres();
     }
     const genreNames = genreIds.map(array => {
       for (let i = 0; i < array.length; i += 1) {
@@ -48,11 +45,24 @@ export default class APIService {
     return genreNames;
   };
 
-  getFilmsByQuery = async query => {
+  fixFetchObject = async response => {
+    const genreIds = response.map(film => film.genre_ids);
+    await this.decodeGenres(genreIds);
+    this.fixImagePath(response);
+    response.map(film => (film.genre_ids = film.genre_ids.slice(0, 3)));
+  }
+
+  fetchFilmsByQuery = async query => {
     let queryEndpoint = `search/movie?query=${query}&`;
-    this.url = this.baseUrl + queryEndpoint + this.keyAPI + `&page=${this.page}`;
+    this.url = this.baseUrl + queryEndpoint + this.keyAPI + `&page=${this.dataSaver.getCurrentPage()}`;
     const queryFilmsResult = await this.fetchData(this.url);
-    return queryFilmsResult.results;
+    const dataQuery = queryFilmsResult.results;
+    await this.fixFetchObject(dataQuery);
+    const totalPages = queryFilmsResult.total_pages;
+    this.dataSaver.setTotalPages(totalPages);
+    this.dataSaver.setCurrentPage(this.page);
+    this.dataSaver.setHomeFilms(dataQuery)
+    return dataQuery;
   };
 
   fetchFilmsGenres = async () => {
@@ -67,3 +77,5 @@ export default class APIService {
     obj.map(film => (film.poster_path = 'https://image.tmdb.org/t/p/w500' + film.poster_path));
   };
 }
+
+

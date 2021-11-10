@@ -3,6 +3,7 @@ import refs from './refs.js';
 import Modal from './modal.js';
 import DataSaver from './dataSaver.js';
 import DataService from './DataServise';
+import LoadSpinner from './loadSpinner';
 
 export default class App {
   constructor() {
@@ -11,15 +12,16 @@ export default class App {
     this.refs = refs;
     this.dataSaver = new DataSaver();
     this.dataService = new DataService();
+    this.spinner = new LoadSpinner();
   }
 
   init = () => {
+    this.spinner.showSpinner();
     this.dataSaver.clearLocalstoredge();
     this.dataSaver.setActivePage('home');
     this.dataMarkup.renderPopularFilms();
     this.refs.linkModalTeamRef.addEventListener('click', this.onOpenMdalTeam);
     this.refs.btnHomeRef.addEventListener('click', () => {
-      o;
       console.log('Markup popular films, hide button, show input');
     });
     this.refs.logoRef.addEventListener('click', e => {
@@ -27,6 +29,7 @@ export default class App {
       console.log('Markup popular films, hide button, show input');
     });
     this.refs.btnLybraryRef.addEventListener('click', this.onClickLibrary);
+    this.refs.btnAuthRef.addEventListener('click', this.onClickAuth);
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
     refs.list.addEventListener('click', event => {
       event.preventDefault();
@@ -49,8 +52,19 @@ export default class App {
       // }
     });
   };
+
+  onClickAuth = () => {
+    this.modal.addAuth(this.onValiAuth);
+    this.modal.onOpenModal();
+  };
+
+  onValiAuth = () => {
+    this.refs.btnAuthRef.classList.add('hidden');
+    this.refs.btnLybraryRef.classList.remove('hidden');
+  };
+
   onOpenMdalTeam = () => {
-    refs.modalCardRef.innerHTML = '';
+    this.refs.modalCardRef.innerHTML = '';
     this.dataMarkup.renderModalTeam();
     this.modal.onOpenModal();
     this.dataSaver.setActivePage('home');
@@ -64,11 +78,26 @@ export default class App {
   };
 
   // input  название = () => {}
-  onKeyWordSearch = e => {
+  onKeyWordSearch = async e => {
+    this.spinner.showSpinner();
     e.preventDefault();
-    // const ApiService = this.dataService;
     const inputValue = e.currentTarget.elements.query.value;
-    console.log(inputValue);
-    // console.log(ApiService.getFilmsByQuery(inputValue));
+    this.dataMarkup.renderSearchingFilms(inputValue);    
+  };
+
+  onClickWatched = () => {
+    this.spinner.showSpinner();
+    this.dataSaver.setCurrentPage(1);
+    this.dataSaver.setActivePage('watched');
+    this.dataMarkup.getCurrentFilmsWatched();
+    //pagination
+  };
+
+  onClickQueue = () => {
+    this.spinner.showSpinner();
+    this.dataSaver.setCurrentPage(1);
+    this.dataSaver.setActivePage('queue');
+    this.dataMarkup.getCurrentFilmsQueue();
+    //pagination
   };
 }
