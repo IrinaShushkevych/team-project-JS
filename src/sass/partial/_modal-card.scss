@@ -82,6 +82,11 @@
   padding-right: 4px;
 }
 
+.genre__item:not(:last-child):after {
+  content: ',';
+  display: inline-block;
+}
+
 .card__title-abaut {
   margin-bottom: 10px;
 
