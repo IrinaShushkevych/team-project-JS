@@ -19,10 +19,17 @@
 @import './partial/modal-auth';
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: Roboto, sans-serif;
   font-style: normal;
   font-weight: normal;
   color: $primary-color;
+}
+
+main {
+  flex-grow: 1;
 }
 
 h1,
