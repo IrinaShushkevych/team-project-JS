@@ -8,7 +8,6 @@ import refs from '../js/refs';
 
 import listCardTpl from '../templates/list-card.hbs';
 import DataSaver from './dataSaver.js';
-import App from './appClass.js';
 import Message from './message.js';
 
 export default class DataMarkup {
@@ -35,7 +34,7 @@ export default class DataMarkup {
 
   // Отрисовка по запросу
   getSearchingFilms = async query => {
-    const currentQuerySeach = await this.dataAPI.getFilmsByQuery();
+    const currentQuerySeach = await this.dataAPI.getFilmsByQuery(query);
     this.renderMarkup(currentQuerySeach);
   };
 
@@ -51,11 +50,6 @@ export default class DataMarkup {
     this.renderMarkup(currentFilmsQueue);
   };
 
-  // Отрисовка карточки фильма для модалки
-  modalFilmMurcup = film => {
-    // this.refs.modalRef.insertAdjacentHTML('beforeend', filmTpl(film));
-    this.refs.modalCardRef.innerHTML = filmTpl(film);
-  };
   // listener на список
 
   renderModalTeam = () => {
@@ -69,7 +63,7 @@ export default class DataMarkup {
   // Отрисовка карточки фильма для модалки
 
   modalFilmMurcup = film => {
-    refs.modalContainer.innerHTML = '';
+    //   refs.modalContainer.innerHTML = '';
     // this.refs.modalRef.insertAdjacentHTML('beforeend', filmTpl(film));
     this.refs.modalCardRef.innerHTML = filmTpl(film);
   };
