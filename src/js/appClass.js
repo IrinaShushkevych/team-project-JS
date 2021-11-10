@@ -19,7 +19,6 @@ export default class App {
     this.dataMarkup.renderPopularFilms();
     this.refs.linkModalTeamRef.addEventListener('click', this.onOpenMdalTeam);
     this.refs.btnHomeRef.addEventListener('click', () => {
-      o;
       console.log('Markup popular films, hide button, show input');
     });
     this.refs.logoRef.addEventListener('click', e => {
@@ -52,13 +51,17 @@ export default class App {
   };
 
   onClickAuth = () => {
-    this.dataMarkup.renderModalAuth();
+    this.modal.addAuth(this.onValiAuth);
     this.modal.onOpenModal();
-    this.modal.addListenersAuth();
+  };
+
+  onValiAuth = () => {
+    this.refs.btnAuthRef.classList.add('hidden');
+    this.refs.btnLybraryRef.classList.remove('hidden');
   };
 
   onOpenMdalTeam = () => {
-    refs.modalCardRef.innerHTML = '';
+    this.refs.modalCardRef.innerHTML = '';
     this.dataMarkup.renderModalTeam();
     this.modal.onOpenModal();
     this.dataSaver.setActivePage('home');

@@ -1,5 +1,4 @@
-import refsMain from './refs.js';
-import Save from './auth';
+import AuthForm from './authForm';
 import Message from './message.js';
 import refs from './refs.js';
 
@@ -36,6 +35,10 @@ export default class Modal {
     refs.modalCardRef.innerHTML = '';
     // team
     refs.modalContainer.innerHTML = '';
+    if (this.modalAuth) {
+      this.modalAuth.removeListeners();
+      this.modalAuth = null;
+    }
   };
 
   onBtnClosePress = () => {
@@ -130,35 +133,8 @@ export default class Modal {
     refs.itemRemoveQueue.classList.add('hidden');
   };
 
-  addListenersAuth = () => {
-    console.log(refsMain.blockLoginRef);
-    console.log(refsMain);
-
-    document.querySelector('.js-auth-button').addEventListener('click', this.onClickAuth);
-  };
-
-  onClickAuth = async e => {
-    if (e.target.classList.contains('js-btn-register')) {
-      const auth = new Save();
-      const result = await auth.register(
-        document.querySelector('.js-auth-register').value,
-        document.querySelector('.js-auth-login').value,
-      );
-      if (result.type === 0) {
-        Message.error(result.text);
-      } else {
-        Message.success('You are registry!!!');
-      }
-    } else if (e.target.classList.contains('js-btn-login')) {
-      const auth = new Save();
-      const result = await auth.login(
-        document.querySelector('.js-auth-register').value,
-        document.querySelector('.js-auth-login').value,
-      );
-
-      if (result.type === 0) {
-        Message.error(result.text);
-      }
-    }
+  addAuth = callback => {
+    this.modalAuth = new AuthForm(callback, this.onCloseModal);
+    this.modalAuth.renderModalAuth();
   };
 }

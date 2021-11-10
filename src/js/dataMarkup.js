@@ -1,6 +1,5 @@
 import APIService from './DataServise.js';
 import template from '../templates/list-card.hbs';
-import authTpl from '../templates/modalAuth.hbs';
 import jsKillerTemplate from '../templates/jsKillerCard.hbs';
 import jsKillerTeam from '../json/jsKillers.json';
 // import refs from './refs';
@@ -56,21 +55,14 @@ export default class DataMarkup {
   renderModalTeam = () => {
     try {
       const markup = jsKillerTemplate(jsKillerTeam);
-      refs.modalContainer.innerHTML = markup;
+      this.refs.modalContainer.innerHTML = markup;
     } catch (error) {
       console.error('Yes, babe, the error has been appeared here. Check your code. 🤷‍♂️');
     }
   };
 
-  renderModalAuth = () => {
-    const markup = authTpl();
-    refs.modalContainer.innerHTML = markup;
-  };
   // Отрисовка карточки фильма для модалки
-
   modalFilmMurcup = film => {
-    //   refs.modalContainer.innerHTML = '';
-    // this.refs.modalRef.insertAdjacentHTML('beforeend', filmTpl(film));
     this.refs.modalCardRef.innerHTML = filmTpl(film);
   };
 }

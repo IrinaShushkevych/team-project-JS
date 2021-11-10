@@ -53,4 +53,9 @@
       background-color: $accent-color;
     }
   }
+
+  &.modal-auth {
+    max-width: 450px;
+    height: 290px;
+  }
 }

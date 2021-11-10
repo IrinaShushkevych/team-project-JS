@@ -27,13 +27,11 @@ export default class Save {
   register = async (email, password) => {
     const uid = await createUserWithEmailAndPassword(this.auth, email, password)
       .then(user => {
-        console.log(user);
         sessionStorage.setItem('user', user.user.uid);
         return user.user.uid;
       })
       .catch(error => {
-        alert(error.code);
-        return { type: 0, text: error.code };
+        return { type: 0, text: error.message };
       });
     return { type: 1, text: uid };
   };
@@ -41,19 +39,12 @@ export default class Save {
   login = async (email, password) => {
     const uid = await signInWithEmailAndPassword(this.auth, email, password)
       .then(user => {
-        console.log(user);
         sessionStorage.setItem('user', user.user.uid);
-        return { type: 1, text: uid };
+        return { type: 1, text: user.user.uid };
       })
       .catch(error => {
-        // alert(error.code);
-        console.log('ERROR', error);
-        return { type: 0, text: error.code };
+        return { type: 0, text: error.message };
       });
-    this.getData();
-    // this.removeData();
-    this.pushData();
-    this.getData();
     return uid;
   };
 

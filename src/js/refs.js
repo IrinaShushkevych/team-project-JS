@@ -9,8 +9,6 @@ export default {
   listUlFilms: document.querySelector('.js-film-list'),
   modalContainer: document.querySelector('.card__js-killer-container--modal'),
 
-  inputEmailRef: document.querySelector('.js-auth-register'),
-  inputPasswordRef: document.querySelector('.js-auth-login'),
   blockLoginRef: document.querySelector('.js-auth-button'),
 
   modalRef: document.querySelector('.modal'),
