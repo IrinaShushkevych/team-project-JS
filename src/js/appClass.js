@@ -29,6 +29,26 @@ export default class App {
     this.refs.btnLybraryRef.addEventListener('click', this.onClickLibrary);
     this.refs.btnAuthRef.addEventListener('click', this.onClickAuth);
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
+    refs.list.addEventListener('click', event => {
+      event.preventDefault();
+      const card = event.target.closest('li');
+      if (!card) {
+        return;
+      }
+      const id = Number(card.dataset.id);
+      const film = this.dataSaver.getFilm(id);
+      this.dataMarkup.modalFilmMurcup(film);
+      this.modal.onOpenModal();
+
+      //   const isModalCard = event.target.classList.contains('card__image');
+
+      //   if (!isModalCard) {
+      //     return;
+      //   }
+      // if (!card) {
+      //   return;
+      // }
+    });
   };
 
   onClickAuth = () => {
@@ -38,8 +58,10 @@ export default class App {
   };
 
   onOpenMdalTeam = () => {
+    refs.modalCardRef.innerHTML = '';
     this.dataMarkup.renderModalTeam();
     this.modal.onOpenModal();
+    this.dataSaver.setActivePage('home');
   };
 
   // Клик логотип и home
@@ -50,11 +72,23 @@ export default class App {
   };
 
   // input  название = () => {}
-  onKeyWordSearch = e => {
+  onKeyWordSearch = async e => {
     e.preventDefault();
-    // const ApiService = this.dataService;
     const inputValue = e.currentTarget.elements.query.value;
     console.log(inputValue);
-    // console.log(ApiService.getFilmsByQuery(inputValue));
+  };
+
+  onClickWatched = () => {
+    this.dataSaver.setCurrentPage(1);
+    this.dataSaver.setActivePage('watched');
+    this.dataMarkup.getCurrentFilmsWatched();
+    //pagination
+  };
+
+  onClickQueue = () => {
+    this.dataSaver.setCurrentPage(1);
+    this.dataSaver.setActivePage('queue');
+    this.dataMarkup.getCurrentFilmsQueue();
+    //pagination
   };
 }

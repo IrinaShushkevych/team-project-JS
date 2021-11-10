@@ -3,14 +3,25 @@ import template from '../templates/list-card.hbs';
 import authTpl from '../templates/modalAuth.hbs';
 import jsKillerTemplate from '../templates/jsKillerCard.hbs';
 import jsKillerTeam from '../json/jsKillers.json';
-import refs from './refs';
+// import refs from './refs';
+import filmTpl from '../templates/modalFilmCard.hbs';
+import refs from '../js/refs';
+
+import listCardTpl from '../templates/list-card.hbs';
+import DataSaver from './dataSaver.js';
+import Message from './message.js';
 
 export default class DataMarkup {
   constructor() {
+    this.messsage = new Message();
+    this.dataSaver = new DataSaver();
     this.dataAPI = new APIService();
     this.listRef = refs.listUlFilms;
-  }
 
+    this.refs = refs;
+    this.filmTpl = filmTpl;
+    this.listCardTpl = listCardTpl;
+  }
   // Рисование списка карточек
   renderMarkup = data => {
     this.listRef.innerHTML = template(data);
@@ -23,9 +34,23 @@ export default class DataMarkup {
   };
 
   // Отрисовка по запросу
+  getSearchingFilms = async query => {
+    const currentQuerySeach = await this.dataAPI.getFilmsByQuery(query);
+    this.renderMarkup(currentQuerySeach);
+  };
+
   // Отрисовка очереди
+  getCurrentFilmsWatched = async id => {
+    const currentFilmsWatched = await this.dataSaver.getFilmWatched();
+    this.renderMarkup(currentFilmsWatched);
+  };
+  //
   // Отрисовка просмотренных
-  // Отрисовка карточки фильма для модалки
+  getCurrentFilmsQueue = async id => {
+    const currentFilmsQueue = await this.dataSaver.getFilmQueue();
+    this.renderMarkup(currentFilmsQueue);
+  };
+
   // listener на список
 
   renderModalTeam = () => {
@@ -40,5 +65,12 @@ export default class DataMarkup {
   renderModalAuth = () => {
     const markup = authTpl();
     refs.modalContainer.innerHTML = markup;
+  };
+  // Отрисовка карточки фильма для модалки
+
+  modalFilmMurcup = film => {
+    //   refs.modalContainer.innerHTML = '';
+    // this.refs.modalRef.insertAdjacentHTML('beforeend', filmTpl(film));
+    this.refs.modalCardRef.innerHTML = filmTpl(film);
   };
 }

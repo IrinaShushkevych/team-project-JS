@@ -9,7 +9,6 @@ export default class DataSaver {
     localStorage.removeItem('genres');
     localStorage.setItem('numberListPage', 0);
     localStorage.setItem('totalPages', 0);
-    localStorage.setItem('currentList', '');
   };
 
   setCurrentPage = page => {
@@ -53,6 +52,18 @@ export default class DataSaver {
     const savedFilms = localStorage.getItem('home');
     const popularFilms = JSON.parse(savedFilms);
     return popularFilms;
+  };
+
+  // set фильмы по ключевому слову с инпута
+  setFilmsByQuery = dataObj => {
+    localStorage.setItem('query', JSON.stringify(dataObj));
+  };
+
+  // get фильмы по ключевому слову с инпута
+  getFilmsByQuery = () => {
+    const savedFilms = localStorage.getItem('query');
+    const filmsByQuery = JSON.parse(savedFilms);
+    return filmsByQuery;
   };
 
   getActivePage = () => {
