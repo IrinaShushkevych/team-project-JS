@@ -6,5 +6,4 @@ import setPagination from './js/pagination.js';
 
 setPagination();
 const app = new App();
-app.init();
-
+// app.init();
