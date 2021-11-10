@@ -1,4 +1,5 @@
-// import refs from './modal-refs.js';
+import AuthForm from './authForm';
+import Message from './message.js';
 import refs from './refs.js';
 
 export default class Modal {
@@ -34,6 +35,10 @@ export default class Modal {
     refs.modalCardRef.innerHTML = '';
     // team
     refs.modalContainer.innerHTML = '';
+    if (this.modalAuth) {
+      this.modalAuth.removeListeners();
+      this.modalAuth = null;
+    }
   };
 
   onBtnClosePress = () => {
@@ -126,5 +131,10 @@ export default class Modal {
     console.log('itemRemoveQueue');
     refs.itemAddQueue.classList.remove('hidden');
     refs.itemRemoveQueue.classList.add('hidden');
+  };
+
+  addAuth = callback => {
+    this.modalAuth = new AuthForm(callback, this.onCloseModal);
+    this.modalAuth.renderModalAuth();
   };
 }

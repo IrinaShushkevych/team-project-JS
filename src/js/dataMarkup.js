@@ -55,16 +55,14 @@ export default class DataMarkup {
   renderModalTeam = () => {
     try {
       const markup = jsKillerTemplate(jsKillerTeam);
-      refs.modalContainer.innerHTML = markup;
+      this.refs.modalContainer.innerHTML = markup;
     } catch (error) {
       console.error('Yes, babe, the error has been appeared here. Check your code. 🤷‍♂️');
     }
   };
-  // Отрисовка карточки фильма для модалки
 
+  // Отрисовка карточки фильма для модалки
   modalFilmMurcup = film => {
-    //   refs.modalContainer.innerHTML = '';
-    // this.refs.modalRef.insertAdjacentHTML('beforeend', filmTpl(film));
     this.refs.modalCardRef.innerHTML = filmTpl(film);
   };
 }

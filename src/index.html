@@ -31,8 +31,11 @@
             <button class="home-btn__header btn__header js-home">
               <span class="btn-text">Home</span>
             </button>
-            <button class="library-btn__header btn__header js-lybrary">
+            <button class="library-btn__header btn__header js-lybrary hidden">
               <span class="btn-text">MY LIBRARY</span>
+            </button>
+            <button class="btn__header js-auth">
+              <span class="btn-text">LOG IN</span>
             </button>
           </div>
           <div class="button-container hidden">
@@ -83,22 +86,22 @@
         </div>
         
         <div class = "card__js-killer-container--modal">
-        </div>
-         <div class="button__container-js-killers-modal ">
-          <button class="button__js-killers-modal"><svg class="js-killers-theme__icon">
-        <use
-          href="./images/icons-for-JS-killers.svg#icon-baffled"
-          aria-label="Serious person"
-        ></use>
-      </svg>
-     </span>
-     </button>
-          <button class="button__js-killers-modal"><svg class="js-killers-theme__icon">
-        <use
-          href="./images/icons-for-JS-killers.svg#icon-evil2"
-          aria-label="Cool person"
-        ></use>
-      </svg></button>
+          <div class="button__container-js-killers-modal ">
+           <button class="button__js-killers-modal"><svg class="js-killers-theme__icon">
+         <use
+           href="./images/icons-for-JS-killers.svg#icon-baffled"
+           aria-label="Serious person"
+         ></use>
+       </svg>
+      </span>
+      </button>
+           <button class="button__js-killers-modal"><svg class="js-killers-theme__icon">
+         <use
+           href="./images/icons-for-JS-killers.svg#icon-evil2"
+           aria-label="Cool person"
+         ></use>
+       </svg></button>
+         </div>
         </div>
 
         <div class="card__container--modal"></div>
@@ -106,7 +109,7 @@
     </div>
 
 
-
-      <script src="./app.js"></script>
+    <div id="firebaseui-auth-container"></div>
+    <script src="./app.js"></script>
   </body>
 </html>
