@@ -182,22 +182,22 @@
   color: $primary-white-color;
 }
 
-// .btn__header--current-page {
-//   position: relative;
+.btn__header--current-page {
+  position: relative;
 
-//   &::after {
-//     content: '';
+  &::after {
+    content: '';
+    display: block;
+    // position: absolute;
+    bottom: -3px;
+    left: 0;
 
-//     position: absolute;
-//     bottom: -3px;
-//     left: 0;
+    height: 3px;
+    width: 100%;
 
-//     height: 3px;
-//     width: 100%;
-
-//     background-color: $accent-color;
-//   }
-// }
+    background-color: $accent-color;
+  }
+}
 
 .search-form {
   margin-right: auto;

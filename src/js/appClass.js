@@ -95,3 +95,10 @@ export default class App {
     //pagination
   };
 }
+
+// Клик логотип
+const logoEl = document.querySelector('.js-logo');
+logoEl.addEventListener('click', onLogoClick);
+function onLogoClick(e) {
+  e.preventDefault();
+}
