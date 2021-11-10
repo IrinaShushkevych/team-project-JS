@@ -9,7 +9,6 @@ export default class DataSaver {
     localStorage.removeItem('genres');
     localStorage.setItem('numberListPage', 0);
     localStorage.setItem('totalPages', 0);
-    localStorage.setItem('currentList', '');
   };
 
   setCurrentPage = page => {
@@ -61,7 +60,7 @@ export default class DataSaver {
   };
 
   // get фильмы по ключевому слову с инпута
-  getsetFilmsByQuery = () => {
+  getFilmsByQuery = () => {
     const savedFilms = localStorage.getItem('query');
     const filmsByQuery = JSON.parse(savedFilms);
     return filmsByQuery;

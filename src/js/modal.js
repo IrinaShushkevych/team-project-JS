@@ -128,6 +128,3 @@ export default class Modal {
     refs.itemRemoveQueue.classList.add('hidden');
   };
 }
-
-const modalWindow = new Modal();
-modalWindow.init();
