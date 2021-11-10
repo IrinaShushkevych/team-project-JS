@@ -9,12 +9,15 @@ import refs from '../js/refs';
 import listCardTpl from '../templates/list-card.hbs';
 import DataSaver from './dataSaver.js';
 import Message from './message.js';
+import LoadSpinner from './loadSpinner';
+
 
 export default class DataMarkup {
   constructor() {
     this.messsage = new Message();
     this.dataSaver = new DataSaver();
     this.dataAPI = new APIService();
+    this.spinner = new LoadSpinner();
     this.listRef = refs.listUlFilms;
 
     this.refs = refs;
@@ -23,31 +26,35 @@ export default class DataMarkup {
   }
   // Рисование списка карточек
   renderMarkup = data => {
-    this.listRef.innerHTML = template(data);
+    this.listRef.innerHTML = template(data);    
   };
 
   // Отрисовка популярных
   renderPopularFilms = async () => {
-    const dataPopular = await this.dataAPI.getPopularFilms();
+    const dataPopular = await this.dataAPI.fetchPopularFilms();
     this.renderMarkup(dataPopular);
-  };
-
+    this.spinner.hideSpinner();
+  }
+    
   // Отрисовка по запросу
-  getSearchingFilms = async query => {
-    const currentQuerySeach = await this.dataAPI.getFilmsByQuery(query);
+  renderSearchingFilms = async query => {
+    const currentQuerySeach = await this.dataAPI.fetchFilmsByQuery(query);
     this.renderMarkup(currentQuerySeach);
+    this.spinner.hideSpinner();
   };
 
   // Отрисовка очереди
   getCurrentFilmsWatched = async id => {
     const currentFilmsWatched = await this.dataSaver.getFilmWatched();
     this.renderMarkup(currentFilmsWatched);
+    this.spinner.hideSpinner();
   };
   //
   // Отрисовка просмотренных
   getCurrentFilmsQueue = async id => {
     const currentFilmsQueue = await this.dataSaver.getFilmQueue();
     this.renderMarkup(currentFilmsQueue);
+    this.spinner.hideSpinner();
   };
 
   // listener на список
