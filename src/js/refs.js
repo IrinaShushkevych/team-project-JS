@@ -2,6 +2,7 @@ export default {
   linkModalTeamRef: document.querySelector('.js-modal-team'),
   btnHomeRef: document.querySelector('.js-home'),
   btnLybraryRef: document.querySelector('.js-lybrary'),
+  btnAuthRef: document.querySelector('.js-auth'),
   logoRef: document.querySelector('.js-logo'),
   paginationCase: document.getElementById('tui-pagination-container'),
   inputFormRef: document.querySelector('.js-search-form'),
@@ -10,6 +11,8 @@ export default {
   footer: document.querySelector('footer'),
   main: document.querySelector('main'),
   modalContainer: document.querySelector('.card__js-killer-container--modal'),
+
+  blockLoginRef: document.querySelector('.js-auth-button'),
 
   modalRef: document.querySelector('.modal'),
   modalCardRef: document.querySelector('.card__container--modal'),

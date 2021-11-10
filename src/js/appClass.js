@@ -22,7 +22,6 @@ export default class App {
     this.dataMarkup.renderPopularFilms();
     this.refs.linkModalTeamRef.addEventListener('click', this.onOpenMdalTeam);
     this.refs.btnHomeRef.addEventListener('click', () => {
-      o;
       console.log('Markup popular films, hide button, show input');
     });
     this.refs.logoRef.addEventListener('click', e => {
@@ -30,6 +29,7 @@ export default class App {
       console.log('Markup popular films, hide button, show input');
     });
     this.refs.btnLybraryRef.addEventListener('click', this.onClickLibrary);
+    this.refs.btnAuthRef.addEventListener('click', this.onClickAuth);
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
     refs.list.addEventListener('click', event => {
       event.preventDefault();
@@ -52,8 +52,19 @@ export default class App {
       // }
     });
   };
+
+  onClickAuth = () => {
+    this.modal.addAuth(this.onValiAuth);
+    this.modal.onOpenModal();
+  };
+
+  onValiAuth = () => {
+    this.refs.btnAuthRef.classList.add('hidden');
+    this.refs.btnLybraryRef.classList.remove('hidden');
+  };
+
   onOpenMdalTeam = () => {
-    refs.modalCardRef.innerHTML = '';
+    this.refs.modalCardRef.innerHTML = '';
     this.dataMarkup.renderModalTeam();
     this.modal.onOpenModal();
     this.dataSaver.setActivePage('home');

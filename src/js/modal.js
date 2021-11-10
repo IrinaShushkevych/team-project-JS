@@ -1,4 +1,5 @@
-// import refs from './modal-refs.js';
+import AuthForm from './authForm';
+import Message from './message.js';
 import refs from './refs.js';
 
 export default class Modal {
@@ -30,7 +31,11 @@ export default class Modal {
     refs.backdrop.removeEventListener('click', this.onBackdropClick);
     refs.backdrop.classList.add('visually-hidden');
     window.removeEventListener('keydown', this.onEscKeyPress);
-    this.removeBtnListeners();
+    // this.removeBtnListeners();
+    if (this.modalAuth) {
+      this.modalAuth.removeListeners();
+      this.modalAuth = null;
+    }
     refs.modalCardRef.innerHTML = '';
     // team
     refs.modalContainer.innerHTML = '';
@@ -127,7 +132,9 @@ export default class Modal {
     refs.itemAddQueue.classList.remove('hidden');
     refs.itemRemoveQueue.classList.add('hidden');
   };
-}
 
-const modalWindow = new Modal();
-modalWindow.init();
+  addAuth = callback => {
+    this.modalAuth = new AuthForm(callback, this.onCloseModal);
+    this.modalAuth.renderModalAuth();
+  };
+}

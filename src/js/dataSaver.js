@@ -9,7 +9,6 @@ export default class DataSaver {
     localStorage.removeItem('genres');
     localStorage.setItem('numberListPage', 1);
     localStorage.setItem('totalPages', 0);
-    localStorage.setItem('currentList', '');
   };
 
   setCurrentPage = page => {
