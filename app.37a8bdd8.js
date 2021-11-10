@@ -103,4 +103,4 @@ var t;!function(e,n){"object"==typeof exports&&"object"==typeof module?module.ex
 },{"tui-pagination":"jPMh","./refs.js":"VyiV"}],"A2T1":[function(require,module,exports) {
 "use strict";require("./sass/main.scss");var s=a(require("./js/auth.js")),e=a(require("./js/appClass")),r=a(require("./js/pagination.js")),u=a(require("./js/modal.js"));function a(s){return s&&s.__esModule?s:{default:s}}(0,r.default)();const i=new e.default;i.init();
 },{"./sass/main.scss":"clu1","./js/auth.js":"zSTK","./js/appClass":"O3cG","./js/pagination.js":"o8lo","./js/modal.js":"RSqK"}]},{},["A2T1"], null)
-//# sourceMappingURL=/team-project-js/app.cc1af015.js.map
+//# sourceMappingURL=/team-project-js/app.37a8bdd8.js.map
