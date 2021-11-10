@@ -7,7 +7,7 @@ export default class DataSaver {
 
   clearLocalstoredge = () => {
     localStorage.removeItem('genres');
-    localStorage.setItem('numberListPage', 0);
+    localStorage.setItem('numberListPage', 1);
     localStorage.setItem('totalPages', 0);
   };
 
@@ -42,28 +42,16 @@ export default class DataSaver {
     return JSON.parse(totalPages);
   };
 
-  // set популярные фильмы
-  setPopularFilms = dataObj => {
+  // set популярные фильмы или по ключевому слову с инпута
+  setHomeFilms = dataObj => {
     localStorage.setItem('home', JSON.stringify(dataObj));
   };
 
-  // get популярные фильмы
-  getPopularFilms = () => {
+  // get популярные фильмы или по ключевому слову с инпута
+  getHomeFilms = () => {
     const savedFilms = localStorage.getItem('home');
     const popularFilms = JSON.parse(savedFilms);
     return popularFilms;
-  };
-
-  // set фильмы по ключевому слову с инпута
-  setFilmsByQuery = dataObj => {
-    localStorage.setItem('query', JSON.stringify(dataObj));
-  };
-
-  // get фильмы по ключевому слову с инпута
-  getFilmsByQuery = () => {
-    const savedFilms = localStorage.getItem('query');
-    const filmsByQuery = JSON.parse(savedFilms);
-    return filmsByQuery;
   };
 
   getActivePage = () => {

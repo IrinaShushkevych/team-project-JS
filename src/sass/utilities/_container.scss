@@ -17,3 +17,17 @@
     width: $bp-desktop;
   }
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  color: $primary-color;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+}

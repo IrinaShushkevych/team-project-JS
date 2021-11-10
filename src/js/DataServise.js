@@ -14,15 +14,15 @@ export default class APIService {
     return response.json();
   };
 
-  getPopularFilms = async () => {
+  fetchPopularFilms = async () => {
     let popularFilms = 'trending/movie/week?';
-    this.url = this.baseUrl + popularFilms + this.keyAPI + `&page=${this.page}`;
+    this.url = this.baseUrl + popularFilms + this.keyAPI + `&page=${this.dataSaver.getCurrentPage()}`;
     const dataObj = await this.fetchData(this.url);
     const dataPopular = dataObj.results;
     await this.fixFetchObject(dataPopular);
     let totalPages = dataObj.total_pages;
     this.dataSaver.setTotalPages(totalPages);
-    this.dataSaver.setPopularFilms(dataPopular);
+    this.dataSaver.setHomeFilms(dataPopular);
     this.dataSaver.setCurrentPage(this.page);
     // console.log(dataPopular);
     return dataPopular;
@@ -54,12 +54,15 @@ export default class APIService {
 
   fetchFilmsByQuery = async query => {
     let queryEndpoint = `search/movie?query=${query}&`;
-    this.url = this.baseUrl + queryEndpoint + this.keyAPI + `&page=${this.page}`;
+    this.url = this.baseUrl + queryEndpoint + this.keyAPI + `&page=${this.dataSaver.getCurrentPage()}`;
     const queryFilmsResult = await this.fetchData(this.url);
+    const dataQuery = queryFilmsResult.results;
+    await this.fixFetchObject(dataQuery);
     const totalPages = queryFilmsResult.total_pages;
     this.dataSaver.setTotalPages(totalPages);
     this.dataSaver.setCurrentPage(this.page);
-    return queryFilmsResult.results;
+    this.dataSaver.setHomeFilms(dataQuery)
+    return dataQuery;
   };
 
   fetchFilmsGenres = async () => {
@@ -74,3 +77,5 @@ export default class APIService {
     obj.map(film => (film.poster_path = 'https://image.tmdb.org/t/p/w500' + film.poster_path));
   };
 }
+
+
