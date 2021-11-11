@@ -1,10 +1,12 @@
 import AuthForm from './authForm';
+import DataSaver from './dataSaver';
 import Message from './message.js';
 import refs from './refs.js';
 
 export default class Modal {
   constructor() {
     this.refs = refs;
+    this.dataSaver = new DataSaver();
   }
 
   init = () => {

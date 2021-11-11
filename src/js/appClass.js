@@ -31,26 +31,19 @@ export default class App {
     this.refs.btnLybraryRef.addEventListener('click', this.onClickLibrary);
     this.refs.btnAuthRef.addEventListener('click', this.onClickAuth);
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
-    refs.list.addEventListener('click', event => {
-      event.preventDefault();
-      const card = event.target.closest('li');
-      if (!card) {
-        return;
-      }
-      const id = Number(card.dataset.id);
-      const film = this.dataSaver.getFilm(id);
-      this.dataMarkup.modalFilmMurcup(film);
-      this.modal.onOpenModal();
+    refs.list.addEventListener('click', this.onClickList);
+  };
 
-      //   const isModalCard = event.target.classList.contains('card__image');
-
-      //   if (!isModalCard) {
-      //     return;
-      //   }
-      // if (!card) {
-      //   return;
-      // }
-    });
+  onClickList = event => {
+    event.preventDefault();
+    const card = event.target.closest('li');
+    if (!card) {
+      return;
+    }
+    const id = Number(card.dataset.id);
+    const film = this.dataSaver.getFilm(id);
+    this.dataMarkup.modalFilmMurcup(film);
+    this.modal.onOpenModal();
   };
 
   onClickAuth = () => {
@@ -82,7 +75,7 @@ export default class App {
     this.spinner.showSpinner();
     e.preventDefault();
     const inputValue = e.currentTarget.elements.query.value;
-    this.dataMarkup.renderSearchingFilms(inputValue);    
+    this.dataMarkup.renderSearchingFilms(inputValue);
   };
 
   onClickWatched = () => {
