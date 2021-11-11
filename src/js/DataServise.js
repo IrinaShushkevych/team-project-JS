@@ -16,7 +16,7 @@ export default class APIService {
   };
 
   fetchPopularFilms = async () => {
-    let popularFilms = 'trending/movie/week?';
+    let popularFilms = 'trending/movie/day?';
     this.url = this.baseUrl + popularFilms + this.keyAPI + `&page=${this.dataSaver.getCurrentPage()}`;
     const dataObj = await this.fetchData(this.url);
     const dataPopular = dataObj.results;
@@ -80,7 +80,7 @@ export default class APIService {
       if (film.poster_path || film.backdrop_path) {       
         film.poster_path = 'https://image.tmdb.org/t/p/w500' + film.poster_path;
       } else {
-        film.poster_path = `.${img}`;        
+        film.poster_path = `${img}`;        
       }
     })
   };
