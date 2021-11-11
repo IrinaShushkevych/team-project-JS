@@ -53,15 +53,26 @@ export default class App {
     this.dataMarkup.renderPopularFilms();
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('home');
-
+    this.refs.header.classList.replace('header-library', 'header-home');
+    this.refs.buttonContainer.classList.add('hidden');
+    this.refs.inputFormRef.classList.remove('hidden');
     //pagination
     console.log('Markup popular films, hide button, show input');
+    this.refs.btnLybraryRef.classList.remove('btn__header--current-page');
+    this.refs.btnHomeRef.classList.add('btn__header--current-page');
   };
 
   // Клик lybrary
   onClickLibrary = () => {
+    this.dataSaver.setActivePage('library');
     this.refs.buttonContainer.classList.remove('hidden');
-    console.log('hide input, show button, markup queue');
+    this.refs.inputFormRef.classList.add('hidden');
+    this.refs.header.classList.replace('header-home', 'header-library');
+    this.dataMarkup.getCurrentFilmsWatched();
+    this.refs.btnHomeRef.classList.remove('btn__header--current-page');
+    this.refs.btnLybraryRef.classList.add('btn__header--current-page');
+
+    // console.log('hide input, show button, markup queue');
   };
 
   // input  название = () => {}
@@ -69,7 +80,9 @@ export default class App {
     this.spinner.showSpinner();
     e.preventDefault();
     const inputValue = e.currentTarget.elements.query.value;
-    inputValue ? this.dataMarkup.renderSearchingFilms(inputValue): this.dataMarkup.renderPopularFilms();    
+    inputValue
+      ? this.dataMarkup.renderSearchingFilms(inputValue)
+      : this.dataMarkup.renderPopularFilms();
   };
 
   onClickWatched = () => {

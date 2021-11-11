@@ -19,7 +19,7 @@
 
   // max-width: 320px;
   // min-height: 230px;
-
+  transition: $duration $timing-function;
   background-image: url(../images/bg-header-mobile.jpg);
   background-color: $bg-color;
 
