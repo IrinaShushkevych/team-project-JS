@@ -38,6 +38,7 @@ export default class DataMarkup {
   // Отрисовка по запросу
   renderSearchingFilms = async query => {
     const currentQuerySeach = await this.dataAPI.fetchFilmsByQuery(query);
+    console.log(currentQuerySeach);
     this.renderMarkup(currentQuerySeach);
     this.spinner.hideSpinner();
   };
