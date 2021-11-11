@@ -23,7 +23,7 @@ export default class Arrow {
   };
 
   render = () => {
-    const icon = { up: `.${svgDown}#up`, down: `.${svgDown}#down` };
+    const icon = { up: `${svgDown}#up`, down: `${svgDown}#down` };
     this.root.insertAdjacentHTML('beforeend', arrowTpl(icon));
     this.up = document.querySelector('.js-button-up');
     this.down = document.querySelector('.js-button-down');
@@ -33,27 +33,37 @@ export default class Arrow {
     elem.classList.toggle('visually-hidden');
   };
 
+  checkButton = () => {
+    if (
+      this.up.classList.contains('visually-hidden') ||
+      this.down.classList.contains('visually-hidden')
+    ) {
+      this.down.classList.remove('button-back--once-down');
+      this.up.classList.remove('button-back--once-up');
+    } else {
+      this.down.classList.add('button-back--once-down');
+      this.up.classList.add('button-back--once-up');
+    }
+  };
+
   isScrolling = (entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         if (entry.target.classList.contains('header')) {
-          console.log('header');
           this.classToggle(this.up);
         }
         if (entry.target.classList.contains('footer')) {
-          console.log('footer');
           this.classToggle(this.down);
         }
       } else {
         if (entry.target.classList.contains('header')) {
-          console.log('no header');
           this.classToggle(this.up);
         }
         if (entry.target.classList.contains('footer')) {
-          console.log('no footer');
           this.classToggle(this.down);
         }
       }
+      this.checkButton();
     });
   };
 }

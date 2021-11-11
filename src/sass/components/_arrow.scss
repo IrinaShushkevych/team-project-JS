@@ -13,16 +13,33 @@
   height: 40px;
   border-radius: 50%;
   border: 3px solid $accent-color;
+  color: $accent-color;
+  fill: $accent-color;
+  transition: $duration $timing-function;
+
+  &--once-up {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &--once-down {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
 
   &__icon {
     width: 25px;
     height: 25px;
-    fill: $accent-color;
+    fill: inherit;
+    // fill: $accent-color;
   }
 
   &:hover,
   &:focus {
     background-color: $accent-color;
+    color: $primary-white-color;
+    fill: $primary-white-color;
+
     &__icon {
       fill: $primary-white-color;
     }
@@ -38,8 +55,8 @@
     height: 50px;
 
     &__icon {
-      width: 40px;
-      height: 40px;
+      width: 30px;
+      height: 30px;
     }
   }
 
