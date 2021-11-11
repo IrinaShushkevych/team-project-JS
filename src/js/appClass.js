@@ -47,12 +47,20 @@ export default class App {
   };
 
   // Клик логотип и home
+
   onClickLogoHome = e => {
     e.preventDefault();
+    this.dataMarkup.renderPopularFilms();
+    this.dataSaver.setCurrentPage(1);
+    this.dataSaver.setActivePage('home');
+
+    //pagination
     console.log('Markup popular films, hide button, show input');
   };
+
   // Клик lybrary
   onClickLibrary = () => {
+    this.refs.buttonContainer.classList.remove('hidden');
     console.log('hide input, show button, markup queue');
   };
 
@@ -91,11 +99,4 @@ export default class App {
     this.dataMarkup.modalFilmMurcup(film);
     this.modal.onOpenModal(card.dataset.id);
   };
-}
-
-// Клик логотип
-const logoEl = document.querySelector('.js-logo');
-logoEl.addEventListener('click', onLogoClick);
-function onLogoClick(e) {
-  e.preventDefault();
 }

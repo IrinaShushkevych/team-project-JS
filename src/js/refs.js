@@ -24,4 +24,5 @@ export default {
   itemRemoveWatched: document.querySelector('.js-remove-watched'),
   itemAddQueue: document.querySelector('.js-add-queue'),
   itemRemoveQueue: document.querySelector('.js-remove-queue'),
+  buttonContainer: document.querySelector('.button-container'),
 };
