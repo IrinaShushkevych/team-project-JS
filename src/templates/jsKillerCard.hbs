@@ -1,15 +1,22 @@
 <div class='killers__container container'>
-  <h2 class='killers__header'>Team: JS-killers</h2>
+  <h2 class='killers__header'>
+    Team: JS-killers
+  </h2>
   <div class='killers__content'>
     <ul class='killers__list list'>
-
       {{#each this}}
         <li class='killers__item'>
-          <p class='killers__title'>{{name}}</p>
-          <p class='killers__position'>{{position}}</p>
-          <p class='killers__motivation'>{{whatKeepsMeUpHere}}</p>
-          <img src='{{photo}}' alt='JS-killer' class='killer__image' />
-          <img src='{{funnyPhoto}}' alt='JS-anti-killer' class='killer__funny-image' />
+          <p class='killers__title'>
+            {{name}}
+          </p>
+          <p class='killers__position'>
+            {{position}}
+          </p>
+          <p class='killers__motivation'>
+            {{whatKeepsMeUpHere}}
+          </p>
+          <img src="{{photo}}" alt='JS-killer' class='killer__image' />
+          <img src="{{funnyPhoto}}" alt='JS-anti-killer' class='killer__funny-image' />
         </li>
       {{/each}}
     </ul>
