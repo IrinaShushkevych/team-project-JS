@@ -3,6 +3,7 @@
 @import './utilities/variables';
 @import './utilities/container';
 @import './utilities/visually-hidden';
+@import './components/arrow';
 
 // COMPONENTS
 @import './partial/film-list';
@@ -20,7 +21,6 @@
 @import './partial/loader';
 
 @import './partial/modal-auth';
-
 
 body {
   display: flex;
