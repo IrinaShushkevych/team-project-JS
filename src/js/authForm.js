@@ -114,7 +114,6 @@ export default class AuthForm {
     } else if (e.target.classList.contains('js-btn-login')) {
       const auth = new Save();
       const result = await auth.login(this.inputEmail.value, this.inputPassword.value);
-
       if (result.type === 0) {
         Message.error(result.text);
       } else {

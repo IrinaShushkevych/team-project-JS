@@ -6,11 +6,10 @@
 //   // listener(запуск перерисовки карточек, переключение страницы, перерисовка пагинации)
 // }
 import Pagination from 'tui-pagination';
-import refs from './refs.js'
+import refs from './refs.js';
 
 export default function setPagination(options) {
-
-    const paginationOptions = {
+  const paginationOptions = {
     totalItems: 20000,
     itemsPerPage: 20,
     visiblePages: 5,
@@ -19,8 +18,7 @@ export default function setPagination(options) {
     lastItemClassName: 'tui-last-child',
     template: {
       page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-      currentPage:
-        '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
       moveButton:
         '<a href="#" class="tui-page-btn tui-{{type}}">' +
         '<span class="tui-ico-{{type}}"></span>' +
@@ -38,6 +36,3 @@ export default function setPagination(options) {
 
   const pagination = new Pagination(refs.paginationCase, paginationOptions);
 }
-  
-
-
