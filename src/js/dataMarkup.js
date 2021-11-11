@@ -11,7 +11,6 @@ import DataSaver from './dataSaver.js';
 import Message from './message.js';
 import LoadSpinner from './loadSpinner';
 
-
 export default class DataMarkup {
   constructor() {
     this.messsage = new Message();
@@ -26,7 +25,8 @@ export default class DataMarkup {
   }
   // Рисование списка карточек
   renderMarkup = data => {
-    this.listRef.innerHTML = template(data);    
+    this.listRef.innerHTML = template(data);
+    this.spinner.hideSpinner();
   };
 
   // Отрисовка популярных
@@ -34,8 +34,8 @@ export default class DataMarkup {
     const dataPopular = await this.dataAPI.fetchPopularFilms();
     this.renderMarkup(dataPopular);
     this.spinner.hideSpinner();
-  }
-    
+  };
+
   // Отрисовка по запросу
   renderSearchingFilms = async query => {
     const currentQuerySeach = await this.dataAPI.fetchFilmsByQuery(query);

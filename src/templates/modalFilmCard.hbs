@@ -1,7 +1,7 @@
 
   <div class='card__image-thumb'>
 
-    <img
+    <img class='card__image'
       data-id='{{id}}'
      {{#if poster_path}}
         src='{{poster_path}}'
@@ -23,7 +23,10 @@
           <button class='button__modal--primary card__specification-meaning-button'>
             {{vote_average}}
           </button>
-          / {{vote_count}}
+          /
+          <button class='button__modal--primary card__specification-meaning-button card__specification-meaning-button--secondary'>
+           {{vote_count}}
+          </button>
         </td>
       </tr>
       <tr class='card__specification-row'>

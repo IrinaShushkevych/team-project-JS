@@ -5,8 +5,8 @@
 
     "whatKeepsMeUpHere": "",
     "socialLink": "",
-    "photo": "",
-    "funnyPhoto": ""
+    "photo": "./images/oleg.jpg",
+    "funnyPhoto": "./images/oleg-funny.jpg"
   },
   {
     "name": "Oleg Chaikovskyi",
@@ -23,8 +23,8 @@
 
     "whatKeepsMeUpHere": "",
     "socialLink": "",
-    "photo": "",
-    "funnyPhoto": ""
+    "photo": "../../images/oleg.jpg",
+    "funnyPhoto": "../../images/oleg-funny.jpg"
   },
   {
     "name": "Hanna Dzhyzhevska",
@@ -32,7 +32,7 @@
 
     "whatKeepsMeUpHere": "",
     "socialLink": "",
-    "photo": "",
+    "photo": "require('../images/oleg.jpg')",
     "funnyPhoto": ""
   },
   {
