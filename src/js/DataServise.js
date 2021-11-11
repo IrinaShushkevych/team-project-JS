@@ -1,3 +1,4 @@
+import img from '../images/no-image.jpg'
 import DataSaver from './dataSaver.js';
 export default class APIService {
   constructor() {
@@ -74,7 +75,14 @@ export default class APIService {
   };
 
   fixImagePath = obj => {
-    obj.map(film => (film.poster_path = 'https://image.tmdb.org/t/p/w500' + film.poster_path));
+    console.log(img);
+    obj.map(film => {
+      if (film.poster_path || film.backdrop_path) {       
+        film.poster_path = 'https://image.tmdb.org/t/p/w500' + film.poster_path;
+      } else {
+        film.poster_path = `.${img}`;        
+      }
+    })
   };
 }
 

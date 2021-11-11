@@ -81,7 +81,7 @@ export default class App {
     this.spinner.showSpinner();
     e.preventDefault();
     const inputValue = e.currentTarget.elements.query.value;
-    this.dataMarkup.renderSearchingFilms(inputValue);
+    inputValue ? this.dataMarkup.renderSearchingFilms(inputValue): this.dataMarkup.renderPopularFilms();    
   };
 
   onClickWatched = () => {
