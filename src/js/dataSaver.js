@@ -135,8 +135,6 @@ export default class DataSaver {
     return this.getFilms('queue');
   };
 
-  // get очередь фильмов
-
   // Записать фильм в очередь
   setFilmToLocalstorage = (id, page) => {
     const arr = JSON.parse(localStorage.getItem(page));
