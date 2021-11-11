@@ -1,13 +1,14 @@
 import './sass/main.scss';
-import Save from './js/auth.js';
 
 import App from './js/appClass';
 import setPagination from './js/pagination.js';
 
-import Modal from './js/modal.js';
-//team-modal
-// import './js/jsKillersModal';
+import Arrow from './js/arrow.js';
+
+const arrow = new Arrow();
+arrow.init();
 
 setPagination();
+
 const app = new App();
 app.init();
