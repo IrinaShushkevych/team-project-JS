@@ -9,5 +9,6 @@ const arrow = new Arrow();
 arrow.init();
 
 setPagination();
+
 const app = new App();
 app.init();

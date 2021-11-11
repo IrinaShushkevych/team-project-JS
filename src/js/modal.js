@@ -25,7 +25,7 @@ export default class Modal {
     refs.backdrop.addEventListener('click', this.onBackdropClick);
     refs.backdrop.classList.remove('visually-hidden');
     window.addEventListener('keydown', this.onEscKeyPress);
-    this.addBtnListeners();
+    // this.addBtnListeners();
   };
 
   onCloseModal = () => {

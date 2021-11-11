@@ -1,7 +1,6 @@
 import refs from './refs.js';
 import arrowTpl from '../templates/upDownButton.hbs';
 import svgDown from '../images/svg/icons.svg';
-console.log(svgDown);
 
 export default class Arrow {
   constructor(root = refs.main, header = refs.header, footer = refs.footer) {

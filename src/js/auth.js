@@ -49,7 +49,7 @@ export default class Save {
       .catch(error => {
         return { type: 0, text: error.message };
       });
-    this.getData();
+    this.getData('queue');
     return uid;
   };
 
@@ -66,7 +66,6 @@ export default class Save {
         if (data.exists()) {
           return data.val();
         } else {
-          console.log('ERROR');
           return null;
         }
       })
@@ -88,7 +87,7 @@ export default class Save {
         res = films.find(el => el.id === id);
       }
     } else {
-      result = this.getFilmFromBase;
+      result = await this.getFilmFromBase();
       const res = [];
       if (result)
         for (let key in result) {
@@ -98,23 +97,27 @@ export default class Save {
     return res;
   };
 
-  isFilmInList = (id, page) => {
+  isFilmInList = async (id, page) => {
     let result = false;
     if (page === 'home') {
       //this.isFilmInList(id,'home')
+      // return true;
     } else {
-      const film = this.getFilmFromBase(id, page);
+      const film = await this.getFilmFromBase(id, page);
       result = film ? true : false;
     }
     return result;
   };
 
-  addFilm = async (id, page) => {
-    if (!this.isFilmInList(id, page)) {
+  addFilm = async (id, page, pageFrom) => {
+    const isRes = await this.isFilmInList(id, page);
+    if (!isRes) {
+      const film = await this.getFilm(id, pageFrom);
       const result = await set(
         ref(this.db, `users/${sessionStorage.getItem('user')}/${page}/${id}`),
-        JSON.stringify(this.getFilm(id, page)),
+        JSON.stringify(film),
       );
+      return true;
     }
     this.getError(`This film is allrady in ${page}`);
   };
@@ -133,13 +136,13 @@ export default class Save {
     for (let key in result) {
       res.push(JSON.parse(result[key]));
     }
+    console.log(res);
     return res;
   };
 
   removeData = async (id, page) => {
     const refDB = ref(this.db, `users/${sessionStorage.getItem('user')}/${page}/${id}`);
     const result = await remove(refDB);
-    console.log(result);
     return result;
   };
 }
