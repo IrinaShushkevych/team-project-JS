@@ -21,13 +21,8 @@ export default class App {
     this.dataSaver.setActivePage('home');
     this.dataMarkup.renderPopularFilms();
     this.refs.linkModalTeamRef.addEventListener('click', this.onOpenMdalTeam);
-    this.refs.btnHomeRef.addEventListener('click', () => {
-      console.log('Markup popular films, hide button, show input');
-    });
-    this.refs.logoRef.addEventListener('click', e => {
-      e.preventDefault();
-      console.log('Markup popular films, hide button, show input');
-    });
+    this.refs.btnHomeRef.addEventListener('click', this.onClickLogoHome);
+    this.refs.logoRef.addEventListener('click', this.onClickLogoHome);
     this.refs.btnLybraryRef.addEventListener('click', this.onClickLibrary);
     this.refs.btnAuthRef.addEventListener('click', this.onClickAuth);
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
@@ -64,7 +59,10 @@ export default class App {
   };
 
   // Клик логотип и home
-
+  onClickLogoHome = e => {
+    e.preventDefault();
+    console.log('Markup popular films, hide button, show input');
+  };
   // Клик lybrary
   onClickLibrary = () => {
     console.log('hide input, show button, markup queue');
