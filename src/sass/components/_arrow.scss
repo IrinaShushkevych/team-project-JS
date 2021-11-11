@@ -1,0 +1,57 @@
+.block-arrow {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.button-back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid $accent-color;
+
+  &__icon {
+    width: 25px;
+    height: 25px;
+    fill: $accent-color;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $accent-color;
+    &__icon {
+      fill: $primary-white-color;
+    }
+  }
+
+  &:hover &__icon,
+  &:focus &__icon {
+    fill: $primary-white-color;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 50px;
+    height: 50px;
+
+    &__icon {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  @media screen and (min-width: 1366px) {
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+
+    &__icon {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
