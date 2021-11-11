@@ -26,19 +26,7 @@ export default class App {
     this.refs.btnLybraryRef.addEventListener('click', this.onClickLibrary);
     this.refs.btnAuthRef.addEventListener('click', this.onClickAuth);
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
-    refs.list.addEventListener('click', this.onClickList);
-  };
-
-  onClickList = event => {
-    event.preventDefault();
-    const card = event.target.closest('li');
-    if (!card) {
-      return;
-    }
-    const id = Number(card.dataset.id);
-    const film = this.dataSaver.getFilm(id);
-    this.dataMarkup.modalFilmMurcup(film);
-    this.modal.onOpenModal();
+    this.refs.list.addEventListener('click', this.onClickCardItem);
   };
 
   onClickAuth = () => {
@@ -98,5 +86,17 @@ export default class App {
     this.dataSaver.setActivePage('queue');
     this.dataMarkup.getCurrentFilmsQueue();
     //pagination
+  };
+
+  onClickCardItem = event => {
+    event.preventDefault();
+    const card = event.target.closest('li');
+    if (!card) {
+      return;
+    }
+    const id = Number(card.dataset.id);
+    const film = this.dataSaver.getFilm(id);
+    this.dataMarkup.modalFilmMurcup(film);
+    this.modal.onOpenModal(card.dataset.id);
   };
 }

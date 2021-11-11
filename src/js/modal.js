@@ -13,7 +13,21 @@ export default class Modal {
     console.log('Modal');
   };
 
-  onOpenModal = typeModal => {
+  onOpenModal = id => {
+    if (id) {
+      this.id = id;
+      this.getRefs();
+      this.checkQueue(id);
+      this.checkWatched(id);
+    }
+
+    // || 'queue')
+    // this.dataSaver.setFilmToQueue(id);
+    // this.dataSaver.setFilmToWatched(id);
+    // и;
+    // this.dataMarkup.getCurrentFilmsQueue();
+    // this.dataMarkup.getCurrentFilmsWatched();
+
     // if (typeModal = film) {
     //добавляем класс на модальное окно дла фильмов
     //   } esle if (typeModal = auth) {
@@ -21,11 +35,12 @@ export default class Modal {
     //   } esle if (typeModal = team) {
     //  добавляем класс для стилей команды
     //   }
+    // this.checkWatched();
     refs.btnClose.addEventListener('click', this.onBtnClosePress);
     refs.backdrop.addEventListener('click', this.onBackdropClick);
     refs.backdrop.classList.remove('visually-hidden');
     window.addEventListener('keydown', this.onEscKeyPress);
-    // this.addBtnListeners();
+    this.addBtnListeners();
   };
 
   onCloseModal = () => {
@@ -33,7 +48,7 @@ export default class Modal {
     refs.backdrop.removeEventListener('click', this.onBackdropClick);
     refs.backdrop.classList.add('visually-hidden');
     window.removeEventListener('keydown', this.onEscKeyPress);
-    // this.removeBtnListeners();
+    this.removeBtnListeners();
     if (this.modalAuth) {
       this.modalAuth.removeListeners();
       this.modalAuth = null;
@@ -65,74 +80,79 @@ export default class Modal {
     }
   };
 
-  addBtnListeners = () => {
+  getRefs = () => {
     refs.itemAddWatched = document.querySelector('.js-add-watched');
     refs.itemRemoveWatched = document.querySelector('.js-remove-watched');
     refs.itemAddQueue = document.querySelector('.js-add-queue');
     refs.itemRemoveQueue = document.querySelector('.js-remove-queue');
+  };
 
-    refs.itemAddWatched.addEventListener('click', () => {
-      this.onBtnAddWatchedPress();
-    });
-
-    refs.itemRemoveWatched.addEventListener('click', () => {
-      this.onBtnRemoveWatchedPress();
-    });
-
-    refs.itemAddQueue.addEventListener('click', () => {
-      this.onBtnAddQueuePress();
-    });
-
-    refs.itemRemoveQueue.addEventListener('click', () => {
-      this.onBtnRemoveQueuePress();
-    });
+  addBtnListeners = () => {
+    // this.getRefs();
+    refs.itemAddWatched.addEventListener('click', this.onBtnAddWatchedPress);
+    refs.itemRemoveWatched.addEventListener('click', this.onBtnRemoveWatchedPress);
+    refs.itemAddQueue.addEventListener('click', this.onBtnAddQueuePress);
+    refs.itemRemoveQueue.addEventListener('click', this.onBtnRemoveQueuePress);
   };
 
   removeBtnListeners = () => {
-    // refs.itemAddWatched = document.querySelector('.js-add-watched');
-    // refs.itemRemoveWatched = document.querySelector('.js-remove-watched');
-    // refs.itemAddQueue = document.querySelector('.js-add-queue');
-    // refs.itemRemoveQueue = document.querySelector('.js-remove-queue');
-
-    refs.itemAddWatched.removeEventListener('click', () => {
-      this.onBtnAddWatchedPress();
-    });
-
-    refs.itemRemoveWatched.removeEventListener('click', () => {
-      this.onBtnRemoveWatchedPress();
-    });
-
-    refs.itemAddQueue.removeEventListener('click', () => {
-      this.onBtnAddQueuePress();
-    });
-
-    refs.itemRemoveQueue.removeEventListener('click', () => {
-      this.onBtnRemoveQueuePress();
-    });
+    // this.getRefs();
+    refs.itemAddWatched.removeEventListener('click', this.onBtnAddWatchedPress);
+    console.log(refs.itemAddWatched);
+    refs.itemRemoveWatched.removeEventListener('click', this.onBtnRemoveWatchedPress);
+    refs.itemAddQueue.removeEventListener('click', this.onBtnAddQueuePress);
+    refs.itemRemoveQueue.removeEventListener('click', this.onBtnRemoveQueuePress);
   };
 
-  onBtnAddWatchedPress = () => {
-    console.log('itemAddWatched');
+  onBtnAddWatchedPress = event => {
+    console.log('onBtnAddWatchedPress');
+    // this.dataSaver.setFilmToQueue(this.id);
+    console.log('itemAddWatched', event.target.value);
     refs.itemAddWatched.classList.add('hidden');
     refs.itemRemoveWatched.classList.remove('hidden');
   };
 
   onBtnRemoveWatchedPress = () => {
+    console.log('onBtnRemoveWatchedPress');
+    // this.dataSaver.setFilmToWatched(id);
     console.log('itemRemoveWatched');
     refs.itemAddWatched.classList.remove('hidden');
     refs.itemRemoveWatched.classList.add('hidden');
   };
 
   onBtnAddQueuePress = () => {
+    // this.dataMarkup.getCurrentFilmsQueue();
     console.log('itemAddQueue');
     refs.itemAddQueue.classList.add('hidden');
     refs.itemRemoveQueue.classList.remove('hidden');
   };
 
   onBtnRemoveQueuePress = () => {
+    // this.dataMarkup.getCurrentFilmsWatched();
     console.log('itemRemoveQueue');
     refs.itemAddQueue.classList.remove('hidden');
     refs.itemRemoveQueue.classList.add('hidden');
+  };
+
+  checkWatched = id => {
+    console.log(this.dataSaver.isFilmInList(id, 'watched'));
+    if (this.dataSaver.isFilmInList(id, 'watched')) {
+      refs.itemAddWatched.classList.add('hidden');
+      refs.itemRemoveWatched.classList.remove('hidden');
+    } else {
+      refs.itemAddWatched.classList.remove('hidden');
+      refs.itemRemoveWatched.classList.add('hidden');
+    }
+  };
+
+  checkQueue = id => {
+    if (this.dataSaver.isFilmInList(id, 'queue')) {
+      refs.itemAddQueue.classList.add('hidden');
+      refs.itemRemoveQueue.classList.remove('hidden');
+    } else {
+      refs.itemAddQueue.classList.remove('hidden');
+      refs.itemRemoveQueue.classList.add('hidden');
+    }
   };
 
   addAuth = callback => {

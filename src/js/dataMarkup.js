@@ -26,6 +26,7 @@ export default class DataMarkup {
   // Рисование списка карточек
   renderMarkup = data => {
     this.listRef.innerHTML = template(data);
+    this.spinner.hideSpinner();
   };
 
   // Отрисовка популярных
