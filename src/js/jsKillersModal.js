@@ -1,5 +1,6 @@
 import jsKillerTemplate from '../templates/jsKillerCard.hbs';
 import jsKillerTeam from '../json/jsKillers.json';
+// import images from '../images/*.jpg';
 
 const modalWindowOpener = document.querySelector('.js-modal-team');
 const backdrop = document.querySelector('.backdrop');
@@ -11,6 +12,7 @@ modalWindowOpener.addEventListener('click', openModalWindow);
 
 function openModalWindow(e) {
   e.preventDefault();
+
   try {
     renderKillerInfo(jsKillerTeam);
   } catch (error) {
