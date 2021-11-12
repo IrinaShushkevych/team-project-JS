@@ -1,14 +1,18 @@
 import jsKillerTemplate from '../templates/jsKillerCard.hbs';
 import jsKillerTeam from '../json/jsKillers.json';
-// import images from '../images/*.jpg';
+import images from '../images/*.jpg';
 
-const modalWindowOpener = document.querySelector('.js-modal-team');
-const backdrop = document.querySelector('.backdrop');
-const modalCleaner = document.querySelector('.card__container--modal');
-const modalContainer = document.querySelector('.card__js-killer-container--modal');
-const buttonRemover = document.querySelector('.button__container-modal');
+import {
+  modalWindowOpener,
+  backdrop,
+  modalCleaner,
+  modalContainer,
+  buttonRemover,
+  memberPhoto,
+} from './refs';
 
 modalWindowOpener.addEventListener('click', openModalWindow);
+memberPhoto.addEventListener('click', photoChanging);
 
 function openModalWindow(e) {
   e.preventDefault();
@@ -26,4 +30,10 @@ function renderKillerInfo() {
   buttonRemover.classList.add('visually-hidden');
   const markup = jsKillerTemplate(jsKillerTeam);
   modalContainer.innerHTML = markup;
+}
+
+function photoChanging(e) {
+  console.log(e.target);
+  // if (e.type === 'mouseover') e.target = '';
+  // else if (e.type === 'mouseout') e.target= '';
 }

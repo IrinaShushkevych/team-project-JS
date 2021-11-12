@@ -24,4 +24,11 @@ export default {
   itemRemoveWatched: document.querySelector('.js-remove-watched'),
   itemAddQueue: document.querySelector('.js-add-queue'),
   itemRemoveQueue: document.querySelector('.js-remove-queue'),
+
+  modalWindowOpener: document.querySelector('.js-modal-team'),
+  backdrop: document.querySelector('.backdrop'),
+  modalCleaner: document.querySelector('.card__container--modal'),
+  modalContainer: document.querySelector('.card__js-killer-container--modal'),
+  buttonRemover: document.querySelector('.button__container-modal'),
+  memberPhoto: document.querySelector('photo'),
 };
