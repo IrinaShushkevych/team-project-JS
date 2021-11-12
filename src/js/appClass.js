@@ -85,6 +85,8 @@ this.spinner.showSpinner();
 
     this.refs.queueBtnRef.addEventListener('click', this.onClickQueue);
     this.refs.watchedBtnRef.addEventListener('click', this.onClickWatched);
+    this.refs.watchedBtnRef.classList.remove('btn-cover-library');
+    this.refs.queueBtnRef.classList.add('btn-cover-library');
     // console.log('hide input, show button, markup queue');
   };
 
@@ -105,9 +107,13 @@ this.spinner.showSpinner();
     try {
       await this.dataSaver.setTotalPageFilms('watched');
       this.dataMarkup.getCurrentFilmsWatched();
+      this.refs.queueBtnRef.classList.remove('btn-cover-library');
+      this.refs.watchedBtnRef.classList.add('btn-cover-library');
     } catch (error) {
       Message.error(error);
-    } 
+    }
+   
+    
     //pagination
   };
 
@@ -118,8 +124,11 @@ this.spinner.showSpinner();
     try {
       await this.dataSaver.setTotalPageFilms('queue');
       this.dataMarkup.getCurrentFilmsQueue();
+      this.refs.watchedBtnRef.classList.remove('btn-cover-library');
+      this.refs.queueBtnRef.classList.add('btn-cover-library');
     } catch (error) {
       Message.error(error);
+
     } 
     //pagination
   };
