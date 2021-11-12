@@ -86,6 +86,7 @@ export default class App {
 
     this.refs.queueBtnRef.addEventListener('click', this.onClickQueue);
     this.refs.watchedBtnRef.addEventListener('click', this.onClickWatched);
+    this.refs.watchedBtnRef.classList.remove('btn-cover-library');
     // console.log('hide input, show button, markup queue');
   };
 
@@ -112,6 +113,8 @@ export default class App {
       this.spinner.hideSpinner();
     }
     this.dataMarkup.getCurrentFilmsWatched();
+    this.refs.queueBtnRef.classList.remove('btn-cover-library');
+    this.refs.watchedBtnRef.classList.add('btn-cover-library');
     //pagination
   };
 
@@ -128,6 +131,8 @@ export default class App {
       this.spinner.hideSpinner();
     }
     this.dataMarkup.getCurrentFilmsQueue();
+    this.refs.watchedBtnRef.classList.remove('btn-cover-library');
+    this.refs.queueBtnRef.classList.add('btn-cover-library');
     //pagination
   };
 
