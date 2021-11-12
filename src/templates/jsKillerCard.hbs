@@ -1,17 +1,37 @@
 <div class='killers__container container'>
-  <h2 class='killers__header'>Team: JS-killers</h2>
+  <h2 class='killers__header'>
+    Team: JS-killers
+  </h2>
   <div class='killers__content'>
-    <ul class='killers__list list'>
 
+    <div class='killers__list list'>
       {{#each this}}
-        <li class='killers__item'>
-          <p class='killers__title'>{{name}}</p>
-          <p class='killers__position'>{{position}}</p>
-          <p class='killers__motivation'>{{whatKeepsMeUpHere}}</p>
+        <div class='post-wrap wrapper-img'>
           <img src='{{photo}}' alt='JS-killer' class='killer__image' />
-          <img src='{{funnyPhoto}}' alt='JS-anti-killer' class='killer__funny-image' />
-        </li>
+          <img
+            src='{{funnyPhoto}}'
+            alt='JS-anti-killer'
+            class='killer__funny-image visually-hidden'
+          />
+          <div class='post-inner'>
+            <span class='dot first'></span>
+            <p class='killers__title'>{{name}}</p>
+            <span class='dot last'></span>
+            <p class='killers__position'>{{position}}</p>
+            <p class='killers__motivation'>{{whatKeepsMeUpHere}}</p>
+          </div></div>
+
       {{/each}}
-    </ul>
+    </div>
   </div>
+</div>
+<div class='button__container-js-killers-modal'>
+  {{! <button class='button__js-killers-modal'><svg class='js-killers-theme__icon'>
+      <use href='../images/icons-for-js-killers.svg#icon-baffled' aria-label='Serious person'></use>
+    </svg>
+    Before GoIt
+  </button>
+  <button class='button__js-killers-modal'><svg class='js-killers-theme__icon'>
+      <use href='../images/icons-for-js-killers.svg#icon-evil2' aria-label='Cool person'></use>
+    </svg>Now</button> }}
 </div>

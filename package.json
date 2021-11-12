@@ -4,6 +4,9 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "firebase": "^9.4.1",
+    "firebaseui": "^6.0.0",
+    "imagesloaded": "^4.1.4",
     "tui-pagination": "^3.4.1"
   },
   "devDependencies": {

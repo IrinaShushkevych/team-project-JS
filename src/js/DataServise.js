@@ -1,5 +1,5 @@
+import img from '../images/no-image.jpg';
 import DataSaver from './dataSaver.js';
-import CustomPagination from './pagination.js';
 export default class APIService {
   constructor() {
     this.keyAPI = 'api_key=a907caf8c46067564d1786718be1cb84';
@@ -8,7 +8,6 @@ export default class APIService {
     this.url = '';
     this.query = '';
     this.dataSaver = new DataSaver();
-    this.datapagination = new CustomPagination();
   }
 
   fetchData = async url => {
@@ -16,25 +15,18 @@ export default class APIService {
     return response.json();
   };
 
-  setPage = page => {
-    return (this.page = page);
-  };
-
-  getPopularFilms = async () => {
-    let popularFilms = 'trending/movie/week?';
-    this.url = this.baseUrl + popularFilms + this.keyAPI + `&page=${this.page}`;
+  fetchPopularFilms = async () => {
+    let popularFilms = 'trending/movie/day?';
+    this.url =
+      this.baseUrl + popularFilms + this.keyAPI + `&page=${this.dataSaver.getCurrentPage()}`;
     const dataObj = await this.fetchData(this.url);
     const dataPopular = dataObj.results;
+    await this.fixFetchObject(dataPopular);
     let totalPages = dataObj.total_pages;
     this.dataSaver.setTotalPages(totalPages);
-    this.datapagination.initPagination(totalPages);
-    const genreIds = dataPopular.map(film => film.genre_ids);
-    await this.decodeGenres(genreIds);
-    this.fixImagePath(dataPopular);
-    dataPopular.map(film => (film.genre_ids = film.genre_ids.slice(0, 3)));
-    this.dataSaver.setPopularFilms(dataPopular);
+    this.dataSaver.setHomeFilms(dataPopular);
     this.dataSaver.setCurrentPage(this.page);
-
+    // console.log(dataPopular);
     return dataPopular;
   };
 
@@ -55,11 +47,25 @@ export default class APIService {
     return genreNames;
   };
 
-  getFilmsByQuery = async query => {
+  fixFetchObject = async response => {
+    const genreIds = response.map(film => film.genre_ids);
+    await this.decodeGenres(genreIds);
+    this.fixImagePath(response);
+    response.map(film => (film.genre_ids = film.genre_ids.slice(0, 3)));
+  };
+
+  fetchFilmsByQuery = async query => {
     let queryEndpoint = `search/movie?query=${query}&`;
-    this.url = this.baseUrl + queryEndpoint + this.keyAPI + `&page=${this.page}`;
+    this.url =
+      this.baseUrl + queryEndpoint + this.keyAPI + `&page=${this.dataSaver.getCurrentPage()}`;
     const queryFilmsResult = await this.fetchData(this.url);
-    return queryFilmsResult.results;
+    const dataQuery = queryFilmsResult.results;
+    await this.fixFetchObject(dataQuery);
+    const totalPages = queryFilmsResult.total_pages;
+    this.dataSaver.setTotalPages(totalPages);
+    this.dataSaver.setCurrentPage(this.page);
+    this.dataSaver.setHomeFilms(dataQuery);
+    return dataQuery;
   };
 
   fetchFilmsGenres = async () => {
@@ -71,6 +77,13 @@ export default class APIService {
   };
 
   fixImagePath = obj => {
-    obj.map(film => (film.poster_path = 'https://image.tmdb.org/t/p/w500' + film.poster_path));
+    console.log(img);
+    obj.map(film => {
+      if (film.poster_path || film.backdrop_path) {
+        film.poster_path = 'https://image.tmdb.org/t/p/w500' + film.poster_path;
+      } else {
+        film.poster_path = `${img}`;
+      }
+    });
   };
 }

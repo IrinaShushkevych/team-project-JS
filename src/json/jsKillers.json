@@ -5,8 +5,10 @@
 
     "whatKeepsMeUpHere": "",
     "socialLink": "",
-    "photo": "",
-    "funnyPhoto": ""
+
+    "photo": "https://img2.akspic.ru/previews/7/6/6/6/5/156667/156667-harli_kvinn-dzhoker-betmen-mister_chudo-vselennaya_dc-x750.jpg",
+    "superPhoto": ""
+
   },
   {
     "name": "Oleg Chaikovskyi",
@@ -14,35 +16,35 @@
 
     "whatKeepsMeUpHere": "",
     "socialLink": "",
-    "photo": "../images/oleg.jpg",
-    "funnyPhoto": "../images/oleg-funny.jpg"
+    "photo": "https://img1.akspic.ru/previews/5/4/2/8/4/148245/148245-harli_kvinn-krasnaya_shapochka-kloun-internet_mem-betmen-x750.jpg",
+    "superPhoto": "oleg"
   },
   {
     "name": "Vira Kolesnikova",
     "position": "Developer",
-
     "whatKeepsMeUpHere": "",
     "socialLink": "",
-    "photo": "",
-    "funnyPhoto": ""
+    "photo": "https://img2.akspic.ru/previews/6/7/1/7/3/137176/137176-art-komiksymarvel-zhenshhinavoin-anime-kinovselennayamarvel-x750.jpg",
+    "superPhoto": ""
+
   },
   {
     "name": "Hanna Dzhyzhevska",
     "position": "Develope",
-
     "whatKeepsMeUpHere": "",
     "socialLink": "",
-    "photo": "",
-    "funnyPhoto": ""
+
+    "photo": "https://img3.akspic.ru/previews/1/7/5/8/4/148571/148571-kosmos-gidrokostyum-komiks-komiksy_marvel-rosomaha-500x.jpg",
+    "superPhoto": ""
+
   },
   {
     "name": "Pavlenko Volodymyr",
     "position": "Developer",
-
     "whatKeepsMeUpHere": "",
     "socialLink": "",
-    "photo": "",
-    "funnyPhoto": ""
+    "photo": "https://img3.akspic.ru/previews/2/1/2/5/5/155212/155212-betmen-dzhoker-2019-art-komiksy_dc-500x.jpg",
+    "superPhoto": ""
   },
   {
     "name": "Vadim Bashovyi",
@@ -50,8 +52,8 @@
 
     "whatKeepsMeUpHere": "",
     "socialLink": "",
-    "photo": "",
-    "funnyPhoto": ""
+    "photo": "https://img2.akspic.ru/previews/7/1/0/7/3/137017/137017-boevik-tanos_beskonechnaya_vojna-supergeroj-vymyslennyj_personaz-chelovek_pauk-x750.jpg",
+    "superPhoto": ""
   },
   {
     "name": "Oleksii Biletskyi",
@@ -59,8 +61,8 @@
 
     "whatKeepsMeUpHere": "",
     "socialLink": "",
-    "photo": "",
-    "funnyPhoto": ""
+    "photo": "https://img1.akspic.ru/previews/9/1/9/4/2/124919/124919-vymyslennyj_personaz-fan_art-cifrovoe_iskusstvo-hudozhnik-yad-x750.jpg",
+    "superPhoto": ""
   },
   {
     "name": "Iryna Maksimova",
@@ -68,7 +70,7 @@
 
     "whatKeepsMeUpHere": "",
     "socialLink": "",
-    "photo": "",
-    "funnyPhoto": ""
+    "photo": "https://img1.akspic.ru/previews/3/2/0/6/5/156023/156023-v_stihah_pauka_pauk_gven-zhenshhina_pauk-gven_stejsi-chelovek_pauk-komiksy_marvel-x750.jpg",
+    "superPhoto": ""
   }
 ]

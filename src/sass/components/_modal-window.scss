@@ -1,6 +1,7 @@
 .modal {
   margin: 0 auto;
   max-width: 450px;
+  // max-height: 100%;
   width: 100%;
 
   @media screen and (min-width: $bp-tablet) {
@@ -9,7 +10,7 @@
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
     max-width: 618px;
-    width: 100%;
+    // width: 100%;
   }
   @media screen and (min-width: $bp-desktop) {
     max-width: 882px;
@@ -52,5 +53,10 @@
       // fill: $accent-color;
       background-color: $accent-color;
     }
+  }
+
+  &.modal-auth {
+    max-width: 450px;
+    height: 290px;
   }
 }

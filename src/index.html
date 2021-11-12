@@ -19,7 +19,7 @@
     />
   </head>
   <body>
-    <header class="header header-home header-library">
+    <header class="header header-home" id="header">
       <div class="container">
         <div class="header-section">
           <a href="" class="header_link js-logo">
@@ -28,17 +28,22 @@
           </a>
 
           <div class="side-nav__header">
-            <button class="home-btn__header btn__header js-home">
-              <span class="btn-text">Home</span>
-            </button>
-            <button class="library-btn__header btn__header js-lybrary">
-              <span class="btn-text">MY LIBRARY</span>
+            <div class="">
+              <button class="home-btn__header btn__header js-home btn__header--current-page">
+                <span class="btn-text">Home</span>
+              </button>
+              <button class="library-btn__header btn__header js-lybrary hidden">
+                <span class="btn-text">MY LIBRARY</span>
+              </button>
+            </div>
+            <button class="btn__header js-auth">
+              <span class="btn-text">LOG IN</span>
             </button>
           </div>
           <div class="button-container hidden">
-            <button class="button watched-button" type="button">Watched</button>
+            <button class="button watched-button js-button-watched" type="button">Watched</button>
 
-            <button class="button queue-button" type="button">queue</button>
+            <button class="button queue-button js-button-queue" type="button">queue</button>
           </div>
           <form class="search-form js-search-form" id="search-form">
             <input type="text" class="input_header" name="query" placeholder="Поиск фильмов" />
@@ -50,6 +55,13 @@
       </div>
     </header>
     <main>
+      <div class="mask">
+        <div class="cssload-loader">
+          <div class="cssload-inner cssload-one"></div>
+          <div class="cssload-inner cssload-two"></div>
+          <div class="cssload-inner cssload-three"></div>
+        </div>
+      </div>
       <section class="section">
         <div class="container container-grid">
           <ul class="film-list js-film-list" data-id="ul-film"></ul>
@@ -57,7 +69,7 @@
       </section>
       <div id="tui-pagination-container" class="tui-pagination"></div>
     </main>
-    <footer class="footer">
+    <footer class="footer" id="footer">
       <div class="container">
         <p class="footer__text">
           <span class="footer__block-text">&copy; 2020 </span>
@@ -70,111 +82,22 @@
           <button class="footer__link js-modal-team">GoIT Students</button>
         </p>
       </div>
-      
     </footer>
 
     <!-- Модальное окно -->
-    <!-- <div class="backdrop is-hidden" data-modal> -->
     <div class="backdrop visually-hidden" data-modal>
       <div class="modal">
         <div class="modal__thumb">
           <button class="modal__button" data-modal-close>
             <img src="./images/close.svg" alt="" />
-            <!-- <svg class="icon modal__icon" width="14px" height="14px">
-              <use href="./images/close.svg"></use>
-            </svg> -->
           </button>
         </div>
-        <div class = "card__js-killer-container--modal">
-        </div>
-        <div class="card__container--modal">
-          <div class="card__image-thumb">
-            <img id="" src="" alt="картика фильма 11111111111111111111" />
-          </div>
-          <div class="card__description">
-            <h3 class="card__title--modal">A FISTFUL OF LEAD</h3>
-            <table class="card__specifications--modal">
-              <tr class="card__specification-row">
-                <td class="card__specification-name">Vote / Votes</td>
-                <td class="card__specification-meaning">
-                  <button class="button__modal--primary card__specification-meaning-button">
-                    7.3
-                  </button>
-                  / 1260
-                </td>
-              </tr>
-              <tr class="card__specification-row">
-                <td class="card__specification-name">Popularity</td>
-                <td class="card__specification-meaning">100.2</td>
-              </tr>
-              <tr class="card__specification-row">
-                <td class="card__specification-name">Original Title</td>
-                <td class="card__specification-meaning">A FISTFUL OF LEAD</td>
-              </tr>
-              <tr class="card__specification-row">
-                <td class="card__specification-name">Genre</td>
-                <td class="card__specification-meaning">Western</td>
-              </tr>
-            </table>
-            <h4 class="card__title-abaut">About</h4>
-            <p class="card__text-abaut">
-              Four of the West’s most infamous outlaws assemble to steal a huge stash of gold from
-              the most corrupt settlement of the gold rush towns. But not all goes to plan one is
-              killed and the other three escapes with bags of gold hide out in the abandoned gold
-              mine where they happen across another gang of three – who themselves were planning to
-              hit the very same bank! As tensions rise, things go from bad to worse as they realise
-              the bags of gold are filled with lead... they’ve been double crossed – but by who and
-              how?
-            </p>
-            <div class="button__container-modal">
-              <ul class="button__list-modal">
-                <li class="button__item-modal js-add-watched">
-                  <button class="button__modal--primary button__modal--add">add to Watched</button>
-                </li>
-                <li class="button__item-modal js-remove-watched hidden">
-                  <button class="button__modal--primary button__modal--remove">
-                    remove from Watched
-                  </button>
-                </li>
-                <li class="button__item-modal js-add-queue">
-                  <button class="button__modal--primary button__modal--add">add to queue</button>
-                </li>
-                <li class="button__item-modal js-remove-queue hidden">
-                  <button class="button__modal--primary button__modal--remove">
-                    remove from queue
-                  </button>
-                </li>
-              </ul>
-            </div>
-            <!-- <div class="button__container-modal--remove">
-                <ul class='button__list-modal'>
-                  <li class="button__item-modal"><button class="button__modal--primary button__modal--add">remove to Watched</button></li>
-                  <li class="button__item-modal"><button class="button__modal--primary button__modal--add">remove to queue</button></li>
-                </ul> 
-              </div> -->
-          </div>
-        </div>
-         <div class="button__container-js-killers-modal ">
-          <button class="button__js-killers-modal"><svg class="js-killers-theme__icon">
-        <use
-          href="./images/icons-for-JS-killers.svg#icon-baffled"
-          aria-label="Serious person"
-        ></use>
-      </svg>
-     </span>
-     </button>
-          <button class="button__js-killers-modal"><svg class="js-killers-theme__icon">
-        <use
-          href="./images/icons-for-JS-killers.svg#icon-evil2"
-          aria-label="Cool person"
-        ></use>
-      </svg></button>
-        </div>
+        <div class="card__js-killer-container--modal"></div>
+        <div class="card__container--modal"></div>
       </div>
     </div>
 
-
-
-      <script src="./app.js"></script>
+    <div id="firebaseui-auth-container"></div>
+    <script src="./app.js"></script>
   </body>
 </html>

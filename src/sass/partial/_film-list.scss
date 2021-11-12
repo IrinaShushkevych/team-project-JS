@@ -49,6 +49,11 @@ img {
       margin-right: 30px;
     }
   }
+
+  &:hover,
+  :focus {
+    cursor: pointer;
+  }
 }
 
 .card__tumb {
