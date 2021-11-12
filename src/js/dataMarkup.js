@@ -2,6 +2,7 @@ import APIService from './DataServise.js';
 import template from '../templates/list-card.hbs';
 import jsKillerTemplate from '../templates/jsKillerCard.hbs';
 import jsKillerTeam from '../json/jsKillers.json';
+import imgNull from '../images/filmsNull.jpg'
 // import refs from './refs';
 import filmTpl from '../templates/modalFilmCard.hbs';
 import refs from '../js/refs';
@@ -52,30 +53,33 @@ export default class DataMarkup {
   // };
 
   // *****
+   
+  
+  
+  // Отрисовка просмотренных
 
-  // Отрисовка очереди
   getCurrentFilmsWatched = async id => {
     const currentFilmsWatched = await this.dataSaver.getFilmWatched();
     if (currentFilmsWatched.length === 0) {
       this.listRef.innerHTML =
-        '<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="../images/filmsNull.jpg" alt ="not films here"></img></li>';
+        `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
       return;
     }
 
     this.renderMarkup(currentFilmsWatched);
-    this.spinner.hideSpinner();
+    // this.spinner.hideSpinner();
   };
   //
-  // Отрисовка просмотренных
+ // Отрисовка очереди
   getCurrentFilmsQueue = async () => {
     const currentFilmsQueue = await this.dataSaver.getFilmQueue();
     if (currentFilmsQueue.length === 0) {
       this.listRef.innerHTML =
-        '<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="../images/filmsNull.jpg" alt ="not films here"></img></li>';
+        `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
       return;
     }
     this.renderMarkup(currentFilmsQueue);
-    this.spinner.hideSpinner();
+    // this.spinner.hideSpinner();
   };
 
   // listener на список
