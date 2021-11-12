@@ -19,21 +19,23 @@
     />
   </head>
   <body>
-    <header class="header header-home header-library" id="header">
+    <header class="header header-home" id="header">
       <div class="container">
         <div class="header-section">
-          <a href="" class="header_link js-logo">
+          <a href="" class="header_link js-logo ">
             <img src="./images/film.svg" alt="logo" class="logo-img" width="24" height="24" />
             <span class="logo__header">Filmoteka</span>
           </a>
 
           <div class="side-nav__header">
-            <button class="home-btn__header btn__header js-home">
+            <div class="">
+            <button class="home-btn__header btn__header js-home btn__header--current-page">
               <span class="btn-text">Home</span>
             </button>
             <button class="library-btn__header btn__header js-lybrary hidden">
               <span class="btn-text">MY LIBRARY</span>
             </button>
+          </div>
             <button class="btn__header js-auth">
               <span class="btn-text">LOG IN</span>
             </button>
@@ -90,9 +92,7 @@
             <img src="./images/close.svg" alt="" />
           </button>
         </div>
-
         <div class="card__js-killer-container--modal"></div>
-
         <div class="card__container--modal"></div>
       </div>
     </div>

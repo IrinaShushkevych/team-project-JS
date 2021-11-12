@@ -26,6 +26,7 @@ export default class DataMarkup {
   // Рисование списка карточек
   renderMarkup = data => {
     this.listRef.innerHTML = template(data);
+    this.spinner.hideSpinner();
   };
 
   // Отрисовка популярных
@@ -38,6 +39,7 @@ export default class DataMarkup {
   // Отрисовка по запросу
   renderSearchingFilms = async query => {
     const currentQuerySeach = await this.dataAPI.fetchFilmsByQuery(query);
+    console.log(currentQuerySeach);
     this.renderMarkup(currentQuerySeach);
     this.spinner.hideSpinner();
   };
