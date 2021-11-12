@@ -111,4 +111,4 @@ module.exports="/team-project-js/icons.d85303e3.svg";
 },{"./refs.js":"VyiV","../templates/upDownButton.hbs":"hGjH","../images/svg/icons.svg":"gnyF"}],"A2T1":[function(require,module,exports) {
 "use strict";require("./sass/main.scss");var s=r(require("./js/appClass")),e=r(require("./js/arrow.js"));function r(s){return s&&s.__esModule?s:{default:s}}const t=new e.default;t.init();const i=new s.default;i.init();
 },{"./sass/main.scss":"clu1","./js/appClass":"O3cG","./js/arrow.js":"Dcx1"}]},{},["A2T1"], null)
-//# sourceMappingURL=/team-project-js/app.a230d1ff.js.map
+//# sourceMappingURL=/team-project-js/app.5917b25d.js.map
