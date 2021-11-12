@@ -146,25 +146,16 @@ export default class DataSaver {
     this.setTotalPageFilms('queue');
   };
 
-  // getFilms = page => {
-  // const numberPage = this.getCurrentPage();
-  // const countFilm = this.getCountFilmOnPage();
-  //   const arr = JSON.parse(localStorage.getItem(page));
-  //   console.log(page);
-  //   console.log(countFilm);
-  //   console.log(arr);
-  //   if (arr) {
-  //     return arr.slice(countFilm * (numberPage - 1), countFilm);
-  //   }
-  //   return [];
-  // };
-
   //***********/
 
   getFilmWatched = async () => {
     const films = await this.getData('watched');
     //порахувати кількість сторінок
-    return films;
+    const countFilm = this.getCountFilmOnPage();
+    const page = this.getCurrentPage();
+    const begin = (page - 1) * countFilm;
+    // let end = begin
+    return films.slice(begin, begin + countFilm);
   };
 
   //***********/
@@ -172,7 +163,11 @@ export default class DataSaver {
     try {
       const films = await this.getData('queue');
       //порахувати кількість сторінок
-      return films;
+      const countFilm = this.getCountFilmOnPage();
+      const page = this.getCurrentPage();
+      const begin = (page - 1) * countFilm;
+      // let end = begin
+      return films.slice(begin, begin + countFilm);
     } catch (error) {
       Message.error(error.code);
     }
