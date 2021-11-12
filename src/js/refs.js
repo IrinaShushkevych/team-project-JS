@@ -24,4 +24,8 @@ export default {
   itemRemoveWatched: document.querySelector('.js-remove-watched'),
   itemAddQueue: document.querySelector('.js-add-queue'),
   itemRemoveQueue: document.querySelector('.js-remove-queue'),
+  // filterBtn
+  iconSvg: document.querySelector('.svg-filter__link'),
+  filterItem: document.querySelectorAll('.filter__item'),
+  // *****
 };

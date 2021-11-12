@@ -94,5 +94,14 @@ export default class DataMarkup {
     this.refs.modalCardRef.innerHTML = filmTpl(film);
   };
   
-}
+  filterFilmsQuery = ()=>{
+    this.btnSort = document.querySelector('.sort-btn')
+    btnSort.addEventListener('click', addHiddenNavBtn )
+  }
 
+  addHiddenNavBtn = ()=>{
+    this.boxNavBtn = document.querySelector('.nav-section')
+    boxNavBtn.classList.remove('hidden')
+  }
+  
+}

@@ -4,9 +4,11 @@ import Modal from './modal.js';
 import DataSaver from './dataSaver.js';
 import DataService from './DataServise';
 import LoadSpinner from './loadSpinner';
+import FilterBtn from './filterBtn.js';
 
 export default class App {
   constructor() {
+    this.filterBtn = new FilterBtn();
     this.dataMarkup = new DataMarkup();
     this.modal = new Modal();
     this.refs = refs;
@@ -91,4 +93,5 @@ export default class App {
     this.dataMarkup.getCurrentFilmsQueue();
     //pagination
   };
+  
 }

@@ -1,0 +1,91 @@
+.filter__button {
+  display: inline-block;
+  background-color: $primary-white-color;
+  text-align: center;
+  border: 2px solid $accent-color;
+  border-radius: 6px;
+  text-decoration: none;
+  vertical-align: middle;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.62;
+  width: 250px;
+  padding: 5px 21px;
+
+  @media screen and (min-width: $bp-tablet) {
+    justify-content: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.62;
+    min-width: 73px;
+    padding: 5px 21px;
+    width: auto;
+  }
+
+  &:hover,
+  &:focus {
+    color: $primary-white-color;
+    background-color: $accent-color;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.08),
+      0px 3px 1px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.filter_is_active {
+  color: $primary-white-color;
+  background-color: $accent-color;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.08),
+    0px 3px 1px rgba(0, 0, 0, 0.1);
+}
+
+.filter__list {
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: $bp-mobile-max) {
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  @media screen and (min-width: $bp-tablet) {
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  @media screen and (min-width: $bp-desktop) {
+    margin-top: 20px;
+  }
+}
+
+.filter__item {
+  @media screen and (max-width: $bp-mobile-max) {
+    margin: 5px auto;
+  }
+
+  @media screen and (min-width: $bp-tablet) {
+    margin-left: auto;
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+}
+
+.nav-section {
+  margin-bottom: 50px;
+}
+.svg-filter__icon {
+  width: 50px;
+  height: 50px;
+  fill: $specification-color;
+  &:hover {
+    fill: $accent-color;
+  }
+  &:focus {
+    fill: $accent-color;
+  }
+}
+.svg-filter__item {
+  margin-left: auto;
+}
