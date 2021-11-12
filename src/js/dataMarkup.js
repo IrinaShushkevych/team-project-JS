@@ -2,6 +2,7 @@ import APIService from './DataServise.js';
 import template from '../templates/list-card.hbs';
 import jsKillerTemplate from '../templates/jsKillerCard.hbs';
 import jsKillerTeam from '../json/jsKillers.json';
+import imgNull from '../images/filmsNull.jpg'
 // import refs from './refs';
 import filmTpl from '../templates/modalFilmCard.hbs';
 import refs from '../js/refs';
@@ -10,7 +11,6 @@ import listCardTpl from '../templates/list-card.hbs';
 import DataSaver from './dataSaver.js';
 import Message from './message.js';
 import LoadSpinner from './loadSpinner';
-
 export default class DataMarkup {
   constructor() {
     this.messsage = new Message();
@@ -18,14 +18,17 @@ export default class DataMarkup {
     this.dataAPI = new APIService();
     this.spinner = new LoadSpinner();
     this.listRef = refs.listUlFilms;
+    
 
     this.refs = refs;
     this.filmTpl = filmTpl;
     this.listCardTpl = listCardTpl;
+    
   }
   // Рисование списка карточек
   renderMarkup = data => {
     this.listRef.innerHTML = template(data);
+    this.spinner.hideSpinner();
   };
 
   // Отрисовка популярных
@@ -41,17 +44,45 @@ export default class DataMarkup {
     this.renderMarkup(currentQuerySeach);
     this.spinner.hideSpinner();
   };
+  // отрисовка по фільтру за день 
 
-  // Отрисовка очереди
+  // renderFilmsFilterDay = async query => {
+  //   const filmsDay = await this.dataAPI.filterPopularFilmsDay(query);
+  //   this.renderMarkup(filmsDay);
+  //   this.spinner.hideSpinner();
+  // };
+
+  // *****
+   
+  
+  
+  // Отрисовка просмотренных
+
   getCurrentFilmsWatched = async id => {
     const currentFilmsWatched = await this.dataSaver.getFilmWatched();
-    this.renderMarkup(currentFilmsWatched);
+    console.log(currentFilmsWatched)
+    if (currentFilmsWatched.length === 0) {
+      this.listRef.innerHTML =
+        `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+        this.spinner.hideSpinner();
+      return;
+    }
+
     this.spinner.hideSpinner();
+    this.renderMarkup(currentFilmsWatched);
   };
   //
-  // Отрисовка просмотренных
-  getCurrentFilmsQueue = async id => {
+ // Отрисовка очереди
+  getCurrentFilmsQueue = async () => {
     const currentFilmsQueue = await this.dataSaver.getFilmQueue();
+    console.log(currentFilmsQueue)
+    if (currentFilmsQueue.length === 0) {
+      this.listRef.innerHTML =
+        `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+        this.spinner.hideSpinner();
+      return;
+    }
+    
     this.renderMarkup(currentFilmsQueue);
     this.spinner.hideSpinner();
   };
@@ -71,4 +102,15 @@ export default class DataMarkup {
   modalFilmMurcup = film => {
     this.refs.modalCardRef.innerHTML = filmTpl(film);
   };
+  
+  filterFilmsQuery = ()=>{
+    this.btnSort = document.querySelector('.sort-btn')
+    btnSort.addEventListener('click', addHiddenNavBtn )
+  }
+
+  addHiddenNavBtn = ()=>{
+    this.boxNavBtn = document.querySelector('.nav-section')
+    boxNavBtn.classList.remove('hidden')
+  }
+  
 }

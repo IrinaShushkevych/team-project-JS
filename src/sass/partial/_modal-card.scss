@@ -23,11 +23,14 @@
 .card__image-thumb {
   flex-basis: calc(100% / 2 - 20px);
   margin-bottom: 30px;
-  border-radius: 5px;
+  // border-radius: 5px;
 
   @media screen and (min-width: $bp-tablet) {
     margin-bottom: 0px;
   }
+}
+.card__image {
+  border-radius: 5px;
 }
 
 .card__description {
@@ -82,6 +85,11 @@
   padding-right: 4px;
 }
 
+.genre__item:not(:last-child):after {
+  content: ',';
+  display: inline-block;
+}
+
 .card__title-abaut {
   margin-bottom: 10px;
 
@@ -98,24 +106,43 @@
 
 .button__list-modal {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  margin-right: -15px;
 
-  @media screen and (min-width: $bp-desktop) {
-    justify-content: flex-start;
-  }
-  // margin-right: -15px;
+  // @media screen and (min-width: $bp-tablet) {
+  //   justify-content: space-between;
+  // }
+
+  // @media screen and (min-width: $bp-desktop) {
+  //   justify-content: flex-start;
+  // }
 }
 
 .button__item-modal {
   // display: block;
-  flex-basis: calc(100% / 2 - 15px);
-  // margin-right: 15px;
+  // flex-basis: calc(100% / 2 - 15px);
+  flex-basis: auto;
   list-style: none;
 
-  @media screen and (min-width: $bp-desktop) {
-    flex-basis: auto;
-    margin-right: 15px;
-  }
+  margin-right: 15px;
+  // @media screen and (min-width: $bp-tablet) {
+  //   margin-right: 0px;
+  // }
+
+  // @media screen and (min-width: $bp-desktop) {
+  //   flex-basis: auto;
+  // }
+
+  // &:not(:last-child) {
+  //   margin-right: 15px;
+
+  //   @media screen and (min-width: $bp-tablet) {
+  //     margin-right: 0px;
+  //   }
+  //   @media screen and (min-width: $bp-desktop) {
+  //     margin-right: 15px;
+  //   }
+  // }
 }
 
 // .hidden {
@@ -151,7 +178,8 @@
 
 .button__modal--primary.button__modal--add,
 .button__modal--primary.button__modal--remove {
-  padding: 14px 14px 12px 14px;
+  // padding: 14px 14px 12px 14px;
+  padding: 10px 14px 9px 14px;
   text-transform: uppercase;
 
   @media screen and (min-width: $bp-tablet) {
@@ -170,4 +198,18 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
+
+  // не активная кнопка
+  color: $primary-white-color;
+  background-color: $accent-color;
+  // border: 1px solid $accent-color;
+  cursor: text;
+  padding: 0px 10px 0px 10px;
+}
+
+.button__modal--primary.card__specification-meaning-button--secondary {
+  background-color: $bg-footer;
+  border: 1px solid $primary-white-color;
+
+  color: inherit;
 }

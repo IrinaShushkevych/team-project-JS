@@ -4,6 +4,8 @@ export default {
   btnLybraryRef: document.querySelector('.js-lybrary'),
   btnAuthRef: document.querySelector('.js-auth'),
   logoRef: document.querySelector('.js-logo'),
+  watchedBtnRef: document.querySelector('.js-button-watched'),
+  queueBtnRef: document.querySelector('.js-button-queue'),
   paginationCase: document.getElementById('tui-pagination-container'),
   inputFormRef: document.querySelector('.js-search-form'),
   listUlFilms: document.querySelector('.js-film-list'),
@@ -26,7 +28,6 @@ export default {
   itemRemoveQueue: document.querySelector('.js-remove-queue'),
 
   modalWindowOpener: document.querySelector('.js-modal-team'),
-  backdrop: document.querySelector('.backdrop'),
   modalCleaner: document.querySelector('.card__container--modal'),
   modalContainer: document.querySelector('.card__js-killer-container--modal'),
   buttonRemover: document.querySelector('.button__container-modal'),

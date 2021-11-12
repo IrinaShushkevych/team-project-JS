@@ -1,3 +1,4 @@
+import img from '../images/no-image.jpg';
 import DataSaver from './dataSaver.js';
 export default class APIService {
   constructor() {
@@ -15,8 +16,9 @@ export default class APIService {
   };
 
   fetchPopularFilms = async () => {
-    let popularFilms = 'trending/movie/week?';
-    this.url = this.baseUrl + popularFilms + this.keyAPI + `&page=${this.dataSaver.getCurrentPage()}`;
+    let popularFilms = 'trending/movie/day?';
+    this.url =
+      this.baseUrl + popularFilms + this.keyAPI + `&page=${this.dataSaver.getCurrentPage()}`;
     const dataObj = await this.fetchData(this.url);
     const dataPopular = dataObj.results;
     await this.fixFetchObject(dataPopular);
@@ -50,18 +52,19 @@ export default class APIService {
     await this.decodeGenres(genreIds);
     this.fixImagePath(response);
     response.map(film => (film.genre_ids = film.genre_ids.slice(0, 3)));
-  }
+  };
 
   fetchFilmsByQuery = async query => {
     let queryEndpoint = `search/movie?query=${query}&`;
-    this.url = this.baseUrl + queryEndpoint + this.keyAPI + `&page=${this.dataSaver.getCurrentPage()}`;
+    this.url =
+      this.baseUrl + queryEndpoint + this.keyAPI + `&page=${this.dataSaver.getCurrentPage()}`;
     const queryFilmsResult = await this.fetchData(this.url);
     const dataQuery = queryFilmsResult.results;
     await this.fixFetchObject(dataQuery);
     const totalPages = queryFilmsResult.total_pages;
     this.dataSaver.setTotalPages(totalPages);
     this.dataSaver.setCurrentPage(this.page);
-    this.dataSaver.setHomeFilms(dataQuery)
+    this.dataSaver.setHomeFilms(dataQuery);
     return dataQuery;
   };
 
@@ -74,8 +77,13 @@ export default class APIService {
   };
 
   fixImagePath = obj => {
-    obj.map(film => (film.poster_path = 'https://image.tmdb.org/t/p/w500' + film.poster_path));
+    console.log(img);
+    obj.map(film => {
+      if (film.poster_path || film.backdrop_path) {
+        film.poster_path = 'https://image.tmdb.org/t/p/w500' + film.poster_path;
+      } else {
+        film.poster_path = `${img}`;
+      }
+    });
   };
 }
-
-
