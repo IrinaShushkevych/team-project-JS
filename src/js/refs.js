@@ -7,4 +7,5 @@ export default {
   inputFormRef: document.querySelector('.js-search-form'),
   listUlFilms: document.querySelector('.js-film-list'),
   modalContainer: document.querySelector('.card__js-killer-container--modal'),
+  
 };

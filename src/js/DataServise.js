@@ -1,17 +1,23 @@
 import DataSaver from './dataSaver.js';
+import CustomPagination from './pagination.js';
 export default class APIService {
   constructor() {
     this.keyAPI = 'api_key=a907caf8c46067564d1786718be1cb84';
     this.baseUrl = 'https://api.themoviedb.org/3/';
-    this.page = 10;
+    this.page = 1;
     this.url = '';
     this.query = '';
     this.dataSaver = new DataSaver();
+    this.datapagination = new CustomPagination();
   }
 
   fetchData = async url => {
     const response = await fetch(url);
     return response.json();
+  };
+
+  setPage = page => {
+    return (this.page = page);
   };
 
   getPopularFilms = async () => {
@@ -21,20 +27,21 @@ export default class APIService {
     const dataPopular = dataObj.results;
     let totalPages = dataObj.total_pages;
     this.dataSaver.setTotalPages(totalPages);
+    this.datapagination.initPagination(totalPages);
     const genreIds = dataPopular.map(film => film.genre_ids);
     await this.decodeGenres(genreIds);
     this.fixImagePath(dataPopular);
     dataPopular.map(film => (film.genre_ids = film.genre_ids.slice(0, 3)));
     this.dataSaver.setPopularFilms(dataPopular);
     this.dataSaver.setCurrentPage(this.page);
-    console.log(dataPopular);
+
     return dataPopular;
   };
 
   decodeGenres = async genreIds => {
     let genres = this.dataSaver.getFilmsGenres();
     if (genres === null) {
-      genres = await this.fetchFilmsGenres();      
+      genres = await this.fetchFilmsGenres();
     }
     const genreNames = genreIds.map(array => {
       for (let i = 0; i < array.length; i += 1) {
