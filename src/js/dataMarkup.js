@@ -25,6 +25,11 @@ export default class DataMarkup {
     this.listCardTpl = listCardTpl;
     
   }
+  // рендер років
+  addYearsList = ()=>{
+    this.refs.yearList.innerHTML = ""
+  }
+  // *****
   // Рисование списка карточек
   renderMarkup = data => {
     this.listRef.innerHTML = template(data);
@@ -83,8 +88,8 @@ export default class DataMarkup {
       return;
     }
     
-    this.renderMarkup(currentFilmsQueue);
     this.spinner.hideSpinner();
+    this.renderMarkup(currentFilmsQueue);
   };
 
   // listener на список
