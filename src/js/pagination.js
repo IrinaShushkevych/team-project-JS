@@ -10,7 +10,7 @@ export default class CustomPagination {
     this.dataMarkup = new DataMarkup();
   }
   initPagination = totalPages => {
-    // console.log(totalPages);
+    console.log(totalPages);
     const paginationOptions = {
       totalItems: totalPages,
       itemsPerPage: 20,
