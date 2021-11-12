@@ -4,6 +4,8 @@ export default {
   btnLybraryRef: document.querySelector('.js-lybrary'),
   btnAuthRef: document.querySelector('.js-auth'),
   logoRef: document.querySelector('.js-logo'),
+  watchedBtnRef: document.querySelector('.js-button-watched'),
+  queueBtnRef: document.querySelector('.js-button-queue'),
   paginationCase: document.getElementById('tui-pagination-container'),
   inputFormRef: document.querySelector('.js-search-form'),
   listUlFilms: document.querySelector('.js-film-list'),

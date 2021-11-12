@@ -4,6 +4,7 @@ import Modal from './modal.js';
 import DataSaver from './dataSaver.js';
 import DataService from './DataServise';
 import LoadSpinner from './loadSpinner';
+import Message from './message.js';
 
 export default class App {
   constructor() {
@@ -42,7 +43,7 @@ export default class App {
   onOpenMdalTeam = () => {
     this.refs.modalCardRef.innerHTML = '';
     this.dataMarkup.renderModalTeam();
-    this.modal.onOpenModal();
+    this.modal.onOpenModal(null, 'team');
     this.dataSaver.setActivePage('home');
   };
 
@@ -50,28 +51,41 @@ export default class App {
 
   onClickLogoHome = e => {
     e.preventDefault();
-    this.dataMarkup.renderPopularFilms();
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('home');
+    this.dataMarkup.renderPopularFilms();
     this.refs.header.classList.replace('header-library', 'header-home');
     this.refs.buttonContainer.classList.add('hidden');
     this.refs.inputFormRef.classList.remove('hidden');
     //pagination
-    console.log('Markup popular films, hide button, show input');
     this.refs.btnLybraryRef.classList.remove('btn__header--current-page');
     this.refs.btnHomeRef.classList.add('btn__header--current-page');
+
+    this.refs.queueBtnRef.removeEventListener('click', this.onClickQueue);
+    this.refs.watchedBtnRef.removeEventListener('click', this.onClickWatched);
   };
 
   // Клик lybrary
-  onClickLibrary = () => {
-    this.dataSaver.setActivePage('library');
+  onClickLibrary = async () => {
+    this.dataSaver.setActivePage('queue');
+    this.dataSaver.setCurrentPage(1);
+    try {
+      this.spinner.showSpinner();
+      await this.dataSaver.setTotalPageFilms('queue');
+    } catch (error) {
+      Message.error(error);
+    } finally {
+      this.spinner.hideSpinner();
+    }
     this.refs.buttonContainer.classList.remove('hidden');
     this.refs.inputFormRef.classList.add('hidden');
     this.refs.header.classList.replace('header-home', 'header-library');
-    this.dataMarkup.getCurrentFilmsWatched();
+    this.dataMarkup.getCurrentFilmsQueue();
     this.refs.btnHomeRef.classList.remove('btn__header--current-page');
     this.refs.btnLybraryRef.classList.add('btn__header--current-page');
 
+    this.refs.queueBtnRef.addEventListener('click', this.onClickQueue);
+    this.refs.watchedBtnRef.addEventListener('click', this.onClickWatched);
     // console.log('hide input, show button, markup queue');
   };
 
@@ -85,31 +99,47 @@ export default class App {
       : this.dataMarkup.renderPopularFilms();
   };
 
-  onClickWatched = () => {
+  onClickWatched = async () => {
     this.spinner.showSpinner();
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('watched');
+    try {
+      this.spinner.showSpinner();
+      await this.dataSaver.setTotalPageFilms('watched');
+    } catch (error) {
+      Message.error(error);
+    } finally {
+      this.spinner.hideSpinner();
+    }
     this.dataMarkup.getCurrentFilmsWatched();
     //pagination
   };
 
-  onClickQueue = () => {
+  onClickQueue = async () => {
     this.spinner.showSpinner();
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('queue');
+    try {
+      this.spinner.showSpinner();
+      await this.dataSaver.setTotalPageFilms('queue');
+    } catch (error) {
+      Message.error(error);
+    } finally {
+      this.spinner.hideSpinner();
+    }
     this.dataMarkup.getCurrentFilmsQueue();
     //pagination
   };
 
-  onClickCardItem = event => {
+  onClickCardItem = async event => {
     event.preventDefault();
     const card = event.target.closest('li');
     if (!card) {
       return;
     }
     const id = Number(card.dataset.id);
-    const film = this.dataSaver.getFilm(id);
+    const film = await this.dataSaver.getFilm(id);
     this.dataMarkup.modalFilmMurcup(film);
-    this.modal.onOpenModal(card.dataset.id);
+    this.modal.onOpenModal(card.dataset.id, 'film');
   };
 }

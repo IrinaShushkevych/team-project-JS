@@ -39,7 +39,6 @@ export default class DataMarkup {
   // Отрисовка по запросу
   renderSearchingFilms = async query => {
     const currentQuerySeach = await this.dataAPI.fetchFilmsByQuery(query);
-    console.log(currentQuerySeach);
     this.renderMarkup(currentQuerySeach);
     this.spinner.hideSpinner();
   };
@@ -52,7 +51,7 @@ export default class DataMarkup {
   };
   //
   // Отрисовка просмотренных
-  getCurrentFilmsQueue = async id => {
+  getCurrentFilmsQueue = async () => {
     const currentFilmsQueue = await this.dataSaver.getFilmQueue();
     this.renderMarkup(currentFilmsQueue);
     this.spinner.hideSpinner();
