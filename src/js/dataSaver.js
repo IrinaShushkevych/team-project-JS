@@ -1,8 +1,25 @@
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref, set, onValue, get, child, remove, push } from 'firebase/database';
+import Message from './message.js';
+
 export default class DataSaver {
   constructor() {
     this.countFilmModal = 4;
     this.countFilmTablet = 8;
     this.countFilmDesktop = 9;
+    const firebaseConfig = {
+      apiKey: 'AIzaSyA-7YNXt4BkV_VbA7lry0dxhTz2XrvRAIo',
+      authDomain: 'team-project-js-bf3c2.firebaseapp.com',
+      databaseURL: 'https://team-project-js-bf3c2-default-rtdb.firebaseio.com',
+      projectId: 'team-project-js-bf3c2',
+      storageBucket: 'team-project-js-bf3c2.appspot.com',
+      messagingSenderId: '666264362443',
+      appId: '1:666264362443:web:152a253140bc5479f1aa4e',
+      measurementId: 'G-DVKFPK03GX',
+    };
+    const app = initializeApp(firebaseConfig);
+    this.db = getDatabase(app);
+    this.dbRef = ref(getDatabase(app));
   }
 
   clearLocalstoredge = () => {
@@ -66,31 +83,36 @@ export default class DataSaver {
   };
 
   // get одна карточка
-  getFilm = id => {
+  //*********/
+  getFilm = async id => {
     let result = null;
     const page = this.getActivePage();
-    let films = localStorage.getItem(page);
-    if (films) {
-      films = JSON.parse(films);
-      result = films.find(el => el.id === id);
+    if (page === 'home') {
+      let films = localStorage.getItem(page);
+      if (films) {
+        films = JSON.parse(films);
+        result = films.find(el => el.id === Number(id));
+      }
+    } else {
+      result = await this.getFilmFromBase(id, page);
     }
     return result;
   };
 
   // Проверка наличия фильма в очереди
-  isFilmInList = (id, page) => {
-    let films = localStorage.getItem(page);
+  /***********/
+  isFilmInHome = id => {
+    let films = localStorage.getItem('home');
     if (films) {
       films = JSON.parse(films);
-
-      const isfilms = films.find(el => el.id === id);
+      const isfilms = films.find(el => el.id === Number(id));
       if (isfilms) return true;
     }
     return false;
   };
 
   // get просмотренные фильмы
-
+  //************/
   getCountFilmOnPage = () => {
     const display = window.innerWidth;
     if (display < 768) {
@@ -102,54 +124,53 @@ export default class DataSaver {
     return this.countFilmDesktop;
   };
 
-  setTotalPageFilms = page => {
-    const countFilm = this.getCountFilmOnPage();
-    const arr = JSON.parse(localStorage.getItem(page));
-    let cnt = arr.length % countFilm;
-    if (arr.length > cnt * countFilm) {
-      cnt += 1;
+  setTotalPageFilms = async page => {
+    try {
+      const countFilm = this.getCountFilmOnPage();
+      const arr = await this.getData(page);
+      let cnt = Math.trunc(arr.length / countFilm);
+      if (arr.length > cnt * countFilm) {
+        cnt += 1;
+      }
+      this.setTotalPages(cnt);
+    } catch (error) {
+      message(error.message);
     }
-    this.setTotalPages(cnt);
   };
 
   setTotalPageWatched = () => {
     this.setTotalPageFilms('watched');
   };
 
-  setTotalPageWatched = () => {
+  setTotalPageQueue = () => {
     this.setTotalPageFilms('queue');
   };
 
-  getFilms = page => {
-    const numberPage = this.getCurrentPage();
+  //***********/
+
+  getFilmWatched = async () => {
+    const films = await this.getData('watched');
+    //порахувати кількість сторінок
     const countFilm = this.getCountFilmOnPage();
-    const arr = JSON.parse(localStorage.getItem(page));
-    return arr.slice(countFilm * (numberPage - 1), countFilm);
+    const page = this.getCurrentPage();
+    const begin = (page - 1) * countFilm;
+    // let end = begin
+    return films.slice(begin, begin + countFilm);
   };
 
-  getFilmWatched = () => {
-    return this.getFilms('watched');
-  };
-
-  getFilmQueue = () => {
-    return this.getFilms('queue');
-  };
-
-  // Записать фильм в очередь
-  setFilmToLocalstorage = (id, page) => {
-    const arr = JSON.parse(localStorage.getItem(page));
-    if (!this.isFilmInList(id, page)) {
-      arr.push(film);
+  //***********/
+  getFilmQueue = async () => {
+    try {
+      const films = await this.getData('queue');
+      //порахувати кількість сторінок
+      const countFilm = this.getCountFilmOnPage();
+      const page = this.getCurrentPage();
+      const begin = (page - 1) * countFilm;
+      // let end = begin
+      return films.slice(begin, begin + countFilm);
+    } catch (error) {
+      Message.error(error.code);
     }
-    localStorage.setItem(page, JSON.stringify(arr));
-  };
-
-  setFilmToWatched = id => {
-    this.setFilmToLocalstorage(id, 'watched');
-  };
-
-  setFilmToQueue = id => {
-    this.setFilmToLocalstorage(id, 'queue');
   };
 
   // Удалить фильм из очереди
@@ -168,5 +189,100 @@ export default class DataSaver {
 
   removeFilmToQueue = id => {
     this.removeFilmFromLocalstorage(id, 'queue');
+  };
+
+  //=================================================================
+  //**********
+  getData = async page => {
+    const result = await get(
+      child(this.dbRef, `users/${sessionStorage.getItem('user')}/${page}`),
+    ).then(data => {
+      if (data.exists()) {
+        return data.val();
+      } else {
+        return [];
+      }
+    });
+    const res = [];
+    for (let key in result) {
+      res.push(JSON.parse(result[key]));
+    }
+    return res;
+  };
+
+  //***********/
+  getFilmFromBase = async (id, page) => {
+    const result = await get(
+      child(this.dbRef, `users/${sessionStorage.getItem('user')}/${page}/${id}`),
+    )
+      .then(data => {
+        if (data.exists()) {
+          return data.val();
+        } else {
+          return null;
+        }
+      })
+      .catch(this.getError);
+    // if (result) return true;
+    return JSON.parse(result);
+  };
+
+  //***********/
+  isFilmInList = async (id, page) => {
+    let result = false;
+    if (page === 'home') {
+      return this.isFilmInHome(id);
+    } else {
+      const film = await this.getFilmFromBase(id, page);
+      result = film ? true : false;
+    }
+    return result;
+  };
+
+  //**********/
+  addFilm = async (id, page, pageFrom) => {
+    if (!pageFrom) {
+      pageFrom = this.getActivePage();
+    }
+    try {
+      const film = await this.getFilm(id, pageFrom);
+      const result = await set(
+        ref(this.db, `users/${sessionStorage.getItem('user')}/${page}/${id}`),
+        JSON.stringify(film),
+      );
+    } catch (error) {
+      this.getError(error.message);
+    }
+    // if (pageFrom !== 'home') {
+    try {
+      if (page === 'watched') {
+        const res = await this.removeData(id, 'queue');
+      }
+      if (page === 'queue') {
+        const res = await this.removeData(id, 'watched');
+      }
+    } catch (error) {
+      this.getError(error.message);
+    }
+    // }
+    return true;
+    // }
+    // this.getError(`This film is allrady in ${page}`);
+  };
+
+  //********/
+  removeData = async (id, page) => {
+    try {
+      const refDB = ref(this.db, `users/${sessionStorage.getItem('user')}/${page}/${id}`);
+      const result = await remove(refDB);
+      return result;
+    } catch (error) {
+      this.getError(error.message);
+    }
+  };
+
+  getError = error => {
+    Message.error(error.message);
+    return null;
   };
 }

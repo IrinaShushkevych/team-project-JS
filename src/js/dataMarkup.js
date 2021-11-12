@@ -10,7 +10,6 @@ import listCardTpl from '../templates/list-card.hbs';
 import DataSaver from './dataSaver.js';
 import Message from './message.js';
 import LoadSpinner from './loadSpinner';
-
 export default class DataMarkup {
   constructor() {
     this.messsage = new Message();
@@ -28,6 +27,7 @@ export default class DataMarkup {
   // Рисование списка карточек
   renderMarkup = data => {
     this.listRef.innerHTML = template(data);
+    this.spinner.hideSpinner();
   };
 
   // Отрисовка популярных
@@ -67,7 +67,7 @@ export default class DataMarkup {
   };
   //
   // Отрисовка просмотренных
-  getCurrentFilmsQueue = async id => {
+  getCurrentFilmsQueue = async () => {
     const currentFilmsQueue = await this.dataSaver.getFilmQueue();
     if (currentFilmsQueue.length === 0) {
       this.listRef.innerHTML =

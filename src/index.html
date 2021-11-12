@@ -19,7 +19,7 @@
     />
   </head>
   <body>
-    <header class="header header-home header-library" id="header">
+    <header class="header header-home" id="header">
       <div class="container">
         <div class="header-section">
           <a href="" class="header_link js-logo">
@@ -28,20 +28,26 @@
           </a>
 
           <div class="side-nav__header">
-            <button class="home-btn__header btn__header js-home">
-              <span class="btn-text">Home</span>
-            </button>
-            <button class="library-btn__header btn__header js-lybrary hidden">
-              <span class="btn-text">MY LIBRARY</span>
-            </button>
+            <div class="">
+              <button class="home-btn__header btn__header js-home btn__header--current-page">
+                <span class="btn-text">Home</span>
+              </button>
+              <button class="library-btn__header btn__header js-lybrary hidden">
+                <span class="btn-text">MY LIBRARY</span>
+              </button>
+            </div>
             <button class="btn__header js-auth">
               <span class="btn-text">LOG IN</span>
             </button>
           </div>
           <div class="button-container hidden">
-            <button class="button watched-button" type="button">Watched</button>
+            <button class="button watched-button js-button-watched btn-cover-library" type="button">
+              Watched
+            </button>
 
-            <button class="button queue-button" type="button">queue</button>
+            <button class="button queue-button js-button-queue btn-cover-library" type="button">
+              queue
+            </button>
           </div>
           <form class="search-form js-search-form" id="search-form">
             <input type="text" class="input_header" name="query" placeholder="Поиск фильмов" />
@@ -109,10 +115,9 @@
           <button class="footer__link js-modal-team">GoIT Students</button>
         </p>
       </div>
-      
     </footer>
 
-    <!-- Модальное окно -->   
+    <!-- Модальное окно -->
     <div class="backdrop visually-hidden" data-modal>
       <div class="modal">
         <div class="modal__thumb">
@@ -120,30 +125,10 @@
             <img src="./images/close.svg" alt="" />
           </button>
         </div>
-        
-        <div class = "card__js-killer-container--modal">
-          <div class="button__container-js-killers-modal ">
-           <button class="button__js-killers-modal"><svg class="js-killers-theme__icon">
-         <use
-           href="./images/icons-for-JS-killers.svg#icon-baffled"
-           aria-label="Serious person"
-         ></use>
-       </svg>
-      </span>
-      </button>
-           <button class="button__js-killers-modal"><svg class="js-killers-theme__icon">
-         <use
-           href="./images/icons-for-JS-killers.svg#icon-evil2"
-           aria-label="Cool person"
-         ></use>
-       </svg></button>
-         </div>
-        </div>
-
+        <div class="card__js-killer-container--modal"></div>
         <div class="card__container--modal"></div>
       </div>
     </div>
-
 
     <div id="firebaseui-auth-container"></div>
     <script src="./app.js"></script>

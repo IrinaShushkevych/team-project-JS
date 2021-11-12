@@ -4,6 +4,8 @@ export default {
   btnLybraryRef: document.querySelector('.js-lybrary'),
   btnAuthRef: document.querySelector('.js-auth'),
   logoRef: document.querySelector('.js-logo'),
+  watchedBtnRef: document.querySelector('.js-button-watched'),
+  queueBtnRef: document.querySelector('.js-button-queue'),
   paginationCase: document.getElementById('tui-pagination-container'),
   inputFormRef: document.querySelector('.js-search-form'),
   listUlFilms: document.querySelector('.js-film-list'),
@@ -24,8 +26,5 @@ export default {
   itemRemoveWatched: document.querySelector('.js-remove-watched'),
   itemAddQueue: document.querySelector('.js-add-queue'),
   itemRemoveQueue: document.querySelector('.js-remove-queue'),
-  // filterBtn
-  iconSvg: document.querySelector('.svg-filter__link'),
-  filterItem: document.querySelectorAll('.filter__item'),
-  // *****
+  buttonContainer: document.querySelector('.button-container'),
 };

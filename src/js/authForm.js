@@ -2,6 +2,7 @@ import refs from './refs';
 import authTpl from '../templates/modalAuth.hbs';
 import Save from './auth';
 import Message from './message.js';
+import LoadSpinner from './loadSpinner';
 
 export default class AuthForm {
   constructor(
@@ -14,6 +15,7 @@ export default class AuthForm {
     this.callbackModal = callbackModal;
     this.modalCardRef = modalContainer;
     this.modalRef = modalForm;
+    this.load = new LoadSpinner();
   }
 
   addListener = () => {
@@ -102,6 +104,7 @@ export default class AuthForm {
 
   onClickAuth = async e => {
     if (e.target.classList.contains('js-btn-register')) {
+      this.load.showSpinner();
       const auth = new Save();
       const result = await auth.register(this.inputEmail.value, this.inputPassword.value);
       if (result.type === 0) {
@@ -111,7 +114,10 @@ export default class AuthForm {
         this.callback();
         this.callbackModal();
       }
+      this.load.hideSpinner();
     } else if (e.target.classList.contains('js-btn-login')) {
+      this.load.showSpinner();
+
       const auth = new Save();
       const result = await auth.login(this.inputEmail.value, this.inputPassword.value);
       if (result.type === 0) {
@@ -121,6 +127,7 @@ export default class AuthForm {
         this.callback();
         this.callbackModal();
       }
+      this.load.hideSpinner();
     }
   };
 }

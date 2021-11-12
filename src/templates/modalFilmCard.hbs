@@ -1,7 +1,7 @@
 
   <div class='card__image-thumb'>
 
-    <img
+    <img class='card__image'
       data-id='{{id}}'
      {{#if poster_path}}
         src='{{poster_path}}'
@@ -23,7 +23,10 @@
           <button class='button__modal--primary card__specification-meaning-button'>
             {{vote_average}}
           </button>
-          / {{vote_count}}
+          /
+          <button class='button__modal--primary card__specification-meaning-button card__specification-meaning-button--secondary'>
+           {{vote_count}}
+          </button>
         </td>
       </tr>
       <tr class='card__specification-row'>
@@ -44,7 +47,7 @@
         <td class='card__specification-meaning'>
           <ul class='genre__list'>
             {{#each genre_ids}}
-          <li class='genre__item'>{{this}}<span class='genre__span'>, </span> </li>
+          <li class='genre__item'>{{this}}</li>
         {{/each}}
           </ul>
         </td>
