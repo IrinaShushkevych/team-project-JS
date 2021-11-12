@@ -51,6 +51,7 @@ export default class App {
 
   onClickLogoHome = e => {
     e.preventDefault();
+    this.spinner.showSpinner();
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('home');
     this.dataMarkup.renderPopularFilms();
@@ -67,16 +68,14 @@ export default class App {
 
   // Клик lybrary
   onClickLibrary = async () => {
+this.spinner.showSpinner();
     this.dataSaver.setActivePage('queue');
     this.dataSaver.setCurrentPage(1);
-    try {
-      this.spinner.showSpinner();
+    try {      
       await this.dataSaver.setTotalPageFilms('queue');
     } catch (error) {
       Message.error(error);
-    } finally {
-      this.spinner.hideSpinner();
-    }
+    } 
     this.refs.buttonContainer.classList.remove('hidden');
     this.refs.inputFormRef.classList.add('hidden');
     this.refs.header.classList.replace('header-home', 'header-library');
@@ -91,8 +90,8 @@ export default class App {
 
   // input  название = () => {}
   onKeyWordSearch = async e => {
-    this.spinner.showSpinner();
     e.preventDefault();
+    this.spinner.showSpinner();
     const inputValue = e.currentTarget.elements.query.value;
     inputValue
       ? this.dataMarkup.renderSearchingFilms(inputValue)
@@ -104,14 +103,11 @@ export default class App {
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('watched');
     try {
-      this.spinner.showSpinner();
       await this.dataSaver.setTotalPageFilms('watched');
+      this.dataMarkup.getCurrentFilmsWatched();
     } catch (error) {
       Message.error(error);
-    } finally {
-      this.spinner.hideSpinner();
-    }
-    this.dataMarkup.getCurrentFilmsWatched();
+    } 
     //pagination
   };
 
@@ -120,14 +116,11 @@ export default class App {
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('queue');
     try {
-      this.spinner.showSpinner();
       await this.dataSaver.setTotalPageFilms('queue');
+      this.dataMarkup.getCurrentFilmsQueue();
     } catch (error) {
       Message.error(error);
-    } finally {
-      this.spinner.hideSpinner();
-    }
-    this.dataMarkup.getCurrentFilmsQueue();
+    } 
     //pagination
   };
 
