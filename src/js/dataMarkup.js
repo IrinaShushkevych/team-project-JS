@@ -10,7 +10,6 @@ import listCardTpl from '../templates/list-card.hbs';
 import DataSaver from './dataSaver.js';
 import Message from './message.js';
 import LoadSpinner from './loadSpinner';
-
 export default class DataMarkup {
   constructor() {
     this.messsage = new Message();

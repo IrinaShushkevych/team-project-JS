@@ -5,7 +5,7 @@ import DataSaver from './dataSaver.js';
 import DataService from './DataServise';
 import LoadSpinner from './loadSpinner';
 import Message from './message.js';
-
+import CustomPagination from './pagination';
 export default class App {
   constructor() {
     this.dataMarkup = new DataMarkup();
@@ -14,6 +14,7 @@ export default class App {
     this.dataSaver = new DataSaver();
     this.dataService = new DataService();
     this.spinner = new LoadSpinner();
+    this.dataPagination = new CustomPagination();
   }
 
   init = () => {
@@ -28,6 +29,9 @@ export default class App {
     this.refs.btnAuthRef.addEventListener('click', this.onClickAuth);
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
     this.refs.list.addEventListener('click', this.onClickCardItem);
+    setTimeout(() => {
+      this.dataPagination.initPagination(this.dataSaver.getTotalPages());
+    }, 100);
   };
 
   onClickAuth = () => {
