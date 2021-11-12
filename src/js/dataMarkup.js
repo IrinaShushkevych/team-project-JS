@@ -60,24 +60,29 @@ export default class DataMarkup {
 
   getCurrentFilmsWatched = async id => {
     const currentFilmsWatched = await this.dataSaver.getFilmWatched();
+    console.log(currentFilmsWatched)
     if (currentFilmsWatched.length === 0) {
       this.listRef.innerHTML =
         `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+        this.spinner.hideSpinner();
       return;
     }
 
-    this.renderMarkup(currentFilmsWatched);
     this.spinner.hideSpinner();
+    this.renderMarkup(currentFilmsWatched);
   };
   //
  // Отрисовка очереди
   getCurrentFilmsQueue = async () => {
     const currentFilmsQueue = await this.dataSaver.getFilmQueue();
+    console.log(currentFilmsQueue)
     if (currentFilmsQueue.length === 0) {
       this.listRef.innerHTML =
         `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+        this.spinner.hideSpinner();
       return;
     }
+    
     this.renderMarkup(currentFilmsQueue);
     this.spinner.hideSpinner();
   };
