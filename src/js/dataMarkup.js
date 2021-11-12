@@ -67,7 +67,7 @@ export default class DataMarkup {
     }
 
     this.renderMarkup(currentFilmsWatched);
-    // this.spinner.hideSpinner();
+    this.spinner.hideSpinner();
   };
   //
  // Отрисовка очереди
@@ -79,7 +79,7 @@ export default class DataMarkup {
       return;
     }
     this.renderMarkup(currentFilmsQueue);
-    // this.spinner.hideSpinner();
+    this.spinner.hideSpinner();
   };
 
   // listener на список
