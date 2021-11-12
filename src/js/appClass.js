@@ -17,11 +17,11 @@ export default class App {
     this.dataPagination = new CustomPagination();
   }
 
-  init = () => {
+  init = async () => {
     this.spinner.showSpinner();
     this.dataSaver.clearLocalstoredge();
     this.dataSaver.setActivePage('home');
-    this.dataMarkup.renderPopularFilms();
+    await this.dataMarkup.renderPopularFilms();
     this.refs.linkModalTeamRef.addEventListener('click', this.onOpenMdalTeam);
     this.refs.btnHomeRef.addEventListener('click', this.onClickLogoHome);
     this.refs.logoRef.addEventListener('click', this.onClickLogoHome);
@@ -29,9 +29,7 @@ export default class App {
     this.refs.btnAuthRef.addEventListener('click', this.onClickAuth);
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
     this.refs.list.addEventListener('click', this.onClickCardItem);
-    setTimeout(() => {
-      this.dataPagination.initPagination(this.dataSaver.getTotalPages());
-    }, 100);
+    this.dataPagination.initPagination(this.dataSaver.getTotalPages());
   };
 
   onClickAuth = () => {
@@ -72,14 +70,14 @@ export default class App {
 
   // Клик lybrary
   onClickLibrary = async () => {
-this.spinner.showSpinner();
+    this.spinner.showSpinner();
     this.dataSaver.setActivePage('queue');
     this.dataSaver.setCurrentPage(1);
-    try {      
+    try {
       await this.dataSaver.setTotalPageFilms('queue');
     } catch (error) {
       Message.error(error);
-    } 
+    }
     this.refs.buttonContainer.classList.remove('hidden');
     this.refs.inputFormRef.classList.add('hidden');
     this.refs.header.classList.replace('header-home', 'header-library');
@@ -116,8 +114,7 @@ this.spinner.showSpinner();
     } catch (error) {
       Message.error(error);
     }
-   
-    
+
     //pagination
   };
 
@@ -132,8 +129,7 @@ this.spinner.showSpinner();
       this.refs.queueBtnRef.classList.add('btn-cover-library');
     } catch (error) {
       Message.error(error);
-
-    } 
+    }
     //pagination
   };
 
