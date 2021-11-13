@@ -19,6 +19,7 @@ export default class App {
 
   init = async () => {
     this.spinner.showSpinner();
+    this.checkSession();
     this.dataSaver.clearLocalstoredge();
     this.dataSaver.setActivePage('home');
     await this.dataMarkup.renderPopularFilms();
@@ -30,6 +31,12 @@ export default class App {
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
     this.refs.list.addEventListener('click', this.onClickCardItem);
     this.dataPagination.initPagination(this.dataSaver.getTotalPages());
+  };
+
+  checkSession = () => {
+    if (sessionStorage.getItem('user') !== null) {
+      this.onValiAuth();
+    }
   };
 
   onClickAuth = () => {
