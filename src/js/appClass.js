@@ -29,6 +29,7 @@ export default class App {
     this.refs.btnLybraryRef.addEventListener('click', this.onClickLibrary);
     this.refs.btnAuthRef.addEventListener('click', this.onClickAuth);
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
+    this.refs.btnLogOut.addEventListener('click', this.onClickLogOut);
     this.refs.list.addEventListener('click', this.onClickCardItem);
     this.dataPagination.initPagination(this.dataSaver.getTotalPages());
   };
@@ -73,6 +74,7 @@ export default class App {
 
     this.refs.queueBtnRef.removeEventListener('click', this.onClickQueue);
     this.refs.watchedBtnRef.removeEventListener('click', this.onClickWatched);
+    // this.refs.btnLogOut.classList.remove('hidden');
   };
 
   // Клик lybrary
@@ -96,7 +98,21 @@ export default class App {
     this.refs.watchedBtnRef.addEventListener('click', this.onClickWatched);
     this.refs.watchedBtnRef.classList.remove('btn-cover-library');
     this.refs.queueBtnRef.classList.add('btn-cover-library');
+    // this.refs.btnLogOut.classList.remove('hidden');
     // console.log('hide input, show button, markup queue');
+  };
+
+  //Клик Log in
+  onClickLogIn = () => {
+    this.refs.btnLogOut.classList.remove('hidden');
+  };
+
+  // Клик LOG OUT
+  onClickLogOut = () => {
+    this.refs.btnLogOut.classList.add('hidden');
+    // this.onClickLogoHome();
+    this.refs.btnLybraryRef.classList.add('hidden');
+    this.refs.btnAuthRef.classList.remove('hidden');
   };
 
   // input  название = () => {}

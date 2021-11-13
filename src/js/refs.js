@@ -1,5 +1,6 @@
 export default {
   linkModalTeamRef: document.querySelector('.js-modal-team'),
+  btnLogOut: document.querySelector('.js-log-out'),
   btnHomeRef: document.querySelector('.js-home'),
   btnLybraryRef: document.querySelector('.js-lybrary'),
   btnAuthRef: document.querySelector('.js-auth'),
