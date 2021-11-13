@@ -13,7 +13,7 @@ export default class Arrow {
     this.render();
     const option = {
       rootMargin: '0px',
-      threshold: 0.6,
+      threshold: 0.2,
     };
     this.observer_header = new IntersectionObserver(this.isScrolling, option);
     this.observer_footer = new IntersectionObserver(this.isScrolling, option);
