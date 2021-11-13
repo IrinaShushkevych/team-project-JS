@@ -23,6 +23,7 @@ export default class App {
     this.dataSaver.clearLocalstoredge();
     this.dataSaver.setActivePage('home');
     await this.dataMarkup.renderPopularFilms();
+    this.dataPagination.initPagination();
     this.refs.linkModalTeamRef.addEventListener('click', this.onOpenMdalTeam);
     this.refs.btnHomeRef.addEventListener('click', this.onClickLogoHome);
     this.refs.logoRef.addEventListener('click', this.onClickLogoHome);
@@ -31,7 +32,6 @@ export default class App {
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
     this.refs.btnLogOut.addEventListener('click', this.onClickLogOut);
     this.refs.list.addEventListener('click', this.onClickCardItem);
-    this.dataPagination.initPagination(this.dataSaver.getTotalPages());
   };
 
   checkSession = () => {
@@ -48,6 +48,7 @@ export default class App {
   onValiAuth = () => {
     this.refs.btnAuthRef.classList.add('hidden');
     this.refs.btnLybraryRef.classList.remove('hidden');
+    this.refs.btnLogOut.classList.remove('hidden');
   };
 
   onOpenMdalTeam = () => {
@@ -59,21 +60,25 @@ export default class App {
 
   // Клик логотип и home
 
-  onClickLogoHome = e => {
-    e.preventDefault();
+  showPopularPage = async () => {
     this.spinner.showSpinner();
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('home');
-    this.dataMarkup.renderPopularFilms();
-    this.refs.header.classList.replace('header-library', 'header-home');
-    this.refs.buttonContainer.classList.add('hidden');
-    this.refs.inputFormRef.classList.remove('hidden');
-    //pagination
+    await this.dataMarkup.renderPopularFilms();
+    this.dataPagination.initPagination();
     this.refs.btnLybraryRef.classList.remove('btn__header--current-page');
     this.refs.btnHomeRef.classList.add('btn__header--current-page');
-
+    this.refs.buttonContainer.classList.add('hidden');
+    this.refs.inputFormRef.classList.remove('hidden');
+    this.refs.header.classList.replace('header-library', 'header-home');
     this.refs.queueBtnRef.removeEventListener('click', this.onClickQueue);
     this.refs.watchedBtnRef.removeEventListener('click', this.onClickWatched);
+    //pagination
+  };
+
+  onClickLogoHome = e => {
+    e.preventDefault();
+    this.showPopularPage();
     // this.refs.btnLogOut.classList.remove('hidden');
   };
 
@@ -84,16 +89,16 @@ export default class App {
     this.dataSaver.setCurrentPage(1);
     try {
       await this.dataSaver.setTotalPageFilms('queue');
+      await this.dataMarkup.getCurrentFilmsQueue();
+      this.dataPagination.initPagination();
     } catch (error) {
       Message.error(error);
     }
     this.refs.buttonContainer.classList.remove('hidden');
     this.refs.inputFormRef.classList.add('hidden');
     this.refs.header.classList.replace('header-home', 'header-library');
-    this.dataMarkup.getCurrentFilmsQueue();
     this.refs.btnHomeRef.classList.remove('btn__header--current-page');
     this.refs.btnLybraryRef.classList.add('btn__header--current-page');
-
     this.refs.queueBtnRef.addEventListener('click', this.onClickQueue);
     this.refs.watchedBtnRef.addEventListener('click', this.onClickWatched);
     this.refs.watchedBtnRef.classList.remove('btn-cover-library');
@@ -102,17 +107,13 @@ export default class App {
     // console.log('hide input, show button, markup queue');
   };
 
-  //Клик Log in
-  onClickLogIn = () => {
-    this.refs.btnLogOut.classList.remove('hidden');
-  };
-
   // Клик LOG OUT
   onClickLogOut = () => {
+    sessionStorage.removeItem('user');
     this.refs.btnLogOut.classList.add('hidden');
-    // this.onClickLogoHome();
     this.refs.btnLybraryRef.classList.add('hidden');
     this.refs.btnAuthRef.classList.remove('hidden');
+    this.showPopularPage();
   };
 
   // input  название = () => {}
@@ -120,9 +121,12 @@ export default class App {
     e.preventDefault();
     this.spinner.showSpinner();
     const inputValue = e.currentTarget.elements.query.value;
-    inputValue
-      ? this.dataMarkup.renderSearchingFilms(inputValue)
-      : this.dataMarkup.renderPopularFilms();
+    if (inputValue) {
+      await this.dataMarkup.renderSearchingFilms(inputValue);
+    } else {
+      await this.dataMarkup.renderPopularFilms();
+    }
+    this.dataPagination.initPagination();
   };
 
   onClickWatched = async () => {
@@ -131,7 +135,8 @@ export default class App {
     this.dataSaver.setActivePage('watched');
     try {
       await this.dataSaver.setTotalPageFilms('watched');
-      this.dataMarkup.getCurrentFilmsWatched();
+      await this.dataMarkup.getCurrentFilmsWatched();
+      this.dataPagination.initPagination();
       this.refs.queueBtnRef.classList.remove('btn-cover-library');
       this.refs.watchedBtnRef.classList.add('btn-cover-library');
     } catch (error) {
@@ -147,7 +152,8 @@ export default class App {
     this.dataSaver.setActivePage('queue');
     try {
       await this.dataSaver.setTotalPageFilms('queue');
-      this.dataMarkup.getCurrentFilmsQueue();
+      await this.dataMarkup.getCurrentFilmsQueue();
+      this.dataPagination.initPagination();
       this.refs.watchedBtnRef.classList.remove('btn-cover-library');
       this.refs.queueBtnRef.classList.add('btn-cover-library');
     } catch (error) {
