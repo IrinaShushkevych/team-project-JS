@@ -44,7 +44,7 @@ export default class CustomPagination {
       switch (activePage) {
         case 'home':
           if (refs.inputFormRef.value) {
-            this.dataMarkup.renderSearchingFilms();
+            this.dataMarkup.renderSearchingFilms(refs.inputRef.value);
           } else {
             console.log('popular');
             this.dataMarkup.renderPopularFilms();
