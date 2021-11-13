@@ -17,8 +17,8 @@ export default class Arrow {
     };
     this.observer_header = new IntersectionObserver(this.isScrolling, option);
     this.observer_footer = new IntersectionObserver(this.isScrolling, option);
-    this.observer_header.observe(document.querySelector('.header'));
-    this.observer_footer.observe(document.querySelector('.footer'));
+    this.observer_header.observe(this.header);
+    this.observer_footer.observe(this.footer);
   };
 
   render = () => {
