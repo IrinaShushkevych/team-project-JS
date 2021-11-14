@@ -23,6 +23,7 @@ export default class DataSaver {
   }
 
   clearLocalstoredge = () => {
+    sessionStorage.removeItem('user');
     localStorage.removeItem('genres');
     localStorage.setItem('numberListPage', 1);
     localStorage.setItem('totalPages', 0);
