@@ -10,33 +10,155 @@ import DataSaver from './dataSaver.js';
 import Message from './message.js';
 import LoadSpinner from './loadSpinner';
 import DataMarkup from './dataMarkup.js';
+import DataService from './DataServise';
+import { getIdTokenResult } from '@firebase/auth';
 
 export default class FilterBtn {
     constructor(){
+        this.DataService = new DataService();
         this.dataMarkup = new DataMarkup();
         this.messsage = new Message();
         this.dataSaver = new DataSaver();
         this.dataAPI = new APIService();
         this.spinner = new LoadSpinner();
         this.listRef = refs.listUlFilms;
+        this.refs = refs;
         this.itemFilterBtn = refs.filterItem;
         this.iconFilterBtn = refs.iconSvg;
         this.filmTpl = filmTpl;
         this.listCardTpl = listCardTpl;
 
     }
-    filterItemBtn = ()=>{
-        this.itemFilterBtn.classList.remove('.hidden')
-    }
-    addListenerIconSvg = ()=>{
-        this.iconFilterBtn.addEventListener('click', this.filterItemBtn)
-    }
+    
+    addListFilterGenre = ()=>{
+        this.refs.genreBtn.addEventListener('click', (e)=>{
+            
+            this.refs.genreBtn.classList.toggle('checked');
+            this.refs.yearBtn.classList.remove('checked');
 
+            this.refs.sortGenreList.classList.toggle('is_hidden');
+            this.refs.yearList.classList.add('is_hidden');
+
+        })
+    }
+    addListFilterYears = ()=>{
+        this.refs.yearBtn.addEventListener('click', ()=>{
+            this.refs.yearBtn.classList.toggle('checked');
+            this.refs.genreBtn.classList.remove('checked');
+
+            this.refs.yearList.classList.toggle('is_hidden');
+            this.refs.sortGenreList.classList.add('is_hidden');
+
+        })
+    }
+    
+    listFilterGenresRender=()=>{
+        this.refs.sortGenreList.addEventListener('click', async el =>{
+            // console.log(el)
+            // console.log(el.target)
+            const id = el.target.dataset.id
+            const fechIdGenres = await this.filterFechGenresID(id);
+            this.dataMarkup.renderMarkup(fechIdGenres)
+            this.dataSaver.setActivePage("filterGenres")           
+            
+            // this.dataMarkup.renderMarkup();
+
+        })
+
+    }
+    filterFechGenresID= async(id)=>{
+        if(id){
+            this.idGenres = id 
+
+
+
+
+        }
+    //     
+    let popularFilms = 'discover/movie?';
+    this.url =
+      this.DataService.baseUrl + popularFilms + this.DataService.keyAPI + `&with_genres=${this.idGenres}&page=${this.dataSaver.getCurrentPage()}`;
+    const result = await this.DataService.fetchData(this.url);
+    await this.DataService.fixFetchObject(result.results);
+
+    const genresResults = result.results
+   
+
+    
+    return  genresResults;
+    }
+    // renderFilterListItemGenre=()=>{
+        // https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
+       
+        
+
+    // }
+
+
+
+
+
+
+
+
+    listFilterYearsRender=()=>{
+        this.refs.yearList.addEventListener('click', (el)=>{
+            el.path.forEach(value=>{
+                if(value.className === 'year-list-item'){
+                    this.refs.yearBtn.textContent = value.textContent
+                    this.refs.yearBtn.dataset.id = value.dataset.id
+                    this.refs.yearList.classList.add('is-hidden')
+                    this.refs.yearBtn.classList.remove('checked')
+                    
+                }
+            })
+            this.dataMarkup.renderMarkup();
+
+        })
+    }
+    
+    
+
+
+    // fechYearGenresFilms= (searchValue = false)=>{
+    //     return new Promise((resolve, reject)=>{
+    //         let year = '&primary_release_year=' + this.refs.yearBtn.dataset.id;
+    //         let genres = '&with_genres=' + refs.genreBtn.dataset.id;
+
+    //         if(!searchValue){
+    //             fetch(`${this.DataService.baseUrl}?${this.DataService.keyAPI}&page=${this.dataSaver.getCurrentPage()}${this.DataService.decodeGenres}`)
+    //             .then(data=>{
+    //                 if(!data.ok){
+    //                     reject(new Error(`Ошыбка`))
+    //                 }
+    //                 return data
+                    
+    //             })
+    //             .then(data=>console.log(data))
+    //             .then(json=>{
+    //                 if(json.results.length > 0){
+    //                     return json
+    //                 }
+    //                 throw "пустий масив [виконано]"
+    //             })
+    //             .then(json=>resolve(json))
+    //             .catch(data=>console.log('ошибка дальше '))
+    //         }
+            
+    //     })
+
+
+    // }
+    // populary week 
+    
+      
+    // ****
+
+
+    
 }
-
     
-    
-    
+   
     
 
 

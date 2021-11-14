@@ -17,7 +17,7 @@
 .genre-wrapper,
 .sort-wrapper,
 .year-wrapper {
-  color: white;
+  color: $primary-white-color;
   
 }
 .genre-wrapper,
@@ -44,15 +44,40 @@
   height: 104px;
   overflow: hidden;
   overflow-y: scroll;
+  background: $filterColor;
+  
+  
 }
+::-webkit-scrollbar {
+  width: 15px;
+}
+::-webkit-scrollbar-track {
+  background: $scrollbar;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .2) inset;
+}
+::-webkit-scrollbar-thumb {
+  background: $filterColor;
+  border-radius: 8px;
+  border: 3px solid $scrollbar;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $filterColor;
+}
+
 
 .category-list-item,
 .sort-list-item,
 .year-list-item {
-  background-color: black;
+  
+  background-color: $filterColor;
+  color: $primary-white-color;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .2) inset;
+  
   &:hover {
     cursor: pointer;
     background-color: $accent-color;
+    transition: 250ms;
   }
 }
 .sort,
@@ -60,9 +85,9 @@
 .year {
   text-align: center;
   padding: 5px;
-  background-color: #818181b0;
+  background-color: $filterColor;
   color: $primary-white-color;
-  border-radius: 9px;
+  border-radius: 5px;
   font-weight: 500;
   transition: 250ms;
 }
@@ -84,8 +109,9 @@
 .category-list-item,
 .year-list-item {
   padding: 5px;
-  background-color: white;
-  color: black;
+ 
+  color: $bg-color;
+  
 }
 
 .svg-icon{
@@ -99,4 +125,16 @@
 }
 .svg-filter{
 
+}
+.disable {
+  pointer-events: none;
+  opacity: 0.2;
+  color: gray;
+}
+.checked {
+  border-radius: 9px 9px 0 0;
+}
+.is_hidden {
+  opacity: 0;
+  transition: all 0.3s;
 }

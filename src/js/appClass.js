@@ -6,8 +6,10 @@ import DataService from './DataServise';
 import LoadSpinner from './loadSpinner';
 import Message from './message.js';
 import CustomPagination from './pagination';
+import FilterBtn from './filterBtn.js'
 export default class App {
   constructor() {
+    this.filterBtn = new FilterBtn();
     this.dataMarkup = new DataMarkup();
     this.modal = new Modal();
     this.refs = refs;
@@ -30,6 +32,13 @@ export default class App {
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
     this.refs.list.addEventListener('click', this.onClickCardItem);
     this.dataPagination.initPagination(this.dataSaver.getTotalPages());
+    // filter
+    this.filterBtn.addListFilterGenre();
+    this.filterBtn.addListFilterYears();
+    this.filterBtn.listFilterGenresRender();
+    
+   
+    // ****
   };
 
   onClickAuth = () => {
@@ -144,4 +153,21 @@ export default class App {
     this.dataMarkup.modalFilmMurcup(film);
     this.modal.onOpenModal(card.dataset.id, 'film');
   };
+  
+  addListFilterGenre = ()=>{
+    this.refs.genreBtn.addEventListener('click', (e)=>{
+        console.log(e.target)
+        this.refs.genreBtn.classList.toggle('checked');
+        this.refs.yearBtn.classList.remove('checked');
+
+        this.refs.sortGenreList.classList.toggle('is_hidden');
+        this.refs.yearList.classList.add('is_hidden');
+
+    })
 }
+
+
+
+
+}
+

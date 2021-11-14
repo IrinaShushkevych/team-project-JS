@@ -125,4 +125,11 @@ export default {
     }
   ],
   yearList:document.querySelector('.year-list'),
+  genreBtn: document.querySelector('.genre'),
+  sortGenreList:document.querySelector('.category-list'),
+  sortPopulary: document.querySelector('.sort'),
+  yearBtn: document.querySelector('.year'),
+  sortWrapper:document.querySelector('.sort-wrapper'),  
+  genreWrapper:document.querySelector('.genre-wrapper'),
+  
 };

@@ -1,4 +1,5 @@
 import './sass/main.scss';
+import './js/arrListYears';
 
 import App from './js/appClass';
 

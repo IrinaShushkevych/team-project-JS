@@ -12,7 +12,9 @@ export default class APIService {
 
   fetchData = async url => {
     const response = await fetch(url);
+    // console.log(response)
     return response.json();
+    
   };
 
   fetchPopularFilms = async () => {
@@ -45,6 +47,7 @@ export default class APIService {
       return array;
     });
     return genreNames;
+    
   };
 
   fixFetchObject = async response => {
@@ -74,6 +77,8 @@ export default class APIService {
     const result = await this.fetchData(this.url);
     this.dataSaver.setFilmsGenres(result);
     return result.genres;
+    
+    
   };
 
   fixImagePath = obj => {
