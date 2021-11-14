@@ -20,7 +20,7 @@ export default {
   modalRef: document.querySelector('.modal'),
   modalCardRef: document.querySelector('.card__container--modal'),
 
-  list: document.querySelector('.js-film-list'),
+  // list: document.querySelector('.js-film-list'),
   btnClose: document.querySelector('.modal__button'),
   backdrop: document.querySelector('.backdrop'),
   itemAddWatched: document.querySelector('.js-add-watched'),
@@ -28,4 +28,6 @@ export default {
   itemAddQueue: document.querySelector('.js-add-queue'),
   itemRemoveQueue: document.querySelector('.js-remove-queue'),
   buttonContainer: document.querySelector('.button-container'),
+  buttonGetVideos: document.querySelector('.js-add-video'),
+  trailerContainer: document.querySelector('.js-video-trailer'),
 };

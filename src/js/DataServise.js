@@ -76,6 +76,14 @@ export default class APIService {
     return result.genres;
   };
 
+  fetchFilmVideos = async movieId => {
+    let movieVideousEndpoint = `/movie/${movieId}/videos?`;
+    let fetchMovieVideosUrl = this.baseUrl + movieVideousEndpoint + this.keyAPI;
+    const result = await this.fetchData(fetchMovieVideosUrl);
+    console.log(result.results);
+    return result.results;
+  };
+
   fixImagePath = obj => {
     console.log(img);
     obj.map(film => {

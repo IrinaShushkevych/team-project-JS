@@ -13,10 +13,11 @@ export default class Modal {
     this.dataMarkup = new DataMarkup();
   }
 
-  onOpenModal = (id, page) => {
+  onOpenModal = (id, page, trailer) => {
     this.page = page;
     if (id) {
       this.id = id;
+      this.trailer = trailer;
       this.getRefs();
     }
 
@@ -24,6 +25,7 @@ export default class Modal {
     this.refs.backdrop.addEventListener('click', this.onBackdropClick);
     this.refs.backdrop.classList.remove('visually-hidden');
     window.addEventListener('keydown', this.onEscKeyPress);
+    this.refs.buttonGetVideos.addEventListener('click', this.onBtnTrailerPress);
 
     if (page === 'film') {
       if (sessionStorage.getItem('user') === null) {
@@ -55,6 +57,9 @@ export default class Modal {
     this.refs.modalCardRef.innerHTML = '';
     // team
     this.refs.modalContainer.innerHTML = '';
+
+    this.refs.buttonGetVideos.removeEventListener('click', this.onBtnTrailerPress);
+    this.refs.trailerContainer.innerHTML = '';
   };
 
   onBtnClosePress = () => {
@@ -84,6 +89,8 @@ export default class Modal {
     this.refs.itemRemoveWatched = document.querySelector('.js-remove-watched');
     this.refs.itemAddQueue = document.querySelector('.js-add-queue');
     this.refs.itemRemoveQueue = document.querySelector('.js-remove-queue');
+    this.refs.buttonGetVideos = document.querySelector('.js-add-video');
+    this.refs.trailerContainer = document.querySelector('.js-video-trailer');
   };
 
   addBtnListeners = () => {
@@ -196,8 +203,18 @@ export default class Modal {
     }
   };
 
+  checkVideo = async id => {};
+
   addAuth = callback => {
     this.modalAuth = new AuthForm(callback, this.onCloseModal);
     this.modalAuth.renderModalAuth();
+  };
+
+  onBtnTrailerPress = () => {
+    // this.fetchFilmVideos(this.id);
+    console.log('Trailer ' + this.trailer.key);
+    this.refs.trailerContainer.innerHTML = `
+      <iframe width="560" height="315" src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    `;
   };
 }
