@@ -214,3 +214,21 @@
 
   color: inherit;
 }
+
+.trailer {
+  z-index: 3;
+  max-width: 100%;
+  padding: 10px 0px;
+
+  // @media screen and (min-width: $bp-tablet) {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   padding-top: 2px;
+  //   padding-right: 30px;
+  //   padding-left: 30px;
+  // }
+
+  // @media screen and (min-width: $bp-desktop) {
+  //   padding-top: 10px;
+  // }
+}

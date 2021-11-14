@@ -28,6 +28,6 @@
   visibility: hidden; /* скрывает модальное окно */
 }
 
-.backdrop.visusly-hidden .modal {
+.backdrop.visually-hidden .modal {
   transform: translate(-50%, -50%) scale(0.1);
 }

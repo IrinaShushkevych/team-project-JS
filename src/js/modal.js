@@ -27,6 +27,8 @@ export default class Modal {
     window.addEventListener('keydown', this.onEscKeyPress);
     this.refs.buttonGetVideos.addEventListener('click', this.onBtnTrailerPress);
 
+    // this.openTrailer()
+
     if (page === 'film') {
       if (sessionStorage.getItem('user') === null) {
         this.getRefs();
@@ -120,6 +122,7 @@ export default class Modal {
       Message.error(error.message);
     } finally {
       this.load.hideSpinner();
+      this.onCloseModal();
     }
   };
 
@@ -134,6 +137,7 @@ export default class Modal {
       Message.error(error.message);
     } finally {
       this.load.hideSpinner();
+      this.onCloseModal();
     }
   };
 
@@ -148,6 +152,7 @@ export default class Modal {
       Message.error(error);
     } finally {
       this.load.hideSpinner();
+      this.onCloseModal();
     }
   };
 
@@ -162,6 +167,7 @@ export default class Modal {
       Message.error(error);
     } finally {
       this.load.hideSpinner();
+      this.onCloseModal();
     }
   };
 
@@ -213,8 +219,47 @@ export default class Modal {
   onBtnTrailerPress = () => {
     // this.fetchFilmVideos(this.id);
     console.log('Trailer ' + this.trailer.key);
+    // this.refs.modalCardRef.classList.add('.visually-hidden');
+    // this.refs.modalCardRef.innerHTML = '';
+    this.openTrailer();
+  };
+
+  openTrailer = () => {
+    //  let
+    // this.refs.trailerContainer.insertAdjacentHTML(
+    //   `
+    //   <div class="modal">
+    //     <div class="modal__thumb">
+    //       <button class="modal__button" data-modal-close>
+    //         <img src="./images/close.svg" alt="" />
+    //       </button>
+    //     <iframe class='trailer' width="560" height="315" src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    //     </div>
+    //   </div>
+    // `,
+    // );
+    // const filmVideos = await this.dataService.fetchFilmVideos(id);
+    // const trailer = filmVideos.find(function (item) {
+    //   return item.name.toUpperCase().includes('TRAILER');
+    // });
+    // // this.dataMarkup.trailerFilmMarkup(film, trailer);
+    // this.modal.onOpenModal(card.dataset.id, 'film', trailer);
+
     this.refs.trailerContainer.innerHTML = `
-      <iframe width="560" height="315" src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+             
+        <iframe class='trailer' width="560" height="315" src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+           
     `;
+
+    // this.refs.trailerContainer.innerHTML = `
+    //   <div class="modal">
+    //     <div class="modal__thumb">
+    //       <button class="modal__button" data-modal-close>
+    //         <img src="./images/close.svg" alt="" />
+    //       </button>
+    //     <iframe class='trailer' width="560" height="315" src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    //     </div>
+    //   </div>
+    // `;
   };
 }
