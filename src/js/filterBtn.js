@@ -101,21 +101,7 @@ export default class FilterBtn {
 
 
 
-    listFilterYearsRender=()=>{
-        this.refs.yearList.addEventListener('click', (el)=>{
-            el.path.forEach(value=>{
-                if(value.className === 'year-list-item'){
-                    this.refs.yearBtn.textContent = value.textContent
-                    this.refs.yearBtn.dataset.id = value.dataset.id
-                    this.refs.yearList.classList.add('is-hidden')
-                    this.refs.yearBtn.classList.remove('checked')
-                    
-                }
-            })
-            this.dataMarkup.renderMarkup();
-
-        })
-    }
+   
     
     
 
