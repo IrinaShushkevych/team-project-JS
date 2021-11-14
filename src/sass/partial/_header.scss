@@ -141,6 +141,16 @@
   @media screen and (min-width: $bp-tablet) {
     margin-right: 10px;
   }
+
+  animation: spin 3s linear 0s infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
 }
 
 .logo__header {
@@ -157,7 +167,7 @@
 
 .btn__header {
   &:first-child {
-    margin-right: 18px;
+    margin-right: 38px;
   }
 }
 
@@ -269,5 +279,9 @@
 }
 
 .btn-log-out {
-  margin-left: 10px;
+  margin-left: 38px;
+}
+
+.search-img {
+  cursor: pointer;
 }

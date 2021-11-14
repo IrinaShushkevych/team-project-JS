@@ -78,3 +78,15 @@
     line-height: 1.18;
   }
 }
+
+.heart__image {
+  animation: spin 3s linear 0s infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
