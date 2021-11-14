@@ -2,18 +2,18 @@ import Pagination from 'tui-pagination';
 import refs from './refs.js';
 import DataSaver from './dataSaver.js';
 import DataMarkup from './dataMarkup';
-// import APIService from './DataServise.js';
+
 export default class CustomPagination {
   constructor() {
     this.refs = refs;
     this.dataSaver = new DataSaver();
     this.dataMarkup = new DataMarkup();
   }
-  initPagination = totalPages => {
-    console.log(totalPages);
+
+  initPagination = () => {
     const paginationOptions = {
-      totalItems: totalPages,
-      itemsPerPage: 20,
+      totalItems: this.dataSaver.getTotalPages(),
+      itemsPerPage: 1,
       visiblePages: 5,
       centerAlign: true,
       firstItemClassName: 'tui-first-child',
@@ -36,11 +36,27 @@ export default class CustomPagination {
       },
     };
 
-    const pagination = new Pagination(refs.paginationCase, paginationOptions);
+    this.pagination = new Pagination(refs.paginationCase, paginationOptions);
 
-    pagination.on('afterMove', async event => {
+    this.pagination.on('afterMove', async event => {
       this.dataSaver.setCurrentPage(event.page);
-      this.dataMarkup.renderPopularFilms();
+      const activePage = this.dataSaver.getActivePage();
+      switch (activePage) {
+        case 'home':
+          if (refs.inputRef.value) {
+            this.dataMarkup.renderSearchingFilms(refs.inputRef.value);
+          } else {
+            console.log('popular');
+            this.dataMarkup.renderPopularFilms();
+          }
+          break;
+        case 'watched':
+          this.dataMarkup.getCurrentFilmsWatched();
+          break;
+        case 'queue':
+          this.dataMarkup.getCurrentFilmsQueue();
+          break;
+      }
     });
   };
 }

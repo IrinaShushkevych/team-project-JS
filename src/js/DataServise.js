@@ -27,7 +27,7 @@ export default class APIService {
     let totalPages = dataObj.total_pages;
     this.dataSaver.setTotalPages(totalPages);
     this.dataSaver.setHomeFilms(dataPopular);
-    this.dataSaver.setCurrentPage(this.page);
+    // this.dataSaver.setCurrentPage(this.page);
     // console.log(dataPopular);
     return dataPopular;
   };

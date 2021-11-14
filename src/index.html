@@ -35,8 +35,13 @@
               <button class="library-btn__header btn__header js-lybrary hidden">
                 <span class="btn-text">MY LIBRARY</span>
               </button>
+              <button class="library-btn__header btn__header js-log-out hidden">
+                <!-- <img src="./images/exit.svg" alt="login" class="login-img" width="20" height="20" /> -->
+                <span class="btn-text">LOG OUT</span>
+              </button>
             </div>
-            <button class="btn__header js-auth">
+            <button class="btn__header js-auth btn-login__header">
+              <!-- <img src="./images/enter.svg" alt="login" class="login-img" width="20" height="20" /> -->
               <span class="btn-text">LOG IN</span>
             </button>
           </div>
@@ -57,45 +62,30 @@
           </form>
         </div>
         <div class="svg-filter">
-          <div class="parametr">
-            <div class="sort-wrapper">
-              <p class="sort" data-id="populary-week">Popullary Week</p>
-            </div>
-            <div class="genre-wrapper">
-              <p class="genre" data-id="">Genre</p>
-              <ul class="category-list is_hidden">
-                <li class="category-list-item" data-id="28">Action</li>
-                <li class="category-list-item" data-id="12">Adventure</li>
-                <li class="category-list-item" data-id="16">Animation</li>
-                <li class="category-list-item" data-id="35">Comedy</li>
-                <li class="category-list-item" data-id="80">Crime</li>
-                <li class="category-list-item" data-id="99">Documentary</li>
-                <li class="category-list-item" data-id="18">Drama</li>
-                <li class="category-list-item" data-id="10751">Family</li>
-                <li class="category-list-item" data-id="14">Fantasy</li>
-                <li class="category-list-item" data-id="36">History</li>
-              </ul>
-            </div>
-            <div class="year-wrapper">
-              <p class="year" data-id="">Year</p>
-              <ul class="year-list is_hidden"></ul>
-            </div>
-            <div class="rating-wrapper year-wrapper">
-              <p class="rating year">Rating</p>
-            </div>
-            <div class="svg-icon">
-              <a href="#" class="svg-link">
-                <svg class="svg-item">
-                  <use href="./images/svg_films.svg#svg-films"></use>
-                </svg>
-              </a>
-            </div>
-            
+          <div class="buttons__container">
+            <ul class="filter__list">
+              <li class="filter__item">
+                <button type="button" id="trending" class="filter__button">Trending week</button>
+              </li>
+              <li class="filter__item">
+                <button type="button" id="years" class="filter__button">Years</button>
+              </li>
+              <li class="filter__item">
+                <button type="button" id="top-rated" class="filter__button">Top rated</button>
+              </li>
+              <li class="filter__item">
+                <button type="button" id="genres" class="filter__button">Genres</button>
+              </li>
+              <li class="svg-filter__item">
+                <a href="#header" class="svg-filter__link">
+                  <svg class="svg-filter__icon">
+                    <use href="./images/svg_films.svg#svg-films"></use>
+                  </svg>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-          
-              
-        
       </div>
     </header>
     <main>
@@ -116,7 +106,7 @@
     <footer class="footer" id="footer">
       <div class="container">
         <p class="footer__text">
-          <span class="footer__block-text">&copy; 2020 </span>
+          <span class="footer__block-text">&copy; 2021 </span>
           <span class="footer__block-text">All Rights Reserved </span>
         </p>
         <p class="footer__text">

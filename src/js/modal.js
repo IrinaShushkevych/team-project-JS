@@ -13,47 +13,37 @@ export default class Modal {
     this.dataMarkup = new DataMarkup();
   }
 
-  init = () => {
-    console.log('Modal');
-  };
-
   onOpenModal = (id, page) => {
     this.page = page;
     if (id) {
       this.id = id;
       this.getRefs();
-      this.checkQueue(id);
-      this.checkWatched(id);
     }
 
-    // || 'queue')
-    // this.dataSaver.setFilmToQueue(id);
-    // this.dataSaver.setFilmToWatched(id);
-    // и;
-    // this.dataMarkup.getCurrentFilmsQueue();
-    // this.dataMarkup.getCurrentFilmsWatched();
-
-    // if (typeModal = film) {
-    //добавляем класс на модальное окно дла фильмов
-    //   } esle if (typeModal = auth) {
-    // добавляем класс для стилей аунтефикации
-    //   } esle if (typeModal = team) {
-    //  добавляем класс для стилей команды
-    //   }
-    // this.checkWatched();
-    refs.btnClose.addEventListener('click', this.onBtnClosePress);
-    refs.backdrop.addEventListener('click', this.onBackdropClick);
-    refs.backdrop.classList.remove('visually-hidden');
+    this.refs.btnClose.addEventListener('click', this.onBtnClosePress);
+    this.refs.backdrop.addEventListener('click', this.onBackdropClick);
+    this.refs.backdrop.classList.remove('visually-hidden');
     window.addEventListener('keydown', this.onEscKeyPress);
+
     if (page === 'film') {
-      this.addBtnListeners();
+      if (sessionStorage.getItem('user') === null) {
+        this.getRefs();
+        this.refs.itemAddWatched.classList.add('hidden');
+        this.refs.itemRemoveWatched.classList.add('hidden');
+        this.refs.itemAddQueue.classList.add('hidden');
+        this.refs.itemRemoveQueue.classList.add('hidden');
+      } else {
+        this.checkQueue(id);
+        this.checkWatched(id);
+        this.addBtnListeners();
+      }
     }
   };
 
   onCloseModal = () => {
-    refs.btnClose.removeEventListener('click', this.onBtnClosePress);
-    refs.backdrop.removeEventListener('click', this.onBackdropClick);
-    refs.backdrop.classList.add('visually-hidden');
+    this.refs.btnClose.removeEventListener('click', this.onBtnClosePress);
+    this.refs.backdrop.removeEventListener('click', this.onBackdropClick);
+    this.refs.backdrop.classList.add('visually-hidden');
     window.removeEventListener('keydown', this.onEscKeyPress);
     if (this.page === 'film') {
       this.removeBtnListeners();
@@ -62,9 +52,9 @@ export default class Modal {
       this.modalAuth.removeListeners();
       this.modalAuth = null;
     }
-    refs.modalCardRef.innerHTML = '';
+    this.refs.modalCardRef.innerHTML = '';
     // team
-    refs.modalContainer.innerHTML = '';
+    this.refs.modalContainer.innerHTML = '';
   };
 
   onBtnClosePress = () => {
@@ -77,9 +67,9 @@ export default class Modal {
     }
   };
 
-  onOpenModalTeam = () => {
-    console.log('Open modal team');
-  };
+  // onOpenModalTeam = () => {
+  //   console.log('Open modal team');
+  // };
 
   onEscKeyPress = event => {
     const ESC_KEY_CODE = 'Escape';
@@ -90,35 +80,34 @@ export default class Modal {
   };
 
   getRefs = () => {
-    refs.itemAddWatched = document.querySelector('.js-add-watched');
-    refs.itemRemoveWatched = document.querySelector('.js-remove-watched');
-    refs.itemAddQueue = document.querySelector('.js-add-queue');
-    refs.itemRemoveQueue = document.querySelector('.js-remove-queue');
+    this.refs.itemAddWatched = document.querySelector('.js-add-watched');
+    this.refs.itemRemoveWatched = document.querySelector('.js-remove-watched');
+    this.refs.itemAddQueue = document.querySelector('.js-add-queue');
+    this.refs.itemRemoveQueue = document.querySelector('.js-remove-queue');
   };
 
   addBtnListeners = () => {
     // this.getRefs();
-    refs.itemAddWatched.addEventListener('click', this.onBtnAddWatchedPress);
-    refs.itemRemoveWatched.addEventListener('click', this.onBtnRemoveWatchedPress);
-    refs.itemAddQueue.addEventListener('click', this.onBtnAddQueuePress);
-    refs.itemRemoveQueue.addEventListener('click', this.onBtnRemoveQueuePress);
+    this.refs.itemAddWatched.addEventListener('click', this.onBtnAddWatchedPress);
+    this.refs.itemRemoveWatched.addEventListener('click', this.onBtnRemoveWatchedPress);
+    this.refs.itemAddQueue.addEventListener('click', this.onBtnAddQueuePress);
+    this.refs.itemRemoveQueue.addEventListener('click', this.onBtnRemoveQueuePress);
   };
 
   removeBtnListeners = () => {
     // this.getRefs();
-    refs.itemAddWatched.removeEventListener('click', this.onBtnAddWatchedPress);
-    refs.itemRemoveWatched.removeEventListener('click', this.onBtnRemoveWatchedPress);
-    refs.itemAddQueue.removeEventListener('click', this.onBtnAddQueuePress);
-    refs.itemRemoveQueue.removeEventListener('click', this.onBtnRemoveQueuePress);
+    this.refs.itemAddWatched.removeEventListener('click', this.onBtnAddWatchedPress);
+    this.refs.itemRemoveWatched.removeEventListener('click', this.onBtnRemoveWatchedPress);
+    this.refs.itemAddQueue.removeEventListener('click', this.onBtnAddQueuePress);
+    this.refs.itemRemoveQueue.removeEventListener('click', this.onBtnRemoveQueuePress);
   };
 
   onBtnAddWatchedPress = async event => {
     try {
       this.load.showSpinner();
       const res = await this.dataSaver.addFilm(this.id, 'watched');
-      console.log('itemAddWatched');
-      refs.itemAddWatched.classList.add('hidden');
-      refs.itemRemoveWatched.classList.remove('hidden');
+      this.refs.itemAddWatched.classList.add('hidden');
+      this.refs.itemRemoveWatched.classList.remove('hidden');
       this.reRenderPage();
     } catch (error) {
       Message.error(error.message);
@@ -131,9 +120,8 @@ export default class Modal {
     try {
       this.load.showSpinner();
       const res = await this.dataSaver.removeData(this.id, 'watched');
-      console.log('itemRemoveWatched');
-      refs.itemAddWatched.classList.remove('hidden');
-      refs.itemRemoveWatched.classList.add('hidden');
+      this.refs.itemAddWatched.classList.remove('hidden');
+      this.refs.itemRemoveWatched.classList.add('hidden');
       this.reRenderPage();
     } catch (error) {
       Message.error(error.message);
@@ -146,8 +134,8 @@ export default class Modal {
     try {
       this.load.showSpinner();
       const res = await this.dataSaver.addFilm(this.id, 'queue');
-      refs.itemAddQueue.classList.add('hidden');
-      refs.itemRemoveQueue.classList.remove('hidden');
+      this.refs.itemAddQueue.classList.add('hidden');
+      this.refs.itemRemoveQueue.classList.remove('hidden');
       this.reRenderPage();
     } catch (error) {
       Message.error(error);
@@ -160,8 +148,8 @@ export default class Modal {
     console.log('itemRemoveQueue');
     try {
       const res = await this.dataSaver.removeData(this.id, 'queue');
-      refs.itemAddQueue.classList.remove('hidden');
-      refs.itemRemoveQueue.classList.add('hidden');
+      this.refs.itemAddQueue.classList.remove('hidden');
+      this.refs.itemRemoveQueue.classList.add('hidden');
       this.reRenderPage();
     } catch (error) {
       Message.error(error);
@@ -172,6 +160,8 @@ export default class Modal {
 
   reRenderPage = async () => {
     const page = this.dataSaver.getActivePage();
+    this.checkQueue(this.id);
+    this.checkWatched(this.id);
     switch (page) {
       case 'watched':
         this.dataMarkup.getCurrentFilmsWatched();
@@ -187,22 +177,22 @@ export default class Modal {
   checkWatched = async id => {
     const filmInList = await this.dataSaver.isFilmInList(id, 'watched');
     if (filmInList) {
-      refs.itemAddWatched.classList.add('hidden');
-      refs.itemRemoveWatched.classList.remove('hidden');
+      this.refs.itemAddWatched.classList.add('hidden');
+      this.refs.itemRemoveWatched.classList.remove('hidden');
     } else {
-      refs.itemAddWatched.classList.remove('hidden');
-      refs.itemRemoveWatched.classList.add('hidden');
+      this.refs.itemAddWatched.classList.remove('hidden');
+      this.refs.itemRemoveWatched.classList.add('hidden');
     }
   };
 
   checkQueue = async id => {
     const filmInList = await this.dataSaver.isFilmInList(id, 'queue');
     if (filmInList) {
-      refs.itemAddQueue.classList.add('hidden');
-      refs.itemRemoveQueue.classList.remove('hidden');
+      this.refs.itemAddQueue.classList.add('hidden');
+      this.refs.itemRemoveQueue.classList.remove('hidden');
     } else {
-      refs.itemAddQueue.classList.remove('hidden');
-      refs.itemRemoveQueue.classList.add('hidden');
+      this.refs.itemAddQueue.classList.remove('hidden');
+      this.refs.itemRemoveQueue.classList.add('hidden');
     }
   };
 
