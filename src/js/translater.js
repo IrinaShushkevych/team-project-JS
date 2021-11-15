@@ -4,7 +4,11 @@ import DataSaver from './dataSaver.js';
 export default class Translater {
   static translate = root => {
     const save = new DataSaver();
-    const lang = save.getLanguage();
+    let lang = save.getLanguage();
+    if (lang === null) {
+      lang = 'en';
+      save.setLanguage('en');
+    }
     const data = langData[lang];
     const arrEl = root.querySelectorAll('.lang');
     console.log(arrEl);
