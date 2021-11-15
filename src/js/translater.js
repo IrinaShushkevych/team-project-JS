@@ -7,8 +7,10 @@ export default class Translater {
     const lang = save.getLanguage();
     const data = langData[lang];
     const arrEl = root.querySelectorAll('.lang');
+    console.log(arrEl);
     const arrInputEl = root.querySelectorAll('.lang-input');
     arrEl.forEach(el => {
+      console.log(el);
       el.innerHTML = data[el.dataset.key];
     });
     arrInputEl.forEach(el => {
