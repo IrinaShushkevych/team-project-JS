@@ -63,7 +63,9 @@ export default class {
         el.classList.add('lang-change');
       }
     });
-    this.save.clearLocalstoredge();
+    const rootpage = document.querySelector('html');
+    rootpage.setAttribute('lang', this.lang);
+    localStorage.removeItem('genres');
     this.dataMarkup.updatePage('lang');
   };
 
