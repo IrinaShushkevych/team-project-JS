@@ -56,6 +56,15 @@
 
 .footer__image {
   margin: 0 10px;
+  animation: spin 3s linear 0s infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
 }
 
 .footer__link {

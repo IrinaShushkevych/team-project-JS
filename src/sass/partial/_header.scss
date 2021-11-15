@@ -140,9 +140,18 @@
 
 .header_link:hover {
   .logo-img {
-    transform: scale(1.5, 1.5);
-    transition-duration: 250ms;
-    transition-timing-function: $timing-function;
+    animation: spin 3s linear 0s infinite;
+  }
+  @keyframes spin {
+    from {
+      transform: rotateY(0deg);
+    }
+    to {
+      transform: rotateY(360deg);
+    }
+    // transform: scale(1.5, 1.5);
+    // transition-duration: 250ms;
+    // transition-timing-function: $timing-function;
   }
 }
 
