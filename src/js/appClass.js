@@ -68,7 +68,7 @@ export default class App {
   showPopularPage = async () => {
     this.spinner.showSpinner();
     this.dataSaver.setCurrentPage(1);
-    this.dataSaver.setActivePage('home');    
+    this.dataSaver.setActivePage('home');
     await this.dataMarkup.renderPopularFilms();
     this.dataPagination.initPagination();
     this.refs.btnLybraryRef.classList.remove('btn__header--current-page');
@@ -135,15 +135,15 @@ export default class App {
       } else {
         await this.dataMarkup.renderPopularFilms();
       }
-      this.dataPagination.initPagination();      
+      this.dataPagination.initPagination();
     } catch (err) {
-       Message.error(error);
+      Message.error(error);
     }
   };
 
   clearInput = () => {
     this.refs.inputRef.value = '';
-  }
+  };
 
   onClickWatched = async () => {
     this.spinner.showSpinner();
@@ -187,9 +187,10 @@ export default class App {
     const id = Number(card.dataset.id);
     const film = await this.dataSaver.getFilm(id);
     const filmVideos = await this.dataService.fetchFilmVideos(id);
-    const trailer = filmVideos.find(function (item) {
-      return item.name.toUpperCase().includes('TRAILER');
-    });
+    // const trailer = filmVideos.find(function (item) {
+    //   return item.name.toUpperCase().includes('TRAILER');
+    // });
+    const trailer = filmVideos[0];
     this.dataMarkup.modalFilmMarkup(film, trailer);
     this.modal.onOpenModal(card.dataset.id, 'film', trailer);
   };
