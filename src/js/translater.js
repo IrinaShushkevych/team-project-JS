@@ -1,21 +1,56 @@
 import langData from '../json/lang.json';
 import DataSaver from './dataSaver.js';
+import refs from './refs.js';
 
-export default class Translater {
-  static translate = root => {
-    const save = new DataSaver();
-    let lang = save.getLanguage();
+export default class {
+  constructor() {
+    this.save = new DataSaver();
+    this.data = langData;
+    this.langBtn = refs.btnLangRef;
+    this.langList = refs.listLangRef;
+  }
+
+  checkLang = lang => {
+    console.log('this.lang', this.lang);
+    if (!lang) {
+      console.log('select leng');
+      lang = this.save.getLanguage();
+    }
     if (lang === null) {
       lang = 'en';
-      save.setLanguage('en');
+      this.save.setLanguage('en');
     }
-    const data = langData[lang];
+    console.log(lang);
+    this.lang = lang;
+    this.langBtn.classList.remove('lang-en');
+    this.langBtn.classList.remove('lang-ru');
+    this.langBtn.classList.remove('lang-ua');
+    switch (this.lang) {
+      case 'en':
+        this.langBtn.dataset.lang = 'en';
+        this.langBtn.classList.add('lang-en');
+        break;
+      case 'ua':
+        this.langBtn.dataset.lang = 'ua';
+        this.langBtn.classList.add('lang-ua');
+        break;
+      case 'ru':
+        this.langBtn.dataset.lang = 'ru';
+        this.langBtn.classList.add('lang-ru');
+        break;
+    }
+  };
+
+  selectData = () => {
+    return this.data[this.lang];
+  };
+
+  translate = root => {
+    this.checkLang();
+    const data = this.selectData();
     const arrEl = root.querySelectorAll('.lang');
-    console.log(arrEl);
-    console.log(data);
     const arrInputEl = root.querySelectorAll('.lang-input');
     arrEl.forEach(el => {
-      console.log(el);
       el.innerHTML = data[el.dataset.key];
     });
     arrInputEl.forEach(el => {
@@ -23,5 +58,23 @@ export default class Translater {
     });
   };
 
-  static translateInput = root => {};
+  onSelectLang = e => {
+    this.save.setLanguage(e.target.dataset.lang);
+    this.checkLang(e.target.dataset.lang);
+    this.translate(document);
+    this.langList.classList.add('hidden');
+  };
+
+  onClickLangBtn = e => {
+    this.langList.classList.toggle('hidden');
+    this.langList.addEventListener('click', this.onSelectLang);
+    window.addEventListener('click', this.onCloseList);
+  };
+
+  onCloseList = e => {
+    if (!e.target.closest('.block-lang')) {
+      this.langList.classList.add('hidden');
+      window.removeEventListener('click', this.onCloseList);
+    }
+  };
 }

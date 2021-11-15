@@ -7,6 +7,7 @@ import LoadSpinner from './loadSpinner';
 import Message from './message.js';
 import CustomPagination from './pagination';
 import Translater from './translater.js';
+
 export default class App {
   constructor() {
     this.dataMarkup = new DataMarkup();
@@ -16,12 +17,12 @@ export default class App {
     this.dataService = new DataService();
     this.spinner = new LoadSpinner();
     this.dataPagination = new CustomPagination();
+    this.translater = new Translater();
   }
 
   init = async () => {
     this.spinner.showSpinner();
-    this.checkLang();
-    Translater.translate(document);
+    this.translater.translate(document);
     this.checkSession();
     this.dataSaver.clearLocalstoredge();
     this.dataSaver.setActivePage('home');
@@ -35,43 +36,7 @@ export default class App {
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
     this.refs.btnLogOut.addEventListener('click', this.onClickLogOut);
     this.refs.listUlFilms.addEventListener('click', this.onClickCardItem);
-    this.refs.btnLangRef.addEventListener('click', this.onTranslater);
-  };
-
-  checkLang = () => {
-    let lang = this.dataSaver.getLanguage();
-    if (!lang) {
-      lang = 'en';
-      this.dataSaver.setLanguage('en');
-    }
-    switch (lang) {
-      case 'en':
-        this.refs.btnLangRef.dataset.lang = 'en';
-        // this.refs.btnLangRef.innerHTML = 'ENG';
-        this.refs.btnLangRef.classList.replace('lang-ua', 'lang-en');
-
-        break;
-      case 'ua':
-        this.refs.btnLangRef.dataset.lang = 'ua';
-        // this.refs.btnLangRef.innerHTML = 'UKR';
-        this.refs.btnLangRef.classList.replace('lang-en', 'lang-ua');
-
-        break;
-    }
-  };
-
-  onTranslater = e => {
-    if (e.target.dataset.lang === 'en') {
-      e.target.dataset.lang = 'ua';
-      // e.target.innerHTML = 'UKR';
-      e.target.classList.replace('lang-en', 'lang-ua');
-    } else {
-      e.target.dataset.lang = 'en';
-      e.target.classList.replace('lang-ua', 'lang-en');
-      // e.target.innerHTML = 'ENG';
-    }
-    this.dataSaver.setLanguage(e.target.dataset.lang);
-    Translater.translate(document);
+    this.refs.btnLangRef.addEventListener('click', this.translater.onClickLangBtn);
   };
 
   checkSession = () => {
