@@ -56,6 +56,14 @@ export default class {
     arrInputEl.forEach(el => {
       el.placeholder = data[el.dataset.key];
     });
+    const arrChangeEl = document.querySelectorAll('.button-container');
+    arrChangeEl.forEach(el => {
+      if (this.lang === 'en') {
+        el.classList.remove('lang-change');
+      } else {
+        el.classList.add('lang-change');
+      }
+    });
   };
 
   onSelectLang = e => {
