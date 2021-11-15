@@ -123,7 +123,7 @@ export default class AuthForm {
       if (result.type === 0) {
         Message.error(result.text);
       } else {
-        Message.success('You are log in!!!');
+        Message.success('You are logged in!!!');
         this.callback();
         this.callbackModal();
       }
