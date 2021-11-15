@@ -63,7 +63,7 @@ export default class {
         el.classList.add('lang-change');
       }
     });
-    this.save.clearLocalstoredge();
+    localStorage.removeItem('genres');
     this.dataMarkup.updatePage('lang');
   };
 
