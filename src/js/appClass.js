@@ -6,6 +6,7 @@ import DataService from './DataServise';
 import LoadSpinner from './loadSpinner';
 import Message from './message.js';
 import CustomPagination from './pagination';
+import Translater from './translater.js';
 export default class App {
   constructor() {
     this.dataMarkup = new DataMarkup();
@@ -19,6 +20,8 @@ export default class App {
 
   init = async () => {
     this.spinner.showSpinner();
+    this.checkLang();
+    Translater.translate(document);
     this.checkSession();
     this.dataSaver.clearLocalstoredge();
     this.dataSaver.setActivePage('home');
@@ -32,6 +35,33 @@ export default class App {
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
     this.refs.btnLogOut.addEventListener('click', this.onClickLogOut);
     this.refs.listUlFilms.addEventListener('click', this.onClickCardItem);
+    this.refs.btnLangRef.addEventListener('click', this.onTranslater);
+  };
+
+  checkLang = () => {
+    const lang = this.dataSaver.getLanguage();
+    switch (lang) {
+      case 'en':
+        this.refs.btnLangRef.dataset.lang = 'en';
+        this.refs.btnLangRef.innerHTML = 'ENG';
+        break;
+      case 'ua':
+        this.refs.btnLangRef.dataset.lang = 'ua';
+        this.refs.btnLangRef.innerHTML = 'UKR';
+        break;
+    }
+  };
+
+  onTranslater = e => {
+    if (e.target.dataset.lang === 'en') {
+      e.target.dataset.lang = 'ua';
+      e.target.innerHTML = 'UKR';
+    } else {
+      e.target.dataset.lang = 'en';
+      e.target.innerHTML = 'ENG';
+    }
+    this.dataSaver.setLanguage(e.target.dataset.lang);
+    Translater.translate(document);
   };
 
   checkSession = () => {

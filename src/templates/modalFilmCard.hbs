@@ -18,7 +18,7 @@
     <h3 class='card__title--modal'>{{title}}</h3>
     <table class='card__specifications--modal'>
       <tr class='card__specification-row'>
-        <td class='card__specification-name'>Vote / Votes</td>
+        <td class='card__specification-name lang' data-key='filmVote'>Vote / Votes</td>
         <td class='card__specification-meaning'>
           <button class='button__modal--primary card__specification-meaning-button'>
             {{vote_average}}
@@ -30,11 +30,11 @@
         </td>
       </tr>
       <tr class='card__specification-row'>
-        <td class='card__specification-name'>Popularity</td>
+        <td class='card__specification-name lang' data-key='popular'>Popularity</td>
         <td class='card__specification-meaning'>{{popularity}}</td>
       </tr>
       <tr class='card__specification-row'>
-        <td class='card__specification-name'>Original Title</td>
+        <td class='card__specification-name lang' data-key='title'>Original Title</td>
         {{#if original_title}}
         <td class='card__specification-meaning card__specification-meaning-name'>{{original_title}}</td>
         {{/if}}
@@ -43,7 +43,7 @@
         {{/if}}
       </tr>
       <tr class='card__specification-row'>
-        <td class='card__specification-name'>Genre</td>
+        <td class='card__specification-name lang' data-key='filmGenre'>Genre</td>
         <td class='card__specification-meaning'>
           <ul class='genre__list'>
             {{#each genre_ids}}
@@ -53,25 +53,25 @@
         </td>
       </tr>
     </table>
-    <h4 class='card__title-abaut'>About</h4>
+    <h4 class='card__title-abaut lang' data-key="about">About</h4>
     <p class='card__text-abaut'>
       {{overview}}
     </p>
     <div class='button__container-modal'>
       <ul class='button__list-modal'>
         <li class='button__item-modal js-add-watched'>
-          <button class='button__modal--primary button__modal--add'>add to Watched</button>
+          <button class='button__modal--primary button__modal--add lang' data-key='addWatched'>add to Watched</button>
         </li>
         <li class='button__item-modal js-remove-watched hidden'>
-          <button class='button__modal--primary button__modal--remove'>
+          <button class='button__modal--primary button__modal--remove lang' data-key='removeWatched'>
             remove from Watched
           </button>
         </li>
         <li class='button__item-modal js-add-queue'>
-          <button class='button__modal--primary button__modal--add'>add to Queue</button>
+          <button class='button__modal--primary button__modal--add lang' data-key='addQueue'>add to Queue</button>
         </li>
         <li class='button__item-modal js-remove-queue hidden'>
-          <button class='button__modal--primary button__modal--remove'>
+          <button class='button__modal--primary button__modal--remove lang' data-key='removeQueue'>
             remove from Queue
           </button>
         </li>        

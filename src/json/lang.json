@@ -6,7 +6,7 @@
     "login": "LOG IN",
     "logout": "LOG OUT",
     "input": "Search films",
-    "wattched": "Watched",
+    "watched": "Watched",
     "queue": "Queue",
     "footerRegistr": "All Rights Reserved ",
     "footerDev": "Developed with",
@@ -25,7 +25,11 @@
     "title": "Original Title",
     "filmGenre": "Genre",
     "about": "About",
-    "teamTitle": ""
+    "teamTitle": "",
+    "email": "E-mail",
+    "password": "Password",
+    "btnRegistered": "Register",
+    "btnLogin": "Log in"
   },
   "ua": {
     "logo": "Фільмотека",
@@ -34,7 +38,7 @@
     "login": "УВІЙТИ",
     "logout": "ВИЙТИ",
     "input": "Пошук фільму",
-    "wattched": "Переглянуті",
+    "watched": "Переглянуті",
     "queue": "Очікують перегляду",
     "footerRegistr": "Всі права захищено ",
     "footerDev": "Розроблено з ",
@@ -48,12 +52,16 @@
     "removeWatched": "видалити з переглянутих",
     "addQueue": "додати до черги на перегляд",
     "removeQueue": "видалити з черги на перегляд",
-    "filmVote": "Vote / Votes",
+    "filmVote": "Голос / Голосів",
     "popular": "Popularity",
     "title": "Оригінальна назва",
     "filmGenre": "Жанр",
     "about": "Про фільм",
-    "teamTitle": ""
+    "teamTitle": "",
+    "email": "Електронна пошта",
+    "password": "Пароль",
+    "btnRegistered": "Зареєструватися",
+    "btnLogin": "Увійти"
   },
   "ru": {
     "logo": "Filmoteka",

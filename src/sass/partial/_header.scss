@@ -1,5 +1,6 @@
 .header .container {
   // outline: 1px solid red;
+  position: relative;
   padding-top: 58px;
   padding-bottom: 96px;
   @media screen and (min-width: $bp-tablet) {

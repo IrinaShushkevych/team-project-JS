@@ -1,0 +1,14 @@
+.block-lang {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  @media screen and (min-width: $bp-tablet) {
+    right: 70px;
+  }
+}
+
+.block-lang__button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+}

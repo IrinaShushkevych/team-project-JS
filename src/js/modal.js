@@ -4,6 +4,7 @@ import DataSaver from './dataSaver';
 import LoadSpinner from './loadSpinner';
 import Message from './message.js';
 import refs from './refs.js';
+import Translater from './translater';
 
 export default class Modal {
   constructor() {
@@ -25,11 +26,11 @@ export default class Modal {
     this.refs.backdrop.addEventListener('click', this.onBackdropClick);
     this.refs.backdrop.classList.remove('visually-hidden');
     window.addEventListener('keydown', this.onEscKeyPress);
-    this.refs.buttonGetVideos.addEventListener('click', this.onBtnTrailerPress);
 
     // this.openTrailer()
 
-    if (page === 'film') {
+    if (this.page === 'film') {
+      this.refs.buttonGetVideos.addEventListener('click', this.onBtnTrailerPress);
       if (sessionStorage.getItem('user') === null) {
         this.getRefs();
         this.refs.itemAddWatched.classList.add('hidden');
@@ -42,6 +43,7 @@ export default class Modal {
         this.addBtnListeners();
       }
     }
+    Translater.translate(this.refs.modalRef);
   };
 
   onCloseModal = () => {
@@ -60,7 +62,9 @@ export default class Modal {
     // team
     this.refs.modalContainer.innerHTML = '';
 
-    this.refs.buttonGetVideos.removeEventListener('click', this.onBtnTrailerPress);
+    if (this.page === 'film') {
+      this.refs.buttonGetVideos.removeEventListener('click', this.onBtnTrailerPress);
+    }
     this.refs.trailerContainer.innerHTML = '';
   };
 
