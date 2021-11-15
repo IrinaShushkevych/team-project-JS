@@ -47,11 +47,15 @@ export default class App {
     switch (lang) {
       case 'en':
         this.refs.btnLangRef.dataset.lang = 'en';
-        this.refs.btnLangRef.innerHTML = 'ENG';
+        // this.refs.btnLangRef.innerHTML = 'ENG';
+        this.refs.btnLangRef.classList.replace('lang-ua', 'lang-en');
+
         break;
       case 'ua':
         this.refs.btnLangRef.dataset.lang = 'ua';
-        this.refs.btnLangRef.innerHTML = 'UKR';
+        // this.refs.btnLangRef.innerHTML = 'UKR';
+        this.refs.btnLangRef.classList.replace('lang-en', 'lang-ua');
+
         break;
     }
   };
@@ -59,10 +63,12 @@ export default class App {
   onTranslater = e => {
     if (e.target.dataset.lang === 'en') {
       e.target.dataset.lang = 'ua';
-      e.target.innerHTML = 'UKR';
+      // e.target.innerHTML = 'UKR';
+      e.target.classList.replace('lang-en', 'lang-ua');
     } else {
       e.target.dataset.lang = 'en';
-      e.target.innerHTML = 'ENG';
+      e.target.classList.replace('lang-ua', 'lang-en');
+      // e.target.innerHTML = 'ENG';
     }
     this.dataSaver.setLanguage(e.target.dataset.lang);
     Translater.translate(document);

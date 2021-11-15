@@ -11,4 +11,17 @@
   background-color: transparent;
   border: none;
   color: #fff;
+  width: 50px;
+  height: 40px;
+  background-repeat: no-repeat;
+
+  &.lang-en {
+    background-image: url(../images/en.png);
+  }
+  &.lang-ua {
+    background-image: url(../images/uk.png);
+  }
+  &.lang-ru {
+    background-image: url(../images/ru.png);
+  }
 }
