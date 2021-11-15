@@ -83,6 +83,7 @@ export default class App {
 
   onClickLogoHome = e => {
     e.preventDefault();
+    this.clearInput();
     this.showPopularPage();
     // this.refs.btnLogOut.classList.remove('hidden');
   };
@@ -92,6 +93,7 @@ export default class App {
     this.spinner.showSpinner();
     this.dataSaver.setActivePage('queue');
     this.dataSaver.setCurrentPage(1);
+    this.clearInput();
     try {
       await this.dataSaver.setTotalPageFilms('queue');
       await this.dataMarkup.getCurrentFilmsQueue();
@@ -125,13 +127,22 @@ export default class App {
   onKeyWordSearch = async e => {
     e.preventDefault();
     this.spinner.showSpinner();
+    this.dataSaver.setCurrentPage(1);
     const inputValue = e.currentTarget.elements.query.value;
-    if (inputValue) {
-      await this.dataMarkup.renderSearchingFilms(inputValue);
-    } else {
-      await this.dataMarkup.renderPopularFilms();
+    try {
+      if (inputValue) {
+        await this.dataMarkup.renderSearchingFilms(inputValue);
+      } else {
+        await this.dataMarkup.renderPopularFilms();
+      }
+      this.dataPagination.initPagination();
+    } catch (err) {
+      Message.error(error);
     }
-    this.dataPagination.initPagination();
+  };
+
+  clearInput = () => {
+    this.refs.inputRef.value = '';
   };
 
   onClickWatched = async () => {
@@ -176,9 +187,10 @@ export default class App {
     const id = Number(card.dataset.id);
     const film = await this.dataSaver.getFilm(id);
     const filmVideos = await this.dataService.fetchFilmVideos(id);
-    const trailer = filmVideos.find(function (item) {
-      return item.name.toUpperCase().includes('TRAILER');
-    });
+    // const trailer = filmVideos.find(function (item) {
+    //   return item.name.toUpperCase().includes('TRAILER');
+    // });
+    const trailer = filmVideos[0];
     this.dataMarkup.modalFilmMarkup(film, trailer);
     this.modal.onOpenModal(card.dataset.id, 'film', trailer);
   };

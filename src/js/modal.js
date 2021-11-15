@@ -222,6 +222,7 @@ export default class Modal {
 
   onBtnTrailerPress = () => {
     // this.fetchFilmVideos(this.id);
+
     console.log('Trailer ' + this.trailer.key);
     // this.refs.modalCardRef.classList.add('.visually-hidden');
     // this.refs.modalCardRef.innerHTML = '';

@@ -49,6 +49,9 @@
 
   .lang-change &:not(:last-child) {
     margin-bottom: 30px;
+    @media screen and (min-width: $bp-tablet) {
+      margin-bottom: 0;
+    }
   }
 
   &:hover,
