@@ -1,6 +1,6 @@
 .block-lang {
   position: absolute;
-  top: 20px;
+  top: 10px;
   right: 20px;
   @media screen and (min-width: $bp-tablet) {
     right: 70px;
@@ -9,6 +9,34 @@
 
 .block-lang__button {
   background-color: transparent;
+  padding: 0;
   border: none;
   color: #fff;
+  width: 50px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  outline: none;
+}
+
+.lang-en {
+  background-image: url(../images/en.png);
+}
+
+.lang-ua {
+  background-image: url(../images/uk.png);
+}
+
+.lang-ru {
+  background-image: url(../images/ru.png);
+}
+
+.block-lang__list {
+  position: absolute;
+  top: 90%;
+  left: 0;
+  background-color: $bg-color;
+  border-bottom-left-radius: 20%;
+  border-bottom-right-radius: 20%;
 }

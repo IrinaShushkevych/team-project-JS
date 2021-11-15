@@ -12,6 +12,7 @@ export default class Modal {
     this.dataSaver = new DataSaver();
     this.load = new LoadSpinner();
     this.dataMarkup = new DataMarkup();
+    this.translater = new Translater();
   }
 
   onOpenModal = (id, page, trailer) => {
@@ -43,7 +44,7 @@ export default class Modal {
         this.addBtnListeners();
       }
     }
-    Translater.translate(this.refs.modalRef);
+    this.translater.translate(this.refs.modalRef);
   };
 
   onCloseModal = () => {
@@ -161,7 +162,6 @@ export default class Modal {
   };
 
   onBtnRemoveQueuePress = async () => {
-    console.log('itemRemoveQueue');
     try {
       const res = await this.dataSaver.removeData(this.id, 'queue');
       this.refs.itemAddQueue.classList.remove('hidden');
