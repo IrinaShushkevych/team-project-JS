@@ -23,10 +23,17 @@ export default class Modal {
       this.getRefs();
     }
 
+    if (this.trailer === undefined) {
+      this.refs.buttonGetVideos.classList.add('hidden');
+    }
+
     this.refs.btnClose.addEventListener('click', this.onBtnClosePress);
     this.refs.backdrop.addEventListener('click', this.onBackdropClick);
     this.refs.backdrop.classList.remove('visually-hidden');
     window.addEventListener('keydown', this.onEscKeyPress);
+    document.body.style.overflow = 'hidden';
+
+    document.querySelector('.block-arrow').classList.add('hidden');
 
     // this.openTrailer()
 
@@ -48,10 +55,20 @@ export default class Modal {
   };
 
   onCloseModal = () => {
+    if (this.isTrailer) {
+      this.refs.trailerContainer.innerHTML = '';
+      this.isTrailer = false;
+      return;
+    }
+
     this.refs.btnClose.removeEventListener('click', this.onBtnClosePress);
     this.refs.backdrop.removeEventListener('click', this.onBackdropClick);
     this.refs.backdrop.classList.add('visually-hidden');
     window.removeEventListener('keydown', this.onEscKeyPress);
+    document.body.style.overflow = 'auto';
+
+    document.querySelector('.block-arrow').classList.remove('hidden');
+
     if (this.page === 'film') {
       this.removeBtnListeners();
     }
@@ -66,7 +83,7 @@ export default class Modal {
     if (this.page === 'film') {
       this.refs.buttonGetVideos.removeEventListener('click', this.onBtnTrailerPress);
     }
-    this.refs.trailerContainer.innerHTML = '';
+    // this.refs.trailerContainer.innerHTML = '';
   };
 
   onBtnClosePress = () => {
@@ -227,9 +244,13 @@ export default class Modal {
     // this.refs.modalCardRef.classList.add('.visually-hidden');
     // this.refs.modalCardRef.innerHTML = '';
     this.openTrailer();
+    this.isTrailer = true;
   };
 
   openTrailer = () => {
+    // document.querySelector('.card__image-thumb').classList.add('hidden');
+    // document.querySelector('card__description').classList.add('hidden');
+    // card__image - thumb;
     //  let
     // this.refs.trailerContainer.insertAdjacentHTML(
     //   `

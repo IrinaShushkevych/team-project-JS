@@ -37,4 +37,6 @@ export default {
   buttonContainer: document.querySelector('.button-container'),
   buttonGetVideos: document.querySelector('.js-add-video'),
   trailerContainer: document.querySelector('.js-video-trailer'),
+
+  btnBackRef: document.querySelector('.block-arrow'),
 };
