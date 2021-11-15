@@ -68,7 +68,7 @@ export default class App {
   showPopularPage = async () => {
     this.spinner.showSpinner();
     this.dataSaver.setCurrentPage(1);
-    this.dataSaver.setActivePage('home');
+    this.dataSaver.setActivePage('home');    
     await this.dataMarkup.renderPopularFilms();
     this.dataPagination.initPagination();
     this.refs.btnLybraryRef.classList.remove('btn__header--current-page');
@@ -83,6 +83,7 @@ export default class App {
 
   onClickLogoHome = e => {
     e.preventDefault();
+    this.clearInput();
     this.showPopularPage();
     // this.refs.btnLogOut.classList.remove('hidden');
   };
@@ -92,6 +93,7 @@ export default class App {
     this.spinner.showSpinner();
     this.dataSaver.setActivePage('queue');
     this.dataSaver.setCurrentPage(1);
+    this.clearInput();
     try {
       await this.dataSaver.setTotalPageFilms('queue');
       await this.dataMarkup.getCurrentFilmsQueue();
@@ -125,14 +127,23 @@ export default class App {
   onKeyWordSearch = async e => {
     e.preventDefault();
     this.spinner.showSpinner();
+    this.dataSaver.setCurrentPage(1);
     const inputValue = e.currentTarget.elements.query.value;
-    if (inputValue) {
-      await this.dataMarkup.renderSearchingFilms(inputValue);
-    } else {
-      await this.dataMarkup.renderPopularFilms();
+    try {
+      if (inputValue) {
+        await this.dataMarkup.renderSearchingFilms(inputValue);
+      } else {
+        await this.dataMarkup.renderPopularFilms();
+      }
+      this.dataPagination.initPagination();      
+    } catch (err) {
+       Message.error(error);
     }
-    this.dataPagination.initPagination();
   };
+
+  clearInput = () => {
+    this.refs.inputRef.value = '';
+  }
 
   onClickWatched = async () => {
     this.spinner.showSpinner();
