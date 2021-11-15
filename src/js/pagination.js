@@ -35,12 +35,23 @@ export default class CustomPagination {
           '</a>',
       },
     };
-
+    // console.log(totalpages);
     this.pagination = new Pagination(refs.paginationCase, paginationOptions);
-
+    // const totalpages = ;
+    // console.log(totalpages);
+    if (this.dataSaver.getTotalPages() <= 1) {
+      refs.paginationCase.classList.add('isHidden');
+    } else {
+      refs.paginationCase.classList.remove('isHidden');
+    }
     this.pagination.on('afterMove', async event => {
       this.dataSaver.setCurrentPage(event.page);
       this.dataMarkup.updatePage();
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
       // const activePage = this.dataSaver.getActivePage();
       // switch (activePage) {
       //   case 'home':

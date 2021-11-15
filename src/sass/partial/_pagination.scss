@@ -23,6 +23,7 @@
   :focus {
     background-color: $accent-color;
   }
+  border: 0;
 }
 
 .tui-next-is-ellip,
@@ -58,7 +59,20 @@
   }
 }
 
-.tui-last,
 .tui-first {
+  background-color: $bg-footer;
+  margin-right: 4px;
+}
+.tui-last {
+  background-color: $bg-footer;
+  margin-left: 4px;
+}
+
+// .tui-last,
+// .tui-first {
+//   display: none;
+// }
+
+.isHidden {
   display: none;
 }
