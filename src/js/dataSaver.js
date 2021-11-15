@@ -91,6 +91,14 @@ export default class DataSaver {
     }
   };
 
+  setTheme = theme => {
+    localStorage.setItem('theme', theme);
+  };
+
+  getTheme = () => {
+    return localStorage.getItem('theme');
+  };
+
   // get одна карточка
   //*********/
   getFilm = async id => {
