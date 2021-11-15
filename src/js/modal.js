@@ -13,10 +13,11 @@ export default class Modal {
     this.dataMarkup = new DataMarkup();
   }
 
-  onOpenModal = (id, page) => {
+  onOpenModal = (id, page, trailer) => {
     this.page = page;
     if (id) {
       this.id = id;
+      this.trailer = trailer;
       this.getRefs();
     }
 
@@ -24,6 +25,9 @@ export default class Modal {
     this.refs.backdrop.addEventListener('click', this.onBackdropClick);
     this.refs.backdrop.classList.remove('visually-hidden');
     window.addEventListener('keydown', this.onEscKeyPress);
+    this.refs.buttonGetVideos.addEventListener('click', this.onBtnTrailerPress);
+
+    // this.openTrailer()
 
     if (page === 'film') {
       if (sessionStorage.getItem('user') === null) {
@@ -55,6 +59,9 @@ export default class Modal {
     this.refs.modalCardRef.innerHTML = '';
     // team
     this.refs.modalContainer.innerHTML = '';
+
+    this.refs.buttonGetVideos.removeEventListener('click', this.onBtnTrailerPress);
+    this.refs.trailerContainer.innerHTML = '';
   };
 
   onBtnClosePress = () => {
@@ -84,6 +91,8 @@ export default class Modal {
     this.refs.itemRemoveWatched = document.querySelector('.js-remove-watched');
     this.refs.itemAddQueue = document.querySelector('.js-add-queue');
     this.refs.itemRemoveQueue = document.querySelector('.js-remove-queue');
+    this.refs.buttonGetVideos = document.querySelector('.js-add-video');
+    this.refs.trailerContainer = document.querySelector('.js-video-trailer');
   };
 
   addBtnListeners = () => {
@@ -113,6 +122,7 @@ export default class Modal {
       Message.error(error.message);
     } finally {
       this.load.hideSpinner();
+      this.onCloseModal();
     }
   };
 
@@ -127,6 +137,7 @@ export default class Modal {
       Message.error(error.message);
     } finally {
       this.load.hideSpinner();
+      this.onCloseModal();
     }
   };
 
@@ -141,6 +152,7 @@ export default class Modal {
       Message.error(error);
     } finally {
       this.load.hideSpinner();
+      this.onCloseModal();
     }
   };
 
@@ -155,6 +167,7 @@ export default class Modal {
       Message.error(error);
     } finally {
       this.load.hideSpinner();
+      this.onCloseModal();
     }
   };
 
@@ -196,8 +209,57 @@ export default class Modal {
     }
   };
 
+  checkVideo = async id => {};
+
   addAuth = callback => {
     this.modalAuth = new AuthForm(callback, this.onCloseModal);
     this.modalAuth.renderModalAuth();
+  };
+
+  onBtnTrailerPress = () => {
+    // this.fetchFilmVideos(this.id);
+    console.log('Trailer ' + this.trailer.key);
+    // this.refs.modalCardRef.classList.add('.visually-hidden');
+    // this.refs.modalCardRef.innerHTML = '';
+    this.openTrailer();
+  };
+
+  openTrailer = () => {
+    //  let
+    // this.refs.trailerContainer.insertAdjacentHTML(
+    //   `
+    //   <div class="modal">
+    //     <div class="modal__thumb">
+    //       <button class="modal__button" data-modal-close>
+    //         <img src="./images/close.svg" alt="" />
+    //       </button>
+    //     <iframe class='trailer' width="560" height="315" src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    //     </div>
+    //   </div>
+    // `,
+    // );
+    // const filmVideos = await this.dataService.fetchFilmVideos(id);
+    // const trailer = filmVideos.find(function (item) {
+    //   return item.name.toUpperCase().includes('TRAILER');
+    // });
+    // // this.dataMarkup.trailerFilmMarkup(film, trailer);
+    // this.modal.onOpenModal(card.dataset.id, 'film', trailer);
+
+    this.refs.trailerContainer.innerHTML = `
+             
+        <iframe class='trailer' width="560" height="315" src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+           
+    `;
+
+    // this.refs.trailerContainer.innerHTML = `
+    //   <div class="modal">
+    //     <div class="modal__thumb">
+    //       <button class="modal__button" data-modal-close>
+    //         <img src="./images/close.svg" alt="" />
+    //       </button>
+    //     <iframe class='trailer' width="560" height="315" src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    //     </div>
+    //   </div>
+    // `;
   };
 }

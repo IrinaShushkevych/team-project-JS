@@ -17,6 +17,10 @@
   border: 2px solid $primary-white-color;
   border-radius: 5px;
 
+  transition-property: background-color;
+  transition-duration: $duration;
+  transition-timing-function: $timing-function;
+
   &:hover,
   :focus,
   :active {
@@ -25,9 +29,9 @@
 
     box-shadow: (0px 8px 43px rgba(255, 107, 1, 0.6));
 
-    transition-property: background-color;
-    transition-duration: $duration;
-    transition-timing-function: $timing-function;
+    // transition-property: background-color;
+    // transition-duration: $duration;
+    // transition-timing-function: $timing-function;
 
     cursor: pointer;
   }
