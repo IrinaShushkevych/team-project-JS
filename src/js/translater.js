@@ -29,8 +29,8 @@ export default class {
         this.langBtn.dataset.lang = 'en';
         this.langBtn.classList.add('lang-en');
         break;
-      case 'ua':
-        this.langBtn.dataset.lang = 'ua';
+      case 'uk':
+        this.langBtn.dataset.lang = 'uk';
         this.langBtn.classList.add('lang-ua');
         break;
       case 'ru':
@@ -63,7 +63,8 @@ export default class {
         el.classList.add('lang-change');
       }
     });
-    this.dataMarkup.updatePage();
+    this.save.clearLocalstoredge();
+    this.dataMarkup.updatePage('lang');
   };
 
   onSelectLang = e => {
@@ -85,23 +86,4 @@ export default class {
       window.removeEventListener('click', this.onCloseList);
     }
   };
-
-  // updatePage = () => {
-  //   const activePage = this.save.getActivePage();
-  //   switch (activePage) {
-  //     case 'home':
-  //       if (refs.inputRef.value) {
-  //         this.dataMarkup.renderSearchingFilms(refs.inputRef.value);
-  //       } else {
-  //         this.dataMarkup.renderPopularFilms();
-  //       }
-  //       break;
-  //     case 'watched':
-  //       this.dataMarkup.getCurrentFilmsWatched();
-  //       break;
-  //     case 'queue':
-  //       this.dataMarkup.getCurrentFilmsQueue();
-  //       break;
-  //   }
-  // };
 }

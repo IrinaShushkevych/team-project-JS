@@ -20,7 +20,11 @@ export default class APIService {
   fetchPopularFilms = async () => {
     let popularFilms = 'trending/movie/day?';
     this.url =
-      this.baseUrl + popularFilms + this.keyAPI + `&page=${this.dataSaver.getCurrentPage()}`+ `&language=${this.dataSaver.getLanguage()}`;
+      this.baseUrl +
+      popularFilms +
+      this.keyAPI +
+      `&page=${this.dataSaver.getCurrentPage()}` +
+      `&language=${this.dataSaver.getLanguage()}`;
     const dataObj = await this.fetchData(this.url);
     const dataPopular = dataObj.results;
     await this.fixFetchObject(dataPopular);
@@ -42,7 +46,18 @@ export default class APIService {
         genres.map(obj => (array[i] === obj.id ? (array[i] = obj.name) : array[i]));
       }
       if (array.length > 3) {
-        array.splice(2, 0, 'other');
+        const lang = this.dataSaver.getLanguage();
+        switch (lang) {
+          case 'en':
+            array.splice(2, 0, 'other');
+            break;
+          case 'uk':
+            array.splice(2, 0, 'інші');
+            break;
+          case 'ru':
+            array.splice(2, 0, 'другие');
+            break;
+        }
       }
       return array;
     });
@@ -59,7 +74,11 @@ export default class APIService {
   fetchFilmsByQuery = async query => {
     let queryEndpoint = `search/movie?query=${query}&`;
     this.url =
-      this.baseUrl + queryEndpoint + this.keyAPI + `&page=${this.dataSaver.getCurrentPage()}`+`&language=${this.dataSaver.getLanguage()}`;
+      this.baseUrl +
+      queryEndpoint +
+      this.keyAPI +
+      `&page=${this.dataSaver.getCurrentPage()}` +
+      `&language=${this.dataSaver.getLanguage()}`;
     const queryFilmsResult = await this.fetchData(this.url);
     const dataQuery = queryFilmsResult.results;
     await this.fixFetchObject(dataQuery);
@@ -72,7 +91,8 @@ export default class APIService {
 
   fetchFilmsGenres = async () => {
     let genresEndpoint = 'genre/movie/list?';
-    this.url = this.baseUrl + genresEndpoint + this.keyAPI;
+    this.url =
+      this.baseUrl + genresEndpoint + this.keyAPI + `&language=${this.dataSaver.getLanguage()}`;
     const result = await this.fetchData(this.url);
     this.dataSaver.setFilmsGenres(result);
     return result.genres;
@@ -91,13 +111,13 @@ export default class APIService {
         film.poster_path = 'https://image.tmdb.org/t/p/w500' + film.poster_path;
       } else {
         if (this.dataSaver.getLanguage() === 'en') {
-          film.poster_path = `${imgEn}`;          
-        };
+          film.poster_path = `${imgEn}`;
+        }
         if (this.dataSaver.getLanguage() === 'ua') {
-          film.poster_path = `${imgUa}`;  
-        };
+          film.poster_path = `${imgUa}`;
+        }
         if (this.dataSaver.getLanguage() === 'ru') {
-          film.poster_path = `${imgRu}`; 
+          film.poster_path = `${imgRu}`;
         }
       }
     });
