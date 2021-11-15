@@ -162,7 +162,6 @@ export default class Modal {
   };
 
   onBtnRemoveQueuePress = async () => {
-    console.log('itemRemoveQueue');
     try {
       const res = await this.dataSaver.removeData(this.id, 'queue');
       this.refs.itemAddQueue.classList.remove('hidden');

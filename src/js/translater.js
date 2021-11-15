@@ -1,4 +1,5 @@
 import langData from '../json/lang.json';
+import DataMarkup from './dataMarkup';
 import DataSaver from './dataSaver.js';
 import refs from './refs.js';
 
@@ -8,19 +9,17 @@ export default class {
     this.data = langData;
     this.langBtn = refs.btnLangRef;
     this.langList = refs.listLangRef;
+    this.dataMarkup = new DataMarkup();
   }
 
   checkLang = lang => {
-    console.log('this.lang', this.lang);
     if (!lang) {
-      console.log('select leng');
       lang = this.save.getLanguage();
     }
     if (lang === null) {
       lang = 'en';
       this.save.setLanguage('en');
     }
-    console.log(lang);
     this.lang = lang;
     this.langBtn.classList.remove('lang-en');
     this.langBtn.classList.remove('lang-ru');
@@ -64,6 +63,7 @@ export default class {
         el.classList.add('lang-change');
       }
     });
+    this.dataMarkup.updatePage();
   };
 
   onSelectLang = e => {
@@ -85,4 +85,23 @@ export default class {
       window.removeEventListener('click', this.onCloseList);
     }
   };
+
+  // updatePage = () => {
+  //   const activePage = this.save.getActivePage();
+  //   switch (activePage) {
+  //     case 'home':
+  //       if (refs.inputRef.value) {
+  //         this.dataMarkup.renderSearchingFilms(refs.inputRef.value);
+  //       } else {
+  //         this.dataMarkup.renderPopularFilms();
+  //       }
+  //       break;
+  //     case 'watched':
+  //       this.dataMarkup.getCurrentFilmsWatched();
+  //       break;
+  //     case 'queue':
+  //       this.dataMarkup.getCurrentFilmsQueue();
+  //       break;
+  //   }
+  // };
 }
