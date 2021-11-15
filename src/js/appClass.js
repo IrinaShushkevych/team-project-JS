@@ -39,7 +39,11 @@ export default class App {
   };
 
   checkLang = () => {
-    const lang = this.dataSaver.getLanguage();
+    let lang = this.dataSaver.getLanguage();
+    if (!lang) {
+      lang = 'en';
+      this.dataSaver.setLanguage('en');
+    }
     switch (lang) {
       case 'en':
         this.refs.btnLangRef.dataset.lang = 'en';
