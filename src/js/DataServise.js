@@ -76,8 +76,14 @@ export default class APIService {
     return result.genres;
   };
 
+  fetchFilmVideos = async movieId => {
+    let movieVideousEndpoint = `/movie/${movieId}/videos?`;
+    let fetchMovieVideosUrl = this.baseUrl + movieVideousEndpoint + this.keyAPI;
+    const result = await this.fetchData(fetchMovieVideosUrl);
+    return result.results;
+  };
+
   fixImagePath = obj => {
-    console.log(img);
     obj.map(film => {
       if (film.poster_path || film.backdrop_path) {
         film.poster_path = 'https://image.tmdb.org/t/p/w500' + film.poster_path;

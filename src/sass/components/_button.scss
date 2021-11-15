@@ -4,6 +4,7 @@
   padding-bottom: 12px;
   padding-left: 38px;
   padding-right: 38px;
+  text-align: center;
   min-width: 136px;
 
   font-weight: 500;
@@ -17,6 +18,10 @@
   border: 2px solid $primary-white-color;
   border-radius: 5px;
 
+  transition-property: background-color;
+  transition-duration: $duration;
+  transition-timing-function: $timing-function;
+
   &:hover,
   :focus,
   :active {
@@ -25,9 +30,9 @@
 
     box-shadow: (0px 8px 43px rgba(255, 107, 1, 0.6));
 
-    transition-property: background-color;
-    transition-duration: $duration;
-    transition-timing-function: $timing-function;
+    // transition-property: background-color;
+    // transition-duration: $duration;
+    // transition-timing-function: $timing-function;
 
     cursor: pointer;
   }

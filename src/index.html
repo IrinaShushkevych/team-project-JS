@@ -24,38 +24,52 @@
         <div class="header-section">
           <a href="" class="header_link js-logo">
             <img src="./images/film.svg" alt="logo" class="logo-img" width="24" height="24" />
-            <span class="logo__header">Filmoteka</span>
+            <span class="logo__header lang" data-key="logo">Filmoteka</span>
           </a>
 
           <div class="side-nav__header">
             <div class="">
               <button class="home-btn__header btn__header js-home btn__header--current-page">
-                <span class="btn-text">Home</span>
+                <span class="btn-text lang" data-key="home">Home</span>
               </button>
               <button class="library-btn__header btn__header js-lybrary hidden">
-                <span class="btn-text">MY LIBRARY</span>
+                <span class="btn-text lang" data-key="library">MY LIBRARY</span>
               </button>
               <button class="library-btn__header btn__header js-log-out hidden">
                 <!-- <img src="./images/exit.svg" alt="login" class="login-img" width="20" height="20" /> -->
-                <span class="btn-text">LOG OUT</span>
+                <span class="btn-text lang" data-key="logout">LOG OUT</span>
               </button>
             </div>
-            <button class="btn__header js-auth btn-login__header">
+            <button class="btn__header js-auth btn-login__header lang" data-key="login">
               <!-- <img src="./images/enter.svg" alt="login" class="login-img" width="20" height="20" /> -->
               <span class="btn-text">LOG IN</span>
             </button>
           </div>
           <div class="button-container hidden">
-            <button class="button watched-button js-button-watched btn-cover-library" type="button">
+            <button
+              class="button watched-button js-button-watched btn-cover-library lang"
+              data-key="watched"
+              type="button"
+            >
               Watched
             </button>
 
-            <button class="button queue-button js-button-queue btn-cover-library" type="button">
-              queue
+            <button
+              class="button queue-button js-button-queue btn-cover-library lang"
+              data-key="queue"
+              type="button"
+            >
+              Queue
             </button>
           </div>
           <form class="search-form js-search-form" id="search-form">
-            <input type="text" class="input_header" name="query" placeholder="Поиск фильмов" />
+            <input
+              type="text"
+              class="input_header lang-input"
+              name="query"
+              data-key="input"
+              placeholder="Поиск фильмов"
+            />
             <button type="submit" class="search-btn">
               <img
                 src="./images/search.svg"
@@ -71,16 +85,24 @@
           <div class="buttons__container">
             <ul class="filter__list">
               <li class="filter__item">
-                <button type="button" id="trending" class="filter__button">Trending week</button>
+                <button type="button" id="trending" class="filter__button lang" data-key="trending">
+                  Trending week
+                </button>
               </li>
               <li class="filter__item">
-                <button type="button" id="years" class="filter__button">Years</button>
+                <button type="button" id="years" class="filter__button lang" data-key="years">
+                  Years
+                </button>
               </li>
               <li class="filter__item">
-                <button type="button" id="top-rated" class="filter__button">Top rated</button>
+                <button type="button" id="top-rated" class="filter__button lang" data-key="rated">
+                  Top rated
+                </button>
               </li>
               <li class="filter__item">
-                <button type="button" id="genres" class="filter__button">Genres</button>
+                <button type="button" id="genres" class="filter__button lang" data-key="genres">
+                  Genres
+                </button>
               </li>
               <li class="svg-filter__item">
                 <a href="#header" class="svg-filter__link">
@@ -91,6 +113,32 @@
               </li>
             </ul>
           </div>
+        </div>
+        <div class="block-lang">
+          <button class="block-lang__button js-translater lang-en" data-lang="en"></button>
+          <ul class="block-lang__list hidden js-translater-list">
+            <li class="block-lang__item">
+              <button
+                class="block-lang__button block-lang__select-lang lang-en"
+                type="button"
+                data-lang="en"
+              ></button>
+            </li>
+            <li class="block-lang__item">
+              <button
+                class="block-lang__button block-lang__select-lang lang-ua"
+                type="button"
+                data-lang="ua"
+              ></button>
+            </li>
+            <li class="block-lang__item">
+              <button
+                class="block-lang__button block-lang__select-lang lang-ru"
+                type="button"
+                data-lang="ru"
+              ></button>
+            </li>
+          </ul>
         </div>
       </div>
     </header>
@@ -113,13 +161,13 @@
       <div class="container">
         <p class="footer__text">
           <span class="footer__block-text">&copy; 2021 </span>
-          <span class="footer__block-text">All Rights Reserved </span>
+          <span class="footer__block-text lang" data-key="footerRegistr">All Rights Reserved </span>
         </p>
         <p class="footer__text">
-          <span> Developed with</span>
-          <img src="./images/heart.svg" alt="" class="heart__image" width="14" height="12" />
-          <span>by</span>
-          <button class="footer__link js-modal-team">GoIT Students</button>
+          <span class="lang" data-key="footerDev"> Developed with</span>
+          <img src="./images/heart.svg" alt="" class="footer__image" width="14" height="12" />
+          <span class="lang" data-key="footerBy">by</span>
+          <button class="footer__link js-modal-team lang" data-key="linkTeam">GoIT Students</button>
         </p>
       </div>
     </footer>
@@ -136,7 +184,7 @@
         <div class="card__container--modal"></div>
       </div>
     </div>
-
+    <div class="card__container--video js-video-trailer"></div>
     <div id="firebaseui-auth-container"></div>
     <script src="./app.js"></script>
   </body>

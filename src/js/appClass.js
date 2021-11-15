@@ -6,6 +6,8 @@ import DataService from './DataServise';
 import LoadSpinner from './loadSpinner';
 import Message from './message.js';
 import CustomPagination from './pagination';
+import Translater from './translater.js';
+
 export default class App {
   constructor() {
     this.dataMarkup = new DataMarkup();
@@ -15,10 +17,12 @@ export default class App {
     this.dataService = new DataService();
     this.spinner = new LoadSpinner();
     this.dataPagination = new CustomPagination();
+    this.translater = new Translater();
   }
 
   init = async () => {
     this.spinner.showSpinner();
+    this.translater.translate(document);
     this.checkSession();
     this.dataSaver.clearLocalstoredge();
     this.dataSaver.setActivePage('home');
@@ -31,7 +35,8 @@ export default class App {
     this.refs.btnAuthRef.addEventListener('click', this.onClickAuth);
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
     this.refs.btnLogOut.addEventListener('click', this.onClickLogOut);
-    this.refs.list.addEventListener('click', this.onClickCardItem);
+    this.refs.listUlFilms.addEventListener('click', this.onClickCardItem);
+    this.refs.btnLangRef.addEventListener('click', this.translater.onClickLangBtn);
   };
 
   checkSession = () => {
@@ -170,7 +175,11 @@ export default class App {
     }
     const id = Number(card.dataset.id);
     const film = await this.dataSaver.getFilm(id);
-    this.dataMarkup.modalFilmMurcup(film);
-    this.modal.onOpenModal(card.dataset.id, 'film');
+    const filmVideos = await this.dataService.fetchFilmVideos(id);
+    const trailer = filmVideos.find(function (item) {
+      return item.name.toUpperCase().includes('TRAILER');
+    });
+    this.dataMarkup.modalFilmMarkup(film, trailer);
+    this.modal.onOpenModal(card.dataset.id, 'film', trailer);
   };
 }

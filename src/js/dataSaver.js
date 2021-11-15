@@ -29,6 +29,14 @@ export default class DataSaver {
     localStorage.setItem('totalPages', 0);
   };
 
+  setLanguage = lang => {
+    localStorage.setItem('lang', lang);
+  };
+
+  getLanguage = () => {
+    return localStorage.getItem('lang');
+  };
+
   setCurrentPage = page => {
     localStorage.setItem('numberListPage', JSON.stringify(page));
   };
