@@ -100,8 +100,13 @@ export default class APIService {
 
   fetchFilmVideos = async movieId => {
     let movieVideousEndpoint = `/movie/${movieId}/videos?`;
-    let fetchMovieVideosUrl = this.baseUrl + movieVideousEndpoint + this.keyAPI;
+    let fetchMovieVideosUrl =
+      this.baseUrl +
+      movieVideousEndpoint +
+      this.keyAPI +
+      `&language=${this.dataSaver.getLanguage()}`;
     const result = await this.fetchData(fetchMovieVideosUrl);
+    console.log(result.results);
     return result.results;
   };
 
