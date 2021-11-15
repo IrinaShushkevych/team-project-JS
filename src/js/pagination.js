@@ -40,23 +40,23 @@ export default class CustomPagination {
 
     this.pagination.on('afterMove', async event => {
       this.dataSaver.setCurrentPage(event.page);
-      const activePage = this.dataSaver.getActivePage();
-      switch (activePage) {
-        case 'home':
-          if (refs.inputRef.value) {
-            this.dataMarkup.renderSearchingFilms(refs.inputRef.value);
-          } else {
-            console.log('popular');
-            this.dataMarkup.renderPopularFilms();
-          }
-          break;
-        case 'watched':
-          this.dataMarkup.getCurrentFilmsWatched();
-          break;
-        case 'queue':
-          this.dataMarkup.getCurrentFilmsQueue();
-          break;
-      }
+      this.dataMarkup.updatePage();
+      // const activePage = this.dataSaver.getActivePage();
+      // switch (activePage) {
+      //   case 'home':
+      //     if (refs.inputRef.value) {
+      //       this.dataMarkup.renderSearchingFilms(refs.inputRef.value);
+      //     } else {
+      //       this.dataMarkup.renderPopularFilms();
+      //     }
+      //     break;
+      //   case 'watched':
+      //     this.dataMarkup.getCurrentFilmsWatched();
+      //     break;
+      //   case 'queue':
+      //     this.dataMarkup.getCurrentFilmsQueue();
+      //     break;
+      // }
     });
   };
 }

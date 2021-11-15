@@ -11,7 +11,8 @@ export default {
   queueBtnRef: document.querySelector('.js-button-queue'),
   inputRef: document.querySelector('.input_header'),
   inputFormRef: document.querySelector('.js-search-form'),
-  btnLangRef: document.querySelector('.translater'),
+  btnLangRef: document.querySelector('.js-translater'),
+  listLangRef: document.querySelector('.js-translater-list'),
 
   //main
   main: document.querySelector('main'),

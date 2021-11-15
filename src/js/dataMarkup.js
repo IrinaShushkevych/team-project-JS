@@ -56,7 +56,6 @@ export default class DataMarkup {
 
   getCurrentFilmsWatched = async id => {
     const currentFilmsWatched = await this.dataSaver.getFilmWatched();
-    console.log(currentFilmsWatched);
     if (currentFilmsWatched.length === 0) {
       this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
       this.spinner.hideSpinner();
@@ -70,7 +69,6 @@ export default class DataMarkup {
   // Отрисовка очереди
   getCurrentFilmsQueue = async () => {
     const currentFilmsQueue = await this.dataSaver.getFilmQueue();
-    console.log(currentFilmsQueue);
     if (currentFilmsQueue.length === 0) {
       this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
       this.spinner.hideSpinner();
@@ -114,5 +112,24 @@ export default class DataMarkup {
   addHiddenNavBtn = () => {
     this.boxNavBtn = document.querySelector('.nav-section');
     boxNavBtn.classList.remove('hidden');
+  };
+
+  updatePage = () => {
+    const activePage = this.dataSaver.getActivePage();
+    switch (activePage) {
+      case 'home':
+        if (refs.inputRef.value) {
+          this.renderSearchingFilms(refs.inputRef.value);
+        } else {
+          this.renderPopularFilms();
+        }
+        break;
+      case 'watched':
+        this.getCurrentFilmsWatched();
+        break;
+      case 'queue':
+        this.getCurrentFilmsQueue();
+        break;
+    }
   };
 }
