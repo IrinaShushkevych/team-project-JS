@@ -7,6 +7,7 @@ import LoadSpinner from './loadSpinner';
 import Message from './message.js';
 import CustomPagination from './pagination';
 import Translater from './translater.js';
+import Theme from './theme.js'
 
 export default class App {
   constructor() {
@@ -18,6 +19,7 @@ export default class App {
     this.spinner = new LoadSpinner();
     this.dataPagination = new CustomPagination();
     this.translater = new Translater();
+    this.theme = new Theme();
   }
 
   init = async () => {
@@ -26,6 +28,7 @@ export default class App {
     this.checkSession();
     this.dataSaver.clearLocalstoredge();
     this.dataSaver.setActivePage('home');
+    this.theme.checkThemeOnLoad();
     await this.dataMarkup.renderPopularFilms();
     this.dataPagination.initPagination();
     this.refs.linkModalTeamRef.addEventListener('click', this.onOpenMdalTeam);
@@ -37,6 +40,7 @@ export default class App {
     this.refs.btnLogOut.addEventListener('click', this.onClickLogOut);
     this.refs.listUlFilms.addEventListener('click', this.onClickCardItem);
     this.refs.btnLangRef.addEventListener('click', this.translater.onClickLangBtn);
+    this.refs.toggle.addEventListener('click', this.theme.onChangeTheme)
   };
 
   checkSession = () => {

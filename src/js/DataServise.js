@@ -1,7 +1,10 @@
 import imgEn from '../images/placeholder/no-image-en.jpg';
 import imgRu from '../images/placeholder/no-image-ru.jpg';
 import imgUa from '../images/placeholder/no-image-ukr.jpg';
+import Message from './message.js';
 import DataSaver from './dataSaver.js';
+
+
 export default class APIService {
   constructor() {
     this.keyAPI = 'api_key=a907caf8c46067564d1786718be1cb84';
@@ -13,8 +16,12 @@ export default class APIService {
   }
 
   fetchData = async url => {
-    const response = await fetch(url);
-    return response.json();
+    try {
+      const response = await fetch(url);
+      return response.json();      
+    } catch (error) {
+      Message.error(error);
+    }
   };
 
   fetchPopularFilms = async () => {
