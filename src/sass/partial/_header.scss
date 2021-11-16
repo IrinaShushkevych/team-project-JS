@@ -290,10 +290,13 @@
   background-color: Transparent;
   background-repeat: no-repeat;
   border: none;
-  margin-right: 20px;
+  margin-right: 10px;
   cursor: pointer;
   overflow: hidden;
   color: $primary-white-color;
+  @media screen and (min-width: $bp-tablet) {
+    margin-right: 20px;
+  }
 }
 
 .btn__header:hover {
