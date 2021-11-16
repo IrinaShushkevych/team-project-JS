@@ -27,6 +27,7 @@ export default class App {
     this.dataSaver.clearLocalstoredge();
     this.dataSaver.setActivePage('home');
     await this.dataMarkup.renderPopularFilms();
+    this.listIO();
     this.dataPagination.initPagination();
     this.refs.linkModalTeamRef.addEventListener('click', this.onOpenMdalTeam);
     this.refs.btnHomeRef.addEventListener('click', this.onClickLogoHome);
@@ -37,6 +38,33 @@ export default class App {
     this.refs.btnLogOut.addEventListener('click', this.onClickLogOut);
     this.refs.listUlFilms.addEventListener('click', this.onClickCardItem);
     this.refs.btnLangRef.addEventListener('click', this.translater.onClickLangBtn);
+  };
+
+  listIO = () => {
+    const option = {
+      rootMargin: '50px',
+      threshold: 0.2,
+    };
+    this.observer = new IntersectionObserver(this.onObservCard, option);
+    this.refs.listUlFilms.querySelectorAll('.card').forEach(el => {
+      this.observer.observe(el);
+    });
+  };
+
+  onObservCard = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (entry.target) {
+          console.log(entry.target);
+          const el = entry.target.querySelector('.card__image');
+          const img = document.createElement('img');
+          img.setAttribute('src', el.dataset.src);
+          img.setAttribute('alt', el.dataset.alt);
+          img.classList.add('card__image');
+          el.parentNode.replaceChild(img, el);
+        }
+      }
+    });
   };
 
   checkSession = () => {
