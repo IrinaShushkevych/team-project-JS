@@ -7,10 +7,25 @@
     ),
     url(../images/placeholder/b.jpg);
   background-size: cover;
+  color: $primary-white-color;
 }
 
 .dark-footer {
   background-color: transparent;
+}
+
+.dark-modal {
+  background-image: linear-gradient(
+    45deg,
+    rgb(25, 26, 26) 28%,
+    rgb(62, 59, 59) 52%,
+    rgb(148, 148, 147) 85%
+  );
+  color: rgb(94, 92, 92);
+}
+
+.dark-modal-text {
+  color: rgb(94, 92, 92);
 }
 
 .toggle {

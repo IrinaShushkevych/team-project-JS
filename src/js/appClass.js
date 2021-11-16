@@ -28,7 +28,7 @@ export default class App {
     this.checkSession();
     this.dataSaver.clearLocalstoredge();
     this.dataSaver.setActivePage('home');
-    this.dataSaver.getTheme();
+    this.theme.checkThemeOnLoad();
     await this.dataMarkup.renderPopularFilms();
     this.dataPagination.initPagination();
     this.refs.linkModalTeamRef.addEventListener('click', this.onOpenMdalTeam);
