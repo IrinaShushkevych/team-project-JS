@@ -7,6 +7,7 @@ import LoadSpinner from './loadSpinner';
 import Message from './message.js';
 import CustomPagination from './pagination';
 import Translater from './translater.js';
+import 'animate.css';
 
 export default class App {
   constructor() {
@@ -21,6 +22,7 @@ export default class App {
   }
 
   init = async () => {
+    // this.onAnimateLogo();
     this.spinner.showSpinner();
     this.translater.translate(document);
     this.checkSession();
@@ -193,5 +195,30 @@ export default class App {
     const trailer = filmVideos[0];
     this.dataMarkup.modalFilmMarkup(film, trailer);
     this.modal.onOpenModal(card.dataset.id, 'film', trailer);
+  };
+
+  onAnimateLogo = () => {
+    const element1 = document.querySelector('.js-logo1');
+    const element2 = document.querySelector('.js-logo2');
+
+    // element1.addEventListener('animationbegin', () => {
+    //   console.log('start');
+    // });
+
+    // element1.addEventListener('animationend', () => {});
+
+    element1.classList.add('animate__animated', 'animate__slideOutDown', 'animate__infinite');
+    element1.style.setProperty('--animate-duration', '2s');
+    // element1.style.setProperty('--animate-repeat', '5');
+
+    element2.style.setProperty('--animate-delay', '10s');
+    element2.style.setProperty('--animate-duration', '2s');
+    // element2.style.setProperty('--animate-repeat', '5');
+    element2.classList.add(
+      'animate__animated',
+      'animate__slideInDown',
+      'animate__infinite',
+      'animate__delay-20s',
+    );
   };
 }
