@@ -78,14 +78,12 @@ export default class App {
     this.refs.header.classList.replace('header-library', 'header-home');
     this.refs.queueBtnRef.removeEventListener('click', this.onClickQueue);
     this.refs.watchedBtnRef.removeEventListener('click', this.onClickWatched);
-    //pagination
   };
 
   onClickLogoHome = e => {
     e.preventDefault();
     this.clearInput();
     this.showPopularPage();
-    // this.refs.btnLogOut.classList.remove('hidden');
   };
 
   // Клик lybrary
@@ -110,8 +108,6 @@ export default class App {
     this.refs.watchedBtnRef.addEventListener('click', this.onClickWatched);
     this.refs.watchedBtnRef.classList.remove('btn-cover-library');
     this.refs.queueBtnRef.classList.add('btn-cover-library');
-    // this.refs.btnLogOut.classList.remove('hidden');
-    // console.log('hide input, show button, markup queue');
   };
 
   // Клик LOG OUT
@@ -123,7 +119,7 @@ export default class App {
     this.showPopularPage();
   };
 
-  // input  название = () => {}
+  // input
   onKeyWordSearch = async e => {
     e.preventDefault();
     this.spinner.showSpinner();
@@ -158,8 +154,6 @@ export default class App {
     } catch (error) {
       Message.error(error);
     }
-
-    //pagination
   };
 
   onClickQueue = async () => {
@@ -175,7 +169,6 @@ export default class App {
     } catch (error) {
       Message.error(error);
     }
-    //pagination
   };
 
   onClickCardItem = async event => {
