@@ -36,10 +36,8 @@ export default class CustomPagination {
           '</a>',
       },
     };
-    // console.log(totalpages);
+
     this.pagination = new Pagination(refs.paginationCase, paginationOptions);
-    // const totalpages = ;
-    // console.log(totalpages);
     if (this.dataSaver.getTotalPages() <= 1) {
       refs.paginationCase.classList.add('isHidden');
     } else {
@@ -50,7 +48,6 @@ export default class CustomPagination {
       window.scrollTo({
         top: 0,
         left: 0,
-        // behavior: 'smooth',
       });
       this.dataSaver.setCurrentPage(event.page);
       this.dataMarkup.updatePage();
