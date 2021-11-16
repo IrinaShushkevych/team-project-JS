@@ -56,6 +56,15 @@
 
 .footer__image {
   margin: 0 10px;
+  animation: spin 3s linear 0s infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
 }
 
 .footer__link {
@@ -76,5 +85,35 @@
   @media screen and (min-width: $bp-tablet) {
     font-size: 16px;
     line-height: 1.18;
+  }
+}
+
+// .heart__image {
+//   animation: spin 3s linear 0s infinite;
+// }
+// @keyframes spin {
+//   from {
+//     transform: rotateY(0deg);
+//   }
+//   to {
+//     transform: rotateY(360deg);
+//   }
+// }
+
+.heart__image {
+  animation: animateHeart 3000ms infinite 1000ms;
+}
+
+@keyframes animateHeart {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.25);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }

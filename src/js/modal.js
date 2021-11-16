@@ -3,6 +3,7 @@ import DataMarkup from './dataMarkup';
 import DataSaver from './dataSaver';
 import LoadSpinner from './loadSpinner';
 import Message from './message.js';
+import CustomPagination from './pagination';
 import refs from './refs.js';
 import Translater from './translater';
 
@@ -13,6 +14,7 @@ export default class Modal {
     this.load = new LoadSpinner();
     this.dataMarkup = new DataMarkup();
     this.translater = new Translater();
+    this.dataPagination = new CustomPagination();
   }
 
   onOpenModal = (id, page, trailer) => {
@@ -193,17 +195,21 @@ export default class Modal {
   };
 
   reRenderPage = async () => {
+    this.load.showSpinner();
+    console.log('rerender');
     const page = this.dataSaver.getActivePage();
     this.checkQueue(this.id);
     this.checkWatched(this.id);
     switch (page) {
       case 'watched':
-        this.dataMarkup.getCurrentFilmsWatched();
         await this.dataSaver.setTotalPageFilms('watched');
+        this.dataPagination.updatePagination();
+        this.dataMarkup.getCurrentFilmsWatched();
         break;
       case 'queue':
-        this.dataMarkup.getCurrentFilmsQueue();
         await this.dataSaver.setTotalPageFilms('queue');
+        this.dataPagination.updatePagination();
+        this.dataMarkup.getCurrentFilmsQueue();
         break;
     }
   };

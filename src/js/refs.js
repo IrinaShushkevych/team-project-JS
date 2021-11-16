@@ -13,6 +13,10 @@ export default {
   inputFormRef: document.querySelector('.js-search-form'),
   btnLangRef: document.querySelector('.js-translater'),
   listLangRef: document.querySelector('.js-translater-list'),
+  toggle: document.querySelector('.toggle-mask'),
+  toggleIcons: document.querySelectorAll('.icon-wrap'),
+
+  body: document.querySelector('body'),
 
   //main
   main: document.querySelector('main'),

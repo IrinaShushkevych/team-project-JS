@@ -18,6 +18,7 @@ export default class CustomPagination {
       centerAlign: true,
       firstItemClassName: 'tui-first-child',
       lastItemClassName: 'tui-last-child',
+      page: this.dataSaver.getCurrentPage(),
       template: {
         page: '<a href="#" class="tui-page-btn">{{page}}</a>',
         currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
@@ -37,26 +38,28 @@ export default class CustomPagination {
     };
 
     this.pagination = new Pagination(refs.paginationCase, paginationOptions);
+    if (this.dataSaver.getTotalPages() <= 1) {
+      refs.paginationCase.classList.add('isHidden');
+    } else {
+      refs.paginationCase.classList.remove('isHidden');
+    }
 
     this.pagination.on('afterMove', async event => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+      });
       this.dataSaver.setCurrentPage(event.page);
       this.dataMarkup.updatePage();
-      // const activePage = this.dataSaver.getActivePage();
-      // switch (activePage) {
-      //   case 'home':
-      //     if (refs.inputRef.value) {
-      //       this.dataMarkup.renderSearchingFilms(refs.inputRef.value);
-      //     } else {
-      //       this.dataMarkup.renderPopularFilms();
-      //     }
-      //     break;
-      //   case 'watched':
-      //     this.dataMarkup.getCurrentFilmsWatched();
-      //     break;
-      //   case 'queue':
-      //     this.dataMarkup.getCurrentFilmsQueue();
-      //     break;
-      // }
     });
+  };
+
+  updatePagination = () => {
+    console.log('this.dataSaver.getCurrentPage()', this.dataSaver.getCurrentPage());
+    console.log('this.dataSaver.getTotalPages()', this.dataSaver.getTotalPages());
+    if (this.dataSaver.getCurrentPage() > this.dataSaver.getTotalPages()) {
+      this.dataSaver.setCurrentPage(this.dataSaver.getTotalPages());
+      this.initPagination();
+    }
   };
 }

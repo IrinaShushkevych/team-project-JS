@@ -23,7 +23,27 @@
       <div class="container">
         <div class="header-section">
           <a href="" class="header_link js-logo">
-            <img src="./images/film.svg" alt="logo" class="logo-img" width="24" height="24" />
+            <img
+              src="./images/film.svg"
+              alt="logo"
+              class="logo-img js-logo1"
+              width="24"
+              height="24"
+            />
+            <img
+              src="./images/film.svg"
+              alt="logo"
+              class="logo-img js-logo2"
+              width="24"
+              height="24"
+            />
+            <img
+              src="./images/film.svg"
+              alt="logo"
+              class="logo-img js-logo3"
+              width="24"
+              height="24"
+            />
             <span class="logo__header lang" data-key="logo">Filmoteka</span>
           </a>
 
@@ -37,7 +57,7 @@
               </button>
               <button class="library-btn__header btn__header js-log-out hidden">
                 <!-- <img src="./images/exit.svg" alt="login" class="login-img" width="20" height="20" /> -->
-                <span class="btn-text lang" data-key="logout">LOG OUT</span>
+                <span class="btn-text lang logout-span" data-key="logout">LOG OUT</span>
               </button>
             </div>
             <button class="btn__header js-auth btn-login__header lang" data-key="login">
@@ -71,7 +91,13 @@
               placeholder="Поиск фильмов"
             />
             <button type="submit" class="search-btn">
-              <img src="./images/search.svg" alt="search" width="12" height="12" />
+              <img
+                src="./images/search.svg"
+                alt="search"
+                width="12"
+                height="12"
+                class="search-img"
+              />
             </button>
           </form>
         </div>
@@ -133,6 +159,28 @@
               ></button>
             </li>
           </ul>
+        </div>
+
+        <div class="toggle">
+          <div class="toggle-mask">
+            <div class="icon-wrap active">
+              <div class="icon sun"></div>
+            </div>
+            <div class="icon-wrap">
+              <svg
+                copy="icon"
+                data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 300 300"
+              >
+                <path
+                  d="M187.73 151.4c0-55.24 29.34-104.19 76.27-129.72C242.21 9.81 216.56 3 188.15 3 99.15 3 36.2 70.46 36.2 151.4S98.3 299 187.33 299c28.26 0 53.87-6.82 75.69-18.69-46.48-25.31-75.29-73.8-75.29-128.91z"
+                  fill="#ffffff"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="bar"></div>
         </div>
       </div>
     </header>
