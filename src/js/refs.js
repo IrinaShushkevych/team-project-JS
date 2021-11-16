@@ -43,4 +43,5 @@ export default {
   trailerContainer: document.querySelector('.js-video-trailer'),
 
   btnBackRef: document.querySelector('.block-arrow'),
+  divModalRef: document.querySelector('.card__modal-thumb'),
 };
