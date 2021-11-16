@@ -113,7 +113,6 @@ export default class APIService {
       this.keyAPI +
       `&language=${this.dataSaver.getLanguage()}`;
     const result = await this.fetchData(fetchMovieVideosUrl);
-    console.log(result.results);
     return result.results;
   };
 
