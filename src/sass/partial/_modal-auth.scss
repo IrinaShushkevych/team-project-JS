@@ -31,7 +31,8 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: transparent !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgb(0, 0, 0, 0.31) inset !important;
+  // box-shadow: 0 0 0px 1000px rgb(0, 0, 0, 0.31) inset !important;
 }
 
 .button-auth {
@@ -53,6 +54,9 @@ input:-webkit-autofill:active {
 
   &:not(:last-child) {
     margin-right: 30px;
+    @media screen and (min-width: $bp-tablet) {
+      margin-right: 10px;
+    }
   }
 
   .lang-change &:not(:last-child) {
