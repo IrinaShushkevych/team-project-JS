@@ -2,7 +2,7 @@
   margin: 0 auto;
   max-width: 450px;
   width: 100%;
-
+  overflow-y: auto;
   @media screen and (min-width: $bp-tablet) {
     position: absolute;
     top: 50%; // 50%; 80%
