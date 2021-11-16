@@ -3,8 +3,12 @@ import template from '../templates/list-card.hbs';
 import jsKillerTemplate from '../templates/jsKillerCard.hbs';
 import jsKillerTeam from '../json/jsKillers.json';
 import imgNull from '../images/filmsNull.jpg';
+
+// import refs from './refs';
+
 import filmTpl from '../templates/modalFilmCard.hbs';
 import refs from '../js/refs';
+import images from '../images/*.jpg';
 
 import listCardTpl from '../templates/list-card.hbs';
 import DataSaver from './dataSaver.js';
@@ -57,6 +61,9 @@ export default class DataMarkup {
 
   getCurrentFilmsWatched = async id => {
     const currentFilmsWatched = await this.dataSaver.getFilmWatched();
+
+    console.log(currentFilmsWatched);
+
     if (currentFilmsWatched.length === 0) {
       this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
       this.spinner.hideSpinner(this.refs.mask);
@@ -69,17 +76,27 @@ export default class DataMarkup {
   // Отрисовка очереди
   getCurrentFilmsQueue = async () => {
     const currentFilmsQueue = await this.dataSaver.getFilmQueue();
+
     if (currentFilmsQueue.length === 0) {
       this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
       this.spinner.hideSpinner(this.refs.mask);
       return;
     }
+
     this.renderMarkup(currentFilmsQueue);
     this.spinner.hideSpinner(this.refs.mask);
   };
 
   renderModalTeam = () => {
     try {
+      console.log(images);
+      const arr = jsKillerTeam.map(el => {
+        console.log(el);
+        el.superPhoto = images[el.superPhoto];
+        return el;
+      });
+      console.log(arr);
+
       const markup = jsKillerTemplate(jsKillerTeam);
       this.refs.modalContainer.innerHTML = markup;
     } catch (error) {
@@ -98,6 +115,7 @@ export default class DataMarkup {
     `;
     // this.refs.modalCardRef.innerHTML = filmTpl(film, trailer);
   };
+
 
   filterFilmsQuery = () => {
     this.btnSort = document.querySelector('.sort-btn');
@@ -159,4 +177,5 @@ export default class DataMarkup {
       }
     });
   };
+
 }
