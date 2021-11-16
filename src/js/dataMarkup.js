@@ -3,7 +3,6 @@ import template from '../templates/list-card.hbs';
 import jsKillerTemplate from '../templates/jsKillerCard.hbs';
 import jsKillerTeam from '../json/jsKillers.json';
 import imgNull from '../images/filmsNull.jpg';
-// import refs from './refs';
 import filmTpl from '../templates/modalFilmCard.hbs';
 import refs from '../js/refs';
 
@@ -11,6 +10,7 @@ import listCardTpl from '../templates/list-card.hbs';
 import DataSaver from './dataSaver.js';
 import Message from './message.js';
 import LoadSpinner from './loadSpinner';
+
 export default class DataMarkup {
   constructor() {
     this.messsage = new Message();
@@ -23,10 +23,12 @@ export default class DataMarkup {
     this.filmTpl = filmTpl;
     this.listCardTpl = listCardTpl;
   }
+
   // Рисование списка карточек
   renderMarkup = data => {
     this.listRef.innerHTML = template(data);
     this.spinner.hideSpinner();
+    this.listIO();
   };
 
   // Отрисовка популярных
@@ -131,5 +133,37 @@ export default class DataMarkup {
         this.getCurrentFilmsQueue();
         break;
     }
+  };
+
+  listIO = () => {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+    const option = {
+      rootMargin: '50px',
+      threshold: 0.2,
+    };
+    this.observer = new IntersectionObserver(this.onObservCard, option);
+    this.refs.listUlFilms.querySelectorAll('.card').forEach(el => {
+      this.observer.observe(el);
+    });
+  };
+
+  onObservCard = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (entry.target) {
+          console.log(entry.target);
+          const el = entry.target.querySelector('.card__image');
+          if (el.nodeName === 'P') {
+            const img = document.createElement('img');
+            img.setAttribute('src', el.dataset.src);
+            img.setAttribute('alt', el.dataset.alt);
+            img.classList.add('card__image');
+            el.parentNode.replaceChild(img, el);
+          }
+        }
+      }
+    });
   };
 }
