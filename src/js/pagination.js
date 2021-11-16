@@ -45,14 +45,15 @@ export default class CustomPagination {
     } else {
       refs.paginationCase.classList.remove('isHidden');
     }
+
     this.pagination.on('afterMove', async event => {
-      this.dataSaver.setCurrentPage(event.page);
-      this.dataMarkup.updatePage();
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior: 'smooth',
+        // behavior: 'smooth',
       });
+      this.dataSaver.setCurrentPage(event.page);
+      this.dataMarkup.updatePage();
     });
   };
 }
