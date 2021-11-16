@@ -52,22 +52,7 @@ export default class CustomPagination {
         left: 0,
         behavior: 'smooth',
       });
-      // const activePage = this.dataSaver.getActivePage();
-      // switch (activePage) {
-      //   case 'home':
-      //     if (refs.inputRef.value) {
-      //       this.dataMarkup.renderSearchingFilms(refs.inputRef.value);
-      //     } else {
-      //       this.dataMarkup.renderPopularFilms();
-      //     }
-      //     break;
-      //   case 'watched':
-      //     this.dataMarkup.getCurrentFilmsWatched();
-      //     break;
-      //   case 'queue':
-      //     this.dataMarkup.getCurrentFilmsQueue();
-      //     break;
-      // }
+
     });
   };
 }
