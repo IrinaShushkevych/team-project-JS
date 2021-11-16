@@ -7,7 +7,7 @@ import LoadSpinner from './loadSpinner';
 import Message from './message.js';
 import CustomPagination from './pagination';
 import Translater from './translater.js';
-import Theme from './theme.js'
+import Theme from './theme.js';
 
 export default class App {
   constructor() {
@@ -20,6 +20,7 @@ export default class App {
     this.dataPagination = new CustomPagination();
     this.translater = new Translater();
     this.theme = new Theme();
+    this.dataPagination = new CustomPagination();
   }
 
   init = async () => {
@@ -40,7 +41,7 @@ export default class App {
     this.refs.btnLogOut.addEventListener('click', this.onClickLogOut);
     this.refs.listUlFilms.addEventListener('click', this.onClickCardItem);
     this.refs.btnLangRef.addEventListener('click', this.translater.onClickLangBtn);
-    this.refs.toggle.addEventListener('click', this.theme.onChangeTheme)
+    this.refs.toggle.addEventListener('click', this.theme.onChangeTheme);
   };
 
   checkSession = () => {

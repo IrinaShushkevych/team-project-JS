@@ -18,7 +18,6 @@ export default class DataMarkup {
     this.dataAPI = new APIService();
     this.spinner = new LoadSpinner();
     this.listRef = refs.listUlFilms;
-
     this.refs = refs;
     this.filmTpl = filmTpl;
     this.listCardTpl = listCardTpl;
@@ -63,11 +62,10 @@ export default class DataMarkup {
       this.spinner.hideSpinner();
       return;
     }
-
     this.spinner.hideSpinner();
     this.renderMarkup(currentFilmsWatched);
   };
-  //
+
   // Отрисовка очереди
   getCurrentFilmsQueue = async () => {
     const currentFilmsQueue = await this.dataSaver.getFilmQueue();
@@ -76,12 +74,9 @@ export default class DataMarkup {
       this.spinner.hideSpinner();
       return;
     }
-
     this.renderMarkup(currentFilmsQueue);
     this.spinner.hideSpinner();
   };
-
-  // listener на список
 
   renderModalTeam = () => {
     try {
@@ -99,9 +94,7 @@ export default class DataMarkup {
 
   trailerFilmMarkup = (film, trailer) => {
     this.refs.trailerContainer.innerHTML = `
-             
-        <iframe class='trailer' width="560" height="315" src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-           
+        <iframe class='trailer' width="560" height="315" src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        
     `;
     // this.refs.modalCardRef.innerHTML = filmTpl(film, trailer);
   };

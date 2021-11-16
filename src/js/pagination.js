@@ -56,4 +56,13 @@ export default class CustomPagination {
       this.dataMarkup.updatePage();
     });
   };
+
+  updatePagination = () => {
+    console.log('this.dataSaver.getCurrentPage()', this.dataSaver.getCurrentPage());
+    console.log('this.dataSaver.getTotalPages()', this.dataSaver.getTotalPages());
+    if (this.dataSaver.getCurrentPage() > this.dataSaver.getTotalPages()) {
+      this.dataSaver.setCurrentPage(this.dataSaver.getTotalPages());
+      this.initPagination();
+    }
+  };
 }
