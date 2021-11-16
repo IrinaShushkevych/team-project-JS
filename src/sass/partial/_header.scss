@@ -240,6 +240,7 @@
 
 .js-logo2 {
   position: absolute;
+  left: 0;
   transform: translateY(-184%);
   animation-name: films2;
   animation-duration: 1.5s;
@@ -254,6 +255,7 @@
 
 .js-logo3 {
   position: absolute;
+  left: 0;
   transform: translateY(-272%);
   animation-name: films3;
   animation-duration: 1.5s;
@@ -288,10 +290,13 @@
   background-color: Transparent;
   background-repeat: no-repeat;
   border: none;
-  margin-right: 20px;
+  margin-right: 10px;
   cursor: pointer;
   overflow: hidden;
   color: $primary-white-color;
+  @media screen and (min-width: $bp-tablet) {
+    margin-right: 20px;
+  }
 }
 
 .btn__header:hover {
