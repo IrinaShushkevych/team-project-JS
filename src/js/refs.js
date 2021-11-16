@@ -33,5 +33,5 @@ export default {
   modalCleaner: document.querySelector('.card__container--modal'),
   modalContainer: document.querySelector('.card__js-killer-container--modal'),
   buttonRemover: document.querySelector('.button__container-modal'),
-  memberPhoto: document.querySelector('photo'),
+  memberPhoto: document.querySelector('.killer__image'),
 };

@@ -1,13 +1,21 @@
 <div class='killers__container container'>
-  <h2 class='killers__header'>Team: JS-killers</h2>
+  <h2 class='killers__header'>JS-killers</h2>
 
   <div class='killers__content'>
 
     <div class='killers__list list'>
-      <marquee class='wanted' behavior='alternate' direction='left'>!__WANTED__!</marquee>
+      <marquee class='wanted' behavior='alternate' direction='left'><span
+          class='rotate-letter-wanted'
+        >W</span>ANTED!!!</marquee>
       {{#each this}}
         <div class='post-wrap wrapper-img'>
           <img src='{{photo}}' alt='JS-killer' class='killer__image' id='photo' />
+          <img
+            src='{{superPhoto}}'
+            alt='JS-killer'
+            class='killer__image killer__image-super-photo visually-hidden'
+            id='photo'
+          />
 
           <div class='post-inner'>
             <span class='dot first'></span>

@@ -53,12 +53,20 @@
   color: $color-invalid;
   font-weight: bold;
   font-size: 20px;
+  font-family: serif;
 
   @media screen and (min-width: $bp-tablet) {
     font-size: 30px;
   }
 }
-
+.rotate-letter-wanted {
+  font-size: 30px;
+  float: left;
+  transform: rotate(-30deg);
+  @media screen and (min-width: $bp-tablet) {
+    font-size: 50px;
+  }
+}
 .killers__list {
   display: inline-flex;
   justify-content: center;
