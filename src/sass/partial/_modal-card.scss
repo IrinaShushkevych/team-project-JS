@@ -21,6 +21,7 @@
 }
 
 .card__image-thumb {
+  position: relative;
   flex-basis: calc(100% / 2 - 20px);
   margin-bottom: 30px;
   // border-radius: 5px;
@@ -29,6 +30,7 @@
     margin-bottom: 0px;
   }
 }
+
 .card__image {
   border-radius: 5px;
   width: 100%;
@@ -109,7 +111,7 @@
 .button__list-modal {
   display: flex;
   justify-content: flex-start;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   margin-right: -15px;
   margin-bottom: -15px;
 
@@ -216,7 +218,11 @@
 }
 
 .trailer {
-  z-index: 3;
+  z-index: 5;
+  position: absolute;
+  top: 50%; // 50%; 80%
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
   max-width: 100%;
   padding: 10px 0px;
 
@@ -231,4 +237,22 @@
   // @media screen and (min-width: $bp-desktop) {
   //   padding-top: 10px;
   // }
+}
+
+.card__button {
+  padding: 1px;
+  z-index: 4;
+  position: absolute;
+  top: 50%; // 50%; 80%
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  max-width: 100%;
+
+  // @media screen and (min-width: $bp-tablet) {
+  //   left: 25%;
+  // }
+}
+
+.button__modal--add {
+  background-color: transparent;
 }
