@@ -178,7 +178,7 @@ export default class App {
 
   onClickCardItem = async event => {
     event.preventDefault();
-    const card = event.target.closest('li');
+    const card = event.target.closest('.card');
     if (!card) {
       return;
     }
