@@ -224,9 +224,14 @@
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
   max-width: 100%;
+  width: 95%;
+  height: 91%;
   padding: 10px 0px;
 
-  // @media screen and (min-width: $bp-tablet) {
+  @media screen and (min-width: $bp-tablet) {
+    width: 95%;
+    height: 87%;
+  }
   //   display: flex;
   //   justify-content: space-between;
   //   padding-top: 2px;
@@ -234,9 +239,10 @@
   //   padding-left: 30px;
   // }
 
-  // @media screen and (min-width: $bp-desktop) {
-  //   padding-top: 10px;
-  // }
+  @media screen and (min-width: $bp-desktop) {
+    width: 98%;
+    height: 90%;
+  }
 }
 
 .card__button {
@@ -247,7 +253,8 @@
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
   max-width: 100%;
-
+  max-height: 100%;
+  font-size: 100%;
   // @media screen and (min-width: $bp-tablet) {
   //   left: 25%;
   // }
