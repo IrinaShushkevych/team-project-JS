@@ -40,6 +40,10 @@ export default class App {
     this.filterBtn.addListFilterGenre();
     this.filterBtn.addListFilterYears();
     this.filterBtn.listFilterGenresRender();
+    this.filterBtn.listFilterYearsRender();
+    this.filterBtn.listFilterTopRatingRender();
+    this.filterBtn.listFilterPopularyWeek();
+    this.filterBtn.addListenersSvgBtn();
   };
 
   checkSession = () => {

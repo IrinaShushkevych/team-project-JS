@@ -133,5 +133,8 @@ export default {
   yearBtn: document.querySelector('.year'),
   sortWrapper:document.querySelector('.sort-wrapper'),  
   genreWrapper:document.querySelector('.genre-wrapper'),
+  topRating: document.querySelector('.rating-wrapper'),
+  yearsWrapper: document.querySelector('.year-wrapper'),
+  svgIconBtn: document.querySelector('.svg-icon'),
   
-};
+}

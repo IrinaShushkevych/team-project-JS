@@ -46,8 +46,15 @@ export default class DataMarkup {
   // Отрисовка по запросу
   renderSearchingFilms = async query => {
     const currentQuerySeach = await this.dataAPI.fetchFilmsByQuery(query);
-    this.renderMarkup(currentQuerySeach);
+    if(currentQuerySeach.length === 0){
+      this.listRef.innerHTML =
+        `<li class ="card-my-library"><p class = "title-card-my-library">No such film was found</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+        this.spinner.hideSpinner();
+      return;
+
+    }
     this.spinner.hideSpinner();
+    this.renderMarkup(currentQuerySeach);
   };
   // отрисовка по фільтру за день 
 
@@ -68,7 +75,7 @@ export default class DataMarkup {
     console.log(currentFilmsWatched)
     if (currentFilmsWatched.length === 0) {
       this.listRef.innerHTML =
-        `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+        `<li class ="card-my-library"><p class = "title-card-my-library">Your library is empty</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
         this.spinner.hideSpinner();
       return;
     }
@@ -83,7 +90,7 @@ export default class DataMarkup {
     console.log(currentFilmsQueue)
     if (currentFilmsQueue.length === 0) {
       this.listRef.innerHTML =
-        `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+        `<li class ="card-my-library"><p class = "title-card-my-library">Your library is empty</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
         this.spinner.hideSpinner();
       return;
     }

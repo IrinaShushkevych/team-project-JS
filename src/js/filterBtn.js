@@ -36,8 +36,8 @@ export default class FilterBtn {
             this.refs.genreBtn.classList.toggle('checked');
             this.refs.yearBtn.classList.remove('checked');
 
-            this.refs.sortGenreList.classList.toggle('is_hidden');
-            this.refs.yearList.classList.add('is_hidden');
+            this.refs.sortGenreList.classList.toggle('visually-hidden');
+            this.refs.yearList.classList.add('visually-hidden');
 
         })
     }
@@ -46,10 +46,20 @@ export default class FilterBtn {
             this.refs.yearBtn.classList.toggle('checked');
             this.refs.genreBtn.classList.remove('checked');
 
-            this.refs.yearList.classList.toggle('is_hidden');
-            this.refs.sortGenreList.classList.add('is_hidden');
+            this.refs.yearList.classList.toggle('visually-hidden');
+            this.refs.sortGenreList.classList.add('visually-hidden');
 
         })
+    }
+    listFilterYearsRender=()=>{
+        this.refs.yearList.addEventListener('click', async (el)=>{
+            const id = el.target.dataset.id
+            const fechIdYears = await this.filterFechYearsId(id);
+            this.dataMarkup.renderMarkup(fechIdYears )
+            this.dataSaver.setActivePage("filterYears")
+            this.refs.yearList.classList.add('visually-hidden')
+
+        } )
     }
     
     listFilterGenresRender=()=>{
@@ -59,19 +69,36 @@ export default class FilterBtn {
             const id = el.target.dataset.id
             const fechIdGenres = await this.filterFechGenresID(id);
             this.dataMarkup.renderMarkup(fechIdGenres)
-            this.dataSaver.setActivePage("filterGenres")           
+            this.dataSaver.setActivePage("filterGenres")
+            this.refs.sortGenreList.classList.add('visually-hidden')           
             
-            // this.dataMarkup.renderMarkup();
 
         })
 
     }
+    listFilterTopRatingRender=()=>{
+        this.refs.topRating.addEventListener('click', async el  =>{
+            const id = el.target.dataset.id
+            const fechIdTopRating = await this.fechIdRating(id);
+            this.dataMarkup.renderMarkup(fechIdTopRating )
+            this.dataSaver.setActivePage("filterTopRating")
+            
+                       
+        })
+
+    }
+    listFilterPopularyWeek =()=>{
+        this.refs.sortWrapper.addEventListener('click', async el =>{
+            const id = el.target.dataset.id
+            const fechIdPopularyWeek = await this.fechPopularyWeek(id);
+            this.dataMarkup.renderMarkup(fechIdPopularyWeek)
+            this.dataSaver.setActivePage("filterPopularyWeek")
+            
+        })
+    }
     filterFechGenresID= async(id)=>{
         if(id){
             this.idGenres = id 
-
-
-
 
         }
     //     
@@ -83,70 +110,61 @@ export default class FilterBtn {
 
     const genresResults = result.results
    
-
-    
     return  genresResults;
     }
-    // renderFilterListItemGenre=()=>{
-        // https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
-       
+    filterFechYearsId= async(id)=>{
+        if(id){
+            this.idYears = id
+        }
+        let popularFilms = 'discover/movie?';
+        this.url =
+        this.DataService.baseUrl + popularFilms + this.DataService.keyAPI + `&year=${this.idYears}&page=${this.dataSaver.getCurrentPage()}`;
+        const result = await this.DataService.fetchData(this.url);
+        await this.DataService.fixFetchObject(result.results);
+
+        const yearsResults = result.results
+    
+        return  yearsResults;
+    }
+    
+    fechIdRating = async() =>{
         
+        let popularFilms = 'movie/top_rated?';
+        this.url =
+        this.DataService.baseUrl + popularFilms + this.DataService.keyAPI + `&page=${this.dataSaver.getCurrentPage()}`;
+        const result = await this.DataService.fetchData(this.url);
+        await this.DataService.fixFetchObject(result.results);
 
-    // }
-
-
-
-
-
-
-
-
-   
+        const ratingTopResults = result.results
     
+        return  ratingTopResults;
+
+
+    }
+    fechPopularyWeek =async()=>{
+        let popularFilms = 'trending/movie/day?';
+        this.url =
+        this.DataService.baseUrl + popularFilms + this.DataService.keyAPI + `&page=${this.dataSaver.getCurrentPage()}`;
+        const result = await this.DataService.fetchData(this.url);
+        await this.DataService.fixFetchObject(result.results);
+
+        const popuylaryWeekResults = result.results
     
+        return popuylaryWeekResults;
+    }
+    // поява конопок по кліку на свг 
+    addListenersSvgBtn=()=>{
+        this.refs.svgIconBtn.addEventListener('click', ()=>{
+            this.refs.sortWrapper.classList.toggle('hidden')
+            this.refs.genreWrapper.classList.toggle('hidden') 
+            this.refs.yearsWrapper.classList.toggle('hidden')  
+            this.refs.topRating.classList.toggle('hidden')    
+        
+        })
+
+    }
 
 
-    // fechYearGenresFilms= (searchValue = false)=>{
-    //     return new Promise((resolve, reject)=>{
-    //         let year = '&primary_release_year=' + this.refs.yearBtn.dataset.id;
-    //         let genres = '&with_genres=' + refs.genreBtn.dataset.id;
 
-    //         if(!searchValue){
-    //             fetch(`${this.DataService.baseUrl}?${this.DataService.keyAPI}&page=${this.dataSaver.getCurrentPage()}${this.DataService.decodeGenres}`)
-    //             .then(data=>{
-    //                 if(!data.ok){
-    //                     reject(new Error(`Ошыбка`))
-    //                 }
-    //                 return data
-                    
-    //             })
-    //             .then(data=>console.log(data))
-    //             .then(json=>{
-    //                 if(json.results.length > 0){
-    //                     return json
-    //                 }
-    //                 throw "пустий масив [виконано]"
-    //             })
-    //             .then(json=>resolve(json))
-    //             .catch(data=>console.log('ошибка дальше '))
-    //         }
-            
-    //     })
-
-
-    // }
-    // populary week 
-    
-      
     // ****
-
-
-    
 }
-    
-   
-    
-
-
-
-
