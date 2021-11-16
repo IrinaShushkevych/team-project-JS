@@ -18,6 +18,7 @@ export default class CustomPagination {
       centerAlign: true,
       firstItemClassName: 'tui-first-child',
       lastItemClassName: 'tui-last-child',
+      page: this.dataSaver.getCurrentPage(),
       template: {
         page: '<a href="#" class="tui-page-btn">{{page}}</a>',
         currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
@@ -52,7 +53,6 @@ export default class CustomPagination {
         left: 0,
         behavior: 'smooth',
       });
-
     });
   };
 }
