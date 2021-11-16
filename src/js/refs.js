@@ -38,9 +38,18 @@ export default {
   itemRemoveWatched: document.querySelector('.js-remove-watched'),
   itemAddQueue: document.querySelector('.js-add-queue'),
   itemRemoveQueue: document.querySelector('.js-remove-queue'),
+
+
+  modalWindowOpener: document.querySelector('.js-modal-team'),
+  modalCleaner: document.querySelector('.card__container--modal'),
+  modalContainer: document.querySelector('.card__js-killer-container--modal'),
+  buttonRemover: document.querySelector('.button__container-modal'),
+  memberPhoto: document.querySelector('.killer__image'),
+
   buttonContainer: document.querySelector('.button-container'),
   buttonGetVideos: document.querySelector('.js-add-video'),
   trailerContainer: document.querySelector('.js-video-trailer'),
 
   btnBackRef: document.querySelector('.block-arrow'),
+
 };

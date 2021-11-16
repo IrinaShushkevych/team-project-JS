@@ -1,11 +1,12 @@
-.killers__container {
-  display: block;
+.card__js-killer-container--modal {
+  display: flex;
   justify-content: center;
+  height: 800px;
   overflow: scroll;
   @media screen and (min-width: $bp-tablet) {
-    width: 500px;
-    overflow: hidden;
-    margin-top: 50px;
+    min-width: 500px;
+    overflow: scroll;
+    // margin-top: 20px;
   }
 }
 
@@ -15,57 +16,70 @@
   fill: $accent-color;
 }
 
-.button__js-killers-modal {
-  border: 2px solid #122330;
-  background-color: $bg-footer;
-  box-shadow: 4px 4px 14px $specification-color;
-  width: 80px;
-  height: 80px;
-  color: $primary-black-color;
-  font-size: medium;
-  font-weight: bold;
+// .button__js-killers-modal {
+//   border: 2px solid $color-team-dot;
+//   background-color: $bg-footer;
+//   box-shadow: 4px 4px 14px $specification-color;
+//   width: 80px;
+//   height: 80px;
+//   color: $primary-black-color;
+//   font-size: medium;
+//   font-weight: bold;
 
-  &:not(:last-child) {
-    margin-right: 30px;
-  }
-}
+//   &:not(:last-child) {
+//     margin-right: 30px;
+//   }
+// }
 
-.button__container-js-killers-modal {
-  display: flex;
-  justify-content: center;
-  margin: 10px auto;
-}
+// .button__container-js-killers-modal {
+//   display: flex;
+//   justify-content: center;
+//   margin: 10px auto;
+// }
 
 .killers__header {
   display: flex;
   justify-content: center;
   color: $accent-color;
-  margin-bottom: 50px;
-  border-bottom: thick double #122330;
+  margin-bottom: 30px;
+  border-bottom: thick double $color-team-dot;
   padding: 10px;
-  text-shadow: 2px 2px 7px $specification-color;
+  @media screen and (min-width: $bp-tablet) {
+    font-size: 40px;
+  }
 }
 
+.wanted {
+  color: $color-invalid;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: serif;
+
+  @media screen and (min-width: $bp-tablet) {
+    font-size: 30px;
+  }
+}
+.rotate-letter-wanted {
+  font-size: 30px;
+  float: left;
+  transform: rotate(-30deg);
+  @media screen and (min-width: $bp-tablet) {
+    font-size: 50px;
+  }
+}
 .killers__list {
   display: inline-flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-//   border: 1px solid $primary-color;
-//   min-width: 200px;
-//   min-height: 200px;
-//   margin: 10px;
-//   box-shadow: 4px 4px 14px $specification-color;
-//   border-radius: 30%;
-// }
-
 .killers__title {
   font-weight: 400px;
+  padding: 5px;
 }
 
 .post-wrap {
-  background: white;
+  background: $primary-white-color;
   box-shadow: 0 1px 2px $color-team;
   max-width: 220px;
   margin: 20px auto 0;
@@ -90,12 +104,12 @@
   right: -10px;
   bottom: -10px;
   top: -10px;
-  border: 3px solid #122330;
+  border: 3px solid $color-team-dot;
 }
 .dot {
   height: 5px;
   width: 5px;
-  background: #122330;
+  background: $color-team-dot;
   border-radius: 50%;
   display: inline-block;
   position: relative;
@@ -107,7 +121,7 @@
   content: '';
   height: 5px;
   width: 5px;
-  background: #122330;
+  background: $color-team-dot;
   border-radius: 50%;
   position: absolute;
   top: 0;
@@ -126,7 +140,8 @@
 }
 .killers__position {
   font-size: small;
-  color: #122330;
+  color: $color-team-dot;
+  font-weight: bold;
 }
 
 .wrapper-img {
