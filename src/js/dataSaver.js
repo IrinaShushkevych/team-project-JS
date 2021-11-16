@@ -29,6 +29,14 @@ export default class DataSaver {
     localStorage.setItem('totalPages', 0);
   };
 
+  setLanguage = lang => {
+    localStorage.setItem('lang', lang);
+  };
+
+  getLanguage = () => {
+    return localStorage.getItem('lang');
+  };
+
   setCurrentPage = page => {
     localStorage.setItem('numberListPage', JSON.stringify(page));
   };
@@ -81,6 +89,14 @@ export default class DataSaver {
     if (page) {
       localStorage.setItem('activePage', page);
     }
+  };
+
+  setTheme = theme => {
+    localStorage.setItem('theme', theme);
+  };
+
+  getTheme = () => {
+    return localStorage.getItem('theme');
   };
 
   // get одна карточка

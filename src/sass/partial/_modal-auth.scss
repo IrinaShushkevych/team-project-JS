@@ -1,6 +1,6 @@
-.modal-auth {
+.modal.modal-auth {
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 .modal-auth__input {
@@ -12,6 +12,7 @@
   color: $primary-black-color;
   margin-bottom: 30px;
   outline: none;
+  background-color: transparent;
 
   &::placeholder {
     color: $accent-color;
@@ -24,6 +25,13 @@
   &.valid {
     border-bottom: 2px solid $color-valid;
   }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px rgb(0, 0, 0, 0.31) inset !important;
 }
 
 .button-auth {
@@ -45,6 +53,16 @@
 
   &:not(:last-child) {
     margin-right: 30px;
+    @media screen and (min-width: $bp-tablet) {
+      margin-right: 10px;
+    }
+  }
+
+  .lang-change &:not(:last-child) {
+    margin-bottom: 30px;
+    @media screen and (min-width: $bp-tablet) {
+      margin-bottom: 0;
+    }
   }
 
   &:hover,
@@ -52,6 +70,8 @@
     color: $primary-white-color;
     background-color: $accent-color;
     box-shadow: (0px 8px 43px rgba(255, 107, 1, 0.6));
+
+    cursor: pointer;
   }
 
   &:disabled {

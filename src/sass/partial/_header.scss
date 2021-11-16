@@ -1,5 +1,6 @@
 .header .container {
   // outline: 1px solid red;
+  position: relative;
   padding-top: 58px;
   padding-bottom: 96px;
   @media screen and (min-width: $bp-tablet) {
@@ -127,19 +128,143 @@
 
 .header_link {
   position: absolute;
-  top: 46 px;
+  // top: 46 px;
+  overflow: hidden;
   text-decoration: none;
   cursor: pointer;
 
   @media screen and (min-width: $bp-tablet) {
     display: flex;
     align-items: baseline;
+    padding-right: 20px;
   }
+}
+
+.header_link:hover {
+  & .logo__header {
+    color: $accent-color;
+    transform: scale(1.1);
+  }
+  // .logo-img {
+  // animation: spin 3s linear 0s infinite;
+  // }
+  // @keyframes spin {
+  //   from {
+  //     transform: rotateY(0deg);
+  //   }
+  //   to {
+  //     transform: rotateY(360deg);
+  //   }
+  // transform: scale(1.3, 1.3);
+  // transition-duration: 250ms;
+  // transition-timing-function: $timing-function;
+  // }
 }
 
 .logo-img {
   @media screen and (min-width: $bp-tablet) {
     margin-right: 10px;
+  }
+}
+
+@keyframes films1 {
+  from {
+    transform: translateY(20%);
+  }
+
+  to {
+    transform: translateY(150%);
+  }
+}
+
+@keyframes films2 {
+  from {
+    transform: translateY(-184%);
+  }
+
+  to {
+    transform: translateY(-50%);
+  }
+}
+@keyframes films3 {
+  from {
+    transform: translateY(-272%);
+  }
+
+  to {
+    transform: translateY(-134%);
+  }
+}
+
+@keyframes films4 {
+  from {
+    transform: translateY(-40%);
+  }
+
+  to {
+    transform: translateY(74%);
+  }
+}
+@keyframes films5 {
+  from {
+    transform: translateY(-126%);
+  }
+
+  to {
+    transform: translateY(-8%);
+  }
+}
+
+@keyframes films6 {
+  from {
+    transform: translateY(34%);
+  }
+
+  to {
+    transform: translateY(144%);
+  }
+}
+
+.js-logo1 {
+  transform: translateY(20%);
+  animation-name: films1;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  @media screen and (min-width: $bp-tablet) {
+    transform: translateY(34%);
+    animation-name: films6;
+  }
+}
+
+.js-logo2 {
+  position: absolute;
+  left: 0;
+  transform: translateY(-184%);
+  animation-name: films2;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  @media screen and (min-width: $bp-tablet) {
+    transform: translateY(-40%);
+    animation-name: films4;
+  }
+}
+
+.js-logo3 {
+  position: absolute;
+  left: 0;
+  transform: translateY(-272%);
+  animation-name: films3;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  @media screen and (min-width: $bp-tablet) {
+    transform: translateY(-126%);
+    animation-name: films5;
   }
 }
 
@@ -155,19 +280,34 @@
   }
 }
 
-.btn__header {
-  &:first-child {
-    margin-right: 18px;
-  }
-}
+// .btn__header {
+//   &:first-child {
+//     // margin-right: 38px;
+//   }
+// }
 
 .btn__header {
   background-color: Transparent;
   background-repeat: no-repeat;
   border: none;
+  margin-right: 10px;
   cursor: pointer;
   overflow: hidden;
   color: $primary-white-color;
+  @media screen and (min-width: $bp-tablet) {
+    margin-right: 20px;
+  }
+}
+
+.btn__header:hover {
+  color: $accent-color;
+  transform: scale(1.5, 1.5);
+  transition-duration: 250ms;
+  transition-timing-function: $timing-function;
+}
+
+.logout-span:hover {
+  color: $accent-color;
 }
 
 .btn-text {
@@ -269,5 +409,15 @@
 }
 
 .btn-log-out {
-  margin-left: 10px;
+  margin-left: 38px;
 }
+
+.search-img {
+  cursor: pointer;
+}
+
+// .logo-img:hover {
+//   transform: scale(1.5, 1.5);
+//   transition-duration: 250ms;
+//   transition-timing-function: $timing-function;
+// }
