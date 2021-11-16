@@ -24,7 +24,7 @@ export default class App {
   }
 
   init = async () => {
-    this.spinner.showSpinner();
+    this.spinner.showSpinner(this.refs.mask);
     this.translater.translate(document);
     this.checkSession();
     this.dataSaver.clearLocalstoredge();
@@ -71,7 +71,7 @@ export default class App {
   // Клик логотип и home
 
   showPopularPage = async () => {
-    this.spinner.showSpinner();
+    this.spinner.showSpinner(this.refs.mask);
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('home');
     await this.dataMarkup.renderPopularFilms();
@@ -93,7 +93,7 @@ export default class App {
 
   // Клик lybrary
   onClickLibrary = async () => {
-    this.spinner.showSpinner();
+    this.spinner.showSpinner(this.refs.mask);
     this.dataSaver.setActivePage('queue');
     this.dataSaver.setCurrentPage(1);
     this.clearInput();
@@ -127,7 +127,7 @@ export default class App {
   // input
   onKeyWordSearch = async e => {
     e.preventDefault();
-    this.spinner.showSpinner();
+    this.spinner.showSpinner(this.refs.mask);
     this.dataSaver.setCurrentPage(1);
     const inputValue = e.currentTarget.elements.query.value;
     try {
@@ -147,7 +147,7 @@ export default class App {
   };
 
   onClickWatched = async () => {
-    this.spinner.showSpinner();
+    this.spinner.showSpinner(this.refs.mask);
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('watched');
     try {
@@ -162,7 +162,7 @@ export default class App {
   };
 
   onClickQueue = async () => {
-    this.spinner.showSpinner();
+    this.spinner.showSpinner(this.refs.mask);
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('queue');
     try {

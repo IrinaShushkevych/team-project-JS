@@ -137,7 +137,7 @@ export default class Modal {
 
   onBtnAddWatchedPress = async event => {
     try {
-      this.load.showSpinner();
+      this.load.showSpinner(this.refs.modalMask);
       const res = await this.dataSaver.addFilm(this.id, 'watched');
       this.refs.itemAddWatched.classList.add('hidden');
       this.refs.itemRemoveWatched.classList.remove('hidden');
@@ -145,14 +145,14 @@ export default class Modal {
     } catch (error) {
       Message.error(error.message);
     } finally {
-      this.load.hideSpinner();
+      this.load.hideSpinner(this.refs.modalMask);
       this.onCloseModal();
     }
   };
 
   onBtnRemoveWatchedPress = async () => {
     try {
-      this.load.showSpinner();
+      this.load.showSpinner(this.refs.modalMask);
       const res = await this.dataSaver.removeData(this.id, 'watched');
       this.refs.itemAddWatched.classList.remove('hidden');
       this.refs.itemRemoveWatched.classList.add('hidden');
@@ -160,14 +160,14 @@ export default class Modal {
     } catch (error) {
       Message.error(error.message);
     } finally {
-      this.load.hideSpinner();
+      this.load.hideSpinner(this.refs.modalMask);
       this.onCloseModal();
     }
   };
 
   onBtnAddQueuePress = async () => {
     try {
-      this.load.showSpinner();
+      this.load.showSpinner(this.refs.modalMask);
       const res = await this.dataSaver.addFilm(this.id, 'queue');
       this.refs.itemAddQueue.classList.add('hidden');
       this.refs.itemRemoveQueue.classList.remove('hidden');
@@ -175,7 +175,7 @@ export default class Modal {
     } catch (error) {
       Message.error(error);
     } finally {
-      this.load.hideSpinner();
+      this.load.hideSpinner(this.refs.modalMask);
       this.onCloseModal();
     }
   };
@@ -189,13 +189,13 @@ export default class Modal {
     } catch (error) {
       Message.error(error);
     } finally {
-      this.load.hideSpinner();
+      this.load.hideSpinner(this.refs.modalMask);
       this.onCloseModal();
     }
   };
 
   reRenderPage = async () => {
-    this.load.showSpinner();
+    this.load.showSpinner(this.refs.modalMask);
     console.log('rerender');
     const page = this.dataSaver.getActivePage();
     this.checkQueue(this.id);
