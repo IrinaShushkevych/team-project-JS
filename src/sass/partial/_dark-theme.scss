@@ -25,7 +25,7 @@
 }
 
 .dark-modal-text {
-  color: rgb(94, 92, 92);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .toggle {
@@ -38,6 +38,7 @@
     width: 40px;
     height: 40px;
     overflow: hidden;
+    cursor: pointer;
 
     .icon-wrap {
       padding: 10px;
