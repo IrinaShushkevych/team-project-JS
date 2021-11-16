@@ -188,7 +188,10 @@ export default class App {
     // const trailer = filmVideos.find(function (item) {
     //   return item.name.toUpperCase().includes('TRAILER');
     // });
-    const trailer = filmVideos[0];
+    let trailer = null;
+    if (filmVideos) {
+      trailer = filmVideos[0];
+    }
     this.dataMarkup.modalFilmMarkup(film, trailer);
     this.modal.onOpenModal(card.dataset.id, 'film', trailer);
   };
