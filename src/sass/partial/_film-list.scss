@@ -25,7 +25,7 @@ img {
 }
 .card {
   display: block;
-  transform: scale(1);
+  transform: scale(0);
   transition: transform $duration $timing-function;
 
   @media screen and (max-width: $bp-mobile-max) {
@@ -59,6 +59,10 @@ img {
     transform: scale(1.05);
     box-shadow: 9px 11px 18px -1px rgba(79, 82, 84, 0.22);
   }
+}
+
+.card-animation {
+  transform: scale(1);
 }
 
 .card__tumb {

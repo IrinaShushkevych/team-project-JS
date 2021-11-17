@@ -74,7 +74,7 @@ export default class App {
     this.spinner.showSpinner(this.refs.mask);
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('home');
-    await this.dataMarkup.renderPopularFilms();
+    await this.dataMarkup.renderPopularFilms();    
     this.dataPagination.initPagination();
     this.refs.btnLybraryRef.classList.remove('btn__header--current-page');
     this.refs.btnHomeRef.classList.add('btn__header--current-page');
@@ -195,4 +195,6 @@ export default class App {
     this.dataMarkup.modalFilmMarkup(film, trailer);
     this.modal.onOpenModal(card.dataset.id, 'film', trailer);
   };
+
+  
 }

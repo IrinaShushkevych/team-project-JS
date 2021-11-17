@@ -25,6 +25,8 @@ export default class DataMarkup {
     this.refs = refs;
     this.filmTpl = filmTpl;
     this.listCardTpl = listCardTpl;
+    this.delay = 0;
+    
   }
 
   // Рисование списка карточек
@@ -116,7 +118,6 @@ export default class DataMarkup {
     // this.refs.modalCardRef.innerHTML = filmTpl(film, trailer);
   };
 
-
   filterFilmsQuery = () => {
     this.btnSort = document.querySelector('.sort-btn');
     btnSort.addEventListener('click', addHiddenNavBtn);
@@ -159,12 +160,14 @@ export default class DataMarkup {
       this.observer.observe(el);
     });
   };
-
+  
   onObservCard = (entries, observer) => {
+    this.delay = 0;
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         if (entry.target) {
           console.log(entry.target);
+          this.appearCardsWithDelay(entry.target, this.delay);
           const el = entry.target.querySelector('.card__image');
           if (el.nodeName === 'P') {
             const img = document.createElement('img');
@@ -178,4 +181,12 @@ export default class DataMarkup {
     });
   };
 
+  appearCardsWithDelay = (element, delay) => {
+    console.log(delay);
+    element.classList.add('card-animation');
+    delay += 200;
+    this.delay = delay;
+    element.style.transitionDelay = `${delay}ms`;
+    console.log(delay);
+  };
 }
