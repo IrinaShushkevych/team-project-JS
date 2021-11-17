@@ -1,6 +1,6 @@
 
   <div class='card__image-thumb'>
-
+<div class="card__image-thumb-secondary">
     <img class='card__image'
       data-id='{{id}}'
      {{#if poster_path}}
@@ -14,8 +14,11 @@
         alt='{{title}}'
     />
     <div class='card__button js-add-video'>
-          <button class='button__modal--primary button__modal--add'>trailer</button>
+          <button class='button__modal--primary button__modal--trailer'>
+          
+          </button>
         </div>  
+        </div>
   </div>
   <div class='card__description'>
     <h3 class='card__title--modal'>{{title}}</h3>
@@ -77,13 +80,9 @@
           <button class='button__modal--primary button__modal--remove lang' data-key='removeQueue'>
             remove from Queue
           </button>
-        </li>        
-        {{!-- <li class='button__item-modal js-add-video'>
-          <button class='button__modal--primary button__modal--add'>trailer</button>
-        </li>         --}}
-      </ul>      
+        </li>  
+        </ul>      
     </div>
-    <div class="js-video-trailer"></div>
   </div>
 
 

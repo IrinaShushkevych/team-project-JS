@@ -6,11 +6,13 @@ import DataService from './DataServise';
 import LoadSpinner from './loadSpinner';
 import Message from './message.js';
 import CustomPagination from './pagination';
+import FilterBtn from './filterBtn.js';
 import Translater from './translater.js';
 import Theme from './theme.js';
 
 export default class App {
   constructor() {
+    this.filterBtn = new FilterBtn();
     this.dataMarkup = new DataMarkup();
     this.modal = new Modal();
     this.refs = refs;
@@ -40,6 +42,15 @@ export default class App {
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
     this.refs.btnLogOut.addEventListener('click', this.onClickLogOut);
     this.refs.listUlFilms.addEventListener('click', this.onClickCardItem);
+    this.dataPagination.initPagination(this.dataSaver.getTotalPages());
+    // filter
+    this.filterBtn.addListFilterGenre();
+    this.filterBtn.addListFilterYears();
+    this.filterBtn.listFilterGenresRender();
+    this.filterBtn.listFilterYearsRender();
+    this.filterBtn.listFilterTopRatingRender();
+    this.filterBtn.listFilterPopularyWeek();
+    this.filterBtn.addListenersSvgBtn();
     this.refs.btnLangRef.addEventListener('click', this.translater.onClickLangBtn);
     this.refs.toggle.addEventListener('click', this.theme.onChangeTheme);
   };

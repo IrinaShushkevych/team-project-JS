@@ -69,6 +69,7 @@ export default class APIService {
       return array;
     });
     return genreNames;
+    
   };
 
   fixFetchObject = async response => {
@@ -103,6 +104,8 @@ export default class APIService {
     const result = await this.fetchData(this.url);
     this.dataSaver.setFilmsGenres(result);
     return result.genres;
+    
+    
   };
 
   fetchFilmVideos = async movieId => {

@@ -23,21 +23,25 @@ export default class Modal {
       this.id = id;
       this.trailer = trailer;
       this.getRefs();
+      if (this.trailer === undefined) {
+        this.refs.buttonGetVideos.classList.add('hidden');
+      }
     }
-
-    if (this.trailer === undefined) {
-      this.refs.buttonGetVideos.classList.add('hidden');
-    }
-
     this.refs.btnClose.addEventListener('click', this.onBtnClosePress);
     this.refs.backdrop.addEventListener('click', this.onBackdropClick);
+    if (page !== 'team') {
+      this.refs.modalContainer.classList.add('visually-hidden');
+      this.refs.modalCardRef.classList.remove('hidden');
+    } else {
+      this.refs.modalCardRef.classList.add('hidden');
+      this.refs.memberPhoto = document.querySelector('.killer__image');
+      this.refs.memberPhoto.addEventListener('click', this.photoChanging);
+    }
     this.refs.backdrop.classList.remove('visually-hidden');
     window.addEventListener('keydown', this.onEscKeyPress);
     document.body.style.overflow = 'hidden';
 
     document.querySelector('.block-arrow').classList.add('hidden');
-
-    // this.openTrailer()
 
     if (this.page === 'film') {
       this.refs.buttonGetVideos.addEventListener('click', this.onBtnTrailerPress);
@@ -58,8 +62,10 @@ export default class Modal {
 
   onCloseModal = () => {
     if (this.isTrailer) {
+      this.refs.buttonGetVideos.addEventListener('click', this.onBtnTrailerPress);
       this.refs.trailerContainer.innerHTML = '';
       this.isTrailer = false;
+      this.refs.divModalRef.classList.remove('visually-hidden');
       return;
     }
 
@@ -98,10 +104,6 @@ export default class Modal {
     }
   };
 
-  // onOpenModalTeam = () => {
-  //   console.log('Open modal team');
-  // };
-
   onEscKeyPress = event => {
     const ESC_KEY_CODE = 'Escape';
 
@@ -120,7 +122,6 @@ export default class Modal {
   };
 
   addBtnListeners = () => {
-    // this.getRefs();
     this.refs.itemAddWatched.addEventListener('click', this.onBtnAddWatchedPress);
     this.refs.itemRemoveWatched.addEventListener('click', this.onBtnRemoveWatchedPress);
     this.refs.itemAddQueue.addEventListener('click', this.onBtnAddQueuePress);
@@ -128,7 +129,6 @@ export default class Modal {
   };
 
   removeBtnListeners = () => {
-    // this.getRefs();
     this.refs.itemAddWatched.removeEventListener('click', this.onBtnAddWatchedPress);
     this.refs.itemRemoveWatched.removeEventListener('click', this.onBtnRemoveWatchedPress);
     this.refs.itemAddQueue.removeEventListener('click', this.onBtnAddQueuePress);
@@ -244,54 +244,19 @@ export default class Modal {
   };
 
   onBtnTrailerPress = () => {
-    // this.fetchFilmVideos(this.id);
-
     console.log('Trailer ' + this.trailer.key);
-    // this.refs.modalCardRef.classList.add('.visually-hidden');
-    // this.refs.modalCardRef.innerHTML = '';
+    this.refs.divModalRef.classList.add('visually-hidden');
     this.openTrailer();
     this.isTrailer = true;
   };
 
   openTrailer = () => {
-    // document.querySelector('.card__image-thumb').classList.add('hidden');
-    // document.querySelector('card__description').classList.add('hidden');
-    // card__image - thumb;
-    //  let
-    // this.refs.trailerContainer.insertAdjacentHTML(
-    //   `
-    //   <div class="modal">
-    //     <div class="modal__thumb">
-    //       <button class="modal__button" data-modal-close>
-    //         <img src="./images/close.svg" alt="" />
-    //       </button>
-    //     <iframe class='trailer' width="560" height="315" src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    //     </div>
-    //   </div>
-    // `,
-    // );
-    // const filmVideos = await this.dataService.fetchFilmVideos(id);
-    // const trailer = filmVideos.find(function (item) {
-    //   return item.name.toUpperCase().includes('TRAILER');
-    // });
-    // // this.dataMarkup.trailerFilmMarkup(film, trailer);
-    // this.modal.onOpenModal(card.dataset.id, 'film', trailer);
-
     this.refs.trailerContainer.innerHTML = `
-             
-        <iframe class='trailer' width="560" height="315" src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-           
+        <iframe class='trailer'  src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
     `;
+  };
 
-    // this.refs.trailerContainer.innerHTML = `
-    //   <div class="modal">
-    //     <div class="modal__thumb">
-    //       <button class="modal__button" data-modal-close>
-    //         <img src="./images/close.svg" alt="" />
-    //       </button>
-    //     <iframe class='trailer' width="560" height="315" src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    //     </div>
-    //   </div>
-    // `;
+  photoChanging = e => {
+    console.log(e.target);
   };
 }
