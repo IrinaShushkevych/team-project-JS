@@ -10,11 +10,13 @@ export default class AuthForm {
     callbackModal,
     modalContainer = refs.modalCardRef,
     modalForm = refs.modalRef,
+    modalMask = refs.modalMask,
   ) {
     this.callback = callback;
     this.callbackModal = callbackModal;
     this.modalCardRef = modalContainer;
     this.modalRef = modalForm;
+    this.modalMask = modalMask;
     this.load = new LoadSpinner();
   }
 
@@ -93,7 +95,8 @@ export default class AuthForm {
   };
 
   onInputEmail = e => {
-    const expression = /^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(?:aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/;
+    const expression =
+      /^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(?:aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/;
     this.onValidation(e.target, expression);
   };
 
@@ -104,7 +107,7 @@ export default class AuthForm {
 
   onClickAuth = async e => {
     if (e.target.classList.contains('js-btn-register')) {
-      this.load.showSpinner();
+      this.load.showSpinner(this.modalMask);
       const auth = new Save();
       const result = await auth.register(this.inputEmail.value, this.inputPassword.value);
       if (result.type === 0) {
@@ -114,20 +117,20 @@ export default class AuthForm {
         this.callback();
         this.callbackModal();
       }
-      this.load.hideSpinner();
+      this.load.hideSpinner(this.modalMask);
     } else if (e.target.classList.contains('js-btn-login')) {
-      this.load.showSpinner();
+      this.load.showSpinner(this.modalMask);
 
       const auth = new Save();
       const result = await auth.login(this.inputEmail.value, this.inputPassword.value);
       if (result.type === 0) {
         Message.error(result.text);
       } else {
-        Message.success('You are log in!!!');
+        Message.success('You are logged in!!!');
         this.callback();
         this.callbackModal();
       }
-      this.load.hideSpinner();
+      this.load.hideSpinner(this.modalMask);
     }
   };
 }

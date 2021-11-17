@@ -3,7 +3,9 @@ import DataMarkup from './dataMarkup';
 import DataSaver from './dataSaver';
 import LoadSpinner from './loadSpinner';
 import Message from './message.js';
+import CustomPagination from './pagination';
 import refs from './refs.js';
+import Translater from './translater';
 
 export default class Modal {
   constructor() {
@@ -11,21 +13,33 @@ export default class Modal {
     this.dataSaver = new DataSaver();
     this.load = new LoadSpinner();
     this.dataMarkup = new DataMarkup();
+    this.translater = new Translater();
+    this.dataPagination = new CustomPagination();
   }
 
-  onOpenModal = (id, page) => {
+  onOpenModal = (id, page, trailer) => {
     this.page = page;
     if (id) {
       this.id = id;
+      this.trailer = trailer;
       this.getRefs();
+      if (this.trailer === undefined) {
+        this.refs.buttonGetVideos.classList.add('hidden');
+      }
     }
 
     this.refs.btnClose.addEventListener('click', this.onBtnClosePress);
     this.refs.backdrop.addEventListener('click', this.onBackdropClick);
     this.refs.backdrop.classList.remove('visually-hidden');
     window.addEventListener('keydown', this.onEscKeyPress);
+    document.body.style.overflow = 'hidden';
 
-    if (page === 'film') {
+    document.querySelector('.block-arrow').classList.add('hidden');
+
+    // this.openTrailer()
+
+    if (this.page === 'film') {
+      this.refs.buttonGetVideos.addEventListener('click', this.onBtnTrailerPress);
       if (sessionStorage.getItem('user') === null) {
         this.getRefs();
         this.refs.itemAddWatched.classList.add('hidden');
@@ -38,13 +52,26 @@ export default class Modal {
         this.addBtnListeners();
       }
     }
+    this.translater.translate(this.refs.modalRef);
   };
 
   onCloseModal = () => {
+    if (this.isTrailer) {
+      this.refs.buttonGetVideos.addEventListener('click', this.onBtnTrailerPress);
+      this.refs.trailerContainer.innerHTML = '';
+      this.isTrailer = false;
+      this.refs.divModalRef.classList.remove('visually-hidden');
+      return;
+    }
+
     this.refs.btnClose.removeEventListener('click', this.onBtnClosePress);
     this.refs.backdrop.removeEventListener('click', this.onBackdropClick);
     this.refs.backdrop.classList.add('visually-hidden');
     window.removeEventListener('keydown', this.onEscKeyPress);
+    document.body.style.overflow = 'auto';
+
+    document.querySelector('.block-arrow').classList.remove('hidden');
+
     if (this.page === 'film') {
       this.removeBtnListeners();
     }
@@ -55,6 +82,11 @@ export default class Modal {
     this.refs.modalCardRef.innerHTML = '';
     // team
     this.refs.modalContainer.innerHTML = '';
+
+    if (this.page === 'film') {
+      this.refs.buttonGetVideos.removeEventListener('click', this.onBtnTrailerPress);
+    }
+    // this.refs.trailerContainer.innerHTML = '';
   };
 
   onBtnClosePress = () => {
@@ -84,6 +116,8 @@ export default class Modal {
     this.refs.itemRemoveWatched = document.querySelector('.js-remove-watched');
     this.refs.itemAddQueue = document.querySelector('.js-add-queue');
     this.refs.itemRemoveQueue = document.querySelector('.js-remove-queue');
+    this.refs.buttonGetVideos = document.querySelector('.js-add-video');
+    this.refs.trailerContainer = document.querySelector('.js-video-trailer');
   };
 
   addBtnListeners = () => {
@@ -104,7 +138,7 @@ export default class Modal {
 
   onBtnAddWatchedPress = async event => {
     try {
-      this.load.showSpinner();
+      this.load.showSpinner(this.refs.modalMask);
       const res = await this.dataSaver.addFilm(this.id, 'watched');
       this.refs.itemAddWatched.classList.add('hidden');
       this.refs.itemRemoveWatched.classList.remove('hidden');
@@ -112,13 +146,14 @@ export default class Modal {
     } catch (error) {
       Message.error(error.message);
     } finally {
-      this.load.hideSpinner();
+      this.load.hideSpinner(this.refs.modalMask);
+      this.onCloseModal();
     }
   };
 
   onBtnRemoveWatchedPress = async () => {
     try {
-      this.load.showSpinner();
+      this.load.showSpinner(this.refs.modalMask);
       const res = await this.dataSaver.removeData(this.id, 'watched');
       this.refs.itemAddWatched.classList.remove('hidden');
       this.refs.itemRemoveWatched.classList.add('hidden');
@@ -126,13 +161,14 @@ export default class Modal {
     } catch (error) {
       Message.error(error.message);
     } finally {
-      this.load.hideSpinner();
+      this.load.hideSpinner(this.refs.modalMask);
+      this.onCloseModal();
     }
   };
 
   onBtnAddQueuePress = async () => {
     try {
-      this.load.showSpinner();
+      this.load.showSpinner(this.refs.modalMask);
       const res = await this.dataSaver.addFilm(this.id, 'queue');
       this.refs.itemAddQueue.classList.add('hidden');
       this.refs.itemRemoveQueue.classList.remove('hidden');
@@ -140,12 +176,12 @@ export default class Modal {
     } catch (error) {
       Message.error(error);
     } finally {
-      this.load.hideSpinner();
+      this.load.hideSpinner(this.refs.modalMask);
+      this.onCloseModal();
     }
   };
 
   onBtnRemoveQueuePress = async () => {
-    console.log('itemRemoveQueue');
     try {
       const res = await this.dataSaver.removeData(this.id, 'queue');
       this.refs.itemAddQueue.classList.remove('hidden');
@@ -154,22 +190,27 @@ export default class Modal {
     } catch (error) {
       Message.error(error);
     } finally {
-      this.load.hideSpinner();
+      this.load.hideSpinner(this.refs.modalMask);
+      this.onCloseModal();
     }
   };
 
   reRenderPage = async () => {
+    this.load.showSpinner(this.refs.modalMask);
+    console.log('rerender');
     const page = this.dataSaver.getActivePage();
     this.checkQueue(this.id);
     this.checkWatched(this.id);
     switch (page) {
       case 'watched':
-        this.dataMarkup.getCurrentFilmsWatched();
         await this.dataSaver.setTotalPageFilms('watched');
+        this.dataPagination.updatePagination();
+        this.dataMarkup.getCurrentFilmsWatched();
         break;
       case 'queue':
-        this.dataMarkup.getCurrentFilmsQueue();
         await this.dataSaver.setTotalPageFilms('queue');
+        this.dataPagination.updatePagination();
+        this.dataMarkup.getCurrentFilmsQueue();
         break;
     }
   };
@@ -196,8 +237,27 @@ export default class Modal {
     }
   };
 
+  checkVideo = async id => {};
+
   addAuth = callback => {
     this.modalAuth = new AuthForm(callback, this.onCloseModal);
     this.modalAuth.renderModalAuth();
+  };
+
+  onBtnTrailerPress = () => {
+    // this.fetchFilmVideos(this.id);
+
+    console.log('Trailer ' + this.trailer.key);
+    this.refs.divModalRef.classList.add('visually-hidden');
+    this.openTrailer();
+    this.isTrailer = true;
+  };
+
+  openTrailer = () => {
+    this.refs.trailerContainer.innerHTML = `
+             
+        <iframe class='trailer'  src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+           
+    `;
   };
 }

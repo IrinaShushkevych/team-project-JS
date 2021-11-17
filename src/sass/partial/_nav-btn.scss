@@ -1,7 +1,7 @@
+
 .parametr {
   @media screen and (max-width: $bp-mobile-max) {
     display: none;
-    
   }
   @media screen and (max-width: $bp-tablet) {
     // :not(:first-child, :last-child){

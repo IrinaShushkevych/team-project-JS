@@ -7,6 +7,9 @@ import LoadSpinner from './loadSpinner';
 import Message from './message.js';
 import CustomPagination from './pagination';
 import FilterBtn from './filterBtn.js';
+import Translater from './translater.js';
+import Theme from './theme.js';
+
 
 export default class App {
   constructor() {
@@ -18,13 +21,18 @@ export default class App {
     this.dataService = new DataService();
     this.spinner = new LoadSpinner();
     this.dataPagination = new CustomPagination();
+    this.translater = new Translater();
+    this.theme = new Theme();
+    this.dataPagination = new CustomPagination();
   }
 
   init = async () => {
-    this.spinner.showSpinner();
+    this.spinner.showSpinner(this.refs.mask);
+    this.translater.translate(document);
     this.checkSession();
     this.dataSaver.clearLocalstoredge();
     this.dataSaver.setActivePage('home');
+    this.theme.checkThemeOnLoad();
     await this.dataMarkup.renderPopularFilms();
     this.dataPagination.initPagination();
     this.refs.linkModalTeamRef.addEventListener('click', this.onOpenMdalTeam);
@@ -44,6 +52,9 @@ export default class App {
     this.filterBtn.listFilterTopRatingRender();
     this.filterBtn.listFilterPopularyWeek();
     this.filterBtn.addListenersSvgBtn();
+    this.refs.btnLangRef.addEventListener('click', this.translater.onClickLangBtn);
+    this.refs.toggle.addEventListener('click', this.theme.onChangeTheme);
+
   };
 
   checkSession = () => {
@@ -73,7 +84,7 @@ export default class App {
   // Клик логотип и home
 
   showPopularPage = async () => {
-    this.spinner.showSpinner();
+    this.spinner.showSpinner(this.refs.mask);
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('home');
     await this.dataMarkup.renderPopularFilms();
@@ -85,20 +96,20 @@ export default class App {
     this.refs.header.classList.replace('header-library', 'header-home');
     this.refs.queueBtnRef.removeEventListener('click', this.onClickQueue);
     this.refs.watchedBtnRef.removeEventListener('click', this.onClickWatched);
-    //pagination
   };
 
   onClickLogoHome = e => {
     e.preventDefault();
+    this.clearInput();
     this.showPopularPage();
-    // this.refs.btnLogOut.classList.remove('hidden');
   };
 
   // Клик lybrary
   onClickLibrary = async () => {
-    this.spinner.showSpinner();
+    this.spinner.showSpinner(this.refs.mask);
     this.dataSaver.setActivePage('queue');
     this.dataSaver.setCurrentPage(1);
+    this.clearInput();
     try {
       await this.dataSaver.setTotalPageFilms('queue');
       await this.dataMarkup.getCurrentFilmsQueue();
@@ -115,8 +126,6 @@ export default class App {
     this.refs.watchedBtnRef.addEventListener('click', this.onClickWatched);
     this.refs.watchedBtnRef.classList.remove('btn-cover-library');
     this.refs.queueBtnRef.classList.add('btn-cover-library');
-    // this.refs.btnLogOut.classList.remove('hidden');
-    // console.log('hide input, show button, markup queue');
   };
 
   // Клик LOG OUT
@@ -128,21 +137,30 @@ export default class App {
     this.showPopularPage();
   };
 
-  // input  название = () => {}
+  // input
   onKeyWordSearch = async e => {
     e.preventDefault();
-    this.spinner.showSpinner();
+    this.spinner.showSpinner(this.refs.mask);
+    this.dataSaver.setCurrentPage(1);
     const inputValue = e.currentTarget.elements.query.value;
-    if (inputValue) {
-      await this.dataMarkup.renderSearchingFilms(inputValue);
-    } else {
-      await this.dataMarkup.renderPopularFilms();
+    try {
+      if (inputValue) {
+        await this.dataMarkup.renderSearchingFilms(inputValue);
+      } else {
+        await this.dataMarkup.renderPopularFilms();
+      }
+      this.dataPagination.initPagination();
+    } catch (err) {
+      Message.error(error);
     }
-    this.dataPagination.initPagination();
+  };
+
+  clearInput = () => {
+    this.refs.inputRef.value = '';
   };
 
   onClickWatched = async () => {
-    this.spinner.showSpinner();
+    this.spinner.showSpinner(this.refs.mask);
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('watched');
     try {
@@ -154,12 +172,10 @@ export default class App {
     } catch (error) {
       Message.error(error);
     }
-
-    //pagination
   };
 
   onClickQueue = async () => {
-    this.spinner.showSpinner();
+    this.spinner.showSpinner(this.refs.mask);
     this.dataSaver.setCurrentPage(1);
     this.dataSaver.setActivePage('queue');
     try {
@@ -171,18 +187,25 @@ export default class App {
     } catch (error) {
       Message.error(error);
     }
-    //pagination
   };
 
   onClickCardItem = async event => {
     event.preventDefault();
-    const card = event.target.closest('li');
+    const card = event.target.closest('.card');
     if (!card) {
       return;
     }
     const id = Number(card.dataset.id);
     const film = await this.dataSaver.getFilm(id);
-    this.dataMarkup.modalFilmMurcup(film);
-    this.modal.onOpenModal(card.dataset.id, 'film');
+    const filmVideos = await this.dataService.fetchFilmVideos(id);
+    // const trailer = filmVideos.find(function (item) {
+    //   return item.name.toUpperCase().includes('TRAILER');
+    // });
+    let trailer = null;
+    if (filmVideos) {
+      trailer = filmVideos[0];
+    }
+    this.dataMarkup.modalFilmMarkup(film, trailer);
+    this.modal.onOpenModal(card.dataset.id, 'film', trailer);
   };
 }

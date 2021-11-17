@@ -1,4 +1,5 @@
 let imagesLoaded = require('imagesloaded');
+import refs from './refs.js'
 
 export default class LoadSpinner {
   // создание разметки
@@ -6,18 +7,18 @@ export default class LoadSpinner {
   // спрятать
 
   constructor() {
-    this.mask = document.querySelector('.mask');    
+    this.refs = refs;
   }
   
-  hideSpinner = () => {
+  hideSpinner = (type) => {
     const imgLoad = new imagesLoaded(document.querySelectorAll('img'))
     imgLoad.on('done', (instance) => {
-      this.mask.classList.add('visually-hidden');
+      type.classList.add('visually-hidden');
     })             
   }   
 
-  showSpinner = () => {
-    this.mask.classList.remove('visually-hidden');     
+  showSpinner = (type) => {
+    type.classList.remove('visually-hidden');     
   }  
 
 }
