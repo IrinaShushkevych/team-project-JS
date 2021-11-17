@@ -27,6 +27,12 @@ export default class DataMarkup {
     this.listCardTpl = listCardTpl;
   }
 
+  // рендер років
+  addYearsList = ()=>{
+    this.refs.yearList.innerHTML = ""
+  }
+  // *****
+
   // Рисование списка карточек
   renderMarkup = data => {
     this.listRef.innerHTML = template(data);
@@ -44,8 +50,18 @@ export default class DataMarkup {
   // Отрисовка по запросу
   renderSearchingFilms = async query => {
     const currentQuerySeach = await this.dataAPI.fetchFilmsByQuery(query);
+    if(currentQuerySeach.length === 0){
+      this.listRef.innerHTML =
+        `<li class ="card-my-library"><p class = "title-card-my-library">No such film was found</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+        this.spinner.hideSpinner();
+      return;
+
+    }
+    this.spinner.hideSpinner();
     this.renderMarkup(currentQuerySeach);
+
     this.spinner.hideSpinner(this.refs.mask);
+
   };
   // отрисовка по фільтру за день
 
@@ -85,6 +101,7 @@ export default class DataMarkup {
 
     this.renderMarkup(currentFilmsQueue);
     this.spinner.hideSpinner(this.refs.mask);
+
   };
 
   renderModalTeam = () => {
