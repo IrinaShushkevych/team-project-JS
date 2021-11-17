@@ -73,7 +73,8 @@ export default class App {
   };
 
   onOpenMdalTeam = () => {
-    this.refs.modalCardRef.innerHTML = '';
+    this.refs.modalCardRef.innerHTML = ''; 
+    this.spinner.showSpinner(this.refs.modalMask);   
     this.dataMarkup.renderModalTeam();
     this.modal.onOpenModal(null, 'team');
     this.dataSaver.setActivePage('home');

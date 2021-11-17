@@ -14,6 +14,8 @@ export default
     this.refs.footer.classList.toggle('dark-footer');
     this.refs.modalRef.classList.toggle('dark-modal');
     this.refs.modalCardRef.classList.toggle('dark-modal-text');
+    this.refs.mask.classList.toggle('dark-spinner');
+    this.refs.modalMask.classList.toggle('dark-spinner');    
     this.refs.body.classList.contains('dark-theme') ? this.dataSaver.setTheme('dark') : this.dataSaver.setTheme('light');
   }
 
@@ -30,6 +32,8 @@ export default
     this.refs.footer.classList.add('dark-footer');
     this.refs.modalRef.classList.add('dark-modal');
     this.refs.modalCardRef.classList.add('dark-modal-text');
+     this.refs.mask.classList.add('dark-spinner');
+    this.refs.modalMask.classList.add('dark-spinner');    
   }
 
   
