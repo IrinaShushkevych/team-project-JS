@@ -28,6 +28,21 @@ export default class DataMarkup {
     this.delay = 0;
   }
 
+  setNullList = (texten, textuk, textru) => {
+    const lang = this.dataSaver.getLanguage();
+    switch (lang) {
+      case 'en':
+        this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">${texten}</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+        break;
+      case 'uk':
+        this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">${textuk}</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+        break;
+      case 'ru':
+        this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">${textru}</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+        break;
+    }
+  };
+
   // рендер років
   addYearsList = () => {
     this.refs.yearList.innerHTML = '';
@@ -52,13 +67,28 @@ export default class DataMarkup {
   renderSearchingFilms = async query => {
     const currentQuerySeach = await this.dataAPI.fetchFilmsByQuery(query);
     if (currentQuerySeach.length === 0) {
-      this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">No such film was found</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
-      this.spinner.hideSpinner();
+      this.setNullList(
+        'No such film was found',
+        'Такого фільму не знайдено',
+        'Такой фильм не найден',
+      );
+      // const lang = this.dataSaver.getLanguage();
+      // switch (lang) {
+      //   case 'en':
+      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">No such film was found</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+      //     break;
+      //   case 'uk':
+      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">Такого фільму не знайдено</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+      //     break;
+      //   case 'ru':
+      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">Такой фильм не найден</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+      //     break;
+      // }
+      this.spinner.hideSpinner(this.refs.mask);
       return;
     }
-    this.spinner.hideSpinner();
+    // this.spinner.hideSpinner();
     this.renderMarkup(currentQuerySeach);
-
     this.spinner.hideSpinner(this.refs.mask);
   };
   // отрисовка по фільтру за день
@@ -76,10 +106,26 @@ export default class DataMarkup {
   getCurrentFilmsWatched = async id => {
     const currentFilmsWatched = await this.dataSaver.getFilmWatched();
 
-    console.log(currentFilmsWatched);
+    // console.log(currentFilmsWatched);
 
     if (currentFilmsWatched.length === 0) {
-      this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+      this.setNullList(
+        'You  have not watched films yet',
+        'Ви ще не переглянули жодного фільму',
+        'Вы еще не просмотрели ни одного фильма',
+      );
+      // const lang = this.dataSaver.getLanguage();
+      // switch (lang) {
+      //   case 'en':
+      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+      //     break;
+      //   case 'uk':
+      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">Ви ще не переглянули жодного фільму</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+      //     break;
+      //   case 'ru':
+      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+      //     break;
+      // }
       this.spinner.hideSpinner(this.refs.mask);
       return;
     }
@@ -92,7 +138,24 @@ export default class DataMarkup {
     const currentFilmsQueue = await this.dataSaver.getFilmQueue();
 
     if (currentFilmsQueue.length === 0) {
-      this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+      this.setNullList(
+        'No such film was found',
+        'Такого фільму не знайдено',
+        'Такой фильм не найден',
+      );
+      // const lang = this.dataSaver.getLanguage();
+      // switch (lang) {
+      //   case 'en':
+      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">No such film was found</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+      //     break;
+      //   case 'uk':
+      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">Такого фільму не знайдено</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+      //     break;
+      //   case 'ru':
+      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">Такой фильм не найден</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+      //     break;
+      // }
+      // this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
       this.spinner.hideSpinner(this.refs.mask);
       return;
     }
@@ -109,9 +172,6 @@ export default class DataMarkup {
         el.superPhoto = images[el.superPhotoName];
         return el;
       });
-
-      console.log(jsKillerTeam);
-      console.log(arr);
       const markup = jsKillerTemplate(jsKillerTeam[lang]);
       this.refs.modalContainer.innerHTML = markup;
     } catch (error) {
