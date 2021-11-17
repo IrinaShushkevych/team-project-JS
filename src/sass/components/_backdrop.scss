@@ -6,7 +6,6 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.25);
 
-  // padding: 93px 15px 94px 15px;
   padding: 15px;
   overflow-y: scroll; // прокрутка модального окна
 
@@ -30,4 +29,5 @@
 
 .backdrop.visually-hidden .modal {
   transform: translate(-50%, -50%) scale(0.1);
+  transition: transform $duration $timing-function;
 }

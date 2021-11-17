@@ -41,7 +41,6 @@ export default {
   itemAddQueue: document.querySelector('.js-add-queue'),
   itemRemoveQueue: document.querySelector('.js-remove-queue'),
 
-
   modalWindowOpener: document.querySelector('.js-modal-team'),
   modalCleaner: document.querySelector('.card__container--modal'),
   modalContainer: document.querySelector('.card__js-killer-container--modal'),
@@ -53,5 +52,5 @@ export default {
   trailerContainer: document.querySelector('.js-video-trailer'),
 
   btnBackRef: document.querySelector('.block-arrow'),
-
+  divModalRef: document.querySelector('.card__modal-thumb'),
 };
