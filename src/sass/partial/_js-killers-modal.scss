@@ -146,12 +146,18 @@
   // font-weight: 400px;
   letter-spacing: 2px;
   // padding: 5px;
+  @media screen and (min-width: $bp-tablet) {
+    font-size: 18px;
+  }
 }
 
 .killers__position {
-  font-size: small;
+  font-size: 8px;
   color: $color-team-dot;
   font-weight: bold;
+  @media screen and (min-width: $bp-tablet) {
+    font-size: 14px;
+  }
 }
 
 .wrapper-img {
