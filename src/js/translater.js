@@ -65,6 +65,18 @@ export default class {
     });
     const rootpage = document.querySelector('html');
     rootpage.setAttribute('lang', this.lang);
+    const docTitle = document.querySelector('title');
+    switch (this.lang) {
+      case 'en':
+        docTitle.textContent = 'Filmoteka';
+        break;
+      case 'uk':
+        docTitle.textContent = 'Фільмотека';
+        break;
+      case 'ru':
+        docTitle.textContent = 'Фильмотека';
+        break;
+    }
     localStorage.removeItem('genres');
     this.dataMarkup.updatePage('lang');
   };
