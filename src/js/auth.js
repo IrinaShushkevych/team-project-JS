@@ -2,7 +2,12 @@ import refs from './refs.js';
 import DataSaver from './dataSaver.js';
 
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  signInWithCustomToken,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { getDatabase, ref, set, onValue, get, child, remove, push } from 'firebase/database';
 import 'firebase/database';
 import 'firebase/storage';
@@ -23,8 +28,6 @@ export default class Save {
     };
     const app = initializeApp(firebaseConfig);
     this.auth = getAuth(app);
-    // this.db = getDatabase(app);
-    // this.dbRef = ref(getDatabase(app));
     this.dataSaver = new DataSaver();
   }
 
@@ -41,8 +44,11 @@ export default class Save {
   };
 
   login = async (email, password) => {
+    // const uid = await signInWithCustomToken(this.auth, sessionStorage.getItem('token'))
     const uid = await signInWithEmailAndPassword(this.auth, email, password)
       .then(user => {
+        // console.log(user);
+        // sessionStorage.setItem('token', user.user.accessToken);
         sessionStorage.setItem('user', user.user.uid);
         return { type: 1, text: user.user.uid };
       })
@@ -56,92 +62,4 @@ export default class Save {
     Message.error(error.message);
     return null;
   };
-
-  // getFilmFromBase = async (id, page) => {
-  //   const result = await get(
-  //     child(this.dbRef, `users/${sessionStorage.getItem('user')}/${page}/${id}`),
-  //   )
-  //     .then(data => {
-  //       if (data.exists()) {
-  //         return data.val();
-  //       } else {
-  //         return null;
-  //       }
-  //     })
-  //     .catch(this.getError);
-  //   if (result) return true;
-  //   return false;
-  // };
-
-  // getFilm = async (id, page) => {
-  //   let res = null;
-  //   if (!page) {
-  //     page = localStorage.getItem('activePage');
-  //     // page = this.getActivePage();
-  //   }
-  //   if (page === 'home') {
-  //     let films = localStorage.getItem(page);
-  //     if (films) {
-  //       films = JSON.parse(films);
-  //       res = films.find(el => el.id === id);
-  //     }
-  //   } else {
-  //     result = await this.getFilmFromBase();
-  //     const res = [];
-  //     if (result)
-  //       for (let key in result) {
-  //         res.push(JSON.parse(result[key]));
-  //       }
-  //   }
-  //   return res;
-  // };
-
-  // isFilmInList = async (id, page) => {
-  //   let result = false;
-  //   if (page === 'home') {
-  //     //this.isFilmInList(id,'home')
-  //     // return true;
-  //   } else {
-  //     const film = await this.getFilmFromBase(id, page);
-  //     result = film ? true : false;
-  //   }
-  //   return result;
-  // };
-
-  // addFilm = async (id, page, pageFrom) => {
-  //   const isRes = await this.isFilmInList(id, page);
-  //   if (!isRes) {
-  //     const film = await this.getFilm(id, pageFrom);
-  //     const result = await set(
-  //       ref(this.db, `users/${sessionStorage.getItem('user')}/${page}/${id}`),
-  //       JSON.stringify(film),
-  //     );
-  //     return true;
-  //   }
-  //   this.getError(`This film is allrady in ${page}`);
-  // };
-
-  // getData = async page => {
-  //   const result = await get(
-  //     child(this.dbRef, `users/${sessionStorage.getItem('user')}/${page}`),
-  //   ).then(data => {
-  //     if (data.exists()) {
-  //       return data.val();
-  //     } else {
-  //       return [];
-  //     }
-  //   });
-  //   const res = [];
-  //   for (let key in result) {
-  //     res.push(JSON.parse(result[key]));
-  //   }
-  //   console.log(res);
-  //   return res;
-  // };
-
-  // removeData = async (id, page) => {
-  //   const refDB = ref(this.db, `users/${sessionStorage.getItem('user')}/${page}/${id}`);
-  //   const result = await remove(refDB);
-  //   return result;
-  // };
 }

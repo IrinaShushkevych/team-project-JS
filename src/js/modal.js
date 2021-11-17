@@ -251,10 +251,11 @@ export default class Modal {
     this.refs.divModalRef.classList.add('visually-hidden');
     this.openTrailer();
     this.isTrailer = true;
+
     setTimeout(() => {
       this.load.hideSpinner(this.refs.modalMask); 
     }, 2500)
-    
+
   };
 
   openTrailer = () => {
@@ -266,5 +267,6 @@ export default class Modal {
 
   photoChanging = e => {
     console.log(e.target);
+
   };
 }
