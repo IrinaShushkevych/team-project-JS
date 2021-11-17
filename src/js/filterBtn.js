@@ -12,6 +12,7 @@ import LoadSpinner from './loadSpinner';
 import DataMarkup from './dataMarkup.js';
 import DataService from './DataServise';
 import { getIdTokenResult } from '@firebase/auth';
+import CustomPagination from './pagination.js';
 
 export default class FilterBtn {
     constructor(){
@@ -27,6 +28,9 @@ export default class FilterBtn {
         this.iconFilterBtn = refs.iconSvg;
         this.filmTpl = filmTpl;
         this.listCardTpl = listCardTpl;
+        this.dataPagination = new CustomPagination();
+        
+      
 
     }
     
@@ -53,11 +57,12 @@ export default class FilterBtn {
     }
     listFilterYearsRender=()=>{
         this.refs.yearList.addEventListener('click', async (el)=>{
+            this.dataSaver.setCurrentPage(1);
             const id = el.target.dataset.id
             const fechIdYears = await this.filterFechYearsId(id);
-            this.dataMarkup.renderMarkup(fechIdYears )
             this.dataSaver.setActivePage("filterYears")
             this.refs.yearList.classList.add('visually-hidden')
+            this.dataPagination.initPagination();
 
         } )
     }
@@ -66,11 +71,13 @@ export default class FilterBtn {
         this.refs.sortGenreList.addEventListener('click', async el =>{
             // console.log(el)
             // console.log(el.target)
+            this.dataSaver.setCurrentPage(1);
             const id = el.target.dataset.id
             const fechIdGenres = await this.filterFechGenresID(id);
-            this.dataMarkup.renderMarkup(fechIdGenres)
             this.dataSaver.setActivePage("filterGenres")
-            this.refs.sortGenreList.classList.add('visually-hidden')           
+            this.refs.sortGenreList.classList.add('visually-hidden')
+            this.dataPagination.initPagination();
+                      
             
 
         })
@@ -78,10 +85,12 @@ export default class FilterBtn {
     }
     listFilterTopRatingRender=()=>{
         this.refs.topRating.addEventListener('click', async el  =>{
+            this.dataSaver.setCurrentPage(1);
             const id = el.target.dataset.id
             const fechIdTopRating = await this.fechIdRating(id);
-            this.dataMarkup.renderMarkup(fechIdTopRating )
+          
             this.dataSaver.setActivePage("filterTopRating")
+            this.dataPagination.initPagination();
             
                        
         })
@@ -89,10 +98,12 @@ export default class FilterBtn {
     }
     listFilterPopularyWeek =()=>{
         this.refs.sortWrapper.addEventListener('click', async el =>{
+            this.dataSaver.setCurrentPage(1);
             const id = el.target.dataset.id
             const fechIdPopularyWeek = await this.fechPopularyWeek(id);
-            this.dataMarkup.renderMarkup(fechIdPopularyWeek)
+            
             this.dataSaver.setActivePage("filterPopularyWeek")
+            this.dataPagination.initPagination();
             
         })
     }
@@ -105,11 +116,15 @@ export default class FilterBtn {
     let popularFilms = 'discover/movie?';
     this.url =
       this.DataService.baseUrl + popularFilms + this.DataService.keyAPI + `&with_genres=${this.idGenres}&page=${this.dataSaver.getCurrentPage()}`;
+
     const result = await this.DataService.fetchData(this.url);
     await this.DataService.fixFetchObject(result.results);
-
+    
     const genresResults = result.results
-   
+    let totalPages = result.total_pages;
+    this.dataSaver.setTotalPages(totalPages);
+    this.dataSaver.setHomeFilms(genresResults);
+    this.dataMarkup.renderMarkup(genresResults)
     return  genresResults;
     }
     filterFechYearsId= async(id)=>{
@@ -123,19 +138,29 @@ export default class FilterBtn {
         await this.DataService.fixFetchObject(result.results);
 
         const yearsResults = result.results
+        let totalPages = result.total_pages;
+        this.dataSaver.setTotalPages(totalPages);
+        this.dataSaver.setHomeFilms(yearsResults);
+        this.dataMarkup.renderMarkup(yearsResults)
     
         return  yearsResults;
     }
     
     fechIdRating = async() =>{
         
+        
         let popularFilms = 'movie/top_rated?';
         this.url =
         this.DataService.baseUrl + popularFilms + this.DataService.keyAPI + `&page=${this.dataSaver.getCurrentPage()}`;
+        console.log(this.url)
         const result = await this.DataService.fetchData(this.url);
         await this.DataService.fixFetchObject(result.results);
 
         const ratingTopResults = result.results
+        let totalPages = result.total_pages;
+        this.dataSaver.setTotalPages(totalPages);
+        this.dataSaver.setHomeFilms(ratingTopResults);
+        this.dataMarkup.renderMarkup(ratingTopResults)
     
         return  ratingTopResults;
 
@@ -149,6 +174,10 @@ export default class FilterBtn {
         await this.DataService.fixFetchObject(result.results);
 
         const popuylaryWeekResults = result.results
+        let totalPages = result.total_pages;
+        this.dataSaver.setTotalPages(totalPages);
+        this.dataSaver.setHomeFilms(popuylaryWeekResults);
+        this.dataMarkup.renderMarkup(popuylaryWeekResults)
     
         return popuylaryWeekResults;
     }
@@ -168,3 +197,15 @@ export default class FilterBtn {
 
     // ****
 }
+// let menu = document.querySelector('#menu'),
+//     isOpened = false;
+
+// setInterval(() => {
+//     if (isOpened) {
+//         menu.classList.remove('-opened');
+//     } else {
+//         menu.classList.add('-opened');
+//     }
+    
+//     isOpened = !isOpened;
+// }, 1500);

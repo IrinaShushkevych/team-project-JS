@@ -14,6 +14,7 @@ import listCardTpl from '../templates/list-card.hbs';
 import DataSaver from './dataSaver.js';
 import Message from './message.js';
 import LoadSpinner from './loadSpinner';
+import FilterBtn from './filterBtn.js';
 
 export default class DataMarkup {
   constructor() {
@@ -26,6 +27,7 @@ export default class DataMarkup {
     this.filmTpl = filmTpl;
     this.listCardTpl = listCardTpl;
     this.delay = 0;
+    
   }
 
   setNullList = (texten, textuk, textru) => {
@@ -202,6 +204,7 @@ export default class DataMarkup {
   };
 
   updatePage = () => {
+    const filterBtnCons = new FilterBtn();
     const activePage = this.dataSaver.getActivePage();
     switch (activePage) {
       case 'home':
@@ -217,6 +220,19 @@ export default class DataMarkup {
       case 'queue':
         this.getCurrentFilmsQueue();
         break;
+        case 'filterGenres':
+          filterBtnCons.filterFechGenresID();
+          break;
+        case 'filterYears':
+          filterBtnCons.filterFechYearsId();
+          break;
+        case 'filterTopRating':
+            filterBtnCons.fechIdRating();
+            break;
+        case 'filterPopularyWeek':
+            filterBtnCons.fechPopularyWeek();
+            break;
+
     }
   };
 
@@ -239,7 +255,7 @@ export default class DataMarkup {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         if (entry.target) {
-          console.log(entry.target);
+          // console.log(entry.target);
           this.appearCardsWithDelay(entry.target, this.delay);
           const el = entry.target.querySelector('.card__image');
           if (el.nodeName === 'P') {
