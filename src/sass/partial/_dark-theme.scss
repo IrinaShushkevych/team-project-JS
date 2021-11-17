@@ -8,6 +8,31 @@
     url(../images/placeholder/b.jpg);
   background-size: cover;
   color: $primary-white-color;
+
+  & .tui-ico-first,
+  .tui-ico-prev,
+  .tui-ico-next,
+  .tui-ico-last,
+  .tui-ico-ellip {
+    filter: brightness(0) invert(1);
+  }
+
+  & .tui-page-btn {
+    color: $primary-white-color;
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  & .tui-is-disabled {
+    filter: invert(58%) sepia(0%) saturate(7278%) hue-rotate(143deg) brightness(92%) contrast(96%);
+  }
+
+  & .tui-is-disabled:hover {
+    background: #3b3a38;
+  }
+
+  & .tui-is-selected {
+    background: $accent-color;
+  }
 }
 
 .dark-footer {
