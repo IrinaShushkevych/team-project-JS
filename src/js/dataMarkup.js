@@ -25,6 +25,8 @@ export default class DataMarkup {
     this.refs = refs;
     this.filmTpl = filmTpl;
     this.listCardTpl = listCardTpl;
+    this.delay = 0;
+    
   }
 
   // рендер років
@@ -123,12 +125,12 @@ export default class DataMarkup {
     this.refs.modalCardRef.innerHTML = filmTpl(film, trailer);
   };
 
-  // trailerFilmMarkup = (film, trailer) => {
-  //   this.refs.trailerContainer.innerHTML = `
-  //       <iframe class='trailer' width="560" height="315" src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  //   `;
-  //   // this.refs.modalCardRef.innerHTML = filmTpl(film, trailer);
-  // };
+  trailerFilmMarkup = (film, trailer) => {
+    this.refs.trailerContainer.innerHTML = `
+        <iframe class='trailer' width="560" height="315" src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        
+    `;
+    // this.refs.modalCardRef.innerHTML = filmTpl(film, trailer);
+  };
 
   filterFilmsQuery = () => {
     this.btnSort = document.querySelector('.sort-btn');
@@ -172,11 +174,14 @@ export default class DataMarkup {
       this.observer.observe(el);
     });
   };
-
+  
   onObservCard = (entries, observer) => {
+    this.delay = 0;
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         if (entry.target) {
+          console.log(entry.target);
+          this.appearCardsWithDelay(entry.target, this.delay);
           const el = entry.target.querySelector('.card__image');
           if (el.nodeName === 'P') {
             const img = document.createElement('img');
@@ -188,5 +193,14 @@ export default class DataMarkup {
         }
       }
     });
+  };
+
+  appearCardsWithDelay = (element, delay) => {
+    console.log(delay);
+    element.classList.add('card-animation');
+    delay += 200;
+    this.delay = delay;
+    element.style.transitionDelay = `${delay}ms`;
+    console.log(delay);
   };
 }
