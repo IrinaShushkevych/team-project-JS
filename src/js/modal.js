@@ -31,9 +31,10 @@ export default class Modal {
     this.refs.btnClose.addEventListener('click', this.onBtnClosePress);
     this.refs.backdrop.addEventListener('click', this.onBackdropClick);
     if (page !== 'team') {
-      this.refs.modalContainer.classList.add('visually-hidden');
+      this.refs.modalContainer.classList.add('hidden');
       this.refs.modalCardRef.classList.remove('hidden');
     } else {
+      this.refs.modalContainer.classList.remove('hidden');
       this.refs.modalCardRef.classList.add('hidden');
       this.refs.memberPhoto = document.querySelector('.killer__image');
       this.refs.memberPhoto.addEventListener('click', this.photoChanging);
@@ -250,20 +251,17 @@ export default class Modal {
     this.refs.divModalRef.classList.add('visually-hidden');
     this.openTrailer();
     this.isTrailer = true;
+
     setTimeout(() => {
       this.load.hideSpinner(this.refs.modalMask); 
     }, 2500)
-    
+
   };
 
   openTrailer = () => {
     this.refs.trailerContainer.innerHTML = `
         <iframe class='trailer'  src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
     `;
-};
-  
 
-  photoChanging = e => {
-    console.log(e.target);
   };
 }
