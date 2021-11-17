@@ -1,66 +1,248 @@
-[
-  {
-    "name": "Ira Shushkevych",
-    "position": "Teamlead",
-    "whatKeepsMeUpHere": "",
-    "socialLink": "",
-    "photo": "https://img2.akspic.ru/previews/7/6/6/6/5/156667/156667-harli_kvinn-dzhoker-betmen-mister_chudo-vselennaya_dc-x750.jpg",
-    "superPhoto": "ira"
-  },
-  {
-    "name": "Oleg Chaikovskyi",
-    "position": "Scrum master",
-    "whatKeepsMeUpHere": "",
-    "socialLink": "",
-    "photo": "https://img1.akspic.ru/previews/5/4/2/8/4/148245/148245-harli_kvinn-krasnaya_shapochka-kloun-internet_mem-betmen-x750.jpg",
-    "superPhoto": "oleg"
-  },
-  {
-    "name": "Vira Kolesnikova",
-    "position": "Developer",
-    "whatKeepsMeUpHere": "",
-    "socialLink": "",
-    "photo": "https://img2.akspic.ru/previews/6/7/1/7/3/137176/137176-art-komiksymarvel-zhenshhinavoin-anime-kinovselennayamarvel-x750.jpg",
-    "superPhoto": "vira"
-  },
-  {
-    "name": "Hanna Dzhyzhevska",
-    "position": "Developer",
-    "whatKeepsMeUpHere": "",
-    "socialLink": "",
-    "photo": "https://img3.akspic.ru/previews/1/7/5/8/4/148571/148571-kosmos-gidrokostyum-komiks-komiksy_marvel-rosomaha-500x.jpg",
-    "superPhoto": "hanna"
-  },
-  {
-    "name": "Volodymyr Pavlenko",
-    "position": "Developer",
-    "whatKeepsMeUpHere": "",
-    "socialLink": "",
-    "photo": "https://img3.akspic.ru/previews/2/1/2/5/5/155212/155212-betmen-dzhoker-2019-art-komiksy_dc-500x.jpg",
-    "superPhoto": "vova"
-  },
-  {
-    "name": "Vadim Bashovyi",
-    "position": "Developer",
-    "whatKeepsMeUpHere": "",
-    "socialLink": "",
-    "photo": "https://img2.akspic.ru/previews/7/1/0/7/3/137017/137017-boevik-tanos_beskonechnaya_vojna-supergeroj-vymyslennyj_personaz-chelovek_pauk-x750.jpg",
-    "superPhoto": "vadim"
-  },
-  {
-    "name": "Oleksii Biletskyi",
-    "position": "Developer",
-    "whatKeepsMeUpHere": "",
-    "socialLink": "",
-    "photo": "https://img1.akspic.ru/previews/9/1/9/4/2/124919/124919-vymyslennyj_personaz-fan_art-cifrovoe_iskusstvo-hudozhnik-yad-x750.jpg",
-    "superPhoto": "liosha"
-  },
-  {
-    "name": "Iryna Maksimova",
-    "position": "Developer",
-    "whatKeepsMeUpHere": "",
-    "socialLink": "",
-    "photo": "https://img1.akspic.ru/previews/3/2/0/6/5/156023/156023-v_stihah_pauka_pauk_gven-zhenshhina_pauk-gven_stejsi-chelovek_pauk-komiksy_marvel-x750.jpg",
-    "superPhoto": "iram"
-  }
-]
+{
+  "en": [
+    {
+      "name": "Ira Shushkevych",
+      "position": "Teamlead",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img2.akspic.ru/previews/7/6/6/6/5/156667/156667-harli_kvinn-dzhoker-betmen-mister_chudo-vselennaya_dc-x750.jpg",
+      "superPhoto": "ira",
+      "superPhotoName": "ira",
+      "git": "https://github.com/IrinaShushkevych"
+    },
+    {
+      "name": "Oleg Chaikovskyi",
+      "position": "Scrum master",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img1.akspic.ru/previews/5/4/2/8/4/148245/148245-harli_kvinn-krasnaya_shapochka-kloun-internet_mem-betmen-x750.jpg",
+      "superPhoto": "oleg",
+      "superPhotoName": "oleg",
+      "git": "https://github.com/OlegTch"
+    },
+    {
+      "name": "Vira Kolesnikova",
+      "position": "Developer",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img2.akspic.ru/previews/6/7/1/7/3/137176/137176-art-komiksymarvel-zhenshhinavoin-anime-kinovselennayamarvel-x750.jpg",
+      "superPhoto": "vira",
+      "superPhotoName": "vira",
+      "git": "https://github.com/ViraKolesnikova"
+    },
+    {
+      "name": "Hanna Dzhyzhevska",
+      "position": "Developer",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img3.akspic.ru/previews/1/7/5/8/4/148571/148571-kosmos-gidrokostyum-komiks-komiksy_marvel-rosomaha-500x.jpg",
+      "superPhoto": "hanna",
+      "superPhotoName": "hanna",
+      "git": "https://github.com/Linacolor"
+    },
+    {
+      "name": "Volodymyr Pavlenko",
+      "position": "Developer",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img3.akspic.ru/previews/2/1/2/5/5/155212/155212-betmen-dzhoker-2019-art-komiksy_dc-500x.jpg",
+      "superPhoto": "vova",
+      "superPhotoName": "vova",
+      "git": "https://github.com/PavlenkoVolodymyr"
+    },
+    {
+      "name": "Vadim Bashovyi",
+      "position": "Developer",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img2.akspic.ru/previews/7/1/0/7/3/137017/137017-boevik-tanos_beskonechnaya_vojna-supergeroj-vymyslennyj_personaz-chelovek_pauk-x750.jpg",
+      "superPhoto": "vadim",
+      "superPhotoName": "vadim",
+      "git": "https://github.com/VadimBashovyi"
+    },
+    {
+      "name": "Oleksii Biletskyi",
+      "position": "Developer",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img1.akspic.ru/previews/9/1/9/4/2/124919/124919-vymyslennyj_personaz-fan_art-cifrovoe_iskusstvo-hudozhnik-yad-x750.jpg",
+      "superPhoto": "liosha",
+      "superPhotoName": "liosha",
+      "git": "https://github.com/Prophecylife"
+    },
+    {
+      "name": "Iryna Maksimova",
+      "position": "Developer",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img1.akspic.ru/previews/3/2/0/6/5/156023/156023-v_stihah_pauka_pauk_gven-zhenshhina_pauk-gven_stejsi-chelovek_pauk-komiksy_marvel-x750.jpg",
+      "superPhoto": "iram",
+      "superPhotoName": "iram",
+      "git": "https://github.com/IraMcsimova"
+    }
+  ],
+  "uk": [
+    {
+      "name": "Ірина Шушкевич",
+      "position": "Teamlead",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img2.akspic.ru/previews/7/6/6/6/5/156667/156667-harli_kvinn-dzhoker-betmen-mister_chudo-vselennaya_dc-x750.jpg",
+      "superPhoto": "ira",
+      "superPhotoName": "ira",
+      "git": "https://github.com/IrinaShushkevych"
+    },
+    {
+      "name": "Олег Чайковський",
+      "position": "Scrum master",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img1.akspic.ru/previews/5/4/2/8/4/148245/148245-harli_kvinn-krasnaya_shapochka-kloun-internet_mem-betmen-x750.jpg",
+      "superPhoto": "oleg",
+      "superPhotoName": "oleg",
+      "git": "https://github.com/OlegTch"
+    },
+    {
+      "name": "Віра Колеснікова",
+      "position": "Розробник",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img2.akspic.ru/previews/6/7/1/7/3/137176/137176-art-komiksymarvel-zhenshhinavoin-anime-kinovselennayamarvel-x750.jpg",
+      "superPhoto": "vira",
+      "superPhotoName": "vira",
+      "git": "https://github.com/ViraKolesnikova"
+    },
+    {
+      "name": "Ганна Джизевська",
+      "position": "Розробник",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img3.akspic.ru/previews/1/7/5/8/4/148571/148571-kosmos-gidrokostyum-komiks-komiksy_marvel-rosomaha-500x.jpg",
+      "superPhoto": "hanna",
+      "superPhotoName": "hanna",
+      "git": "https://github.com/Linacolor"
+    },
+    {
+      "name": "Володимир Павленко",
+      "position": "Розробник",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img3.akspic.ru/previews/2/1/2/5/5/155212/155212-betmen-dzhoker-2019-art-komiksy_dc-500x.jpg",
+      "superPhoto": "vova",
+      "superPhotoName": "vova",
+      "git": "https://github.com/PavlenkoVolodymyr"
+    },
+    {
+      "name": "Вадім Башовий",
+      "position": "Розробник",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img2.akspic.ru/previews/7/1/0/7/3/137017/137017-boevik-tanos_beskonechnaya_vojna-supergeroj-vymyslennyj_personaz-chelovek_pauk-x750.jpg",
+      "superPhoto": "vadim",
+      "superPhotoName": "vadim",
+      "git": "https://github.com/VadimBashovyi"
+    },
+    {
+      "name": "Олексій Білецький",
+      "position": "Розробник",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img1.akspic.ru/previews/9/1/9/4/2/124919/124919-vymyslennyj_personaz-fan_art-cifrovoe_iskusstvo-hudozhnik-yad-x750.jpg",
+      "superPhoto": "liosha",
+      "superPhotoName": "liosha",
+      "git": "https://github.com/Prophecylife"
+    },
+    {
+      "name": "Ірина Максимова",
+      "position": "Розробник",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img1.akspic.ru/previews/3/2/0/6/5/156023/156023-v_stihah_pauka_pauk_gven-zhenshhina_pauk-gven_stejsi-chelovek_pauk-komiksy_marvel-x750.jpg",
+      "superPhoto": "iram",
+      "superPhotoName": "iram",
+      "git": "https://github.com/IraMcsimova"
+    }
+  ],
+  "ru": [
+    {
+      "name": "Ирина Шушкевич",
+      "position": "Teamlead",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img2.akspic.ru/previews/7/6/6/6/5/156667/156667-harli_kvinn-dzhoker-betmen-mister_chudo-vselennaya_dc-x750.jpg",
+      "superPhoto": "ira",
+      "superPhotoName": "ira",
+      "git": "https://github.com/IrinaShushkevych"
+    },
+    {
+      "name": "Олег Чайковский",
+      "position": "Scrum master",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img1.akspic.ru/previews/5/4/2/8/4/148245/148245-harli_kvinn-krasnaya_shapochka-kloun-internet_mem-betmen-x750.jpg",
+      "superPhoto": "oleg",
+      "superPhotoName": "oleg",
+      "git": "https://github.com/OlegTch"
+    },
+    {
+      "name": "Вера Колесникова",
+      "position": "Разработчик",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img2.akspic.ru/previews/6/7/1/7/3/137176/137176-art-komiksymarvel-zhenshhinavoin-anime-kinovselennayamarvel-x750.jpg",
+      "superPhoto": "vira",
+      "superPhotoName": "vira",
+      "git": "https://github.com/ViraKolesnikova"
+    },
+    {
+      "name": "Анна Джизевская",
+      "position": "Разработчик",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img3.akspic.ru/previews/1/7/5/8/4/148571/148571-kosmos-gidrokostyum-komiks-komiksy_marvel-rosomaha-500x.jpg",
+      "superPhoto": "hanna",
+      "superPhotoName": "hanna",
+      "git": "https://github.com/Linacolor"
+    },
+    {
+      "name": "Владимир Павленко",
+      "position": "Разработчик",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img3.akspic.ru/previews/2/1/2/5/5/155212/155212-betmen-dzhoker-2019-art-komiksy_dc-500x.jpg",
+      "superPhoto": "vova",
+      "superPhotoName": "vova",
+      "git": "https://github.com/PavlenkoVolodymyr"
+    },
+    {
+      "name": "Вадим Башовый",
+      "position": "Разработчик",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img2.akspic.ru/previews/7/1/0/7/3/137017/137017-boevik-tanos_beskonechnaya_vojna-supergeroj-vymyslennyj_personaz-chelovek_pauk-x750.jpg",
+      "superPhoto": "vadim",
+      "superPhotoName": "vadim",
+      "git": "https://github.com/VadimBashovyi"
+    },
+    {
+      "name": "Алексей Билецкий",
+      "position": "Разработчик",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img1.akspic.ru/previews/9/1/9/4/2/124919/124919-vymyslennyj_personaz-fan_art-cifrovoe_iskusstvo-hudozhnik-yad-x750.jpg",
+      "superPhoto": "liosha",
+      "superPhotoName": "liosha",
+      "git": "https://github.com/Prophecylife"
+    },
+    {
+      "name": "Ирина Максимова",
+      "position": "Разработчик",
+      "whatKeepsMeUpHere": "",
+      "socialLink": "",
+      "photo": "https://img1.akspic.ru/previews/3/2/0/6/5/156023/156023-v_stihah_pauka_pauk_gven-zhenshhina_pauk-gven_stejsi-chelovek_pauk-komiksy_marvel-x750.jpg",
+      "superPhoto": "iram",
+      "superPhotoName": "iram",
+      "git": "https://github.com/IraMcsimova"
+    }
+  ]
+}

@@ -102,11 +102,16 @@ export default class DataMarkup {
 
   renderModalTeam = () => {
     try {
-      const arr = jsKillerTeam.map(el => {
-        el.superPhoto = images[el.superPhoto];
+      const lang = this.dataSaver.getLanguage();
+      const arr = jsKillerTeam[lang].map(el => {
+        console.log();
+        el.superPhoto = images[el.superPhotoName];
         return el;
       });
-      const markup = jsKillerTemplate(jsKillerTeam);
+
+      console.log(jsKillerTeam);
+      console.log(arr);
+      const markup = jsKillerTemplate(jsKillerTeam[lang]);
       this.refs.modalContainer.innerHTML = markup;
     } catch (error) {
       console.error('Yes, babe, the error has been appeared here. Check your code. 🤷‍♂️');

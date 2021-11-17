@@ -145,6 +145,7 @@
   font-size: 12px;
   // font-weight: 400px;
   letter-spacing: 2px;
+  margin-bottom: 5px;
   // padding: 5px;
   @media screen and (min-width: $bp-tablet) {
     font-size: 18px;
@@ -155,6 +156,7 @@
   font-size: 8px;
   color: $color-team-dot;
   font-weight: bold;
+  cursor: pointer;
   @media screen and (min-width: $bp-tablet) {
     font-size: 14px;
   }
