@@ -127,7 +127,7 @@ export default class APIService {
         if (this.dataSaver.getLanguage() === 'en') {
           film.poster_path = `${imgEn}`;
         }
-        if (this.dataSaver.getLanguage() === 'ua') {
+        if (this.dataSaver.getLanguage() === 'uk') {
           film.poster_path = `${imgUa}`;
         }
         if (this.dataSaver.getLanguage() === 'ru') {

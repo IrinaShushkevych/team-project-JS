@@ -29,7 +29,9 @@
     "email": "E-mail",
     "password": "Password",
     "btnRegistered": "Register",
-    "btnLogin": "Log in"
+    "btnLogin": "Log in",
+    "wanted1": "W",
+    "wanted2": "ANTED!!!"
   },
   "uk": {
     "logo": "Фільмотека",
@@ -61,7 +63,9 @@
     "email": "Електронна пошта",
     "password": "Пароль",
     "btnRegistered": "Зареєструватися",
-    "btnLogin": "Увійти"
+    "btnLogin": "Увійти",
+    "wanted1": "ЇХ ",
+    "wanted2": "   розшукуть !!!"
   },
   "ru": {
     "logo": "Фильмотека",
@@ -93,6 +97,8 @@
     "email": "Електронная почта",
     "password": "Пароль",
     "btnRegistered": "Зарегистрироваться",
-    "btnLogin": "Войти"
+    "btnLogin": "Войти",
+    "wanted1": "ИХ ",
+    "wanted2": "  розыскивают !!!"
   }
 }

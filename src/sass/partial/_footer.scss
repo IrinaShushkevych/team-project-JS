@@ -88,18 +88,6 @@
   }
 }
 
-// .heart__image {
-//   animation: spin 3s linear 0s infinite;
-// }
-// @keyframes spin {
-//   from {
-//     transform: rotateY(0deg);
-//   }
-//   to {
-//     transform: rotateY(360deg);
-//   }
-// }
-
 .heart__image {
   animation: animateHeart 3000ms infinite 1000ms;
 }
