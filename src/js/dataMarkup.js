@@ -255,11 +255,9 @@ export default class DataMarkup {
   };
 
   appearCardsWithDelay = (element, delay) => {
-    console.log(delay);
     element.classList.add('card-animation');
     delay += 200;
     this.delay = delay;
-    element.style.transitionDelay = `${delay}ms`;
-    console.log(delay);
+    element.style.transitionDelay = `${delay}ms`;    
   };
 }

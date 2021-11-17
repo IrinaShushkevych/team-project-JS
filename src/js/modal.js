@@ -1,3 +1,4 @@
+import { set } from '@firebase/database';
 import AuthForm from './authForm';
 import DataMarkup from './dataMarkup';
 import DataSaver from './dataSaver';
@@ -250,12 +251,17 @@ export default class Modal {
     this.refs.divModalRef.classList.add('visually-hidden');
     this.openTrailer();
     this.isTrailer = true;
-    this.load.hideSpinner(this.refs.modalMask);
+
+    setTimeout(() => {
+      this.load.hideSpinner(this.refs.modalMask); 
+    }, 2500)
+
   };
 
   openTrailer = () => {
     this.refs.trailerContainer.innerHTML = `
         <iframe class='trailer'  src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
     `;
+
   };
 }
