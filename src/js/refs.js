@@ -23,7 +23,7 @@ export default {
   listUlFilms: document.querySelector('.js-film-list'),
   // list: document.querySelector('.js-film-list'),
   paginationCase: document.getElementById('tui-pagination-container'),
-  mask : document.querySelector('.mask'),
+  mask: document.querySelector('.mask'),
   modalMask: document.querySelector('.modal-mask'),
 
   //footer
@@ -43,7 +43,7 @@ export default {
 
   modalWindowOpener: document.querySelector('.js-modal-team'),
   modalCleaner: document.querySelector('.card__container--modal'),
-  modalContainer: document.querySelector('.card__js-killer-container--modal'),
+
   buttonRemover: document.querySelector('.button__container-modal'),
   memberPhoto: document.querySelector('.killer__image'),
 
@@ -51,112 +51,92 @@ export default {
 
   genres: [
     {
-      "id": 28,
-      "name": "Action",
-      
+      id: 28,
+      name: 'Action',
     },
     {
-      "id": 12,
-      "name": "Adventure",
-      
+      id: 12,
+      name: 'Adventure',
     },
     {
-      "id": 16,
-      "name": "Animation",
-      
+      id: 16,
+      name: 'Animation',
     },
     {
-      "id": 35,
-      "name": "Comedy",
-      
+      id: 35,
+      name: 'Comedy',
     },
     {
-      "id": 80,
-      "name": "Crime",
-      
+      id: 80,
+      name: 'Crime',
     },
     {
-      "id": 99,
-      "name": "Documentary",
-      
+      id: 99,
+      name: 'Documentary',
     },
     {
-      "id": 18,
-      "name": "Drama",
-      
+      id: 18,
+      name: 'Drama',
     },
     {
-      "id": 10751,
-      "name": "Family",
-      
+      id: 10751,
+      name: 'Family',
     },
     {
-      "id": 14,
-      "name": "Fantasy",
-      
+      id: 14,
+      name: 'Fantasy',
     },
     {
-      "id": 36,
-      "name": "History",
-      
+      id: 36,
+      name: 'History',
     },
     {
-      "id": 27,
-      "name": "Horror",
-      
+      id: 27,
+      name: 'Horror',
     },
     {
-      "id": 10402,
-      "name": "Music",
-      
+      id: 10402,
+      name: 'Music',
     },
     {
-      "id": 9648,
-      "name": "Mystery",
-      
+      id: 9648,
+      name: 'Mystery',
     },
     {
-      "id": 10749,
-      "name": "Romance",
-      
+      id: 10749,
+      name: 'Romance',
     },
     {
-      "id": 878,
-      "name": "Science Fiction",
-      
+      id: 878,
+      name: 'Science Fiction',
     },
     {
-      "id": 10770,
-      "name": "TV Movie",
-      
+      id: 10770,
+      name: 'TV Movie',
     },
     {
-      "id": 53,
-      "name": "Thriller",
-      
+      id: 53,
+      name: 'Thriller',
     },
     {
-      "id": 10752,
-      "name": "War",
-      
+      id: 10752,
+      name: 'War',
     },
     {
-      "id": 37,
-      "name": "Western",
-      
-    }
+      id: 37,
+      name: 'Western',
+    },
   ],
-  yearList:document.querySelector('.year-list'),
+  yearList: document.querySelector('.year-list'),
   genreBtn: document.querySelector('.genre'),
-  sortGenreList:document.querySelector('.category-list'),
+  sortGenreList: document.querySelector('.category-list'),
   sortPopulary: document.querySelector('.sort'),
   yearBtn: document.querySelector('.year'),
-  sortWrapper:document.querySelector('.sort-wrapper'),  
-  genreWrapper:document.querySelector('.genre-wrapper'),
+  sortWrapper: document.querySelector('.sort-wrapper'),
+  genreWrapper: document.querySelector('.genre-wrapper'),
   topRating: document.querySelector('.rating-wrapper'),
   yearsWrapper: document.querySelector('.year-wrapper'),
   svgIconBtn: document.querySelector('.svg-icon'),
-  
 
   buttonGetVideos: document.querySelector('.js-add-video'),
   trailerContainer: document.querySelector('.js-video-trailer'),
@@ -164,4 +144,3 @@ export default {
   btnBackRef: document.querySelector('.block-arrow'),
   divModalRef: document.querySelector('.card__modal-thumb'),
 };
-

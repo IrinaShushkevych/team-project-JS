@@ -28,9 +28,9 @@ export default class DataMarkup {
   }
 
   // рендер років
-  addYearsList = ()=>{
-    this.refs.yearList.innerHTML = ""
-  }
+  addYearsList = () => {
+    this.refs.yearList.innerHTML = '';
+  };
   // *****
 
   // Рисование списка карточек
@@ -50,18 +50,15 @@ export default class DataMarkup {
   // Отрисовка по запросу
   renderSearchingFilms = async query => {
     const currentQuerySeach = await this.dataAPI.fetchFilmsByQuery(query);
-    if(currentQuerySeach.length === 0){
-      this.listRef.innerHTML =
-        `<li class ="card-my-library"><p class = "title-card-my-library">No such film was found</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
-        this.spinner.hideSpinner();
+    if (currentQuerySeach.length === 0) {
+      this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">No such film was found</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
+      this.spinner.hideSpinner();
       return;
-
     }
     this.spinner.hideSpinner();
     this.renderMarkup(currentQuerySeach);
 
     this.spinner.hideSpinner(this.refs.mask);
-
   };
   // отрисовка по фільтру за день
 
@@ -101,19 +98,14 @@ export default class DataMarkup {
 
     this.renderMarkup(currentFilmsQueue);
     this.spinner.hideSpinner(this.refs.mask);
-
   };
 
   renderModalTeam = () => {
     try {
-      console.log(images);
       const arr = jsKillerTeam.map(el => {
-        console.log(el);
         el.superPhoto = images[el.superPhoto];
         return el;
       });
-      console.log(arr);
-
       const markup = jsKillerTemplate(jsKillerTeam);
       this.refs.modalContainer.innerHTML = markup;
     } catch (error) {
@@ -132,7 +124,6 @@ export default class DataMarkup {
   //   `;
   //   // this.refs.modalCardRef.innerHTML = filmTpl(film, trailer);
   // };
-
 
   filterFilmsQuery = () => {
     this.btnSort = document.querySelector('.sort-btn');
@@ -181,7 +172,6 @@ export default class DataMarkup {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         if (entry.target) {
-          console.log(entry.target);
           const el = entry.target.querySelector('.card__image');
           if (el.nodeName === 'P') {
             const img = document.createElement('img');
@@ -194,5 +184,4 @@ export default class DataMarkup {
       }
     });
   };
-
 }

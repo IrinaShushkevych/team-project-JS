@@ -1,6 +1,7 @@
 .modal.modal-auth {
   width: 100%;
   height: auto;
+  overflow: hidden;
 }
 
 .modal-auth__input {
@@ -13,6 +14,10 @@
   margin-bottom: 30px;
   outline: none;
   background-color: transparent;
+
+  .modal.dark-modal.modal-auth & {
+    color: $primary-white-color;
+  }
 
   &::placeholder {
     color: $accent-color;

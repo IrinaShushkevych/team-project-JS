@@ -27,16 +27,21 @@ export default class Modal {
         this.refs.buttonGetVideos.classList.add('hidden');
       }
     }
-
     this.refs.btnClose.addEventListener('click', this.onBtnClosePress);
     this.refs.backdrop.addEventListener('click', this.onBackdropClick);
+    if (page !== 'team') {
+      this.refs.modalContainer.classList.add('visually-hidden');
+      this.refs.modalCardRef.classList.remove('hidden');
+    } else {
+      this.refs.modalCardRef.classList.add('hidden');
+      this.refs.memberPhoto = document.querySelector('.killer__image');
+      this.refs.memberPhoto.addEventListener('click', this.photoChanging);
+    }
     this.refs.backdrop.classList.remove('visually-hidden');
     window.addEventListener('keydown', this.onEscKeyPress);
     document.body.style.overflow = 'hidden';
 
     document.querySelector('.block-arrow').classList.add('hidden');
-
-    // this.openTrailer()
 
     if (this.page === 'film') {
       this.refs.buttonGetVideos.addEventListener('click', this.onBtnTrailerPress);
@@ -99,10 +104,6 @@ export default class Modal {
     }
   };
 
-  // onOpenModalTeam = () => {
-  //   console.log('Open modal team');
-  // };
-
   onEscKeyPress = event => {
     const ESC_KEY_CODE = 'Escape';
 
@@ -121,7 +122,6 @@ export default class Modal {
   };
 
   addBtnListeners = () => {
-    // this.getRefs();
     this.refs.itemAddWatched.addEventListener('click', this.onBtnAddWatchedPress);
     this.refs.itemRemoveWatched.addEventListener('click', this.onBtnRemoveWatchedPress);
     this.refs.itemAddQueue.addEventListener('click', this.onBtnAddQueuePress);
@@ -129,7 +129,6 @@ export default class Modal {
   };
 
   removeBtnListeners = () => {
-    // this.getRefs();
     this.refs.itemAddWatched.removeEventListener('click', this.onBtnAddWatchedPress);
     this.refs.itemRemoveWatched.removeEventListener('click', this.onBtnRemoveWatchedPress);
     this.refs.itemAddQueue.removeEventListener('click', this.onBtnAddQueuePress);
@@ -245,8 +244,6 @@ export default class Modal {
   };
 
   onBtnTrailerPress = () => {
-    // this.fetchFilmVideos(this.id);
-
     console.log('Trailer ' + this.trailer.key);
     this.refs.divModalRef.classList.add('visually-hidden');
     this.openTrailer();
@@ -255,9 +252,11 @@ export default class Modal {
 
   openTrailer = () => {
     this.refs.trailerContainer.innerHTML = `
-             
-        <iframe class='trailer'  src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-           
+        <iframe class='trailer'  src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
     `;
+  };
+
+  photoChanging = e => {
+    console.log(e.target);
   };
 }

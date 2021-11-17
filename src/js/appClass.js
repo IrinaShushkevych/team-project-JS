@@ -10,7 +10,6 @@ import FilterBtn from './filterBtn.js';
 import Translater from './translater.js';
 import Theme from './theme.js';
 
-
 export default class App {
   constructor() {
     this.filterBtn = new FilterBtn();
@@ -42,7 +41,7 @@ export default class App {
     this.refs.btnAuthRef.addEventListener('click', this.onClickAuth);
     this.refs.inputFormRef.addEventListener('submit', this.onKeyWordSearch);
     this.refs.btnLogOut.addEventListener('click', this.onClickLogOut);
-    this.refs.list.addEventListener('click', this.onClickCardItem);
+    this.refs.listUlFilms.addEventListener('click', this.onClickCardItem);
     this.dataPagination.initPagination(this.dataSaver.getTotalPages());
     // filter
     this.filterBtn.addListFilterGenre();
@@ -54,7 +53,6 @@ export default class App {
     this.filterBtn.addListenersSvgBtn();
     this.refs.btnLangRef.addEventListener('click', this.translater.onClickLangBtn);
     this.refs.toggle.addEventListener('click', this.theme.onChangeTheme);
-
   };
 
   checkSession = () => {
