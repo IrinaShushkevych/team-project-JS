@@ -245,19 +245,17 @@ export default class Modal {
   };
 
   onBtnTrailerPress = () => {
+    this.load.showSpinner(this.refs.modalMask);
     console.log('Trailer ' + this.trailer.key);
     this.refs.divModalRef.classList.add('visually-hidden');
     this.openTrailer();
     this.isTrailer = true;
+    this.load.hideSpinner(this.refs.modalMask);
   };
 
   openTrailer = () => {
     this.refs.trailerContainer.innerHTML = `
         <iframe class='trailer'  src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
     `;
-  };
-
-  photoChanging = e => {
-    console.log(e.target);
   };
 }
