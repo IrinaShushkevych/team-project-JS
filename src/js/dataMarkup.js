@@ -30,7 +30,7 @@ export default class DataMarkup {
   // Рисование списка карточек
   renderMarkup = data => {
     this.listRef.innerHTML = template(data);
-    this.spinner.hideSpinner();
+    this.spinner.hideSpinner(this.refs.modalMask);
     this.listIO();
   };
 
@@ -38,14 +38,14 @@ export default class DataMarkup {
   renderPopularFilms = async () => {
     const dataPopular = await this.dataAPI.fetchPopularFilms();
     this.renderMarkup(dataPopular);
-    this.spinner.hideSpinner();
+    this.spinner.hideSpinner(this.refs.mask);
   };
 
   // Отрисовка по запросу
   renderSearchingFilms = async query => {
     const currentQuerySeach = await this.dataAPI.fetchFilmsByQuery(query);
     this.renderMarkup(currentQuerySeach);
-    this.spinner.hideSpinner();
+    this.spinner.hideSpinner(this.refs.mask);
   };
   // отрисовка по фільтру за день
 
@@ -66,10 +66,10 @@ export default class DataMarkup {
 
     if (currentFilmsWatched.length === 0) {
       this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
-      this.spinner.hideSpinner();
+      this.spinner.hideSpinner(this.refs.mask);
       return;
     }
-    this.spinner.hideSpinner();
+    this.spinner.hideSpinner(this.refs.mask);
     this.renderMarkup(currentFilmsWatched);
   };
 
@@ -79,12 +79,12 @@ export default class DataMarkup {
 
     if (currentFilmsQueue.length === 0) {
       this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
-      this.spinner.hideSpinner();
+      this.spinner.hideSpinner(this.refs.mask);
       return;
     }
 
     this.renderMarkup(currentFilmsQueue);
-    this.spinner.hideSpinner();
+    this.spinner.hideSpinner(this.refs.mask);
   };
 
   renderModalTeam = () => {

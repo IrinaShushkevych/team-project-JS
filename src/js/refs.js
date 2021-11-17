@@ -23,6 +23,8 @@ export default {
   listUlFilms: document.querySelector('.js-film-list'),
   // list: document.querySelector('.js-film-list'),
   paginationCase: document.getElementById('tui-pagination-container'),
+  mask : document.querySelector('.mask'),
+  modalMask: document.querySelector('.modal-mask'),
 
   //footer
   footer: document.querySelector('.footer'),
