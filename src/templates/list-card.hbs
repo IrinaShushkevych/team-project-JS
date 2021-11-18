@@ -22,9 +22,15 @@
     {{/if}}
     <div class='card__caption'>
       <ul class='card__items'>
+        {{#if genre_ids}}
         {{#each genre_ids}}
           <li class='card__item'>{{this}}</li>
         {{/each}}
+        {{else}}
+        {{#each genres}}
+        <li class='card__item'>{{this}}</li>
+        {{/each}}
+        {{/if}}
       </ul>
       <span class='card__year'>{{release_date}}</span>
       <span class='card__rating'>{{vote_average}}</span>
