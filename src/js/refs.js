@@ -59,6 +59,9 @@ export default {
   topRating: document.querySelector('.rating-wrapper'),
   yearsWrapper: document.querySelector('.year-wrapper'),
   svgIconBtn: document.querySelector('.svg-icon'),
+  svgIconDiv: document.querySelector('.svg-filter'),
+  numberLibraryBtn: document.querySelector('.library-numder-films'),
+  // numberBtnLibrary: document.querySelector('.library-numder-films'),
 
   buttonGetVideos: document.querySelector('.js-add-video'),
   trailerContainer: document.querySelector('.js-video-trailer'),

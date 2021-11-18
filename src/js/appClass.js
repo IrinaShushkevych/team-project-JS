@@ -47,6 +47,9 @@ export default class App {
     this.filterBtn.init();
     this.refs.btnLangRef.addEventListener('click', this.translater.onClickLangBtn);
     this.refs.toggle.addEventListener('click', this.theme.onChangeTheme);
+    this.dataMarkup.delSvgButton();
+    this.dataSaver.getNumberBtn();
+    this.dataSaver.setNumberBtn();
   };
 
   checkSession = () => {
