@@ -22,6 +22,22 @@ export default class DataSaver {
     this.dbRef = ref(getDatabase(app));
   }
 
+  setFilterIdGenre = id => {
+    localStorage.setItem('filterGenresId', id);
+  };
+
+  getFilterIdGenre = () => {
+    return localStorage.getItem('filterGenresId');
+  };
+
+  setFilterYear = id => {
+    localStorage.setItem('filterYear', id);
+  };
+
+  getFilterYear = () => {
+    return localStorage.getItem('filterYear');
+  };
+
   clearLocalstoredge = () => {
     sessionStorage.removeItem('user');
     localStorage.removeItem('genres');
@@ -104,8 +120,8 @@ export default class DataSaver {
   getFilm = async id => {
     let result = null;
     const page = this.getActivePage();
-    if (page !== "watched" && page !== "queue" ) {
-      let films = localStorage.getItem("home");
+    if (page !== 'watched' && page !== 'queue') {
+      let films = localStorage.getItem('home');
       if (films) {
         films = JSON.parse(films);
         result = films.find(el => el.id === Number(id));
@@ -248,7 +264,7 @@ export default class DataSaver {
   isFilmInList = async (id, page) => {
     let result = false;
     // if (page === 'home')
-    if (page !== "watched" && page !== "queue" ) {
+    if (page !== 'watched' && page !== 'queue') {
       return this.isFilmInHome(id);
     } else {
       const film = await this.getFilmFromBase(id, page);

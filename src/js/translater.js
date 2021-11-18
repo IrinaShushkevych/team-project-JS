@@ -1,15 +1,18 @@
 import langData from '../json/lang.json';
-import DataMarkup from './dataMarkup';
+import DataMarkup from './dataMarkup.js';
 import DataSaver from './dataSaver.js';
 import refs from './refs.js';
+import filterListGenres from '../templates/filterListGenre.hbs';
+import APIService from './DataServise.js';
 
-export default class {
+export default class Translater {
   constructor() {
     this.save = new DataSaver();
+    this.dataMarkup = new DataMarkup();
+    this.api = new APIService();
     this.data = langData;
     this.langBtn = refs.btnLangRef;
     this.langList = refs.listLangRef;
-    this.dataMarkup = new DataMarkup();
   }
 
   checkLang = lang => {
@@ -44,7 +47,7 @@ export default class {
     return this.data[this.lang];
   };
 
-  translate = root => {
+  translate = async root => {
     this.checkLang();
     const data = this.selectData();
     const arrEl = root.querySelectorAll('.lang');
@@ -78,7 +81,9 @@ export default class {
         break;
     }
     localStorage.removeItem('genres');
+    await this.api.fetchFilmsGenres();
     this.dataMarkup.updatePage('lang');
+    this.changeFilterListGenre();
   };
 
   onSelectLang = e => {
@@ -99,5 +104,10 @@ export default class {
       this.langList.classList.add('hidden');
       window.removeEventListener('click', this.onCloseList);
     }
+  };
+
+  changeFilterListGenre = () => {
+    const data = this.save.getFilmsGenres();
+    refs.sortGenreList.innerHTML = filterListGenres(data);
   };
 }

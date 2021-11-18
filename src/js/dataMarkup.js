@@ -27,7 +27,6 @@ export default class DataMarkup {
     this.filmTpl = filmTpl;
     this.listCardTpl = listCardTpl;
     this.delay = 0;
-    
   }
 
   setNullList = (texten, textuk, textru) => {
@@ -108,26 +107,12 @@ export default class DataMarkup {
   getCurrentFilmsWatched = async id => {
     const currentFilmsWatched = await this.dataSaver.getFilmWatched();
 
-    // console.log(currentFilmsWatched);
-
     if (currentFilmsWatched.length === 0) {
       this.setNullList(
         'You  have not watched films yet',
         'Ви ще не переглянули жодного фільму',
         'Вы еще не просмотрели ни одного фильма',
       );
-      // const lang = this.dataSaver.getLanguage();
-      // switch (lang) {
-      //   case 'en':
-      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
-      //     break;
-      //   case 'uk':
-      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">Ви ще не переглянули жодного фільму</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
-      //     break;
-      //   case 'ru':
-      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
-      //     break;
-      // }
       this.spinner.hideSpinner(this.refs.mask);
       return;
     }
@@ -145,19 +130,6 @@ export default class DataMarkup {
         'Такого фільму не знайдено',
         'Такой фильм не найден',
       );
-      // const lang = this.dataSaver.getLanguage();
-      // switch (lang) {
-      //   case 'en':
-      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">No such film was found</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
-      //     break;
-      //   case 'uk':
-      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">Такого фільму не знайдено</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
-      //     break;
-      //   case 'ru':
-      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">Такой фильм не найден</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
-      //     break;
-      // }
-      // this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">You  have not watched films yet</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
       this.spinner.hideSpinner(this.refs.mask);
       return;
     }
@@ -170,7 +142,6 @@ export default class DataMarkup {
     try {
       const lang = this.dataSaver.getLanguage();
       const arr = jsKillerTeam[lang].map(el => {
-        console.log();
         el.superPhoto = images[el.superPhotoName];
         return el;
       });
@@ -220,19 +191,18 @@ export default class DataMarkup {
       case 'queue':
         this.getCurrentFilmsQueue();
         break;
-        case 'filterGenres':
-          filterBtnCons.filterFechGenresID();
-          break;
-        case 'filterYears':
-          filterBtnCons.filterFechYearsId();
-          break;
-        case 'filterTopRating':
-            filterBtnCons.fechIdRating();
-            break;
-        case 'filterPopularyWeek':
-            filterBtnCons.fechPopularyWeek();
-            break;
-
+      case 'filterGenres':
+        filterBtnCons.filterFechGenresID();
+        break;
+      case 'filterYears':
+        filterBtnCons.filterFechYearsId();
+        break;
+      case 'filterTopRating':
+        filterBtnCons.fechIdRating();
+        break;
+      case 'filterPopularyWeek':
+        filterBtnCons.fechPopularyWeek();
+        break;
     }
   };
 
@@ -255,7 +225,6 @@ export default class DataMarkup {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         if (entry.target) {
-          // console.log(entry.target);
           this.appearCardsWithDelay(entry.target, this.delay);
           const el = entry.target.querySelector('.card__image');
           if (el.nodeName === 'P') {
@@ -274,6 +243,6 @@ export default class DataMarkup {
     element.classList.add('card-animation');
     delay += 200;
     this.delay = delay;
-    element.style.transitionDelay = `${delay}ms`;    
+    element.style.transitionDelay = `${delay}ms`;
   };
 }
