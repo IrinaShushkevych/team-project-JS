@@ -13,7 +13,7 @@
   // position: absolute;
   position: relative;
   width: 100%;
-  margin-top: 30px;
+  // margin-top: 30px;
 }
 
 .year-search {
@@ -63,7 +63,7 @@
 .rating-wrapper,
 .genre-wrapper {
   @media screen and (max-width: $bp-mobile) {
-    position: absolute;
+    // position: absolute;
     display: block;
   }
   margin-left: 10px;
@@ -178,12 +178,21 @@
   z-index: 99;
   padding: 30px;
   border-radius: 10px;
+  transform: scale(1, 1);
+  transform-origin: top right;
+  transition: $duration $timing-function;
+
+  &.visually-hidden {
+    transform: scale(0, 0);
+  }
 
   @media screen and (min-width: $bp-tablet) {
     padding: 0;
     background: transparent;
     display: flex;
     right: 8%;
+    top: 20px;
+    transform-origin: right;
   }
 
   @media screen and (min-width: $bp-desktop) {
@@ -209,6 +218,7 @@
   right: 0;
   display: flex;
   margin-left: auto;
+  top: 10px;
 }
 
 .svg-item {

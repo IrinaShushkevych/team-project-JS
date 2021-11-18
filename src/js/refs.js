@@ -52,6 +52,7 @@ export default {
   yearList: document.querySelector('.year-list'),
   genreBtn: document.querySelector('.genre'),
   sortGenreList: document.querySelector('.category-list'),
+  filterButtons: document.querySelector('.filter-buttons'),
   sortPopulary: document.querySelector('.sort'),
   yearBtn: document.querySelector('.year'),
   sortWrapper: document.querySelector('.sort-wrapper'),

@@ -31,11 +31,20 @@ export default class FilterBtn {
     this.dataPagination = new CustomPagination();
   }
 
+  init = () => {
+    this.addListFilterGenre();
+    this.addListFilterYears();
+    this.listFilterGenresRender();
+    this.listFilterYearsRender();
+    this.listFilterTopRatingRender();
+    this.listFilterPopularyWeek();
+    this.addListenersSvgBtn();
+  };
+
   addListFilterGenre = () => {
     this.refs.genreBtn.addEventListener('click', e => {
       this.refs.genreBtn.classList.toggle('checked');
       this.refs.yearBtn.classList.remove('checked');
-
       this.refs.sortGenreList.classList.toggle('visually-hidden');
       this.refs.yearList.classList.add('visually-hidden');
     });
@@ -189,13 +198,31 @@ export default class FilterBtn {
   // поява конопок по кліку на свг
   addListenersSvgBtn = () => {
     this.refs.svgIconBtn.addEventListener('click', () => {
-      this.refs.sortWrapper.classList.toggle('hidden');
-      this.refs.genreWrapper.classList.toggle('hidden');
-      this.refs.yearsWrapper.classList.toggle('hidden');
-      this.refs.topRating.classList.toggle('hidden');
+      //   this.refs.sortWrapper.classList.toggle('hidden');
+      //   this.refs.genreWrapper.classList.toggle('hidden');
+      //   this.refs.yearsWrapper.classList.toggle('hidden');
+      //   this.refs.topRating.classList.toggle('hidden');
+      this.refs.filterButtons.classList.toggle('visually-hidden');
+      window.addEventListener('click', this.onCloseList);
     });
   };
 
+  onCloseList = e => {
+    console.log(e.target);
+    const el = e.target;
+    if (el.classList.contains('genre')) {
+      this.refs.yearList.classList.add('visually-hidden');
+    } else if (el.classList.contains('year')) {
+      this.refs.sortGenreList.classList.add('visually-hidden');
+    } else {
+      this.refs.yearList.classList.add('visually-hidden');
+      this.refs.sortGenreList.classList.add('visually-hidden');
+    }
+    // window.innerWidth <= 767 &&
+    if (!el.closest('.filter-buttons') && !el.closest('.svg-item')) {
+      this.refs.filterButtons.classList.add('visually-hidden');
+    }
+  };
   // ****
 }
 // let menu = document.querySelector('#menu'),
