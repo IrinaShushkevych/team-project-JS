@@ -210,9 +210,9 @@ export default class FilterBtn {
   onCloseList = e => {
     console.log(e.target);
     const el = e.target;
-    if (el.classList.contains('genre')) {
+    if (el.classList.contains('js-genre')) {
       this.refs.yearList.classList.add('visually-hidden');
-    } else if (el.classList.contains('year')) {
+    } else if (el.classList.contains('js-year')) {
       this.refs.sortGenreList.classList.add('visually-hidden');
     } else {
       this.refs.yearList.classList.add('visually-hidden');
@@ -220,6 +220,15 @@ export default class FilterBtn {
     }
     // window.innerWidth <= 767 &&
     if (!el.closest('.filter-buttons') && !el.closest('.svg-item')) {
+      this.refs.filterButtons.classList.add('visually-hidden');
+    }
+
+    if (
+      window.innerWidth <= 767 &&
+      !el.classList.contains('js-genre') &&
+      !el.classList.contains('js-year') &&
+      !el.closest('.svg-item')
+    ) {
       this.refs.filterButtons.classList.add('visually-hidden');
     }
   };
