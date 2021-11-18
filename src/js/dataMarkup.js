@@ -70,21 +70,9 @@ export default class DataMarkup {
     if (currentQuerySeach.length === 0) {
       this.setNullList(
         'No such film was found',
-        'Такого фільму не знайдено',
-        'Такой фильм не найден',
+        'Інформації по запиту не знайдено',
+        'Информацию по запросу не найдено',
       );
-      // const lang = this.dataSaver.getLanguage();
-      // switch (lang) {
-      //   case 'en':
-      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">No such film was found</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
-      //     break;
-      //   case 'uk':
-      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">Такого фільму не знайдено</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
-      //     break;
-      //   case 'ru':
-      //     this.listRef.innerHTML = `<li class ="card-my-library"><p class = "title-card-my-library">Такой фильм не найден</p><img class="icon-empty-my-library" src="${imgNull}" alt ="not films here"></img></li>`;
-      //     break;
-      // }
       this.spinner.hideSpinner(this.refs.mask);
       return;
     }
@@ -127,8 +115,8 @@ export default class DataMarkup {
     if (currentFilmsQueue.length === 0) {
       this.setNullList(
         'No such film was found',
-        'Такого фільму не знайдено',
-        'Такой фильм не найден',
+        'В черзі для перегляду не додано жодного фільму',
+        'В очереди для просмотра фильмов нет',
       );
       this.spinner.hideSpinner(this.refs.mask);
       return;
