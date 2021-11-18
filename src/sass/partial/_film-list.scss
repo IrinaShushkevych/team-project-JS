@@ -24,6 +24,7 @@ img {
   max-width: 100%;
 }
 .card {
+  height: 100%;
   display: block;
   transform: scale(0);
   transition: transform $duration $timing-function;

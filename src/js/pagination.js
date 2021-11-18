@@ -2,12 +2,14 @@ import Pagination from 'tui-pagination';
 import refs from './refs.js';
 import DataSaver from './dataSaver.js';
 import DataMarkup from './dataMarkup';
+import FilterBtn from './filterBtn.js';
 
 export default class CustomPagination {
   constructor() {
     this.refs = refs;
     this.dataSaver = new DataSaver();
     this.dataMarkup = new DataMarkup();
+    
   }
 
   initPagination = () => {
