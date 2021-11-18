@@ -169,6 +169,35 @@
 
 @keyframes films1 {
   from {
+    transform: translateY(30%);
+  }
+
+  to {
+    transform: translateY(160%);
+  }
+}
+
+@keyframes films2 {
+  from {
+    transform: translateY(-156%);
+  }
+
+  to {
+    transform: translateY(-22%);
+  }
+}
+@keyframes films3 {
+  from {
+    transform: translateY(-344%);
+  }
+
+  to {
+    transform: translateY(-206%);
+  }
+}
+
+@keyframes films4 {
+  from {
     transform: translateY(20%);
   }
 
@@ -176,95 +205,73 @@
     transform: translateY(150%);
   }
 }
-
-@keyframes films2 {
-  from {
-    transform: translateY(-184%);
-  }
-
-  to {
-    transform: translateY(-50%);
-  }
-}
-@keyframes films3 {
-  from {
-    transform: translateY(-272%);
-  }
-
-  to {
-    transform: translateY(-134%);
-  }
-}
-
-@keyframes films4 {
-  from {
-    transform: translateY(-40%);
-  }
-
-  to {
-    transform: translateY(74%);
-  }
-}
 @keyframes films5 {
   from {
-    transform: translateY(-126%);
+    transform: translateY(-162%);
   }
 
   to {
-    transform: translateY(-8%);
+    transform: translateY(-28%);
   }
 }
 
 @keyframes films6 {
   from {
-    transform: translateY(34%);
+    transform: translateY(-344%);
   }
 
   to {
-    transform: translateY(144%);
+    transform: translateY(-206%);
+  }
+}
+
+.logo-block {
+  display: block;
+  height: 24px;
+  overflow: hidden;
+  & img {
+    display: block;
   }
 }
 
 .js-logo1 {
-  transform: translateY(20%);
-  // animation-name: films1;
+  transform: translateY(30%);
+  animation-name: films1;
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 
   @media screen and (min-width: $bp-tablet) {
-    transform: translateY(34%);
-    animation-name: films6;
-  }
-}
-
-.js-logo2 {
-  position: absolute;
-  left: 0;
-  transform: translateY(-184%);
-  // animation-name: films2;
-  animation-duration: 1.5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-
-  @media screen and (min-width: $bp-tablet) {
-    transform: translateY(-40%);
+    transform: translateY(20%);
     animation-name: films4;
   }
 }
 
-.js-logo3 {
-  position: absolute;
-  left: 0;
-  transform: translateY(-272%);
-  // animation-name: films3;
+.js-logo2 {
+  // position: absolute;
+  // left: 0;
+  transform: translateY(-156%);
+  animation-name: films2;
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 
   @media screen and (min-width: $bp-tablet) {
-    transform: translateY(-126%);
+    transform: translateY(-162%);
     animation-name: films5;
+  }
+}
+
+.js-logo3 {
+  transform: translateY(-344%);
+  animation-name: films3;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  @media screen and (min-width: $bp-tablet) {
+    transform: translateY(-344%);
+    animation-name: films6;
   }
 }
 
@@ -279,12 +286,6 @@
     display: none;
   }
 }
-
-// .btn__header {
-//   &:first-child {
-//     // margin-right: 38px;
-//   }
-// }
 
 .btn__header {
   background-color: Transparent;
@@ -328,7 +329,6 @@
   &::after {
     content: '';
     display: block;
-    // position: absolute;
     bottom: -3px;
     left: 0;
 
