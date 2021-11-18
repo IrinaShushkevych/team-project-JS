@@ -48,7 +48,7 @@ export default class DataSaver {
     localStorage.setItem('idNumder', id)
   }
   getNumberBtn=()=>{
-    return localStorage.setItem('IdNumber')
+    return localStorage.getItem('IdNumber')
   }
 
   setLanguage = lang => {
