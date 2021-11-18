@@ -146,12 +146,17 @@
 .sort,
 .genre,
 .year,
+.rating-wrapper{
+  // height: 100%;
+  
+}
+.sort,
+.genre,
+.year,
 .year-list,
 .category-list,
 .sort-list {
-  @media screen and (max-width: $bp-mobile-max) {
-  }
-  width: 122px;
+ padding: 6px 10px;
 }
 .sort:hover,
 .genre:hover,
@@ -201,6 +206,7 @@
 }
 
 .svg-link {
+  cursor: pointer;
   border: none;
   background: transparent;
 }
@@ -211,6 +217,7 @@
   display: flex;
   margin-left: auto;
   top: 10px;
+  
 }
 
 .svg-item {
@@ -221,6 +228,8 @@
   fill: $scrollbar;
   width: 40px;
   height: 40px;
+  transition-duration: 250ms;
+  transition-timing-function: $timing-function;
   &:hover {
     fill: $accent-color;
   }

@@ -221,4 +221,29 @@ export default class DataMarkup {
     this.delay = delay;
     element.style.transitionDelay = `${delay}ms`;
   };
+
+
+  // відображення на сторінці кількість фільмів
+  delSvgButton=()=>{
+    this.refs.btnLybraryRef.addEventListener('click', ()=>{
+      this.refs.svgIconDiv.classList.add('hidden');
+      this.refs.numberLibraryBtn.classList.toggle('hidden')
+    })
+    this.refs.btnHomeRef.addEventListener('click', ()=>{
+      this.refs.numberLibraryBtn.classList.add('hidden')
+      this.refs.svgIconDiv.classList.remove('hidden');
+    })
+    this.refs.logoRef.addEventListener('click', ()=>{
+      this.refs.numberLibraryBtn.classList.add('hidden')
+      this.refs.svgIconDiv.classList.remove('hidden');
+    })
+    this.refs.numberLibraryBtn.addEventListener('click', (el)=>{
+       const numberIdBtn = el.target.dataset.id
+       this.dataSaver.setNumberBtn(numberIdBtn)
+    })
+  }
+
+
+
+  // ******
 }

@@ -44,10 +44,17 @@ export default class DataSaver {
     localStorage.setItem('numberListPage', 1);
     localStorage.setItem('totalPages', 0);
   };
+  setNumberBtn= id=>{
+    localStorage.setItem('idNumder', id)
+  }
+  getNumberBtn=()=>{
+    return localStorage.getItem('IdNumber')
+  }
 
   setLanguage = lang => {
     localStorage.setItem('lang', lang);
   };
+  
 
   getLanguage = () => {
     return localStorage.getItem('lang');
