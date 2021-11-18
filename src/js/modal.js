@@ -264,9 +264,4 @@ export default class Modal {
     `;
   };
   
-
-  photoChanging = e => {
-    console.log(e.target);
-
-  };
 }
