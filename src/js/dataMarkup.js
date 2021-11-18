@@ -73,6 +73,7 @@ export default class DataMarkup {
         'Інформації по запиту не знайдено',
         'Информацию по запросу не найдено',
       );
+      this.refs.inputRef.value = '';
       this.spinner.hideSpinner(this.refs.mask);
       return;
     }
