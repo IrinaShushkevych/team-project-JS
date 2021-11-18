@@ -13,6 +13,7 @@ import DataSaver from './dataSaver.js';
 import Message from './message.js';
 import LoadSpinner from './loadSpinner';
 import FilterBtn from './filterBtn.js';
+import CustomPagination from './pagination.js';
 
 export default class DataMarkup {
   constructor() {
@@ -222,28 +223,36 @@ export default class DataMarkup {
     element.style.transitionDelay = `${delay}ms`;
   };
 
-
   // відображення на сторінці кількість фільмів
-  delSvgButton=()=>{
-    this.refs.btnLybraryRef.addEventListener('click', ()=>{
+  delSvgButton = () => {
+    this.refs.btnLybraryRef.addEventListener('click', () => {
       this.refs.svgIconDiv.classList.add('hidden');
-      this.refs.numberLibraryBtn.classList.toggle('hidden')
-    })
-    this.refs.btnHomeRef.addEventListener('click', ()=>{
-      this.refs.numberLibraryBtn.classList.add('hidden')
+      this.refs.numberLibraryBtn.classList.toggle('hidden');
+    });
+    this.refs.btnHomeRef.addEventListener('click', () => {
+      this.refs.numberLibraryBtn.classList.add('hidden');
       this.refs.svgIconDiv.classList.remove('hidden');
-    })
-    this.refs.logoRef.addEventListener('click', ()=>{
-      this.refs.numberLibraryBtn.classList.add('hidden')
+    });
+    this.refs.logoRef.addEventListener('click', () => {
+      this.refs.numberLibraryBtn.classList.add('hidden');
       this.refs.svgIconDiv.classList.remove('hidden');
-    })
-    this.refs.numberLibraryBtn.addEventListener('click', (el)=>{
-       const numberIdBtn = el.target.dataset.id
-       this.dataSaver.setNumberBtn(numberIdBtn)
-    })
-  }
+    });
+    this.refs.numberLibraryBtn.addEventListener('click', el => {
+      const numberIdBtn = el.target.dataset.id;
+      this.dataSaver.setNumberBtn(numberIdBtn);
+      this.dataSaver.setCurrentPage(1);
+      if (this.dataSaver.getActivePage() === 'watched') {
+        this.dataSaver.setTotalPageWatched();
+        this.s1();
+      } else {
+        this.dataSaver.setTotalPageQueue();
+      }
+      this.updatePage();
+    });
+  };
 
-
-
+  s1 = () => {
+    pagination.initPagination();
+  };
   // ******
 }

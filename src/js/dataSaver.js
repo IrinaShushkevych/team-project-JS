@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set, onValue, get, child, remove, push } from 'firebase/database';
 import APIService from './DataServise.js';
 import Message from './message.js';
+import CustomPagination from './pagination.js';
 
 export default class DataSaver {
   constructor() {
@@ -45,17 +46,18 @@ export default class DataSaver {
     localStorage.setItem('numberListPage', 1);
     localStorage.setItem('totalPages', 0);
   };
-  setNumberBtn= id=>{
-    localStorage.setItem('idNumder', id)
-  }
-  getNumberBtn=()=>{
-    return localStorage.getItem('IdNumber')
-  }
+
+  setNumberBtn = id => {
+    localStorage.setItem('idNumder', id);
+  };
+
+  getNumberBtn = () => {
+    return localStorage.getItem('idNumder');
+  };
 
   setLanguage = lang => {
     localStorage.setItem('lang', lang);
   };
-  
 
   getLanguage = () => {
     return localStorage.getItem('lang');
@@ -175,6 +177,10 @@ export default class DataSaver {
 
   // get просмотренные фильмы
   getCountFilmOnPage = () => {
+    const cntItem = this.getNumberBtn();
+    if (!isNaN(cntItem) && cntItem !== null) {
+      return Number(cntItem);
+    }
     const display = window.innerWidth;
     if (display < 768) {
       return this.countFilmModal;
@@ -194,6 +200,9 @@ export default class DataSaver {
         cnt += 1;
       }
       this.setTotalPages(cnt);
+
+      const pagination = new CustomPagination();
+      pagination.initPagination();
     } catch (error) {
       message(error.message);
     }
