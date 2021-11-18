@@ -9,7 +9,6 @@ export default class CustomPagination {
     this.refs = refs;
     this.dataSaver = new DataSaver();
     this.dataMarkup = new DataMarkup();
-    
   }
 
   initPagination = () => {
@@ -57,8 +56,6 @@ export default class CustomPagination {
   };
 
   updatePagination = () => {
-    console.log('this.dataSaver.getCurrentPage()', this.dataSaver.getCurrentPage());
-    console.log('this.dataSaver.getTotalPages()', this.dataSaver.getTotalPages());
     if (this.dataSaver.getCurrentPage() > this.dataSaver.getTotalPages()) {
       this.dataSaver.setCurrentPage(this.dataSaver.getTotalPages());
       this.initPagination();

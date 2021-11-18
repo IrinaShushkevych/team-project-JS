@@ -44,11 +44,8 @@ export default class Save {
   };
 
   login = async (email, password) => {
-    // const uid = await signInWithCustomToken(this.auth, sessionStorage.getItem('token'))
     const uid = await signInWithEmailAndPassword(this.auth, email, password)
       .then(user => {
-        // console.log(user);
-        // sessionStorage.setItem('token', user.user.accessToken);
         sessionStorage.setItem('user', user.user.uid);
         return { type: 1, text: user.user.uid };
       })

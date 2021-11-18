@@ -114,9 +114,7 @@ export default class DataSaver {
   getTheme = () => {
     return localStorage.getItem('theme');
   };
-  // if (page === 'home')
-  // get одна карточка
-  //*********/
+
   getFilm = async id => {
     let result = null;
     const page = this.getActivePage();
@@ -133,7 +131,6 @@ export default class DataSaver {
   };
 
   // Проверка наличия фильма в очереди
-  /***********/
   isFilmInHome = id => {
     let films = localStorage.getItem('home');
     if (films) {
@@ -145,7 +142,6 @@ export default class DataSaver {
   };
 
   // get просмотренные фильмы
-  //************/
   getCountFilmOnPage = () => {
     const display = window.innerWidth;
     if (display < 768) {
@@ -179,27 +175,20 @@ export default class DataSaver {
     this.setTotalPageFilms('queue');
   };
 
-  //***********/
-
   getFilmWatched = async () => {
     const films = await this.getData('watched');
-    //порахувати кількість сторінок
     const countFilm = this.getCountFilmOnPage();
     const page = this.getCurrentPage();
     const begin = (page - 1) * countFilm;
-    // let end = begin
     return films.slice(begin, begin + countFilm);
   };
 
-  //***********/
   getFilmQueue = async () => {
     try {
       const films = await this.getData('queue');
-      //порахувати кількість сторінок
       const countFilm = this.getCountFilmOnPage();
       const page = this.getCurrentPage();
       const begin = (page - 1) * countFilm;
-      // let end = begin
       return films.slice(begin, begin + countFilm);
     } catch (error) {
       Message.error(error.code);
@@ -224,8 +213,6 @@ export default class DataSaver {
     this.removeFilmFromLocalstorage(id, 'queue');
   };
 
-  //=================================================================
-  //**********
   getData = async page => {
     const result = await get(
       child(this.dbRef, `users/${sessionStorage.getItem('user')}/${page}`),
@@ -243,7 +230,6 @@ export default class DataSaver {
     return res;
   };
 
-  //***********/
   getFilmFromBase = async (id, page) => {
     const result = await get(
       child(this.dbRef, `users/${sessionStorage.getItem('user')}/${page}/${id}`),
@@ -256,14 +242,11 @@ export default class DataSaver {
         }
       })
       .catch(this.getError);
-    // if (result) return true;
     return JSON.parse(result);
   };
 
-  //***********/
   isFilmInList = async (id, page) => {
     let result = false;
-    // if (page === 'home')
     if (page !== 'watched' && page !== 'queue') {
       return this.isFilmInHome(id);
     } else {
@@ -273,7 +256,6 @@ export default class DataSaver {
     return result;
   };
 
-  //**********/
   addFilm = async (id, page, pageFrom) => {
     if (!pageFrom) {
       pageFrom = this.getActivePage();
@@ -287,7 +269,6 @@ export default class DataSaver {
     } catch (error) {
       this.getError(error.message);
     }
-    // if (pageFrom !== 'home') {
     try {
       if (page === 'watched') {
         const res = await this.removeData(id, 'queue');
@@ -298,13 +279,9 @@ export default class DataSaver {
     } catch (error) {
       this.getError(error.message);
     }
-    // }
     return true;
-    // }
-    // this.getError(`This film is allrady in ${page}`);
   };
 
-  //********/
   removeData = async (id, page) => {
     try {
       const refDB = ref(this.db, `users/${sessionStorage.getItem('user')}/${page}/${id}`);

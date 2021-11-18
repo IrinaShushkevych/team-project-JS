@@ -21,7 +21,6 @@ export default {
   //main
   main: document.querySelector('main'),
   listUlFilms: document.querySelector('.js-film-list'),
-  // list: document.querySelector('.js-film-list'),
   paginationCase: document.getElementById('tui-pagination-container'),
   mask: document.querySelector('.mask'),
   modalMask: document.querySelector('.modal-mask'),

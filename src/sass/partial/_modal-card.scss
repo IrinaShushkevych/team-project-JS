@@ -24,7 +24,6 @@
   position: relative;
   flex-basis: calc(100% / 2 - 20px);
   margin-bottom: 30px;
-  // border-radius: 5px;
 
   @media screen and (min-width: $bp-tablet) {
     margin-bottom: 0px;
@@ -57,8 +56,6 @@
 
 .card__specifications--modal {
   margin-bottom: 10px;
-  // margin-bottom: 20px;
-
   font-size: 12px;
   line-height: 1.33;
 }
@@ -112,7 +109,6 @@
 .button__list-modal {
   display: flex;
   justify-content: flex-start;
-  // flex-wrap: wrap;
   margin-right: -15px;
   margin-bottom: -15px;
 }
@@ -126,7 +122,6 @@
 }
 
 .button__modal--primary {
-  // padding: 0;
   display: inline-block;
   cursor: pointer;
   text-align: center;
@@ -154,7 +149,6 @@
 
 .button__modal--primary.button__modal--add,
 .button__modal--primary.button__modal--remove {
-  // padding: 14px 14px 12px 14px;
   padding: 10px 14px 9px 14px;
   text-transform: uppercase;
 
@@ -178,7 +172,6 @@
   // не активная кнопка
   color: $primary-white-color;
   background-color: $accent-color;
-  // border: 1px solid $accent-color;
   cursor: text;
   padding: 0px 10px 0px 10px;
 }
@@ -202,7 +195,7 @@
   padding: 1px;
   z-index: 4;
   position: absolute;
-  top: 50%; // 50%; 80%
+  top: 50%; 
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
   max-width: 100%;
@@ -213,7 +206,6 @@
 }
 
 .button__modal--trailer {
-  // opacity: 0;
   border: none;
   color: transparent;
   background-color: transparent;

@@ -163,7 +163,6 @@ export default class FilterBtn {
       popularFilms +
       this.DataService.keyAPI +
       `&page=${this.dataSaver.getCurrentPage()}`;
-    console.log(this.url);
     const result = await this.DataService.fetchData(this.url);
     await this.DataService.fixFetchObject(result.results);
 
@@ -209,7 +208,6 @@ export default class FilterBtn {
   };
 
   onCloseList = e => {
-    console.log(e.target);
     const el = e.target;
     if (el.classList.contains('js-genre')) {
       this.refs.yearList.classList.add('visually-hidden');
@@ -219,7 +217,6 @@ export default class FilterBtn {
       this.refs.yearList.classList.add('visually-hidden');
       this.refs.sortGenreList.classList.add('visually-hidden');
     }
-    // window.innerWidth <= 767 &&
     if (!el.closest('.filter-buttons') && !el.closest('.svg-item')) {
       this.refs.filterButtons.classList.add('visually-hidden');
     }
@@ -233,17 +230,4 @@ export default class FilterBtn {
       this.refs.filterButtons.classList.add('visually-hidden');
     }
   };
-  // ****
 }
-// let menu = document.querySelector('#menu'),
-//     isOpened = false;
-
-// setInterval(() => {
-//     if (isOpened) {
-//         menu.classList.remove('-opened');
-//     } else {
-//         menu.classList.add('-opened');
-//     }
-
-//     isOpened = !isOpened;
-// }, 1500);

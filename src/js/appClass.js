@@ -191,9 +191,6 @@ export default class App {
     const id = Number(card.dataset.id);
     const film = await this.dataSaver.getFilm(id);
     const filmVideos = await this.dataService.fetchFilmVideos(id);
-    // const trailer = filmVideos.find(function (item) {
-    //   return item.name.toUpperCase().includes('TRAILER');
-    // });
     let trailer = null;
     if (filmVideos) {
       trailer = filmVideos[0];

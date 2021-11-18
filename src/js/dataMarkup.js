@@ -4,8 +4,6 @@ import jsKillerTemplate from '../templates/jsKillerCard.hbs';
 import jsKillerTeam from '../json/jsKillers.json';
 import imgNull from '../images/filmsNull.jpg';
 
-// import refs from './refs';
-
 import filmTpl from '../templates/modalFilmCard.hbs';
 import refs from '../js/refs';
 import images from '../images/*.jpg';
@@ -48,7 +46,6 @@ export default class DataMarkup {
   addYearsList = () => {
     this.refs.yearList.innerHTML = '';
   };
-  // *****
 
   // Рисование списка карточек
   renderMarkup = data => {
@@ -77,7 +74,6 @@ export default class DataMarkup {
       this.spinner.hideSpinner(this.refs.mask);
       return;
     }
-    // this.spinner.hideSpinner();
     this.renderMarkup(currentQuerySeach);
     this.spinner.hideSpinner(this.refs.mask);
   };
@@ -88,8 +84,6 @@ export default class DataMarkup {
   //   this.renderMarkup(filmsDay);
   //   this.spinner.hideSpinner();
   // };
-
-  // *****
 
   // Отрисовка просмотренных
 
@@ -145,13 +139,6 @@ export default class DataMarkup {
   modalFilmMarkup = (film, trailer) => {
     this.refs.modalCardRef.innerHTML = filmTpl(film, trailer);
   };
-
-  // trailerFilmMarkup = (film, trailer) => {
-  //   this.refs.trailerContainer.innerHTML = `
-  //       <iframe class='trailer' width="560" height="315" src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  //   `;
-  //   // this.refs.modalCardRef.innerHTML = filmTpl(film, trailer);
-  // };
 
   filterFilmsQuery = () => {
     this.btnSort = document.querySelector('.sort-btn');

@@ -206,15 +206,7 @@
 }
 
 .svg-icon {
-  @media screen and (max-width: $bp-mobile) {
-    // position: absolute;
-    // left: 62%;
-  }
-  @media screen and (min-width: $bp-tablet) {
-    // left: 72%;
-  }
   position: absolute;
-  // left: 68%;
   right: 0;
   display: flex;
   margin-left: auto;
@@ -226,7 +218,6 @@
     width: 30px;
     height: 30px;
   }
-  // animation:  bounce 1s ease-in-out 0s infinite;
   fill: $scrollbar;
   width: 40px;
   height: 40px;
@@ -235,9 +226,6 @@
   }
 }
 
-// .svg-filter{
-
-// }
 .disable {
   pointer-events: none;
   opacity: 0.2;

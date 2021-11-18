@@ -93,7 +93,6 @@ export default class Modal {
     if (this.page === 'film') {
       this.refs.buttonGetVideos.removeEventListener('click', this.onBtnTrailerPress);
     }
-    // this.refs.trailerContainer.innerHTML = '';
   };
 
   onBtnClosePress = () => {
@@ -198,7 +197,6 @@ export default class Modal {
 
   reRenderPage = async () => {
     this.load.showSpinner(this.refs.modalMask);
-    console.log('rerender');
     const page = this.dataSaver.getActivePage();
     this.checkQueue(this.id);
     this.checkWatched(this.id);
@@ -247,15 +245,13 @@ export default class Modal {
 
   onBtnTrailerPress = () => {
     this.load.showSpinner(this.refs.modalMask);
-    console.log('Trailer ' + this.trailer.key);
     this.refs.divModalRef.classList.add('visually-hidden');
     this.openTrailer();
     this.isTrailer = true;
 
     setTimeout(() => {
-      this.load.hideSpinner(this.refs.modalMask); 
-    }, 2500)
-
+      this.load.hideSpinner(this.refs.modalMask);
+    }, 2500);
   };
 
   openTrailer = () => {
@@ -263,5 +259,4 @@ export default class Modal {
         <iframe class='trailer'  src='https://www.youtube.com/embed/${this.trailer.key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
     `;
   };
-  
 }

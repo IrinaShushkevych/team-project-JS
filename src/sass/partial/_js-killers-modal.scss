@@ -2,11 +2,8 @@
   display: flex;
   justify-content: center;
   height: 800px;
-  // overflow: auto;
   @media screen and (min-width: $bp-tablet) {
     min-width: 500px;
-    // overflow: scroll;
-    // margin-top: 20px;
   }
 }
 
@@ -15,27 +12,6 @@
   height: 14px;
   fill: $accent-color;
 }
-
-// .button__js-killers-modal {
-//   border: 2px solid $color-team-dot;
-//   background-color: $bg-footer;
-//   box-shadow: 4px 4px 14px $specification-color;
-//   width: 80px;
-//   height: 80px;
-//   color: $primary-black-color;
-//   font-size: medium;
-//   font-weight: bold;
-
-//   &:not(:last-child) {
-//     margin-right: 30px;
-//   }
-// }
-
-// .button__container-js-killers-modal {
-//   display: flex;
-//   justify-content: center;
-//   margin: 10px auto;
-// }
 
 .killers__header {
   display: flex;
@@ -79,18 +55,11 @@
   background: $primary-white-color;
   box-shadow: 0 1px 2px $color-team;
   max-width: 220px;
-  // margin: 20px auto 0;
   padding: 5px;
   text-align: center;
 }
 
-// .post-wrap:hover img {
-//   transform: scale(1.1);
-//   cursor: pointer;
-// }
-
 .post-inner {
-  // margin: -25px 20px 20px;
   padding: 10px;
   background: $accent-color;
   position: absolute;
@@ -144,10 +113,8 @@
   color: $bg-footer;
   display: inline-block;
   font-size: 10px;
-  // font-weight: 400px;
   letter-spacing: 2px;
   margin-bottom: 5px;
-  // padding: 5px;
   @media screen and (min-width: $bp-tablet) {
     font-size: 18px;
   }
@@ -168,18 +135,6 @@
   max-width: 300px;
 }
 
-// .wrapper-img .img-hide {
-//   opacity: 0;
-// }
-
-// .wrapper-img:hover .img-hide {
-//   opacity: 1;
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   transition: all 0.5s ease-in-out;
-// }
-
 .killers__content {
   padding-bottom: 50px;
 }
@@ -187,7 +142,6 @@
 .flip {
   width: 230px;
   height: 210px;
-  // outline: 1px solid red;
   margin-bottom: 30px;
   @media screen and (min-width: $bp-tablet) {
     width: 300px;
@@ -224,7 +178,6 @@
 }
 .flip__back {
   transform: rotateY(-180deg);
-  // background-color: rgba(121, 79, 69, 0.5);
 }
 
 .flip:hover .flip__body {
