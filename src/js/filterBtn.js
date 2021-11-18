@@ -202,6 +202,7 @@ export default class FilterBtn {
       //   this.refs.genreWrapper.classList.toggle('hidden');
       //   this.refs.yearsWrapper.classList.toggle('hidden');
       //   this.refs.topRating.classList.toggle('hidden');
+      this.refs.inputRef.value = '';
       this.refs.filterButtons.classList.toggle('visually-hidden');
       window.addEventListener('click', this.onCloseList);
     });
