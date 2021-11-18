@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set, onValue, get, child, remove, push } from 'firebase/database';
+import APIService from './DataServise.js';
 import Message from './message.js';
 
 export default class DataSaver {
@@ -115,7 +116,7 @@ export default class DataSaver {
     return localStorage.getItem('theme');
   };
 
-  getFilm = async id => {
+  getFilm = async (id, pageFrom, type) => {
     let result = null;
     const page = this.getActivePage();
     if (page !== 'watched' && page !== 'queue') {
@@ -123,9 +124,33 @@ export default class DataSaver {
       if (films) {
         films = JSON.parse(films);
         result = films.find(el => el.id === Number(id));
+        if (type) {
+          const arrFilm = {};
+          const lang = this.getLanguage();
+          const api = new APIService();
+          if (lang === 'en') {
+            arrFilm['en'] = JSON.stringify(result);
+          } else {
+            const obj = await api.fetchFilmById(id, 'en');
+            arrFilm['en'] = JSON.stringify(obj);
+          }
+          if (lang === 'uk') {
+            arrFilm['uk'] = JSON.stringify(result);
+          } else {
+            const obj = await api.fetchFilmById(id, 'uk');
+            arrFilm['uk'] = JSON.stringify(obj);
+          }
+          if (lang === 'ru') {
+            arrFilm['ru'] = JSON.stringify(result);
+          } else {
+            const obj = await api.fetchFilmById(id, 'ru');
+            arrFilm['ru'] = JSON.stringify(obj);
+          }
+          result = arrFilm;
+        }
       }
     } else {
-      result = await this.getFilmFromBase(id, page);
+      result = await this.getFilmFromBase(id, page, type);
     }
     return result;
   };
@@ -225,24 +250,42 @@ export default class DataSaver {
     });
     const res = [];
     for (let key in result) {
-      res.push(JSON.parse(result[key]));
+      res.push(JSON.parse(result[key][this.getLanguage()]));
     }
     return res;
   };
 
-  getFilmFromBase = async (id, page) => {
-    const result = await get(
-      child(this.dbRef, `users/${sessionStorage.getItem('user')}/${page}/${id}`),
-    )
-      .then(data => {
-        if (data.exists()) {
-          return data.val();
-        } else {
-          return null;
-        }
-      })
-      .catch(this.getError);
-    return JSON.parse(result);
+  getFilmFromBase = async (id, page, type) => {
+    if (type) {
+      const result = await get(
+        child(this.dbRef, `users/${sessionStorage.getItem('user')}/${page}/${id}`),
+      )
+        .then(data => {
+          if (data.exists()) {
+            return data.val();
+          } else {
+            return null;
+          }
+        })
+        .catch(this.getError);
+      return result;
+    } else {
+      const result = await get(
+        child(
+          this.dbRef,
+          `users/${sessionStorage.getItem('user')}/${page}/${id}/${this.getLanguage()}`,
+        ),
+      )
+        .then(data => {
+          if (data.exists()) {
+            return data.val();
+          } else {
+            return null;
+          }
+        })
+        .catch(this.getError);
+      return JSON.parse(result);
+    }
   };
 
   isFilmInList = async (id, page) => {
@@ -261,10 +304,11 @@ export default class DataSaver {
       pageFrom = this.getActivePage();
     }
     try {
-      const film = await this.getFilm(id, pageFrom);
+      const film = await this.getFilm(id, pageFrom, 'insert');
       const result = await set(
         ref(this.db, `users/${sessionStorage.getItem('user')}/${page}/${id}`),
-        JSON.stringify(film),
+        film,
+        // JSON.stringify(film),
       );
     } catch (error) {
       this.getError(error.message);

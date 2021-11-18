@@ -130,4 +130,32 @@ export default class APIService {
       }
     });
   };
+
+  fetchFilmById = async (movieId, lang) => {
+    let movieVideousEndpoint = `movie/${movieId}?`;
+    let fetchMovie = this.baseUrl + movieVideousEndpoint + this.keyAPI + `&language=${lang}`;
+    const result = await this.fetchData(fetchMovie);
+    if (result.poster_path) {
+      result.poster_path = 'https://image.tmdb.org/t/p/w500' + result.poster_path;
+    }
+    if (result.backdrop_path) {
+      result.backdrop_path = 'https://image.tmdb.org/t/p/w500' + result.backdrop_path;
+    }
+    if (result.genres.length > 3) {
+      switch (lang) {
+        case 'en':
+          result.genres.splice(2, 0, { id: -1, name: 'other' });
+          break;
+        case 'uk':
+          result.genres.splice(2, 0, { id: -1, name: 'інші' });
+          break;
+        case 'ru':
+          result.genres.splice(2, 0, { id: -1, name: 'другие' });
+          break;
+      }
+      result.genres = result.genres.slice(0, 3);
+    }
+
+    return result;
+  };
 }
