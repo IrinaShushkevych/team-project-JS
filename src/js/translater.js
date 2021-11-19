@@ -82,6 +82,7 @@ export default class Translater {
     }
     localStorage.removeItem('genres');
     await this.api.fetchFilmsGenres();
+    console.log('update page');
     this.dataMarkup.updatePage('lang');
     this.changeFilterListGenre();
   };
@@ -89,7 +90,9 @@ export default class Translater {
   onSelectLang = e => {
     refs.inputRef.value = '';
     this.save.setLanguage(e.target.dataset.lang);
+    console.log('check lang');
     this.checkLang(e.target.dataset.lang);
+    console.log('translate');
     this.translate(document);
     this.langList.classList.add('hidden');
   };
