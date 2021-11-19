@@ -20,7 +20,7 @@
 
   background-position: 50%;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 
   @media screen and (min-device-pixel-ratio: 2),
     screen and (-webkit-min-device-pixel-ratio: 2),
@@ -40,7 +40,7 @@
     }
   }
 
-  @media screen and (min-width: $bp-desktop-m-w) {
+  @media screen and (min-width: $bp-desktop) {
     background-image: url(../images/bg-header-desktop.jpg);
 
     @media screen and (min-device-pixel-ratio: 2),
@@ -77,7 +77,7 @@
     }
   }
 
-  @media screen and (min-width: $bp-desktop-m-w) {
+  @media screen and (min-width: $bp-desktop) {
     background-image: url(../images/bg-header-desktop2.jpg);
 
     @media screen and (min-device-pixel-ratio: 2),
