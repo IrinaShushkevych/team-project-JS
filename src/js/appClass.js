@@ -27,9 +27,9 @@ export default class App {
 
   init = async () => {
     this.spinner.showSpinner(this.refs.mask);
+    this.dataSaver.clearLocalstoredge();
     this.translater.translate(document);
     this.checkSession();
-    this.dataSaver.clearLocalstoredge();
     this.dataSaver.setActivePage('home');
     this.theme.checkThemeOnLoad();
     await this.dataMarkup.renderPopularFilms();
