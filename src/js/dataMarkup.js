@@ -156,11 +156,6 @@ export default class DataMarkup {
     const activePage = this.dataSaver.getActivePage();
     switch (activePage) {
       case 'home':
-        if (refs.inputRef.value) {
-          this.renderSearchingFilms(refs.inputRef.value);
-        } else {
-          this.renderPopularFilms();
-        }
         break;
       case 'watched':
         this.getCurrentFilmsWatched();
@@ -243,16 +238,11 @@ export default class DataMarkup {
       this.dataSaver.setCurrentPage(1);
       if (this.dataSaver.getActivePage() === 'watched') {
         this.dataSaver.setTotalPageWatched();
-        this.s1();
+        // this.s1();
       } else {
         this.dataSaver.setTotalPageQueue();
       }
       this.updatePage();
     });
   };
-
-  s1 = () => {
-    pagination.initPagination();
-  };
-  // ******
 }

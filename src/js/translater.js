@@ -84,10 +84,10 @@ export default class Translater {
     await this.api.fetchFilmsGenres();
     this.dataMarkup.updatePage('lang');
     this.changeFilterListGenre();
-    refs.inputRef.value = '';
   };
 
   onSelectLang = e => {
+    refs.inputRef.value = '';
     this.save.setLanguage(e.target.dataset.lang);
     this.checkLang(e.target.dataset.lang);
     this.translate(document);
