@@ -47,7 +47,7 @@ export default class Translater {
     return this.data[this.lang];
   };
 
-  translate = async root => {
+  translate = async (root, type) => {
     this.checkLang();
     const data = this.selectData();
     const arrEl = root.querySelectorAll('.lang');
@@ -66,25 +66,27 @@ export default class Translater {
         el.classList.add('lang-change');
       }
     });
-    const rootpage = document.querySelector('html');
-    rootpage.setAttribute('lang', this.lang);
-    const docTitle = document.querySelector('title');
-    switch (this.lang) {
-      case 'en':
-        docTitle.textContent = 'Filmoteka';
-        break;
-      case 'uk':
-        docTitle.textContent = 'Фільмотека';
-        break;
-      case 'ru':
-        docTitle.textContent = 'Фильмотека';
-        break;
-    }
-    localStorage.removeItem('genres');
-    await this.api.fetchFilmsGenres();
     console.log('update page');
-    this.dataMarkup.updatePage('lang');
-    this.changeFilterListGenre();
+    if (type !== 'modal') {
+      const rootpage = document.querySelector('html');
+      rootpage.setAttribute('lang', this.lang);
+      const docTitle = document.querySelector('title');
+      switch (this.lang) {
+        case 'en':
+          docTitle.textContent = 'Filmoteka';
+          break;
+        case 'uk':
+          docTitle.textContent = 'Фільмотека';
+          break;
+        case 'ru':
+          docTitle.textContent = 'Фильмотека';
+          break;
+      }
+      localStorage.removeItem('genres');
+      await this.api.fetchFilmsGenres();
+      this.dataMarkup.updatePage('lang');
+      this.changeFilterListGenre();
+    }
   };
 
   onSelectLang = e => {

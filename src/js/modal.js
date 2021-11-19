@@ -59,7 +59,7 @@ export default class Modal {
         this.addBtnListeners();
       }
     }
-    this.translater.translate(this.refs.modalRef);
+    this.translater.translate(this.refs.modalRef, 'modal');
   };
 
   onCloseModal = () => {
