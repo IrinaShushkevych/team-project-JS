@@ -115,8 +115,9 @@
   font-size: 10px;
   letter-spacing: 2px;
   margin-bottom: 5px;
+
   @media screen and (min-width: $bp-tablet) {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
@@ -146,6 +147,9 @@
   @media screen and (min-width: $bp-tablet) {
     width: 300px;
     height: 260px;
+    margin-bottom: 50px;
+  }
+  @media screen and (min-width: $bp-desktop) {
     margin-bottom: 0;
     &:nth-child(n) {
       margin-right: 30px;
