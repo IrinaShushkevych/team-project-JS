@@ -14,7 +14,7 @@
         </span>
       </marquee>
       {{#each this}}
-        <a class='flip' href="{{git}}" target='_blank'>
+        <a class='flip' href="{{git}}" target='_blank' rel='noopener noreferrer'>
           <div class='flip__body'>
             <div class='post-wrap wrapper-img flip__front'>
               <img src="{{photo}}" alt='JS-killer' class='killer__image' id='photo' />
@@ -69,13 +69,3 @@
     </div>
   </div>
 </div>
-{{! <div class='button__container-js-killers-modal'>
-  <button class='button__js-killers-modal'><svg class='js-killers-theme__icon'>
-      <use href='../images/icons-for-js-killers.svg#icon-baffled' aria-label='Serious person'></use>
-    </svg>
-    Before GoIt
-  </button>
-  <button class='button__js-killers-modal'><svg class='js-killers-theme__icon'>
-      <use href='../images/icons-for-js-killers.svg#icon-evil2' aria-label='Cool person'></use>
-    </svg>Now</button>
-</div> }}
