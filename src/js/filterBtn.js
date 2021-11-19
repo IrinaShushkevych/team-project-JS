@@ -143,7 +143,7 @@ export default class FilterBtn {
       this.DataService.baseUrl +
       popularFilms +
       this.DataService.keyAPI +
-      `&year=${this.dataSaver.getFilterYear()}&page=${this.dataSaver.getCurrentPage()}`;
+      `&primary_release_year=${this.dataSaver.getFilterYear()}&page=${this.dataSaver.getCurrentPage()}`;
     const result = await this.DataService.fetchData(this.url);
     await this.DataService.fixFetchObject(result.results);
 
