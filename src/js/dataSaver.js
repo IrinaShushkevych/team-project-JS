@@ -283,7 +283,7 @@ export default class DataSaver {
             return null;
           }
         })
-        .catch(this.getError);
+        .catch(error => this.getError(error.message));
       return result;
     } else {
       const result = await get(
@@ -299,7 +299,7 @@ export default class DataSaver {
             return null;
           }
         })
-        .catch(this.getError);
+        .catch(error => this.getError(error.message));
       return JSON.parse(result);
     }
   };

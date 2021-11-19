@@ -60,6 +60,7 @@ export default class Modal {
       }
     }
     this.translater.translate(this.refs.modalRef, 'modal');
+    this.load.hideSpinner(this.refs.modalMask);
   };
 
   onCloseModal = () => {
