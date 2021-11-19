@@ -12,7 +12,6 @@ export default class CustomPagination {
   }
 
   initPagination = () => {
-    console.log(this.dataSaver.getTotalPages());
     const paginationOptions = {
       totalItems: this.dataSaver.getTotalPages(),
       itemsPerPage: 1,

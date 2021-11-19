@@ -102,7 +102,6 @@ export default class APIService {
     return result.genres;
   };
 
-  
   fetchFilmVideos = async movieId => {
     let movieVideousEndpoint = `/movie/${movieId}/videos?`;
     let fetchMovieVideosUrl =

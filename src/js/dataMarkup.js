@@ -154,7 +154,6 @@ export default class DataMarkup {
   updatePage = () => {
     const filterBtnCons = new FilterBtn();
     const activePage = this.dataSaver.getActivePage();
-    console.log('active page', activePage);
     switch (activePage) {
       case 'home':
         this.renderPopularFilms();

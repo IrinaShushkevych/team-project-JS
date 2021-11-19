@@ -66,7 +66,6 @@ export default class Translater {
         el.classList.add('lang-change');
       }
     });
-    console.log('update page');
     if (type !== 'modal') {
       const rootpage = document.querySelector('html');
       rootpage.setAttribute('lang', this.lang);
@@ -92,9 +91,7 @@ export default class Translater {
   onSelectLang = e => {
     refs.inputRef.value = '';
     this.save.setLanguage(e.target.dataset.lang);
-    console.log('check lang');
     this.checkLang(e.target.dataset.lang);
-    console.log('translate');
     this.translate(document);
     this.langList.classList.add('hidden');
   };
